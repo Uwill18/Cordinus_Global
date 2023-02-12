@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="19.0" layoutY="22.0" prefHeight="357.0" prefWidth="563.0" style="-fx-background-color: #C4A484;">
+         <children>
+            <VBox alignment="CENTER" layoutX="125.0" layoutY="-1.0" prefHeight="357.0" prefWidth="301.0" spacing="15.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="304.0" text="Username:" />
+                  <TextField />
+                  <Label text="Password:" />
+                  <TextField />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Language:" />
+                        <Label text="English" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
