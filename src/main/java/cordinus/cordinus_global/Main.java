@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//loads homescreen in this case, the loginscreen
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
