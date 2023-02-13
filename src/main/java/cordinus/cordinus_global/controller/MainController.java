@@ -23,6 +23,11 @@ public class MainController {
 
     //for now use next button
 
+    //Language Translation set by radio button, and connected to Language bundle
+    //if translate is selected may have to set up screens just for french translation
+
+    //Time Display according to time alerts videos
+
 //Main Menu Navigation//
 
 //Exit//
