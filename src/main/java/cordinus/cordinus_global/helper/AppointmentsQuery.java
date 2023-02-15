@@ -27,24 +27,24 @@ public abstract class AppointmentsQuery {
 
     }
 
-    public static int delete(int fruitId) throws SQLException {
-        String sql = "DELETE FROM FRUITS WHERE Fruit_ID = ?";
+    public static int delete(int customerId) throws SQLException {
+        String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setInt(1,fruitId);
+        ps.setInt(1,customerId);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
 
     }
 
     public static void select() throws SQLException {
-        String sql = "SELECT * FROM FRUITS ";
+        String sql = "SELECT * FROM client_schedule.customers ";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            int fruitId = rs.getInt( "Fruit_ID");//retrieve data from result set
-            String fruitName = rs.getString("Fruit_Name");
-            System.out.print(fruitId + " | " );
-            System.out.print(fruitName + "\n" );
+            int customerId = rs.getInt( "Customer_ID");//retrieve data from result set
+            String customerName = rs.getString("Customer_Name");
+            System.out.print(customerId + " | " );
+            System.out.print(customerName+ "\n" );
         }
     }
 
