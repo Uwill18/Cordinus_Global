@@ -1,11 +1,14 @@
 package cordinus.cordinus_global;
 
+import cordinus.cordinus_global.helper.AppointmentsQuery;
+import cordinus.cordinus_global.helper.CustomersQuery;
 import cordinus.cordinus_global.helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.SQLException;
 
 //loads homescreen in this case, the loginscreen
 public class Main extends Application {
@@ -18,8 +21,9 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
+       // CustomersQuery.select();
         launch();
         JDBC.closeConnection();
     }

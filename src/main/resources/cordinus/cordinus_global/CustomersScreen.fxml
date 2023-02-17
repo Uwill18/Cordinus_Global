@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="880.0" style="-fx-background-color: #C4A484;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="880.0" style="-fx-background-color: #C4A484;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cordinus.cordinus_global.customer.CustomerController">
    <children>
-      <TableView layoutX="143.0" layoutY="100.0" prefHeight="200.0" prefWidth="615.0">
+      <TableView fx:id="CustomerTable" layoutX="143.0" layoutY="100.0" prefHeight="200.0" prefWidth="615.0">
         <columns>
             <TableColumn minWidth="75.0" prefWidth="75.0" text="ID" />
           <TableColumn minWidth="100.0" prefWidth="75.0" text="Name" />

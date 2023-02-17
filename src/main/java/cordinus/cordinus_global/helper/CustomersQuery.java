@@ -37,31 +37,31 @@ public abstract class CustomersQuery {
     }
 
     public static void select() throws SQLException {
-        String sql = "SELECT * FROM FRUITS ";
+        String sql = "SELECT * FROM CUSTOMERS ";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            int fruitId = rs.getInt( "Fruit_ID");//retrieve data from result set
-            String fruitName = rs.getString("Fruit_Name");
-            System.out.print(fruitId + " | " );
-            System.out.print(fruitName + "\n" );
+            int customerId = rs.getInt( "CUSTOMER_ID");//retrieve data from result set
+            String customerName = rs.getString("CUSTOMER_Name");
+            System.out.print(customerId + " | " );
+            System.out.print(customerName + "\n" );
         }
     }
 
-    public static void select(int colorId) throws SQLException {
-        String sql = "SELECT * FROM FRUITS WHERE Color_ID = ?";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setInt(1,colorId);
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            int fruitId = rs.getInt( "Fruit_ID");//retrieve data from result set
-            String fruitName = rs.getString("Fruit_Name");
-            int colorIdFk = rs.getInt("Color_ID");
-            System.out.print(fruitId + " | " );
-            System.out.print(fruitName + "  |   " );
-            System.out.print(colorIdFk + "\n" );
-        }
-    }
+//    public static void select(int colorId) throws SQLException {
+//        String sql = "SELECT * FROM FRUITS WHERE Color_ID = ?";
+//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+//        ps.setInt(1,colorId);
+//        ResultSet rs = ps.executeQuery();
+//        while(rs.next()){
+//            int fruitId = rs.getInt( "Fruit_ID");//retrieve data from result set
+//            String fruitName = rs.getString("Fruit_Name");
+//            int colorIdFk = rs.getInt("Color_ID");
+//            System.out.print(fruitId + " | " );
+//            System.out.print(fruitName + "  |   " );
+//            System.out.print(colorIdFk + "\n" );
+//        }
+//    }
 }
 
 
