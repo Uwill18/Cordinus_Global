@@ -22,7 +22,7 @@ public abstract class JDBC {
         try {
             Class.forName(driver); // Locate Driver
             connection = DriverManager.getConnection(jdbcUrl, userName, password); // Reference Connection object
-           CustomerController.initialize();
+
             System.out.println("Connection successful!");
         }
         catch(Exception e)

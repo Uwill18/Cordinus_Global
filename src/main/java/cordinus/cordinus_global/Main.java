@@ -1,5 +1,6 @@
 package cordinus.cordinus_global;
 
+import cordinus.cordinus_global.customer.CustomerController;
 import cordinus.cordinus_global.helper.AppointmentsQuery;
 import cordinus.cordinus_global.helper.CustomersQuery;
 import cordinus.cordinus_global.helper.JDBC;
@@ -21,10 +22,16 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
        // CustomersQuery.select();
         launch();
+        FXMLLoader loader = new FXMLLoader();
+        loader.load();
+        CustomerController customerController = loader.getController() ;
+        customerController.initialize();
+
+
         JDBC.closeConnection();
     }
 }

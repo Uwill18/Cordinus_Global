@@ -13,11 +13,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 //implement similar to product in that appointments associate with customers
-//initate getters and setter
+//initiate getters and setter in CustomerModel
+//source: https://www.youtube.com/watch?v=3tmz-0g3EPs&list=PLVo4QEZoUs5G88wJ2AajTIS33oFF8R5N-&index=2
+
+
 public class CustomerController {
 
 
@@ -60,15 +64,16 @@ public class CustomerController {
 
     }
 
-    public static void initialize(){
+    public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
         setCellTable();
+        LoadCustomers();
     }
 
 
 
 
-    private static void setCellTable(){
+    private void setCellTable(){
 
         ID_Column.setCellValueFactory(new PropertyValueFactory<>("id"));
         Name_Column.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -82,10 +87,12 @@ public class CustomerController {
             pst = con.prepareStatement("Select * from Customers");
             rs = pst.executeQuery();
             while(rs.next()){
-                customerdata.add(new CustomersList( ID, Name, Address, PostalCode, PhoneNumber));
+                customerdata.add(new CustomersList( rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
             }
+        } catch (SQLException e){
+            Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
         }
-
+       CustomerTable.setItems(customerdata);
     }
 
 
