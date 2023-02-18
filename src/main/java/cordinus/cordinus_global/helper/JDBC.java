@@ -3,6 +3,7 @@ package cordinus.cordinus_global.helper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import cordinus.cordinus_global.customer.CustomerController;
 
 public abstract class JDBC {
 
@@ -21,6 +22,7 @@ public abstract class JDBC {
         try {
             Class.forName(driver); // Locate Driver
             connection = DriverManager.getConnection(jdbcUrl, userName, password); // Reference Connection object
+           CustomerController.initialize();
             System.out.println("Connection successful!");
         }
         catch(Exception e)
