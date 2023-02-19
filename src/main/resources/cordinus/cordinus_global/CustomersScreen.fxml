@@ -8,12 +8,11 @@
    <children>
       <TableView fx:id="CustomerTable" layoutX="143.0" layoutY="100.0" prefHeight="200.0" prefWidth="615.0">
         <columns>
-            <TableColumn minWidth="75.0" prefWidth="75.0" text="ID" />
-          <TableColumn minWidth="100.0" prefWidth="75.0" text="Name" />
-          <TableColumn minWidth="125.0" prefWidth="75.0" text="Address" />
-            <TableColumn minWidth="125.0" prefWidth="75.0" text="Postal Code" />
-            <TableColumn minWidth="75.0" prefWidth="75.0" text="Phone" />
-            <TableColumn minWidth="125.0" prefWidth="75.0" text="Divison_ID" />
+            <TableColumn fx:id="Customer_ID" minWidth="75.0" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="Customer_Name" minWidth="100.0" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="Address" minWidth="125.0" prefWidth="75.0" text="Address" />
+            <TableColumn fx:id="Postal_Code" minWidth="125.0" prefWidth="75.0" text="Postal Code" />
+            <TableColumn fx:id="Phone" minWidth="75.0" prefWidth="75.0" text="Phone" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" layoutX="351.0" layoutY="321.0" prefHeight="56.0" prefWidth="200.0" spacing="15.0">
