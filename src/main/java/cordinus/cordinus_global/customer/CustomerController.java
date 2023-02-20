@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.customer;
 
 import cordinus.cordinus_global.helper.CustomersQuery;
+import cordinus.cordinus_global.helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,8 +30,8 @@ public class CustomerController {
     private Connection con = null;//not sure if I need this...
 
     private PreparedStatement pst = null;//or this..
-    private ResultSet rs = null;
-    private static ObservableList<CustomersList> customerdata;
+    //private ResultSet rs = null;
+    private ObservableList<CustomersList> customerdata;
     @FXML
     private TableColumn<?, ?> Address;
 
@@ -38,17 +39,21 @@ public class CustomerController {
     private TableView<CustomersList> CustomerTable;
 
     @FXML
-    private static TableColumn<?, ?> Customer_ID;
+    private TableColumn<?, ?> Customer_ID;
 
     @FXML
-    private static TableColumn<?, ?> Customer_Name;
+    private TableColumn<?, ?> Customer_Name;
 
 
     @FXML
-    private static TableColumn<?, ?> Phone;
+    private TableColumn<?, ?> Phone;
 
     @FXML
-    private static TableColumn<?, ?> Postal_Code;
+    private TableColumn<?, ?> Postal_Code;
+
+
+    @FXML
+    private TableColumn<?, ?> Division_ID;
 
 //    @FXML
 //    void OnAddCustomer(ActionEvent event) {
@@ -82,15 +87,19 @@ public class CustomerController {
         Address.setCellValueFactory(new PropertyValueFactory<>("Address"));
         Postal_Code.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
         Phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        Division_ID.setCellValueFactory(new PropertyValueFactory<>("Division_ID"));
     }
 
     public void LoadCustomers() throws SQLException {
         //CustomersQuery.select();
         try{
-            pst = con.prepareStatement("Select * from Customers");
-            rs = pst.executeQuery();
+//            pst = con.prepareStatement("Select * from Customers");
+//            rs = pst.executeQuery();
+            String sql = "SELECT * FROM CUSTOMERS ";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                customerdata.add(new CustomersList( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                customerdata.add(new CustomersList( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(10)));
             }
         } catch (SQLException e){
             Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);

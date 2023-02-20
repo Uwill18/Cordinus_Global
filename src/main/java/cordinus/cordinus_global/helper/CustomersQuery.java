@@ -40,12 +40,13 @@ public abstract class CustomersQuery {
         String sql = "SELECT * FROM CUSTOMERS ";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            int customerId = rs.getInt( "CUSTOMER_ID");//retrieve data from result set
-            String customerName = rs.getString("CUSTOMER_Name");
-            System.out.print(customerId + " | " );
-            System.out.print(customerName + "\n" );
-        }
+//        while(rs.next()){
+//            int customerId = rs.getInt( "CUSTOMER_ID");//retrieve data from result set
+//            String customerName = rs.getString("CUSTOMER_Name");
+//            System.out.print(customerId + " | " );
+//            System.out.print(customerName + "\n" );
+//        }
+
     }
 
 //    public static void select(int colorId) throws SQLException {

@@ -27,7 +27,7 @@ public class Main extends Application {
        // CustomersQuery.select();
         launch();
         FXMLLoader loader = new FXMLLoader();
-        loader.load();
+       // loader.load();
         CustomerController customerController = loader.getController() ;
         customerController.initialize();
 
