@@ -1,15 +1,21 @@
 package cordinus.cordinus_global.customer;
 
+import cordinus.cordinus_global.controller.MainController;
 import cordinus.cordinus_global.helper.CustomersQuery;
 import cordinus.cordinus_global.helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,20 +61,7 @@ public class CustomerController {
     @FXML
     private TableColumn<?, ?> Division_ID;
 
-//    @FXML
-//    void OnAddCustomer(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void OnDeleteCustomer(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void OnUpdateCustomer(ActionEvent event) {
-//
-//    }
+
 
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
@@ -106,6 +99,29 @@ public class CustomerController {
         }
        CustomerTable.setItems(customerdata);
     }
+
+
+    @FXML
+    void OnAddCustomer(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AddCust.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Add Customers");
+        stage.setScene(scene);
+        stage.show();
+
+    }
+//
+//    @FXML
+//    void OnDeleteCustomer(ActionEvent event) {
+//
+//    }
+//
+//    @FXML
+//    void OnUpdateCustomer(ActionEvent event) {
+//
+//    }
 
 
 
