@@ -21,7 +21,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
-//Happy Birthday
+
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
        // CustomersQuery.select();

@@ -66,14 +66,14 @@ public class CustomerController {
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
         LoadCustomers();
-        setCellTable();
+        setCustomerCellTable();
 
     }
 
 
 
 
-    private void setCellTable(){
+    private void setCustomerCellTable(){
 
         Customer_ID.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
         Customer_Name.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
@@ -92,11 +92,14 @@ public class CustomerController {
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                /**This line filters the above sql string to select  data from specific columns, then send them to an instance of CustomersList
+                 * that appends to customerdata*/
                 customerdata.add(new CustomersList( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(10)));
             }
         } catch (SQLException e){
             Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
         }
+        /**customer data is added to the CustomerTable in the view*/
        CustomerTable.setItems(customerdata);
     }
 
@@ -122,6 +125,17 @@ public class CustomerController {
 //    void OnUpdateCustomer(ActionEvent event) {
 //
 //    }
+
+    @FXML
+    void MainMenuReturn(ActionEvent event) throws IOException{
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Main Menu");
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 
