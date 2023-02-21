@@ -24,14 +24,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
-       // CustomersQuery.select();
         launch();
-        FXMLLoader loader = new FXMLLoader();
-       // loader.load();
-        CustomerController customerController = loader.getController() ;
-        customerController.initialize();
-
-
         JDBC.closeConnection();
     }
 }
