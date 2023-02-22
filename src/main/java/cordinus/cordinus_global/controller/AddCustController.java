@@ -71,11 +71,11 @@ public class AddCustController {
     public void CreateCustomer(ActionEvent event) throws SQLException {
 
 
-        String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
+        String sql ="INSERT INTO CUSTOMERS (Customer_ID Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 
 
-        //int custID = Integer.parseInt(Customer_ID.getText());
+        int custID = Integer.parseInt(Customer_ID.getText());
         String custname = Customer_Name.getText();
         String Address = AddressTxt.getText();
         String ZipCode = String.valueOf(Integer.parseInt(Postal_Code.getText()));
@@ -88,13 +88,14 @@ public class AddCustController {
         //modify sql statement, manually run sql statement on mysql workbench first, and embed in the code
         //e.g. (make sure order is correct:)
         ////Timestamp timestamp = UDT;
+        //https://www.youtube.com/watch?v=vpwvWdnILuo&list=PLmCsXDGbJHdia3cLNvK4e2Gp4S9TUkK3G&index=15
 
 
 
 
 
         try{
-            //ps.setInt(1,custID);
+            ps.setInt(1,custID);
             ps.setString(2,custname);
             ps.setString(3,Address);
             ps.setString(4,ZipCode);
