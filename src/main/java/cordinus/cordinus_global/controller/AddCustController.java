@@ -71,7 +71,7 @@ public class AddCustController {
     public void CreateCustomer(ActionEvent event) throws SQLException {
 
 
-        String sql ="INSERT INTO CUSTOMERS ( Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
+        String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 
 
@@ -82,6 +82,17 @@ public class AddCustController {
         String PhoneNumber = Phone.getText();
         int DivID = Integer.parseInt(Division_ID.getText());
 
+        //timestamp for utc createddate and last update start as the same
+        //createdby and lastupdate by user login, can be "test"/ the same
+        //next steps are to implement user login, and to implement timestamps
+        //modify sql statement, manually run sql statement on mysql workbench first, and embed in the code
+        //e.g. (make sure order is correct:)
+        ////Timestamp timestamp = UDT;
+
+
+
+
+
         try{
             //ps.setInt(1,custID);
             ps.setString(2,custname);
@@ -89,6 +100,10 @@ public class AddCustController {
             ps.setString(4,ZipCode);
             ps.setString(5,PhoneNumber);
             ps.setInt(5,DivID);
+            // e.g. : ps.setString(6,timestamp);
+            ////
+            //userlogin
+            //timestamp
             ps.execute();
         }catch(Exception e){
 
