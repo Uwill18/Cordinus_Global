@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,38 +65,40 @@ public class AddCustController {
 
 
 
-    @FXML
-    void CreateCustomer(ActionEvent event) {
+    //https://www.youtube.com/watch?v=tw_NXq08NUE
 
-        int custID = Integer.parseInt(Customer_ID.getText());
+    @FXML
+    public void CreateCustomer(ActionEvent event) throws SQLException {
+
+
+        String sql ="INSERT INTO CUSTOMERS ( Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+
+
+        //int custID = Integer.parseInt(Customer_ID.getText());
         String custname = Customer_Name.getText();
         String Address = AddressTxt.getText();
         String ZipCode = String.valueOf(Integer.parseInt(Postal_Code.getText()));
         String PhoneNumber = Phone.getText();
         int DivID = Integer.parseInt(Division_ID.getText());
 
-
         try{
+            //ps.setInt(1,custID);
+            ps.setString(2,custname);
+            ps.setString(3,Address);
+            ps.setString(4,ZipCode);
+            ps.setString(5,PhoneNumber);
+            ps.setInt(5,DivID);
+            ps.execute();
+        }catch(Exception e){
 
-            String sql ="INSERT INTO CUSTOMERS ( Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
-            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            while(rs.next()){
-
-                int rowsAffected = ps.executeUpdate();
-                return rowsAffected;
-                //customerdata.add(new CustomersList( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(10)));
-
-            }
-        } catch (SQLException e){
-            Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
         }
-        /**customer data is added to the CustomerTable in the view*/
-        //CustomerTable.setItems(customerdata);
-
 
     }
+
+
+
+
 
     @FXML
     public void CustomerScreenButton(ActionEvent event) throws IOException {
