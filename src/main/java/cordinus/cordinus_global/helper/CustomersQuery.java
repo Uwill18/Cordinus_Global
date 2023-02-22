@@ -7,11 +7,11 @@ import java.sql.SQLException;
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class CustomersQuery {
 
-    public static int insert(String fruitName, int colorId) throws SQLException {
-        String sql ="INSERT INTO FRUITS (Fruit_Name, Color_ID) VALUES(?,?)";
+    public static int insert(int custID, String custName, String Address, String Postal,String Phone, int DivID) throws SQLException {
+        String sql ="INSERT INTO CUSTOMERS ( Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setString(1,fruitName);
-        ps.setInt(2,colorId);
+//        ps.setString(1,fruitName);
+//        ps.setInt(2,colorId);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }

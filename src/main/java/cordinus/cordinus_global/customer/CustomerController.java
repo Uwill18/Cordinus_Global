@@ -33,10 +33,7 @@ public class CustomerController {
 
 
 
-    private Connection con = null;//not sure if I need this...
 
-    private PreparedStatement pst = null;//or this..
-    //private ResultSet rs = null;
     private ObservableList<CustomersList> customerdata;
     @FXML
     private TableColumn<?, ?> Address;
@@ -86,8 +83,7 @@ public class CustomerController {
     public void LoadCustomers() throws SQLException {
         //CustomersQuery.select();
         try{
-//            pst = con.prepareStatement("Select * from Customers");
-//            rs = pst.executeQuery();
+
             String sql = "SELECT * FROM CUSTOMERS ";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -112,8 +108,8 @@ public class CustomerController {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Add Customers");
         stage.setScene(scene);
-        stage.show();
 
+        stage.show();
     }
 //
 //    @FXML

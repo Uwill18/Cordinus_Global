@@ -16,7 +16,8 @@ public class CustomersList {
 
     private String Division_ID;
 
-
+/**Discovered that matching the order of the constructor attributes with the view counterparts ensures that
+ * they are displayed properly when loaded*/
     public CustomersList(String customer_ID, String customer_Name, String address, String postal_Code, String phone, String division_ID) {
         Customer_ID = customer_ID;
         Customer_Name = customer_Name;

@@ -29,7 +29,7 @@ public class AppointmentsList {
 
 
 
-    public AppointmentsList(String appointment_ID,String title,String description,String location,String contact_ID ,String type,String start,  String end   ) {
+    public AppointmentsList(String appointment_ID,String title,String description,String location, String contact_ID,String type,String start,  String end   ) {
         Appointment_ID = appointment_ID;
         Title = title;
         Description = description;
