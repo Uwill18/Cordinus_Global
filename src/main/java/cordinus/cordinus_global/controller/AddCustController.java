@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,12 +68,14 @@ public class AddCustController {
 
 
     //https://www.youtube.com/watch?v=tw_NXq08NUE
+    //https://www.youtube.com/watch?v=vpwvWdnILuo&list=PLmCsXDGbJHdia3cLNvK4e2Gp4S9TUkK3G&index=15
+    //https://beginnersbook.com/2014/01/how-to-convert-12-hour-time-to-24-hour-date-in-java/
 
     @FXML
     public void CreateCustomer(ActionEvent event) throws SQLException {
 
 
-        String sql ="INSERT INTO CUSTOMERS (Customer_ID Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
+        String sql ="INSERT INTO CUSTOMERS (Customer_ID Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated, Division_ID) VALUES(?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 
 
@@ -80,6 +84,15 @@ public class AddCustController {
         String Address = AddressTxt.getText();
         String ZipCode = String.valueOf(Integer.parseInt(Postal_Code.getText()));
         String PhoneNumber = Phone.getText();
+
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String timestamp = formatter.format(date).toString();
+
+        String CreateDate = timestamp;
+        String CreatedBy ="test";
+        String LastUpdate = timestamp;
+        String LastUpdatedBy ="test";
         int DivID = Integer.parseInt(Division_ID.getText());
 
         //timestamp for utc createddate and last update start as the same
@@ -88,7 +101,7 @@ public class AddCustController {
         //modify sql statement, manually run sql statement on mysql workbench first, and embed in the code
         //e.g. (make sure order is correct:)
         ////Timestamp timestamp = UDT;
-        //https://www.youtube.com/watch?v=vpwvWdnILuo&list=PLmCsXDGbJHdia3cLNvK4e2Gp4S9TUkK3G&index=15
+        //
 
 
 
@@ -100,9 +113,12 @@ public class AddCustController {
             ps.setString(3,Address);
             ps.setString(4,ZipCode);
             ps.setString(5,PhoneNumber);
-            ps.setInt(5,DivID);
-            // e.g. : ps.setString(6,timestamp);
-            ////
+            ps.setString(6,CreateDate);
+            ps.setString(7,CreatedBy);
+            ps.setString(8,LastUpdate);
+            ps.setString(9,LastUpdatedBy);
+            ps.setInt(10,DivID);
+
             //userlogin
             //timestamp
             ps.execute();
