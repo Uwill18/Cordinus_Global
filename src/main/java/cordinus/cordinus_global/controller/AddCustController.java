@@ -82,19 +82,19 @@ public class AddCustController {
        // int custID = Integer.parseInt(Customer_ID.getText());
         String custname = Customer_Name.getText();
         String Address = AddressTxt.getText();
-        String ZipCode = String.valueOf(Integer.parseInt(Postal_Code.getText()));
+        String ZipCode = Postal_Code.getText();
         String PhoneNumber = Phone.getText();
 
-        Date date = new Date();
+        Date date = new Date();//use LocalDateTime
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String timestamp = formatter.format(date).toString();
 
-        String CreateDate = timestamp;
+        //String CreateDate = timestamp;
         String CreatedBy ="test";
-        String LastUpdate = timestamp;
+        //String LastUpdate = timestamp;
         String LastUpdatedBy ="test";
         int DivID = Integer.parseInt(Division_ID.getText());
-        CustomersQuery.insert(custname,Address,ZipCode,PhoneNumber,CreateDate,CreatedBy, LastUpdate, LastUpdatedBy,DivID);
+        CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreatedBy, LastUpdatedBy, DivID);
         //timestamp for utc createddate and last update start as the same
         //createdby and lastupdate by user login, can be "test"/ the same
         //next steps are to implement user login, and to implement timestamps
