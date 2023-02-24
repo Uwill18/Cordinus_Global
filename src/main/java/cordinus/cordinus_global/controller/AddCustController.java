@@ -3,6 +3,7 @@ package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.customer.CustomerController;
 import cordinus.cordinus_global.customer.CustomersList;
+import cordinus.cordinus_global.helper.CustomersQuery;
 import cordinus.cordinus_global.helper.JDBC;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -75,11 +76,10 @@ public class AddCustController {
     public void CreateCustomer(ActionEvent event) throws SQLException {
 
 
-        String sql ="INSERT INTO CUSTOMERS (Customer_ID Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated, Division_ID) VALUES(?,?,?,?,?,?)";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 
 
-        int custID = Integer.parseInt(Customer_ID.getText());
+
+       // int custID = Integer.parseInt(Customer_ID.getText());
         String custname = Customer_Name.getText();
         String Address = AddressTxt.getText();
         String ZipCode = String.valueOf(Integer.parseInt(Postal_Code.getText()));
@@ -94,7 +94,7 @@ public class AddCustController {
         String LastUpdate = timestamp;
         String LastUpdatedBy ="test";
         int DivID = Integer.parseInt(Division_ID.getText());
-
+        CustomersQuery.insert(custname,Address,ZipCode,PhoneNumber,CreateDate,CreatedBy, LastUpdate, LastUpdatedBy,DivID);
         //timestamp for utc createddate and last update start as the same
         //createdby and lastupdate by user login, can be "test"/ the same
         //next steps are to implement user login, and to implement timestamps
@@ -107,24 +107,6 @@ public class AddCustController {
 
 
 
-        try{
-            ps.setInt(1,custID);
-            ps.setString(2,custname);
-            ps.setString(3,Address);
-            ps.setString(4,ZipCode);
-            ps.setString(5,PhoneNumber);
-            ps.setString(6,CreateDate);
-            ps.setString(7,CreatedBy);
-            ps.setString(8,LastUpdate);
-            ps.setString(9,LastUpdatedBy);
-            ps.setInt(10,DivID);
-
-            //userlogin
-            //timestamp
-            ps.execute();
-        }catch(Exception e){
-
-        }
 
     }
 

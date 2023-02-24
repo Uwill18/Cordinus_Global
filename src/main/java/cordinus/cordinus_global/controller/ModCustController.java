@@ -5,6 +5,7 @@ public class ModCustController {
     //by new login user
     //only change lastupdate and lastupdateby
     //**CreatedBy and CreateDate are NOT to be modified,
+    //https://www.youtube.com/watch?v=1AmIKxHbLJo
 
 
 }

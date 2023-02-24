@@ -7,13 +7,35 @@ import java.sql.SQLException;
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class CustomersQuery {
 
-    public static int insert(int custID, String custName, String Address, String Postal,String Phone, int DivID) throws SQLException {
-        String sql ="INSERT INTO CUSTOMERS ( Customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES(?,?,?,?,?,?)";
+
+    //paste updated insert method here, then call it in AddCustController, and pass all values from the fxml into the method
+    public static int insert( String custName, String Address, String Postal,String Phone,String CreateDate,String CreatedBy,String LastUpdate,String LastUpdatedBy, int DivID) throws SQLException {
+        String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated, Division_ID) VALUES(?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 //        ps.setString(1,fruitName);
 //        ps.setInt(2,colorId);
-        int rowsAffected = ps.executeUpdate();
-        return rowsAffected;
+
+        try{
+            //ps.setInt(1,custID);//.size()+1 ?? //figure out how to autoincrement the id field for customer
+            ps.setString(1,custName);
+            ps.setString(2,Address);
+            ps.setString(3,Postal);
+            ps.setString(4,Phone);
+            ps.setString(5,CreateDate);
+            ps.setString(6,CreatedBy);
+            ps.setString(7,LastUpdate);
+            ps.setString(8,LastUpdatedBy);
+            ps.setInt(9,DivID);
+
+            //userlogin
+            //timestamp
+            //ps.execute();
+        }catch(Exception e){
+            System.out.println("Exception");
+        }
+         int rowsAffected = ps.executeUpdate();
+         return rowsAffected;
+
     }
 
     public static int update(int fruitId,String fruitName) throws SQLException {
