@@ -3,29 +3,37 @@ package cordinus.cordinus_global.helper;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class CustomersQuery {
 
 
     //paste updated insert method here, then call it in AddCustController, and pass all values from the fxml into the method
-    public static int insert( String custName, String Address, String Postal, String Phone, String CreatedBy, String LastUpdatedBy, int DivID) throws SQLException {
-        String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?,?,?,?,Now(),?,Now(),?,?)";
+    public static int insert( String custName, String Address, String Postal, String Phone,Timestamp CreateDate, String CreatedBy,Timestamp LastUpdate, String LastUpdatedBy, int DivID) throws SQLException {
+        String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 //        ps.setString(1,fruitName);
 //        ps.setInt(2,colorId);
-
+//        Date date = new Date();//use LocalDateTime
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
+//
+//        Timestamp CreateDate = timestamp;
+//        Timestamp LastUpdate = timestamp;
 
             //ps.setInt(1,custID);//.size()+1 ?? //figure out how to autoincrement the id field for customer
             ps.setString(1,custName);
             ps.setString(2,Address);
             ps.setString(3,Postal);
             ps.setString(4,Phone);
-            //ps.setTimestamp(5,CreateDate);//setTimestamp, valueof ldt
-            ps.setString(5,CreatedBy);
-            //ps.setTimestamp(7,LastUpdate);//setTimestamp
-            ps.setString(6,LastUpdatedBy);
-            ps.setInt(7,DivID);
+            ps.setTimestamp(5,CreateDate);//setTimestamp, valueof ldt
+            ps.setString(6,CreatedBy);
+            ps.setTimestamp(7,LastUpdate);//setTimestamp
+            ps.setString(8,LastUpdatedBy);
+            ps.setInt(9,DivID);
 
 
          int rowsAffected = ps.executeUpdate();

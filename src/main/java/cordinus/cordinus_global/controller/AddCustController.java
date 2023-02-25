@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -87,14 +88,16 @@ public class AddCustController {
 
         Date date = new Date();//use LocalDateTime
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String timestamp = formatter.format(date).toString();
+        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
 
-        //String CreateDate = timestamp;
+        Timestamp CreateDate = timestamp;
+        Timestamp LastUpdate = timestamp;
         String CreatedBy ="test";
-        //String LastUpdate = timestamp;
+
         String LastUpdatedBy ="test";
         int DivID = Integer.parseInt(Division_ID.getText());
-        CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreatedBy, LastUpdatedBy, DivID);
+        System.out.print( CreateDate);
+        CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);
         //timestamp for utc createddate and last update start as the same
         //createdby and lastupdate by user login, can be "test"/ the same
         //next steps are to implement user login, and to implement timestamps
@@ -109,6 +112,8 @@ public class AddCustController {
 
 
     }
+
+
 
 
 
