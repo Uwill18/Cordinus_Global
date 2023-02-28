@@ -96,7 +96,7 @@ public class AddCustController {
 
         String LastUpdatedBy ="test";
         int DivID = Integer.parseInt(Division_ID.getText());
-        System.out.print( CreateDate);
+        //System.out.print( CreateDate);
         CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);
         //timestamp for utc createddate and last update start as the same
         //createdby and lastupdate by user login, can be "test"/ the same

@@ -78,7 +78,7 @@ public class ModCustController {
 
                 String LastUpdatedBy ="test";
                 int DivID = Integer.parseInt(Division_ID.getText());
-                System.out.print( CreateDate);
+                //System.out.print( CreateDate);
                 CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID, customerid);
 
         }
