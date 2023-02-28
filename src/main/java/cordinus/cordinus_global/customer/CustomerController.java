@@ -117,10 +117,15 @@ public class CustomerController {
 //
 //    }
 //
-//    @FXML
-//    void OnUpdateCustomer(ActionEvent event) {
-//
-//    }
+    @FXML
+    void OnUpdateCustomer(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Modify Customer");
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     void MainMenuReturn(ActionEvent event) throws IOException{

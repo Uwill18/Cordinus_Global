@@ -1,11 +1,11 @@
 package cordinus.cordinus_global.helper;
 
+import cordinus.cordinus_global.customer.CustomersList;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class CustomersQuery {
@@ -25,6 +25,7 @@ public abstract class CustomersQuery {
 //        Timestamp LastUpdate = timestamp;
 
             //ps.setInt(1,custID);//.size()+1 ?? //figure out how to autoincrement the id field for customer
+        //CustomersList.getCustomer_ID(); ??
             ps.setString(1,custName);
             ps.setString(2,Address);
             ps.setString(3,Postal);
@@ -41,11 +42,18 @@ public abstract class CustomersQuery {
 
     }
 
-    public static int update(int fruitId,String fruitName) throws SQLException {
-        String sql ="UPDATE FRUITS SET Fruit_Name = ? WHERE Fruit_ID = ?";
+    public static int update(String custname,String Address,String ZipCode,String PhoneNumber,Timestamp CreateDate,String CreatedBy,Timestamp LastUpdate,String LastUpdatedBy,int DivID) throws SQLException {
+        String sql ="UPDATE CUSTOMERS SET Customer_Name = ?,Address = ?,Postal_Code= ?, Phone = ?, Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setString(1,fruitName);
-        ps.setInt(2,fruitId);
+        ps.setString(1,custname);
+        ps.setString(2,Address);
+        ps.setString(3,ZipCode);
+        ps.setString(4,PhoneNumber);
+        ps.setTimestamp(5,CreateDate);//setTimestamp, valueof ldt
+        ps.setString(6,CreatedBy);
+        ps.setTimestamp(7,LastUpdate);//setTimestamp
+        ps.setString(8,LastUpdatedBy);
+        ps.setInt(9,DivID);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
 
@@ -62,15 +70,7 @@ public abstract class CustomersQuery {
     }
 
     public static void select() throws SQLException {
-        String sql = "SELECT * FROM CUSTOMERS ";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-//        while(rs.next()){
-//            int customerId = rs.getInt( "CUSTOMER_ID");//retrieve data from result set
-//            String customerName = rs.getString("CUSTOMER_Name");
-//            System.out.print(customerId + " | " );
-//            System.out.print(customerName + "\n" );
-//        }
+
 
     }
 
