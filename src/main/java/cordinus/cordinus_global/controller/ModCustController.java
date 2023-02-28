@@ -1,14 +1,12 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.customer.CustomersList;
 import cordinus.cordinus_global.helper.CustomersQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -44,6 +42,11 @@ public class ModCustController {
 
         @FXML
         private TextField Postal_Code;
+
+        private CustomersList customer;
+
+        private int index;
+
 
         @FXML
         void CustomerScreenButton(ActionEvent event) throws IOException {
@@ -84,6 +87,19 @@ public class ModCustController {
         //ModifyCust must autopop selected data from customercontroller
         //allow editing of select fields, then pass that data back to the db
         //afterwards both the database and the app should hold an updated customers view
+
+        public void Customer_Passer(int index, CustomersList customer){
+                this.customer = customer;
+                this.index = index;
+
+                Customer_ID.setText((String.valueOf(customer.getCustomer_ID())));
+                Customer_Name.setText(customer.getCustomer_Name());
+                AddressTxt.setText(customer.getAddress());
+                Postal_Code.setText(customer.getPostal_Code());
+                Phone.setText(customer.getPhone());
+                Division_ID.setText((String.valueOf(customer.getDivision_ID())));
+
+        }
 
 
 

@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.customer;
 
 import cordinus.cordinus_global.controller.MainController;
+import cordinus.cordinus_global.controller.ModCustController;
 import cordinus.cordinus_global.helper.CustomersQuery;
 import cordinus.cordinus_global.helper.JDBC;
 import javafx.collections.FXCollections;
@@ -9,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -60,6 +62,7 @@ public class CustomerController {
 
 
 
+
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
         LoadCustomers();
@@ -100,6 +103,8 @@ public class CustomerController {
     }
 
 
+
+
     @FXML
     void OnAddCustomer(ActionEvent event) throws IOException {
 
@@ -119,11 +124,15 @@ public class CustomerController {
 //
     @FXML
     void OnUpdateCustomer(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
+        loader.load();
+        ModCustController modCustController = loader.getController();//get controller tied to view
+        modCustController.Customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Modify Customer");
-        stage.setScene(scene);
+        Parent scene = loader.getRoot();
+        stage.setScene(new Scene(scene));
         stage.show();
     }
 
