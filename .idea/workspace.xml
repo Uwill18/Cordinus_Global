@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Update Function updated&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Adjusting timestamps &#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddAppt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddAppt.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AppointmentScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AppointmentScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ModAppt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ModAppt.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677557193687</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Adjusting timestamps &#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1677608052421</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1677608052421</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,7 +290,8 @@
     <MESSAGE value="Update Function underway&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="Update Function w/ Sr.Dev Sunitha K&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="Update Function updated&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Function updated&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Adjusting timestamps &#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusting timestamps &#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
