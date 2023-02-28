@@ -30,7 +30,7 @@
                   <TextField fx:id="AddressTxt" layoutX="277.0" layoutY="13.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="Postal_Code" layoutX="277.0" layoutY="43.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="Phone" layoutX="277.0" layoutY="73.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="Customer_ID" layoutX="277.0" layoutY="103.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="Customer_ID" editable="false" layoutX="277.0" layoutY="103.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Division ID:" GridPane.rowIndex="5" />
                   <TextField fx:id="Division_ID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>

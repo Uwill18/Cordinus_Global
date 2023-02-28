@@ -59,7 +59,7 @@ public class ModCustController {
 
         @FXML
         void ModifyCustomer(ActionEvent event) throws SQLException {
-
+                int customerid = Integer.parseInt(Customer_ID.getText());
                 String custname = Customer_Name.getText();
                 String Address = AddressTxt.getText();
                 String ZipCode = Postal_Code.getText();
@@ -76,9 +76,15 @@ public class ModCustController {
                 String LastUpdatedBy ="test";
                 int DivID = Integer.parseInt(Division_ID.getText());
                 System.out.print( CreateDate);
-                CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);
+                CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID, customerid);
 
         }
+
+
+        //ModifyCust must autopop selected data from customercontroller
+        //allow editing of select fields, then pass that data back to the db
+        //afterwards both the database and the app should hold an updated customers view
+
 
 
 

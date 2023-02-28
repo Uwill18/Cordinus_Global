@@ -138,7 +138,8 @@ public class CustomerController {
         stage.show();
     }
 
-
+//Customer Controller must select Data from the TableView and pass
+// it ModifyCust
 
 
 }
