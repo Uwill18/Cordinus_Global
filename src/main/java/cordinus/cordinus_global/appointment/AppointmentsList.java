@@ -30,7 +30,7 @@ public class AppointmentsList {
 
 
     public AppointmentsList(String appointment_ID,String title,String description,String location, String contact_ID,String type,String start,  String end   ) {
-        Appointment_ID = appointment_ID;
+        Appointment_ID = appointment_ID;//autogen
         Title = title;
         Description = description;
         Location = location;
@@ -38,6 +38,8 @@ public class AppointmentsList {
         Type = type;
         Start = start;
         End = end;
+        //add customer_id
+        //user_id
 
 
     }

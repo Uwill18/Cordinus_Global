@@ -55,7 +55,7 @@ public class AddApptController {
 
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException {
-        //String apptID = ApptIDTxt.getText();
+        //String apptID = ApptIDTxt.getText();//disabled in this and modappt
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
@@ -82,7 +82,8 @@ public class AddApptController {
 
         AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,contact);
 
-
+        //cust id
+        //user id
 
     }
 

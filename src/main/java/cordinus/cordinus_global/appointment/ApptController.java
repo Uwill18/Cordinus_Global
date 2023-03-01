@@ -83,6 +83,8 @@ public class ApptController {
                 Type.setCellValueFactory(new PropertyValueFactory<>("Type"));//5,6
                 Start.setCellValueFactory(new PropertyValueFactory<>("Start"));//6,7
                 End.setCellValueFactory(new PropertyValueFactory<>("End"));//7,8
+                //add customer_id
+                //user_id
 
         }
 

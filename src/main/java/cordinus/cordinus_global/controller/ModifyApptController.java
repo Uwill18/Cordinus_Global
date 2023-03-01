@@ -38,6 +38,8 @@ public class ModifyApptController {
     @FXML
     private TextField TypeTxt;
 
+    //•  All of the original appointment information is displayed on the update form in local time zone.
+    //•  All of the appointment fields can be updated except Appointment_ID, which must be disabled.
 
 
     @FXML
