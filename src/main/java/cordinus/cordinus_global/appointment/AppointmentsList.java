@@ -27,9 +27,13 @@ public class AppointmentsList {
 
     private String Type;
 
+    private String Customer_ID;
+
+    private String User_ID;
 
 
-    public AppointmentsList(String appointment_ID,String title,String description,String location, String contact_ID,String type,String start,  String end   ) {
+
+    public AppointmentsList(String appointment_ID, String title, String description, String location, String contact_ID, String type, String start, String end, String customerID, String userID  ) {
         Appointment_ID = appointment_ID;//autogen
         Title = title;
         Description = description;
@@ -38,6 +42,8 @@ public class AppointmentsList {
         Type = type;
         Start = start;
         End = end;
+        Customer_ID = customerID;
+        User_ID = userID;
         //add customer_id
         //user_id
 
@@ -109,6 +115,21 @@ public class AppointmentsList {
         Type = type;
     }
 
+    public String getCustomer_ID() {
+        return Customer_ID;
+    }
+
+    public void setCustomer_ID(String customer_ID) {
+        Customer_ID = customer_ID;
+    }
+
+    public String getUser_ID() {
+        return User_ID;
+    }
+
+    public void setUser_ID(String user_ID) {
+        User_ID = user_ID;
+    }
 
 
 

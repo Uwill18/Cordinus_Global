@@ -65,6 +65,12 @@ public class ApptController {
         @FXML
         private TableColumn<?, ?> Type;
 
+        @FXML
+        private TableColumn<?, ?> Customer_ID;
+
+        @FXML
+        private TableColumn<?, ?> User_ID;
+
         public void initialize() throws SQLException {
                 appointmentdata = FXCollections.observableArrayList();
                 LoadAppointments();
@@ -75,7 +81,7 @@ public class ApptController {
 
         private void setAppointmentCellTable(){
 
-                Appointment_ID.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));//1,1                Title.setCellValueFactory(new PropertyValueFactory<>("Title"));
+                Appointment_ID.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));//1,1
                 Title.setCellValueFactory(new PropertyValueFactory<>("Title"));//2,2
                 Description.setCellValueFactory(new PropertyValueFactory<>("Description"));//3,3
                 Location.setCellValueFactory(new PropertyValueFactory<>("Location"));//4,4
@@ -83,6 +89,9 @@ public class ApptController {
                 Type.setCellValueFactory(new PropertyValueFactory<>("Type"));//5,6
                 Start.setCellValueFactory(new PropertyValueFactory<>("Start"));//6,7
                 End.setCellValueFactory(new PropertyValueFactory<>("End"));//7,8
+                Customer_ID.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+                User_ID.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+
                 //add customer_id
                 //user_id
 
@@ -98,7 +107,7 @@ public class ApptController {
                         while(rs.next()){
                                 /**This line filters the above sql string to select  data from specific columns, then send them to an instance of CustomersList
                                  * that appends to appointmentdata*/
-                                appointmentdata.add(new AppointmentsList( rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getString(6),rs.getString(7)));
+                                appointmentdata.add(new AppointmentsList( rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getString(6),rs.getString(7), rs.getString(12), rs.getString(13)));
                         }
                 } catch (SQLException e){
                         Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);

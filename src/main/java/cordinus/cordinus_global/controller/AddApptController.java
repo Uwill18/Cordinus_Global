@@ -51,6 +51,12 @@ public class AddApptController {
     @FXML
     private TextField TypeTxt;
 
+    @FXML
+    private TextField CustomerIDTxt;
+
+    @FXML
+    private TextField UserIDTxt;
+
 
 
     @FXML
@@ -80,7 +86,10 @@ public class AddApptController {
         Timestamp FormattedEnd = Timestamp.valueOf(myEndDT.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
         Timestamp endby = FormattedEnd;
 
-        AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,contact);
+        int custid = Integer.parseInt(CustomerIDTxt.getText());
+        int userid = Integer.parseInt(UserIDTxt.getText());
+
+        AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,contact, custid, userid);
 
         //cust id
         //user id
