@@ -1,5 +1,6 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.helper.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 //https://www.youtube.com/watch?v=at4xyBOdgME
 //https://www.youtube.com/watch?v=i0j2AmsJQz0https://www.youtube.com/watch?v=i0j2AmsJQz0
@@ -19,6 +27,8 @@ public class AddApptController {
 
     @FXML
     private DatePicker ApptEndPicker;
+
+
 
     @FXML
     private TextField ApptIDTxt;
@@ -44,7 +54,35 @@ public class AddApptController {
 
 
     @FXML
-    void InsertAppt(ActionEvent event) {
+    void InsertAppt(ActionEvent event) throws SQLException {
+        //String apptID = ApptIDTxt.getText();
+        String title = TitleTxt.getText();
+        String description = DescriptionTxt.getText();
+        String location = LocationTxt.getText();
+        int contact = Integer.parseInt(ContactTxt.getText());
+        String type = TypeTxt.getText();
+
+        Date date = new Date();//use LocalDateTime
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
+
+        Timestamp CreateDate = timestamp;
+        Timestamp LastUpdate = timestamp;
+        String CreatedBy ="test";
+
+        String LastUpdatedBy ="test";
+
+        LocalDateTime myStartDT = LocalDateTime.from(ApptStartPicker.getValue());
+        Timestamp FormattedStart = Timestamp.valueOf(myStartDT.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        Timestamp startby = FormattedStart;
+
+        LocalDateTime myEndDT = LocalDateTime.from(ApptEndPicker.getValue());
+        Timestamp FormattedEnd = Timestamp.valueOf(myEndDT.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
+        Timestamp endby = FormattedEnd;
+
+        AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,contact);
+
+
 
     }
 

@@ -2,8 +2,14 @@ package cordinus.cordinus_global.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 ////https://www.youtube.com/watch?v=3Ht-JMQh2JI
 public class ModifyApptController {
@@ -32,13 +38,22 @@ public class ModifyApptController {
     @FXML
     private TextField TypeTxt;
 
+
+
     @FXML
-    void ApptScreenReturn(ActionEvent event) {
+    void UpdateAppt(ActionEvent event) {
 
     }
 
     @FXML
-    void UpdateAppt(ActionEvent event) {
+    void ApptScreenReturn(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Appointments");
+        stage.setScene(scene);
+        stage.show();
 
     }
 }

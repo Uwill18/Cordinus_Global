@@ -15,17 +15,6 @@ public abstract class CustomersQuery {
     public static int insert( String custName, String Address, String Postal, String Phone,Timestamp CreateDate, String CreatedBy,Timestamp LastUpdate, String LastUpdatedBy, int DivID) throws SQLException {
         String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-//        ps.setString(1,fruitName);
-//        ps.setInt(2,colorId);
-//        Date date = new Date();//use LocalDateTime
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
-//
-//        Timestamp CreateDate = timestamp;
-//        Timestamp LastUpdate = timestamp;
-
-            //ps.setInt(1,custID);//.size()+1 ?? //figure out how to autoincrement the id field for customer
-        //CustomersList.getCustomer_ID(); ??
             ps.setString(1,custName);
             ps.setString(2,Address);
             ps.setString(3,Postal);

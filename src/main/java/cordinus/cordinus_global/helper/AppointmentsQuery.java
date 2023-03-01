@@ -3,17 +3,31 @@ package cordinus.cordinus_global.helper;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class AppointmentsQuery {
 
-    public static int insert(String fruitName, int colorId) throws SQLException {
-        String sql ="INSERT INTO FRUITS (Fruit_Name, Color_ID) VALUES(?,?)";
+    public static int insert(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp LastUpdate,String LastUpdatedBy, Timestamp CreatedDate,String CreatedBy, int contact) throws SQLException {
+        String sql ="INSERT INTO CUSTOMERS ( Title, Description, Location, Type, Start, End,Create_Date,Created_By,Last_Update,Last_Update_By, Contact_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setString(1,fruitName);
-        ps.setInt(2,colorId);
+        ps.setString(1,title);
+        ps.setString(2,description);
+        ps.setString(3,location);
+        ps.setString(4,type);
+        ps.setTimestamp(5,startby);//setTimestamp, valueof ldt
+
+        ps.setTimestamp(6,endby);//setTimestamp
+        ps.setTimestamp(7,CreatedDate);
+        ps.setString(8,CreatedBy);
+        ps.setTimestamp(7,LastUpdate);
+        ps.setString(10,LastUpdatedBy);
+        ps.setInt(13,contact);
+
+
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
+
     }
 
     public static int update(int fruitId,String fruitName) throws SQLException {
