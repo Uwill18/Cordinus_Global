@@ -92,7 +92,7 @@ public class ModCustController {
                 this.customer = customer;
                 this.index = index;
 
-                Customer_ID.setText((String.valueOf(customer.getCustomer_ID())));
+                Customer_ID.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
                 Customer_Name.setText(customer.getCustomer_Name());
                 AddressTxt.setText(customer.getAddress());
                 Postal_Code.setText(customer.getPostal_Code());

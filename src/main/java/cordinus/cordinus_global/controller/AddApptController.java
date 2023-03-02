@@ -1,5 +1,6 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.appointment.AppointmentsList;
 import cordinus.cordinus_global.helper.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,6 +63,7 @@ public class AddApptController {
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException {
         //String apptID = ApptIDTxt.getText();//disabled in this and modappt
+
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
@@ -75,6 +77,14 @@ public class AddApptController {
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
         String CreatedBy ="test";
+
+        //combobox is going to list local time objects
+        //then insert times as timestamp, formatting not necessary
+        // have the widget provide the info
+        //db takes time as string and timestamp, timestamp preferred since it will convert to sql server timezone
+        //if set to UTC
+
+
 
         String LastUpdatedBy ="test";
 
