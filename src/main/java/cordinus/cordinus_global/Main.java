@@ -20,6 +20,7 @@ public class Main extends Application {
         stage.setTitle("Cordinus Global");
         stage.setScene(scene);
         stage.show();
+        //
     }
 
     public static void main(String[] args) throws SQLException, IOException {
