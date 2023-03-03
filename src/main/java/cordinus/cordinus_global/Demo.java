@@ -32,7 +32,7 @@ public class Demo implements Initializable  {
 //        }
 
 //Mr. Wabara reviewed timeloops with me to output to combobox
-        //we discussed that combinining the times with the date picker to a timestamp
+        //we discussed that combining the times with the date picker to a timestamp
         //would help format the time
         for(int h = 0; h < 24; h++){
             for(int  m = 0; m < 4; m++){ //<4 for 15m increments

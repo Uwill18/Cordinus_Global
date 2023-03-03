@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,7 +17,9 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -27,15 +30,18 @@ public class AddApptController {
 
 
     @FXML
-    private DatePicker ApptEndPicker;
+    private DatePicker EndDatePicker;
+
+    @FXML
+    private DatePicker StartDatePicker;
 
 
+    public ComboBox<LocalTime> StartTimeCombo;
+
+    public ComboBox<LocalTime> EndTimeCombo;
 
     @FXML
     private TextField ApptIDTxt;
-
-    @FXML
-    private DatePicker ApptStartPicker;
 
     @FXML
     private TextField ContactTxt;
@@ -88,13 +94,52 @@ public class AddApptController {
 
         String LastUpdatedBy ="test";
 
-        LocalDateTime myStartDT = LocalDateTime.from(ApptStartPicker.getValue());
-        Timestamp FormattedStart = Timestamp.valueOf(myStartDT.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-        Timestamp startby = FormattedStart;
 
-        LocalDateTime myEndDT = LocalDateTime.from(ApptEndPicker.getValue());
-        Timestamp FormattedEnd = Timestamp.valueOf(myEndDT.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
-        Timestamp endby = FormattedEnd;
+        ///Dates
+        LocalDate startDate = LocalDate.from(StartDatePicker.getValue());
+        Timestamp StartDateTimestamp = Timestamp.valueOf(startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+
+        LocalDate endDate = LocalDate.from(EndDatePicker.getValue());
+        Timestamp EndDateTimestamp = Timestamp.valueOf(endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+
+
+
+
+        //Timing nested loop
+        //Mr. Wabara reviewed timeloops with me to output to combobox
+        //we discussed that combining the times with the date picker to a timestamp
+        //would help format the time
+        for(int h = 0; h < 24; h++){
+            for(int  m = 0; m < 4; m++){ //<4 for 15m increments
+                //startDate.getItems().add(LocalTime.of(i,0));
+                StartTimeCombo.getItems().add(LocalTime.of(h,0));
+                StartTimeCombo.getItems().add(LocalTime.of(h,15));
+                StartTimeCombo.getItems().add(LocalTime.of(h,30));
+                StartTimeCombo.getItems().add(LocalTime.of(h,45));
+                EndTimeCombo.getItems().add(LocalTime.of(h,0));
+                EndTimeCombo.getItems().add(LocalTime.of(h,15));
+                EndTimeCombo.getItems().add(LocalTime.of(h,30));
+                EndTimeCombo.getItems().add(LocalTime.of(h,45));
+                //hardcode the times for forloops
+            }
+        }
+
+        //Times
+
+        LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
+        Timestamp timeStartTimestamp = Timestamp.valueOf(startTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
+        Timestamp timeEndTimestamp = Timestamp.valueOf(endTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+
+        //Timestamps
+
+        Timestamp startby = Timestamp.valueOf(StartDateTimestamp+ " "+timeStartTimestamp);
+        Timestamp endby = Timestamp.valueOf(EndDateTimestamp+" "+timeEndTimestamp);
+
+
+
 
         int custid = Integer.parseInt(CustomerIDTxt.getText());
         int userid = Integer.parseInt(UserIDTxt.getText());
