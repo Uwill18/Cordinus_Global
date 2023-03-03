@@ -5,6 +5,7 @@ import cordinus.cordinus_global.helper.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -13,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -22,11 +24,14 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.ResourceBundle;
+
+import static java.time.LocalDateTime.parse;
 
 //https://www.youtube.com/watch?v=at4xyBOdgME
 //https://www.youtube.com/watch?v=i0j2AmsJQz0https://www.youtube.com/watch?v=i0j2AmsJQz0
 //https://www.youtube.com/watch?v=3Ht-JMQh2JI
-public class AddApptController {
+public class AddApptController implements Initializable {
 
 
     @FXML
@@ -97,46 +102,32 @@ public class AddApptController {
 
         ///Dates
         LocalDate startDate = LocalDate.from(StartDatePicker.getValue());
-        Timestamp StartDateTimestamp = Timestamp.valueOf(startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        //Timestamp StartDateTimestamp = Timestamp.valueOf(startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
 
         LocalDate endDate = LocalDate.from(EndDatePicker.getValue());
-        Timestamp EndDateTimestamp = Timestamp.valueOf(endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        //Timestamp EndDateTimestamp = Timestamp.valueOf(endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
 
 
 
 
-        //Timing nested loop
-        //Mr. Wabara reviewed timeloops with me to output to combobox
-        //we discussed that combining the times with the date picker to a timestamp
-        //would help format the time
-        for(int h = 0; h < 24; h++){
-            for(int  m = 0; m < 4; m++){ //<4 for 15m increments
-                //startDate.getItems().add(LocalTime.of(i,0));
-                StartTimeCombo.getItems().add(LocalTime.of(h,0));
-                StartTimeCombo.getItems().add(LocalTime.of(h,15));
-                StartTimeCombo.getItems().add(LocalTime.of(h,30));
-                StartTimeCombo.getItems().add(LocalTime.of(h,45));
-                EndTimeCombo.getItems().add(LocalTime.of(h,0));
-                EndTimeCombo.getItems().add(LocalTime.of(h,15));
-                EndTimeCombo.getItems().add(LocalTime.of(h,30));
-                EndTimeCombo.getItems().add(LocalTime.of(h,45));
-                //hardcode the times for forloops
-            }
-        }
+
 
         //Times
 
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
-        Timestamp timeStartTimestamp = Timestamp.valueOf(startTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        //Timestamp timeStartTimestamp = Timestamp.valueOf(startTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
-        Timestamp timeEndTimestamp = Timestamp.valueOf(endTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+       // Timestamp timeEndTimestamp = Timestamp.valueOf(endTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
 
         //Timestamps
-
-        Timestamp startby = Timestamp.valueOf(StartDateTimestamp+ " "+timeStartTimestamp);
-        Timestamp endby = Timestamp.valueOf(EndDateTimestamp+" "+timeEndTimestamp);
+        String s = (startDate.toString()+" "+startTime.toString());
+        String e = (endDate.toString()+" "+endTime.toString());
+        //LocalDateTime start = parse(s);
+        //LocalDateTime end = parse(e);
+        Timestamp startby = Timestamp.valueOf(s.format(String.valueOf(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss"))));
+        Timestamp endby = Timestamp.valueOf(e.format(String.valueOf(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss"))));
 
 
 
@@ -160,6 +151,30 @@ public class AddApptController {
         stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //Timing nested loop
+        //Mr. Wabara reviewed timeloops with me to output to combobox
+        //we discussed that combining the times with the date picker to a timestamp
+        //would help format the time
+        for(int h = 0; h < 24; h++){
+            for(int  m = 0; m < 4; m++){ //<4 for 15m increments
+                //startDate.getItems().add(LocalTime.of(i,0));
+                StartTimeCombo.getItems().add(LocalTime.of(h,0));
+                StartTimeCombo.getItems().add(LocalTime.of(h,15));
+                StartTimeCombo.getItems().add(LocalTime.of(h,30));
+                StartTimeCombo.getItems().add(LocalTime.of(h,45));
+                EndTimeCombo.getItems().add(LocalTime.of(h,0));
+                EndTimeCombo.getItems().add(LocalTime.of(h,15));
+                EndTimeCombo.getItems().add(LocalTime.of(h,30));
+                EndTimeCombo.getItems().add(LocalTime.of(h,45));
+                //hardcode the times for forloops
+            }
+        }
 
     }
 }

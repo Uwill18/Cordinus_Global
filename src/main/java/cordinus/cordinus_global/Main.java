@@ -24,6 +24,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
+
         launch();
         JDBC.closeConnection();
     }
