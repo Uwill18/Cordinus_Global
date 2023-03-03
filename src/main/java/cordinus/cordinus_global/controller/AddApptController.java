@@ -103,11 +103,10 @@ public class AddApptController implements Initializable {
 
         ///Dates
         LocalDate startDate = LocalDate.from(StartDatePicker.getValue());
-        //Timestamp StartDateTimestamp = Timestamp.valueOf(startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
 
 
         LocalDate endDate = LocalDate.from(EndDatePicker.getValue());
-        //Timestamp EndDateTimestamp = Timestamp.valueOf(endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
 
 
@@ -118,17 +117,9 @@ public class AddApptController implements Initializable {
         //Times
 
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
-        //Timestamp timeStartTimestamp = Timestamp.valueOf(startTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
-       // Timestamp timeEndTimestamp = Timestamp.valueOf(endTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-
-        //Timestamps
-       // String s = (startDate.toString()+" "+startTime.toString());
-        //String e = (endDate.toString()+" "+endTime.toString());
         LocalDateTime start = LocalDateTime.of(startDate,startTime);
         LocalDateTime end = LocalDateTime.of(endDate,endTime);
-//        Timestamp startby = Timestamp.valueOf(start.format(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss")));
-//        Timestamp endby = Timestamp.valueOf(end.format(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss")));
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
@@ -138,8 +129,12 @@ public class AddApptController implements Initializable {
         int custid = Integer.parseInt(CustomerIDTxt.getText());
         int userid = Integer.parseInt(UserIDTxt.getText());
 
-//        System.out.println(startby);
-//        System.out.println(endby);
+        //todo add a business hours check
+        //todo exception handle for what is entered,or check for valid customer
+        //todo or use combobox with only available entries from the db
+        //todo add a third toggle for all appts
+
+
 
 
 

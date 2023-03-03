@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 
 //implement similar to product in that appointments associate with customers
 //initiate getters and setter in CustomerModel
+//todo ADD Countries to view
 //source: https://www.youtube.com/watch?v=3tmz-0g3EPs&list=PLVo4QEZoUs5G88wJ2AajTIS33oFF8R5N-&index=2
 
 
