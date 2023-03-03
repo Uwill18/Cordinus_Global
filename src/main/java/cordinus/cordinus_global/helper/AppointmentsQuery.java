@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class AppointmentsQuery {
 
-    public static int insert(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp LastUpdate,String LastUpdatedBy, Timestamp CreatedDate,String CreatedBy, int contact, int customerid, int userid) throws SQLException {
-        String sql ="INSERT INTO APPOINTMENTS ( Title, Description, Location, Type, Start, End,Create_Date,Created_By,Last_Update,Last_Update_By, Contact_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    public static int insert(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp LastUpdate,String LastUpdatedBy, Timestamp CreatedDate,String CreatedBy,int customerid, int userid, int contact) throws SQLException {
+        String sql ="INSERT INTO APPOINTMENTS ( Title, Description, Location, Type, Start, End,Create_Date,Created_By,Last_Update,Last_Updated_By,Customer_ID,User_ID, Contact_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1,title);
         ps.setString(2,description);
@@ -20,11 +20,12 @@ public abstract class AppointmentsQuery {
         ps.setTimestamp(6,endby);//setTimestamp
         ps.setTimestamp(7,CreatedDate);
         ps.setString(8,CreatedBy);
-        ps.setTimestamp(7,LastUpdate);
+        ps.setTimestamp(9,LastUpdate);
         ps.setString(10,LastUpdatedBy);
-        ps.setInt(14,contact);
-        ps.setInt(12,customerid);
-        ps.setInt(13,userid);
+        ps.setInt(11,customerid);
+        ps.setInt(12,userid);
+        ps.setInt(13,contact);
+
 
 
         int rowsAffected = ps.executeUpdate();

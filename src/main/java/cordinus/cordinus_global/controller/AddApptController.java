@@ -81,9 +81,10 @@ public class AddApptController implements Initializable {
         int contact = Integer.parseInt(ContactTxt.getText());
         String type = TypeTxt.getText();
 
-        Date date = new Date();//use LocalDateTime
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
+        LocalDateTime date =LocalDateTime.now();//use LocalDateTime
+        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        //Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
+        Timestamp timestamp = Timestamp.valueOf(date);
 
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
@@ -126,8 +127,10 @@ public class AddApptController implements Initializable {
         //String e = (endDate.toString()+" "+endTime.toString());
         LocalDateTime start = LocalDateTime.of(startDate,startTime);
         LocalDateTime end = LocalDateTime.of(endDate,endTime);
-        Timestamp startby = Timestamp.valueOf(start.format(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss")));
-        Timestamp endby = Timestamp.valueOf(end.format(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss")));
+//        Timestamp startby = Timestamp.valueOf(start.format(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss")));
+//        Timestamp endby = Timestamp.valueOf(end.format(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss")));
+        Timestamp startby = Timestamp.valueOf(start);
+        Timestamp endby = Timestamp.valueOf(end);
 
 
 
@@ -140,7 +143,7 @@ public class AddApptController implements Initializable {
 
 
 
-        AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,contact, custid, userid);
+        AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
 
         //cust id
         //user id

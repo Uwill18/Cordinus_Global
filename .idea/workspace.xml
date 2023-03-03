@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="LocalDateTime Timestamp conversion 2&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Conversion attempt 3&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/helper/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/helper/AppointmentsQuery.java" afterDir="false" />
@@ -307,7 +307,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677817033360</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Conversion attempt 3&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1677821261009</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1677821261009</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Conversion attempt 3&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1677821393800</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1677821393801</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -322,7 +336,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="#Connecting FXML TableView to SQL Database&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="#Pairing TableView &amp; SQL Database&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="#Pairing TableView &amp; SQL Database complete&#10;#getters, constructors, and sql prepared statements are operational&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="#AddCustomer function, view, and controllers initiated&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
@@ -347,7 +360,8 @@
     <MESSAGE value="LocalTime Review w/ Sr. Dev Wabara&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="LocalDateTime Timestamp conversion 1&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="LocalDateTime Timestamp conversion 2&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="LocalDateTime Timestamp conversion 2&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Conversion attempt 3&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Conversion attempt 3&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
