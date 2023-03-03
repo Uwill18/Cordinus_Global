@@ -82,7 +82,7 @@ public class AddApptController implements Initializable {
         String type = TypeTxt.getText();
 
         Date date = new Date();//use LocalDateTime
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
 
         Timestamp CreateDate = timestamp;
@@ -122,18 +122,23 @@ public class AddApptController implements Initializable {
        // Timestamp timeEndTimestamp = Timestamp.valueOf(endTime.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
 
         //Timestamps
-        String s = (startDate.toString()+" "+startTime.toString());
-        String e = (endDate.toString()+" "+endTime.toString());
-        //LocalDateTime start = parse(s);
-        //LocalDateTime end = parse(e);
-        Timestamp startby = Timestamp.valueOf(s.format(String.valueOf(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss"))));
-        Timestamp endby = Timestamp.valueOf(e.format(String.valueOf(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss"))));
+       // String s = (startDate.toString()+" "+startTime.toString());
+        //String e = (endDate.toString()+" "+endTime.toString());
+        LocalDateTime start = LocalDateTime.of(startDate,startTime);
+        LocalDateTime end = LocalDateTime.of(endDate,endTime);
+        Timestamp startby = Timestamp.valueOf(start.format(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss")));
+        Timestamp endby = Timestamp.valueOf(end.format(DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss")));
 
 
 
 
         int custid = Integer.parseInt(CustomerIDTxt.getText());
         int userid = Integer.parseInt(UserIDTxt.getText());
+
+//        System.out.println(startby);
+//        System.out.println(endby);
+
+
 
         AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,contact, custid, userid);
 

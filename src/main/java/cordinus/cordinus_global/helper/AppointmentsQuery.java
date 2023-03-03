@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public abstract class AppointmentsQuery {
 
     public static int insert(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp LastUpdate,String LastUpdatedBy, Timestamp CreatedDate,String CreatedBy, int contact, int customerid, int userid) throws SQLException {
-        String sql ="INSERT INTO CUSTOMERS ( Title, Description, Location, Type, Start, End,Create_Date,Created_By,Last_Update,Last_Update_By, Contact_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql ="INSERT INTO APPOINTMENTS ( Title, Description, Location, Type, Start, End,Create_Date,Created_By,Last_Update,Last_Update_By, Contact_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1,title);
         ps.setString(2,description);
