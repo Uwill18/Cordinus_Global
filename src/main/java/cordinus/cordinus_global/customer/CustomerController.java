@@ -62,6 +62,10 @@ public class CustomerController {
     private TableColumn<?, ?> Division_ID;
 
 
+    @FXML
+    private TableColumn<?, ?> Countries;
+
+
 
 
     public void initialize() throws SQLException {
@@ -82,6 +86,7 @@ public class CustomerController {
         Postal_Code.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
         Phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
         Division_ID.setCellValueFactory(new PropertyValueFactory<>("Division_ID"));
+        Countries.setCellValueFactory(new PropertyValueFactory<>("Countries"));
     }
 
     public void LoadCustomers() throws SQLException {
