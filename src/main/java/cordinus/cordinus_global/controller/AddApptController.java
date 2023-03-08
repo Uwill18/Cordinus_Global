@@ -164,7 +164,7 @@ public class AddApptController implements Initializable {
         //Mr. Wabara reviewed timeloops with me to output to combobox
         //we discussed that combining the times with the date picker to a timestamp
         //would help format the time
-        for(int h = 0; h < 24; h++){
+        for(int h = 8; h < 17; h++){
             StartTimeCombo.getItems().add(LocalTime.of(h,0));
             StartTimeCombo.getItems().add(LocalTime.of(h,15));
             StartTimeCombo.getItems().add(LocalTime.of(h,30));
