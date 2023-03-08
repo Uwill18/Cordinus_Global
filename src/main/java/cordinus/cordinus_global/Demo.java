@@ -35,11 +35,15 @@ public class Demo implements Initializable  {
         //we discussed that combining the times with the date picker to a timestamp
         //would help format the time
         for(int h = 0; h < 24; h++){
+            System.out.println(LocalTime.of(h,0));
+            System.out.println(LocalTime.of(h,15));
+            System.out.println(LocalTime.of(h,30));
+            System.out.println(LocalTime.of(h,45));
             for(int  m = 0; m < 4; m++){ //<4 for 15m increments
-                System.out.println(LocalTime.of(h,0));
-                System.out.println(LocalTime.of(h,15));
-                System.out.println(LocalTime.of(h,30));
-                System.out.println(LocalTime.of(h,45));
+//                System.out.println(LocalTime.of(h,0));
+//                System.out.println(LocalTime.of(h,15));
+//                System.out.println(LocalTime.of(h,30));
+//                System.out.println(LocalTime.of(h,45));
                 //hardcode the times for forloops
             }
         }
