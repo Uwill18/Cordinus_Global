@@ -68,6 +68,7 @@ public class CustomerController {
 
 
 
+
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
         LoadCustomers();

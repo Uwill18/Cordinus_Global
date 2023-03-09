@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.appointment.AppointmentsList;
+import cordinus.cordinus_global.helper.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +59,9 @@ public class ModifyApptController implements HoursLoop {
 
     @FXML
     private TextField TypeTxt;
+    private AppointmentsList appointment;
+
+    private int selectedIndex;
 
     //•  All of the original appointment information is displayed on the update form in local time zone.
     //•  All of the appointment fields can be updated except Appointment_ID, which must be disabled.
@@ -107,6 +111,8 @@ public class ModifyApptController implements HoursLoop {
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
+        AppointmentsQuery.update(title, description, location, type, startby, endby, CreatedBy, LastUpdate,LastUpdatedBy, CreateDate,customerid, userid, contactid);
+
 
     }
 
@@ -147,14 +153,18 @@ public class ModifyApptController implements HoursLoop {
     }
 
 
-    public void Appt_Passer(AppointmentsList appointment){
+    public void Appt_Passer(int selectedIndex, AppointmentsList appointment){
+        this.appointment = appointment;
+        this.selectedIndex = selectedIndex;
+
+
 
         TitleTxt.setText((String.valueOf(appointment.getTitle())));
         DescriptionTxt.setText(String.valueOf(appointment.getDescription()));
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
         TypeTxt.setText(String.valueOf(appointment.getType()));
-
+        StartTimeCombo.getValue();
         CustomerIDTxt.setText(String.valueOf(appointment.getCustomer_ID()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 

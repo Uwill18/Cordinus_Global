@@ -1,6 +1,8 @@
 package cordinus.cordinus_global.appointment;
 
 import cordinus.cordinus_global.controller.MainController;
+import cordinus.cordinus_global.controller.ModCustController;
+import cordinus.cordinus_global.controller.ModifyApptController;
 import cordinus.cordinus_global.customer.CustomerController;
 import cordinus.cordinus_global.customer.CustomersList;
 import cordinus.cordinus_global.helper.AppointmentsQuery;
@@ -11,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -142,12 +145,16 @@ public class ApptController {
         @FXML
         void OnUpdateAppt(ActionEvent event) throws IOException {
 
-                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
+                loader.load();
+                ModifyApptController modifyApptController = loader.getController();//get controller tied to view
+                modifyApptController.Appt_Passer(AppointmentTable.getSelectionModel().getSelectedIndex(),
+                        AppointmentTable.getSelectionModel().getSelectedItem());
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(fxmlLoader.load());
                 stage.setTitle("Modify Appointments");
-                stage.setScene(scene);
-
+                Parent scene = loader.getRoot();
+                stage.setScene(new Scene(scene));
                 stage.show();
 
         }
