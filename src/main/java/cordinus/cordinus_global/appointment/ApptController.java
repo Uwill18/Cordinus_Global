@@ -140,7 +140,15 @@ public class ApptController {
         }
 
         @FXML
-        void OnUpdateAppt(ActionEvent event) {
+        void OnUpdateAppt(ActionEvent event) throws IOException {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(fxmlLoader.load());
+                stage.setTitle("Modify Appointments");
+                stage.setScene(scene);
+
+                stage.show();
 
         }
 
