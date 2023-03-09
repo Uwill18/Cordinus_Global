@@ -5,6 +5,7 @@ import cordinus.cordinus_global.helper.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -24,7 +25,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 ////https://www.youtube.com/watch?v=3Ht-JMQh2JI
-public class ModifyApptController implements HoursLoop {
+public class ModifyApptController implements Initializable {
 
     @FXML
     private DatePicker ApptEndPicker;
@@ -67,7 +68,7 @@ public class ModifyApptController implements HoursLoop {
     //•  All of the appointment fields can be updated except Appointment_ID, which must be disabled.
 
 
-    @Override
+
     @FXML
     public void UpdateAppt(ActionEvent event) throws SQLException {
         String title = TitleTxt.getText();
@@ -116,7 +117,7 @@ public class ModifyApptController implements HoursLoop {
 
     }
 
-    @Override
+
     @FXML
     public void ApptScreenReturn(ActionEvent event) throws IOException {
 
@@ -131,22 +132,22 @@ public class ModifyApptController implements HoursLoop {
 
 
 
-    @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Timing nested loop
         //Mr. Wabara reviewed timeloops with me to output to combobox
         //we discussed that combining the times with the date picker to a timestamp
         //would help format the time
-        for(int h = 8; h < 17; h++){
-            StartTimeCombo.getItems().add(LocalTime.of(h,0));
-            StartTimeCombo.getItems().add(LocalTime.of(h,15));
-            StartTimeCombo.getItems().add(LocalTime.of(h,30));
-            StartTimeCombo.getItems().add(LocalTime.of(h,45));
-            EndTimeCombo.getItems().add(LocalTime.of(h,0));
-            EndTimeCombo.getItems().add(LocalTime.of(h,15));
-            EndTimeCombo.getItems().add(LocalTime.of(h,30));
-            EndTimeCombo.getItems().add(LocalTime.of(h,45));
+        for(int hr = 8; hr < 17; hr++){
+            StartTimeCombo.getItems().add(LocalTime.of(hr,0));
+            StartTimeCombo.getItems().add(LocalTime.of(hr,15));
+            StartTimeCombo.getItems().add(LocalTime.of(hr,30));
+            StartTimeCombo.getItems().add(LocalTime.of(hr,45));
+            EndTimeCombo.getItems().add(LocalTime.of(hr,0));
+            EndTimeCombo.getItems().add(LocalTime.of(hr,15));
+            EndTimeCombo.getItems().add(LocalTime.of(hr,30));
+            EndTimeCombo.getItems().add(LocalTime.of(hr,45));
             //hardcode the times for forloops
         }
 
