@@ -1,8 +1,5 @@
 package cordinus.cordinus_global.appointment;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-
 public class AppointmentsList {
 
     private String Appointment_ID;
