@@ -108,9 +108,9 @@ public class ApptController {
                         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
                         ResultSet rs = ps.executeQuery();
                         while(rs.next()){
-                                /**This line filters the above sql string to select  data from specific columns, then send them to an instance of CustomersList
-                                 * that appends to appointmentdata*/
-                                appointmentdata.add(new AppointmentsList( rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getString(6),rs.getString(7), rs.getString(12), rs.getString(13)));
+                                /**This line filters the above sql string to select  data from specific columns, then send them to an instance of AppointmentsList
+                                 * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+                                appointmentdata.add(new AppointmentsList( rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
                         }
                 } catch (SQLException e){
                         Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);

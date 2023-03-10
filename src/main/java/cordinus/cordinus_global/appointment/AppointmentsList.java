@@ -1,5 +1,7 @@
 package cordinus.cordinus_global.appointment;
 
+import java.time.LocalDateTime;
+
 public class AppointmentsList {
 
     private String Appointment_ID;
@@ -12,13 +14,13 @@ public class AppointmentsList {
     private String Description;
 
 
-    private String End;
+    private LocalDateTime End;
 
 
     private String Location;
 
 
-    private String Start;
+    private LocalDateTime Start;
 
     private String Title;
 
@@ -30,7 +32,7 @@ public class AppointmentsList {
 
 
 
-    public AppointmentsList(String appointment_ID, String title, String description, String location, String contact_ID, String type, String start, String end, String customerID, String userID  ) {
+    public AppointmentsList(String appointment_ID, String title, String description, String location, String contact_ID, String type, LocalDateTime start, LocalDateTime end, String customerID, String userID  ) {
         Appointment_ID = appointment_ID;//autogen
         Title = title;
         Description = description;
@@ -72,12 +74,22 @@ public class AppointmentsList {
         Description = description;
     }
 
-    public String getEnd() {
+    /**used getters and setters for localdatetime objects under type of LocalDatetime,
+     * that way it is easier to send back as LocalDate or Localtime, from the timestamps*/
+    public LocalDateTime getEnd() {
         return End;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(LocalDateTime end) {
         End = end;
+    }
+
+    public LocalDateTime getStart() {
+        return Start;
+    }
+
+    public void setStart(LocalDateTime start) {
+        Start = start;
     }
 
     public String getLocation() {
@@ -88,13 +100,7 @@ public class AppointmentsList {
         Location = location;
     }
 
-    public String getStart() {
-        return Start;
-    }
 
-    public void setStart(String start) {
-        Start = start;
-    }
 
     public String getTitle() {
         return Title;

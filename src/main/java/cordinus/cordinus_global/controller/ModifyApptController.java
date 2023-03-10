@@ -167,18 +167,14 @@ public class ModifyApptController implements Initializable {
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
         TypeTxt.setText(String.valueOf(appointment.getType()));
-        System.out.println(appointment.getStart());
 
-        try {
-            DateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss a");
-            Date d = f.parse(appointment.getStart());
-            DateFormat date = new SimpleDateFormat("yyyy/MM/dd");
-            DateFormat time = new SimpleDateFormat("hh:mm:ss");
-            System.out.println("Date: " + date.format(d));
-            System.out.println("Time: " + time.format(d));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+        /**take the timestamp values, and set them to be passed**/
+        ApptStartPicker.setValue(appointment.getStart().toLocalDate());
+        ApptEndPicker.setValue(appointment.getEnd().toLocalDate());
+
+        StartTimeCombo.setValue(appointment.getStart().toLocalTime());
+        EndTimeCombo.setValue(appointment.getEnd().toLocalTime());
 
 
 
