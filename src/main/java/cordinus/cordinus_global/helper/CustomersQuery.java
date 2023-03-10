@@ -50,10 +50,10 @@ public abstract class CustomersQuery {
 
     }
 
-    public static int delete(int fruitId) throws SQLException {
-        String sql = "DELETE FROM FRUITS WHERE Fruit_ID = ?";
+    public static int delete(int customerId) throws SQLException {
+        String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setInt(1,fruitId);
+        ps.setInt(1,customerId);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
 
