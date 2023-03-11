@@ -124,10 +124,13 @@ public class CustomerController {
         stage.show();
     }
 //
-//    @FXML
-//    void OnDeleteCustomer(ActionEvent event) {
-//
-//    }
+    @FXML
+    void OnDeleteCustomer(ActionEvent event) throws SQLException {
+
+
+        CustomersQuery.delete(CustomerTable.getSelectionModel().getSelectedIndex());
+
+    }
 //
     @FXML
     void OnUpdateCustomer(ActionEvent event) throws IOException {

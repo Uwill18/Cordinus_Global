@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 //import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,13 +18,24 @@ import java.io.IOException;
 public class MainController {
 
 
+    @FXML
+    private TextField PasswordTxt;
+
+    @FXML
+    private TextField UsernameTxt;
+
+
 //Updated Main Menu Button Navigation
 
 
 //Password Validation//
     //https://www.youtube.com/watch?v=1jiuM-gNyBc
-    //https://www.youtube.com/watch?v=Y8F-k925O-w
+    //https://www.youtube.com/watch?v=Y8F-k925O-w  good
     //https://www.youtube.com/watch?v=wII6ufsn82c
+
+    //up results being correct or incorrect use file i/o options to print them to a file
+
+
 
 
     //for now use next button
@@ -45,6 +57,13 @@ void LoginScreenButton(ActionEvent event) throws IOException {
     stage.setTitle("Login Form");
     stage.setScene(scene);
     stage.show();
+
+
+
+
+
+
+
 }
     //MainMenuScreenButton
 
@@ -52,12 +71,25 @@ void LoginScreenButton(ActionEvent event) throws IOException {
 
     @FXML
     void MainMenuScreenButton(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Main Menu");
-        stage.setScene(scene);
-        stage.show();
+
+        String username = UsernameTxt.getText();
+        String password = PasswordTxt.getText();
+
+        if((username.equals("test") && password.equals("test"))||(username.equals("admin") && password.equals("admin"))){
+            FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Main Menu");
+            stage.setScene(scene);
+            stage.show();
+            System.out.println("Login verified");
+        }else{
+            System.out.println("Access denied");
+        }
+
+
+
+
     }
 
 
