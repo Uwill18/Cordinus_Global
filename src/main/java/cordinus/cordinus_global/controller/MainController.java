@@ -45,6 +45,8 @@ public class MainController {
     //https://www.youtube.com/watch?v=1jiuM-gNyBc  > used
     //https://www.youtube.com/watch?v=Y8F-k925O-w  good
     //https://www.youtube.com/watch?v=wII6ufsn82c
+    //https://www.youtube.com/watch?v=ipz3Ezdeu3M
+    //https://www.youtube.com/watch?v=1RftX8HMxdg >> preferred next step
 
     //up results being correct or incorrect use file i/o options to print them to a file
     //in filewriter file, where i <  attempt sum (incorrect attempts, and correct attempts should sum less than 3)
