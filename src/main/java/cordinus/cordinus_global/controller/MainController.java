@@ -126,14 +126,13 @@ void LoginScreenButton(ActionEvent event) throws IOException {
                 stage.setScene(scene);
                 stage.show();
                 outputFile.println((numAttempt+1)+" Valid Access" );
-                outputFile.close();
                 System.out.println("File written!");
             }else {
-
+                System.out.println("no");
+                outputFile.println((numAttempt+1)+"Access Denied" );
 
             }
-
-            outputFile.println((numAttempt+1)+" Access Denied" );
+            outputFile.close();
 
         }
 

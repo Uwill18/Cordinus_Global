@@ -1,5 +1,6 @@
 package cordinus.cordinus_global;
 
+import cordinus.cordinus_global.controller.MainController;
 import cordinus.cordinus_global.customer.CustomerController;
 import cordinus.cordinus_global.helper.AppointmentsQuery;
 import cordinus.cordinus_global.helper.CustomersQuery;
@@ -25,6 +26,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
+
 
         launch();
         JDBC.closeConnection();
