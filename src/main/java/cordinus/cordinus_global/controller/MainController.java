@@ -11,7 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,7 +48,8 @@ public class MainController {
     //https://www.youtube.com/watch?v=Y8F-k925O-w  good
     //https://www.youtube.com/watch?v=wII6ufsn82c
     //https://www.youtube.com/watch?v=ipz3Ezdeu3M
-    //https://www.youtube.com/watch?v=1RftX8HMxdg >> preferred next step
+    //https://www.youtube.com/watch?v=1RftX8HMxdg >> preferred next step, best use case for multiple users,
+    //                                               as it pulls info from the database
 
     //up results being correct or incorrect use file i/o options to print them to a file
     //in filewriter file, where i <  attempt sum (incorrect attempts, and correct attempts should sum less than 3)
@@ -99,23 +102,60 @@ void LoginScreenButton(ActionEvent event) throws IOException {
         String username = UsernameTxt.getText();
         String password = PasswordTxt.getText();
 
+        /**compares values from the database with the text stored in the variables*/
+        String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        String filename ="src/main/java/cordinus/cordinus_global/reports/ValidationLog.txt";
 
 
+        //Create FileWriter object
+        FileWriter fwriter = new FileWriter(filename, true);
 
 
+        //Create and Open file
+        PrintWriter outputFile = new PrintWriter(fwriter);
+
+        for(int numAttempt=0; numAttempt < 3; numAttempt++){
+            if (rs.next()){
+                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(fxmlLoader.load());
+                stage.setTitle("Main Menu");
+                stage.setScene(scene);
+                stage.show();
+                outputFile.println((numAttempt+1)+" Valid Access" );
+                outputFile.close();
+                System.out.println("File written!");
+            }else {
 
 
-        if((username.equals("test") && password.equals("test"))||(username.equals("admin") && password.equals("admin"))){
-            FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Main Menu");
-            stage.setScene(scene);
-            stage.show();
-            System.out.println("Login verified");
-        }else{
-            System.out.println("Access denied");
+            }
+
+            outputFile.println((numAttempt+1)+" Access Denied" );
+
         }
+
+
+
+
+
+
+
+
+
+//        if((username.equals("test") && password.equals("test"))||(username.equals("admin") && password.equals("admin"))){
+//            FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            Scene scene = new Scene(fxmlLoader.load());
+//            stage.setTitle("Main Menu");
+//            stage.setScene(scene);
+//            stage.show();
+//            System.out.println("Login verified");//replace with filewriting logic
+//        }else{
+//            System.out.println("Access denied");//replace with filewriting logic
+//        }
 
 
 
