@@ -1,10 +1,8 @@
 package cordinus.cordinus_global.controller;
 
 
-import cordinus.cordinus_global.customer.CustomerController;
-import cordinus.cordinus_global.customer.CustomersList;
+import cordinus.cordinus_global.customer.Customer;
 import cordinus.cordinus_global.helper.CustomersQuery;
-import cordinus.cordinus_global.helper.JDBC;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,20 +14,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 //https://www.youtube.com/watch?v=at4xyBOdgME
 //https://www.youtube.com/watch?v=i0j2AmsJQz0
 public class AddCustController {
 
 
-    private ObservableList<CustomersList> customerdata;
+    private ObservableList<Customer> customerdata;
 
     @FXML
     private TextField AddressTxt;
@@ -124,7 +119,7 @@ public class AddCustController {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Customers");
+        stage.setTitle("Customer");
         stage.setScene(scene);
         stage.show();
     }

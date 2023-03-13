@@ -1,6 +1,6 @@
 package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.customer.CustomersList;
+import cordinus.cordinus_global.customer.Customer;
 import cordinus.cordinus_global.helper.CustomersQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +43,7 @@ public class ModCustController {
         @FXML
         private TextField Postal_Code;
 
-        private CustomersList customer;
+        private Customer customer;
 
         private int index;
 
@@ -54,7 +54,7 @@ public class ModCustController {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Customers");
+                stage.setTitle("Customer");
                 stage.setScene(scene);
                 stage.show();
 
@@ -88,7 +88,7 @@ public class ModCustController {
         //allow editing of select fields, then pass that data back to the db
         //afterwards both the database and the app should hold an updated customers view
 
-        public void Customer_Passer(int index, CustomersList customer){
+        public void Customer_Passer(int index, Customer customer){
                 this.customer = customer;
                 this.index = index;
 

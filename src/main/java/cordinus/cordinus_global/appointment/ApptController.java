@@ -1,11 +1,8 @@
 package cordinus.cordinus_global.appointment;
 
 import cordinus.cordinus_global.controller.MainController;
-import cordinus.cordinus_global.controller.ModCustController;
 import cordinus.cordinus_global.controller.ModifyApptController;
 import cordinus.cordinus_global.customer.CustomerController;
-import cordinus.cordinus_global.customer.CustomersList;
-import cordinus.cordinus_global.helper.AppointmentsQuery;
 import cordinus.cordinus_global.helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

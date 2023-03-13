@@ -1,10 +1,10 @@
 package cordinus.cordinus_global.customer;
 
-public class CustomersList {
+public class Customer {
 
 
 
-    private String Customer_ID;
+    private int Customer_ID;
 
     private String Customer_Name;
 
@@ -18,7 +18,7 @@ public class CustomersList {
 
 /**Discovered that matching the order of the constructor attributes with the view counterparts ensures that
  * they are displayed properly when loaded*/
-    public CustomersList(String customer_ID, String customer_Name, String address, String postal_Code, String phone, String division_ID) {
+    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, String division_ID) {
         Customer_ID = customer_ID;
         Customer_Name = customer_Name;
         Address = address;
@@ -29,11 +29,11 @@ public class CustomersList {
 
 
 
-    public String getCustomer_ID() {
+    public int getCustomer_ID() {
         return Customer_ID;
     }
 
-    public void setCustomer_ID(String customer_ID) {
+    public void setCustomer_ID(int customer_ID) {
         Customer_ID = customer_ID;
     }
 

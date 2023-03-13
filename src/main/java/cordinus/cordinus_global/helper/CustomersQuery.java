@@ -1,9 +1,6 @@
 package cordinus.cordinus_global.helper;
 
-import cordinus.cordinus_global.customer.CustomersList;
-
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 

@@ -21,6 +21,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.SimpleTimeZone;
 
 
@@ -85,56 +86,6 @@ void LoginScreenButton(ActionEvent event) throws IOException {
 
 
 }
-    //MainMenuScreenButton
-
-    public void TimeLoad(){
-        LocalTime logintime = LocalTime.now();
-
-        System.out.println(logintime);
-        CurrentTimeLbl.setText(logintime.toString());
-    }
-
-
-
-    @FXML
-    void MainMenuScreenButton(ActionEvent event) throws IOException, SQLException {
-
-        String username = UsernameTxt.getText();
-        String password = PasswordTxt.getText();
-
-        /**compares values from the database with the text stored in the variables*/
-        String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-
-        String filename ="src/main/java/cordinus/cordinus_global/reports/ValidationLog.txt";
-
-
-        //Create FileWriter object
-        FileWriter fwriter = new FileWriter(filename, true);
-
-
-        //Create and Open file
-        PrintWriter outputFile = new PrintWriter(fwriter);
-
-        for(int numAttempt=0; numAttempt < 3; numAttempt++){
-            if (rs.next()){
-                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Main Menu");
-                stage.setScene(scene);
-                stage.show();
-                outputFile.println((numAttempt+1)+" Valid Access" );
-                System.out.println("File written!");
-            }else {
-                System.out.println("no");
-                outputFile.println((numAttempt+1)+"Access Denied" );
-
-            }
-            outputFile.close();
-
-        }
 
 
 
@@ -142,24 +93,6 @@ void LoginScreenButton(ActionEvent event) throws IOException {
 
 
 
-
-
-//        if((username.equals("test") && password.equals("test"))||(username.equals("admin") && password.equals("admin"))){
-//            FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(fxmlLoader.load());
-//            stage.setTitle("Main Menu");
-//            stage.setScene(scene);
-//            stage.show();
-//            System.out.println("Login verified");//replace with filewriting logic
-//        }else{
-//            System.out.println("Access denied");//replace with filewriting logic
-//        }
-
-
-
-
-    }
 
 
 
@@ -184,7 +117,7 @@ void LoginScreenButton(ActionEvent event) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Customers");
+            stage.setTitle("Customer");
             stage.setScene(scene);
             stage.show();
         }
@@ -204,16 +137,7 @@ void LoginScreenButton(ActionEvent event) throws IOException {
 
 
 
-    //exit
-    @FXML
-    void onActionExit(ActionEvent event) {
-        System.exit(0);
-    }
 
-
-    //exit
-
-//Exit//
 
 
 }
