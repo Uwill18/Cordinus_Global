@@ -1,10 +1,1 @@
 
-
-2023-03-13T23:11:13.957128100 Valid Access granted to admin
-2023-03-13T23:14:02.642183500 Valid Access granted to admin
-2023-03-13T23:14:43.206924 Access Denied to no
-2023-03-13T23:14:44.399130100 Access Denied to no
-2023-03-13T23:14:53.886300800 Valid Access granted to admin
-2023-03-13T23:16:09.112669300 Access Denied to user of username:test
-2023-03-13T23:16:10.703516700 Access Denied to user of username:test
-2023-03-13T23:16:18.456348200 Valid Access granted to user of username:admin

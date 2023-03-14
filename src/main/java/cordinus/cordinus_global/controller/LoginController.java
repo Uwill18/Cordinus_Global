@@ -68,7 +68,6 @@ public class LoginController implements Initializable {
                 System.out.println("File written!");
 
             } else {
-                System.out.println("no");
                 outputFile.println(LocalDateTime.now() + " Access Denied to user of username: " + username);
 
             }
