@@ -55,25 +55,28 @@ public class LoginController implements Initializable {
         //Create and Open file
         PrintWriter outputFile = new PrintWriter(fwriter);
 
-        for(int numAttempt=1; numAttempt <= 3; numAttempt++){
-            if (rs.next()){
+        for(int numAttempt=1; numAttempt <= 3; numAttempt++) {
+            if (rs.next()) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
                 stage.setTitle("Main Menu");
                 stage.setScene(scene);
                 stage.show();
-                outputFile.println(LocalDateTime.now()+ username+ " Valid Access" );
+                outputFile.println(LocalDateTime.now() + " Valid Access granted to user of username: " + username);
                 //todo username and timestamp, then say if successful or not
                 System.out.println("File written!");
-            }else {
+
+            } else {
                 System.out.println("no");
-                outputFile.println(LocalDateTime.now()+ username + "Access Denied" );
+                outputFile.println(LocalDateTime.now() + " Access Denied to user of username: " + username);
 
             }
             outputFile.close();
-
         }
+
+
+
 
 
 
