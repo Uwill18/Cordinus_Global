@@ -3,6 +3,7 @@ package cordinus.cordinus_global.appointment;
 import cordinus.cordinus_global.controller.MainController;
 import cordinus.cordinus_global.controller.ModifyApptController;
 import cordinus.cordinus_global.customer.CustomerController;
+import cordinus.cordinus_global.helper.AppointmentsQuery;
 import cordinus.cordinus_global.helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -107,7 +108,7 @@ public class ApptController {
                         while(rs.next()){
                                 /**This line filters the above sql string to select  data from specific columns, then send them to an instance of AppointmentsList
                                  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-                                appointmentdata.add(new AppointmentsList( rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+                                appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
                         }
                 } catch (SQLException e){
                         Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
@@ -135,7 +136,9 @@ public class ApptController {
         }
 
         @FXML
-        void OnDeleteAppt(ActionEvent event) {
+        void OnDeleteAppt(ActionEvent event) throws SQLException{
+
+                AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
 
         }
 

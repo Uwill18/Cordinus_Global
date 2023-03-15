@@ -60,7 +60,7 @@ public abstract class AppointmentsQuery {
     }
 
     public static int delete(int customerId) throws SQLException {
-        String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";
+        String sql = "DELETE FROM APPOINTMENTS WHERE APPOINTMENT_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1,customerId);
         int rowsAffected = ps.executeUpdate();

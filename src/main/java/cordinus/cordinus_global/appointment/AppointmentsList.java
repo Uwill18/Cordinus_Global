@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class AppointmentsList {
 
-    private String Appointment_ID;
+    private int Appointment_ID;
 
 
 
@@ -32,7 +32,7 @@ public class AppointmentsList {
 
 
 
-    public AppointmentsList(String appointment_ID, String title, String description, String location, String contact_ID, String type, LocalDateTime start, LocalDateTime end, String customerID, String userID  ) {
+    public AppointmentsList(int appointment_ID, String title, String description, String location, String contact_ID, String type, LocalDateTime start, LocalDateTime end, String customerID, String userID  ) {
         Appointment_ID = appointment_ID;//autogen
         Title = title;
         Description = description;
@@ -50,11 +50,11 @@ public class AppointmentsList {
     }
 
 
-    public String getAppointment_ID() {
+    public int getAppointment_ID() {
         return Appointment_ID;
     }
 
-    public void setAppointment_ID(String appointment_ID) {
+    public void setAppointment_ID(int appointment_ID) {
         Appointment_ID = appointment_ID;
     }
 
