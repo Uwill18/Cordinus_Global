@@ -13,16 +13,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoField;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,6 +73,15 @@ public class ApptController {
         @FXML
         private TableColumn<?, ?> User_ID;
 
+        @FXML
+        private RadioButton AllRB;
+
+        @FXML
+        private RadioButton MonthRB;
+
+        @FXML
+        private RadioButton WeekRB;
+
         public void initialize() throws SQLException {
                 appointmentdata = FXCollections.observableArrayList();
                 LoadAppointments();
@@ -106,9 +116,38 @@ public class ApptController {
                         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
                         ResultSet rs = ps.executeQuery();
                         while(rs.next()){
-                                /**This line filters the above sql string to select  data from specific columns, then send them to an instance of AppointmentsList
+                                /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
                                  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
                                 appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+
+
+                                //https://www.tutorialspoint.com/how-to-get-current-day-month-and-year-in-java-8
+                                LocalDate currentdate = LocalDate.now();
+                                int currentMonth = currentdate.getMonthValue();
+                                int entryMonth = rs.getTimestamp(6).toLocalDateTime().getMonthValue();
+
+
+                                //https://stackoverflow.com/questions/34811395/get-the-current-week-in-java
+                                //https://www.baeldung.com/java-get-week-number
+
+
+
+                                int currentWeek = currentdate.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
+                                int entryWeek = rs.getTimestamp(6).toLocalDateTime().getMonthValue();
+
+                                if(MonthRB.isSelected()&&(currentMonth==entryMonth)){
+
+                                        appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+
+                                }
+                                else if(WeekRB.isSelected()&&(currentWeek==entryWeek)){
+                                        appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+                                }
+
+
+
+
+
                         }
                 } catch (SQLException e){
                         Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);

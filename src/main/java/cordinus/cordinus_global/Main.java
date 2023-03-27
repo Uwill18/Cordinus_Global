@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 
 //loads homescreen in this case, the loginscreen
 public class Main extends Application {
@@ -26,7 +28,9 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
-
+        LocalDate currentdate = LocalDate.now();
+        int currentMonth = currentdate.getMonthValue();
+        System.out.println("Current month: "+currentMonth);
 
         launch();
         JDBC.closeConnection();

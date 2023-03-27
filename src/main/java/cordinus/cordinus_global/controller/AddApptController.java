@@ -23,6 +23,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -123,7 +125,8 @@ public class AddApptController implements Initializable {
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
-
+//        ChronoUnit monthopt = ChronoUnit.MONTHS.toString();
+//        Calendar.getInstance().get(Calendar.MONTH);
 
 
         int custid = Integer.parseInt(CustomerIDTxt.getText());

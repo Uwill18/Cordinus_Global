@@ -13,9 +13,9 @@
    <children>
       <HBox alignment="CENTER" layoutX="334.0" layoutY="32.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <RadioButton mnemonicParsing="false" text="All" />
-            <RadioButton mnemonicParsing="false" text="Month" />
-            <RadioButton mnemonicParsing="false" text="Week" />
+            <RadioButton fx:id="AllRB" mnemonicParsing="false" text="All" />
+            <RadioButton fx:id="MonthRB" mnemonicParsing="false" text="Month" />
+            <RadioButton fx:id="WeekRB" mnemonicParsing="false" text="Week" />
          </children>
       </HBox>
       <TableView fx:id="AppointmentTable" layoutX="10.0" layoutY="100.0" prefHeight="200.0" prefWidth="922.0">
