@@ -115,40 +115,67 @@ public class ApptController {
                         String sql = "SELECT * FROM APPOINTMENTS ";
                         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
                         ResultSet rs = ps.executeQuery();
-                        while(rs.next()){
-                                /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
-                                 * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-                                appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+
+                        String sqlmonth = "SELECT * FROM client_schedule.appointments WHERE MONTH(Start) = month(now())";
+                        PreparedStatement mps = JDBC.connection.prepareStatement(sqlmonth);
+                        ResultSet mthrs = mps.executeQuery();
 
 
-                                //https://www.tutorialspoint.com/how-to-get-current-day-month-and-year-in-java-8
-                                LocalDate currentdate = LocalDate.now();
-                                int currentMonth = currentdate.getMonthValue();
-                                int entryMonth = rs.getTimestamp(6).toLocalDateTime().getMonthValue();
-
-
-                                //https://stackoverflow.com/questions/34811395/get-the-current-week-in-java
-                                //https://www.baeldung.com/java-get-week-number
+                        String sqlweek = "SELECT * FROM client_schedule.appointments WHERE Start >= current_date() AND Start <= date_add(current_date(),interval 7 day)";
+                        PreparedStatement wkps = JDBC.connection.prepareStatement(sqlweek);
+                        ResultSet wkrs = wkps.executeQuery();
 
 
 
-                                int currentWeek = currentdate.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
-                                int entryWeek = rs.getTimestamp(6).toLocalDateTime().getMonthValue();
-
-                                if(MonthRB.isSelected()&&(currentMonth==entryMonth)){
+                                while(rs.next()){
+                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
+                                         * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
 
                                         appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
 
+                                        if(MonthRB.isSelected()){
+                                                appointmentdata.clear();
+                                                while(mthrs.next()){
+                                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
+                                                         * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+                                                        appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+
+
+                                                }
+                                        }
+                                        else if(WeekRB.isSelected()) {
+                                                appointmentdata.clear();
+                                                while(wkrs.next()){
+                                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
+                                                         * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+                                                        appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+
+
+                                                }
+                                        }
+                                        else if (AllRB.isSelected()){
+                                                appointmentdata.clear();
+                                                while(rs.next()){
+                                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
+                                                         * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+
+                                                        appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+
+
+                                                }
+
+                                        }
+
                                 }
-                                else if(WeekRB.isSelected()&&(currentWeek==entryWeek)){
-                                        appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
-                                }
 
 
 
 
 
-                        }
+
+
+
+
                 } catch (SQLException e){
                         Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
                 }

@@ -109,6 +109,8 @@ public class CustomerController {
        CustomerTable.setItems(customerdata);
     }
 
+//toDO : select customer and pass data back to select/add appt for customer, add appt for
+    //toDo allow a search for a customer
 
 
 
