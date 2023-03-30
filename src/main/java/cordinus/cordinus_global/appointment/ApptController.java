@@ -155,6 +155,8 @@ public class ApptController {
                                         }
                                         else if (AllRB.isSelected()){
                                                 appointmentdata.clear();
+                                                appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+
                                                 while(rs.next()){
                                                         /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
                                                          * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
