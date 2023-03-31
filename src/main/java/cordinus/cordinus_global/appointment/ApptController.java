@@ -147,10 +147,8 @@ public class ApptController {
                                                  }
                                         }
                                          if(MonthRB.isSelected()){
-                                                appointmentdata.clear();
                                                while(mthrs.next()){
-                                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
-                                                         * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+                                                        /**This line filters the above sql query for the radiobutton selection of months, and the according resultset is generated as done above*/
 
                                                         appointmentdata.add(new AppointmentsList( mthrs.getInt(1),
                                                                 mthrs.getString(2),
@@ -165,10 +163,8 @@ public class ApptController {
                                                 }
                                         }
                                         else if(WeekRB.isSelected()) {
-                                                appointmentdata.clear();
                                                 while(wkrs.next()){
-                                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
-                                                         * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+                                                        /**This line filters the above sql query for the radiobutton selection of weeks, and the according resultset is generated as done above*/
                                                         appointmentdata.add(new AppointmentsList(
                                                                 wkrs.getInt(1),
                                                                 wkrs.getString(2),
@@ -251,7 +247,11 @@ public class ApptController {
         }
 
 
+        /**This radiobutton is responsible for Loading the different views according to the selection of each appointment
+         * it is also used to refactor the appointmentdata.clear() method, which enables the view to be cleared every
+         * time a new query is executed, so the new query results can be loaded to the view upon the selected condition*/
         public void OnRadioButton(ActionEvent event) throws SQLException {
+                appointmentdata.clear();
                 LoadAppointments();
         }
 }

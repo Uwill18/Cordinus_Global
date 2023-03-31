@@ -37,42 +37,50 @@ public class LoginController implements Initializable {
     public void MainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
 
 
-        String username = UsernameTxt.getText();
-        String password = PasswordTxt.getText();
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Main Menu");
+        stage.setScene(scene);
+        stage.show();
+
+
+//        String username = UsernameTxt.getText();
+//        String password = PasswordTxt.getText();
 
         /**compares values from the database with the text stored in the variables*/
-        String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-
-        String filename ="src/main/java/cordinus/cordinus_global/reports/ValidationLog.txt";
-
-
-        //Create FileWriter object
-        FileWriter fwriter = new FileWriter(filename, true);
+//        String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
+//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+//        ResultSet rs = ps.executeQuery();
+//
+//        String filename ="src/main/java/cordinus/cordinus_global/reports/ValidationLog.txt";
+//
+//
+//        //Create FileWriter object
+//        FileWriter fwriter = new FileWriter(filename, true);
 
 
         //Create and Open file
-        PrintWriter outputFile = new PrintWriter(fwriter);
-
-        for(int numAttempt=1; numAttempt <= 3; numAttempt++) {
-            if (rs.next()) {
-                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Main Menu");
-                stage.setScene(scene);
-                stage.show();
-                outputFile.println(LocalDateTime.now() + " Valid Access granted to user of username: " + username);
-                //todo username and timestamp, then say if successful or not
-                System.out.println("File written!");
-
-            } else {
-                outputFile.println(LocalDateTime.now() + " Access Denied to user of username: " + username);
-
-            }
-            outputFile.close();
-        }
+//        PrintWriter outputFile = new PrintWriter(fwriter);
+//
+//        for(int numAttempt=1; numAttempt <= 3; numAttempt++) {
+//            if (rs.next()) {
+//                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                Scene scene = new Scene(fxmlLoader.load());
+//                stage.setTitle("Main Menu");
+//                stage.setScene(scene);
+//                stage.show();
+//                outputFile.println(LocalDateTime.now() + " Valid Access granted to user of username: " + username);
+//                //todo username and timestamp, then say if successful or not
+//                System.out.println("File written!");
+//
+//            } else {
+//                outputFile.println(LocalDateTime.now() + " Access Denied to user of username: " + username);
+//
+//            }
+//            outputFile.close();
+//        }
 
 
 
