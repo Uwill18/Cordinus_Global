@@ -14,12 +14,12 @@
    <children>
       <HBox alignment="CENTER" layoutX="334.0" layoutY="32.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <RadioButton fx:id="AllRB" mnemonicParsing="false" selected="true" text="All">
+            <RadioButton fx:id="AllRB" mnemonicParsing="false" onAction="#OnRadioButton" selected="true" text="All">
                <toggleGroup>
                   <ToggleGroup fx:id="ApptRB" />
                </toggleGroup></RadioButton>
-            <RadioButton fx:id="MonthRB" mnemonicParsing="false" text="Month" toggleGroup="$ApptRB" />
-            <RadioButton fx:id="WeekRB" mnemonicParsing="false" text="Week" toggleGroup="$ApptRB" />
+            <RadioButton fx:id="MonthRB" mnemonicParsing="false" onAction="#OnRadioButton" text="Month" toggleGroup="$ApptRB" />
+            <RadioButton fx:id="WeekRB" mnemonicParsing="false" onAction="#OnRadioButton" text="Week" toggleGroup="$ApptRB" />
          </children>
       </HBox>
       <TableView fx:id="AppointmentTable" layoutX="10.0" layoutY="100.0" prefHeight="200.0" prefWidth="922.0">
