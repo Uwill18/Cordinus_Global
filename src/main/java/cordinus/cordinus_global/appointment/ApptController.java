@@ -21,9 +21,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoField;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -82,10 +81,11 @@ public class ApptController {
         @FXML
         private RadioButton WeekRB;
 
-        public void initialize() throws SQLException {
+        public void initialize() throws SQLException, IOException {
                 appointmentdata = FXCollections.observableArrayList();
                 LoadAppointments();
                 setAppointmentCellTable();
+                OnIntervalCheck();
 
         }
 
@@ -253,5 +253,26 @@ public class ApptController {
         public void OnRadioButton(ActionEvent event) throws SQLException {
                 appointmentdata.clear();
                 LoadAppointments();
+        }
+
+        /**This function checks time intervals*/
+        public void OnIntervalCheck() throws IOException{
+
+                LocalTime nextAppt = LocalTime.now().plusMinutes(15);
+                LocalTime currentTime = LocalTime.now();//Gives the current time in hour and minutes
+
+                long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
+                System.out.println(timeDifference);//apply absolute value, maybe?
+
+                //long interval = (timeDifference+-1)*-1;
+                long interval = timeDifference;
+
+                if(interval>0 && interval <=15){
+                        System.out.println("Next Appointment is in "+ interval +" minutes");
+                }
+                else if(interval<=1){
+                        System.out.println("Last Appointment started "+ interval +" minute(s) ago");
+                }
+
         }
 }
