@@ -1,5 +1,6 @@
 package cordinus.cordinus_global.appointment;
 
+import cordinus.cordinus_global.controller.LoginController;
 import cordinus.cordinus_global.controller.MainController;
 import cordinus.cordinus_global.controller.ModifyApptController;
 import cordinus.cordinus_global.customer.CustomerController;
@@ -283,14 +284,14 @@ public class ApptController {
                 LocalTime currentTime = LocalTime.now();//Gives the current time in hour and minutes
                 //break current time into hour and minutes
                  int currenthour = LocalTime.now().getHour();
-                System.out.println(currenthour);
+                //System.out.println(currenthour);
                 //hour must be equal or less than next hour
                 int currentminute = LocalTime.now().getMinute();
-                System.out.println(currentminute);
+               // System.out.println(currentminute);
                 //minutes be equal or less than 15 minute interval
 
                 long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
-                System.out.println(timeDifference);//apply absolute value, maybe?
+                //System.out.println(timeDifference);//apply absolute value, maybe?
 
                 //long interval = (timeDifference+-1)*-1;
                 long interval = timeDifference;
@@ -306,6 +307,29 @@ public class ApptController {
                 //toDo : fetch UDT from Login and use it for LocalTime.now()
                 //toDO: see if you can have the clock vary am and pm
                 //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
+
+//
+//                if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
+//                        //timediff
+//                        return ("Next Appointment is at "+ LocalTime.of(currenthour,15));
+//
+//                }
+//                else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
+//                        //timediff
+//                        return ("Next Appointment is at "+ LocalTime.of(currenthour,30));
+//
+//                }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
+//                        //timediff
+//                        return ("Next Appointment is at "+ LocalTime.of(currenthour,45));
+//                }
+//                else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
+//                        return "Next Appointment is at "+ LocalTime.of(currenthour+1,0);
+//
+//                }
+
+
+
+
 
 
                 if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){

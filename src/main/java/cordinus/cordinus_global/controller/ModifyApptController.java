@@ -186,7 +186,8 @@ public class ModifyApptController implements Initializable {
         TypeTxt.setText(String.valueOf(appointment.getType()));
 
 
-        /**take the timestamp values, and set them to be passed**/
+        /**These sets of pickers take the Local Date, and LocalTime values,
+         * then they set them as timestamp values to be passed back to the view**/
         ApptStartPicker.setValue(appointment.getStart().toLocalDate());
         ApptEndPicker.setValue(appointment.getEnd().toLocalDate());
 
@@ -195,7 +196,7 @@ public class ModifyApptController implements Initializable {
 
 
 
-        System.out.println(appointment.getEnd());
+        //System.out.println(appointment.getEnd());
         CustomerIDTxt.setText(String.valueOf(appointment.getCustomer_ID()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 
