@@ -28,10 +28,6 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
-        LocalDate currentdate = LocalDate.now();
-        int currentMonth = currentdate.getMonthValue();
-        System.out.println("Current month: "+currentMonth);
-
         launch();
         JDBC.closeConnection();
     }

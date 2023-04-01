@@ -26,6 +26,8 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import static cordinus.cordinus_global.controller.AddApptController.ValueWarning;
+
 ////https://www.youtube.com/watch?v=3Ht-JMQh2JI
 public class ModifyApptController implements Initializable {
 
@@ -109,12 +111,27 @@ public class ModifyApptController implements Initializable {
 
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
+        LocalTime BusinessStart = LocalTime.of(8,0);
+        LocalTime BusinessEnd = LocalTime.of(22,0);
         LocalDateTime start = LocalDateTime.of(startDate,startTime);
         LocalDateTime end = LocalDateTime.of(endDate,endTime);
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
-        AppointmentsQuery.update(title, description, location, type, startby, endby, CreatedBy, LastUpdate,LastUpdatedBy, CreateDate,customerid, userid, contactid);
+
+        if(!((startTime.isAfter(endTime))) || startDate.isAfter(endDate)){
+
+            if((startTime.isBefore(BusinessStart) || startTime.isAfter(BusinessEnd))|| (endTime.isAfter(BusinessEnd)|| endTime.isBefore(BusinessStart)) || startDate.isAfter(endDate)  ){
+                ValueWarning();
+            }else if((startTime.equals(BusinessStart) || startTime.isAfter(BusinessStart)) && ((endTime.isBefore(BusinessEnd) || endTime.equals(BusinessEnd)))){
+                System.out.println("Valid choice");
+                AppointmentsQuery.update(title, description, location, type, startby, endby, CreatedBy, LastUpdate,LastUpdatedBy, CreateDate,customerid, userid, contactid);
+
+            }
+
+        }
+
+
 
 
     }

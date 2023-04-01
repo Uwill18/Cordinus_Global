@@ -143,16 +143,15 @@ public class AddApptController implements Initializable {
 
 
 
-        if(!((startTime.isAfter(endTime) || startDate.isAfter(endDate)) )){
+        if(!((startTime.isAfter(endTime))) || startDate.isAfter(endDate)){
 
-            if((startTime.isBefore(BusinessStart) || startTime.isAfter(BusinessEnd))|| (endTime.isAfter(BusinessEnd)|| endTime.isBefore(BusinessStart))){
-                //System.out.println("Invalid choice");
+            if((startTime.isBefore(BusinessStart) || startTime.isAfter(BusinessEnd))|| (endTime.isAfter(BusinessEnd)|| endTime.isBefore(BusinessStart)) || startDate.isAfter(endDate)  ){
                 ValueWarning();
-            }
+            }else if((startTime.equals(BusinessStart) || startTime.isAfter(BusinessStart)) && ((endTime.isBefore(BusinessEnd) || endTime.equals(BusinessEnd)))){
+                System.out.println("Valid choice");
+                AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
 
-        }else if((startTime.equals(BusinessStart) || startTime.isAfter(BusinessStart)) && ((endTime.isBefore(BusinessEnd) || endTime.equals(BusinessEnd)))){
-            System.out.println("Valid choice");
-            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+            }
 
         }
 
