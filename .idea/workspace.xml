@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="RadioButton Functions now and All appointment display by selected button">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Refactored Radiobutton function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/appointment/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/appointment/ApptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,13 +76,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00018" summary="#Add/Insert(fx)s for MySqlDB in progress&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1677053168291</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1677053168291</updated>
     </task>
     <task id="LOCAL-00019" summary="#Add/Insert for MySqlDB review w/ Sr.Dev&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <created>1677092437632</created>
@@ -421,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680226382860</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Refactored Radiobutton function">
+      <created>1680231882688</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1680231882688</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -436,7 +435,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Timeloop adjustment&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="Business hours adjustment&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="setup update&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="setup update trail 2&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
@@ -461,7 +459,8 @@
     <MESSAGE value="implementing appt sql statements 2" />
     <MESSAGE value="All Appointments are displaying now" />
     <MESSAGE value="RadioButton Functions now and All appointment display by selected button" />
-    <option name="LAST_COMMIT_MESSAGE" value="RadioButton Functions now and All appointment display by selected button" />
+    <MESSAGE value="Refactored Radiobutton function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored Radiobutton function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

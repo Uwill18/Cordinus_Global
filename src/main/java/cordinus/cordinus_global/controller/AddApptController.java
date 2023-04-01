@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -105,9 +106,6 @@ public class AddApptController implements Initializable {
 
         ///Dates
         LocalDate startDate = LocalDate.from(StartDatePicker.getValue());
-
-
-
         LocalDate endDate = LocalDate.from(EndDatePicker.getValue());
 
 
@@ -120,6 +118,13 @@ public class AddApptController implements Initializable {
 
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
+
+        LocalTime BusinessStart = LocalTime.of(8,0);
+        LocalTime BusinessEnd = LocalTime.of(22,0);
+
+
+
+
         LocalDateTime start = LocalDateTime.of(startDate,startTime);
         LocalDateTime end = LocalDateTime.of(endDate,endTime);
         Timestamp startby = Timestamp.valueOf(start);
@@ -135,13 +140,23 @@ public class AddApptController implements Initializable {
         //todo add a business hours check
         //todo exception handle for what is entered,or check for valid customer
         //todo or use combobox with only available entries from the db
-        //todo add a third toggle for all appts
 
 
 
+        if(!((startTime.isAfter(endTime) || startDate.isAfter(endDate)) )){
+
+            if((startTime.isBefore(BusinessStart) || startTime.isAfter(BusinessEnd))|| (endTime.isAfter(BusinessEnd)|| endTime.isBefore(BusinessStart))){
+                //System.out.println("Invalid choice");
+                ValueWarning();
+            }
+
+        }else if((startTime.equals(BusinessStart) || startTime.isAfter(BusinessStart)) && ((endTime.isBefore(BusinessEnd) || endTime.equals(BusinessEnd)))){
+            System.out.println("Valid choice");
+            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+
+        }
 
 
-        AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
 
         //cust id
         //user id
@@ -167,17 +182,31 @@ public class AddApptController implements Initializable {
         //Mr. Wabara reviewed timeloops with me to output to combobox
         //we discussed that combining the times with the date picker to a timestamp
         //would help format the time
-        for(int h = 8; h < 22; h++){
-            StartTimeCombo.getItems().add(LocalTime.of(h,0));
-            StartTimeCombo.getItems().add(LocalTime.of(h,15));
-            StartTimeCombo.getItems().add(LocalTime.of(h,30));
-            StartTimeCombo.getItems().add(LocalTime.of(h,45));
-            EndTimeCombo.getItems().add(LocalTime.of(h,0));
-            EndTimeCombo.getItems().add(LocalTime.of(h,15));
-            EndTimeCombo.getItems().add(LocalTime.of(h,30));
-            EndTimeCombo.getItems().add(LocalTime.of(h,45));
-            //hardcode the times for forloops
-        }
+
+
+            for(int h = 0; h < 23; h++){
+                /**Intervals are hard coded for appt start-times*/
+                StartTimeCombo.getItems().add(LocalTime.of(h,0));
+                StartTimeCombo.getItems().add(LocalTime.of(h,15));
+                StartTimeCombo.getItems().add(LocalTime.of(h,30));
+                StartTimeCombo.getItems().add(LocalTime.of(h,45));
+                /**Intervals are hard coded for appt end-times*/
+                EndTimeCombo.getItems().add(LocalTime.of(h,0));
+                EndTimeCombo.getItems().add(LocalTime.of(h,15));
+                EndTimeCombo.getItems().add(LocalTime.of(h,30));
+                EndTimeCombo.getItems().add(LocalTime.of(h,45));
+            }
+
+
+
+    }
+
+    public static void ValueWarning(){
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("VALUE WARNING");
+        alert.setContentText("Invalid Date and/or Time Selection. Please Try Again.");
+        alert.showAndWait();
 
     }
 }
