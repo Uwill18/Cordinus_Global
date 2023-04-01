@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -81,11 +82,15 @@ public class ApptController {
         @FXML
         private RadioButton WeekRB;
 
+        @FXML
+        private Label ApptIntervalLbl;
+
         public void initialize() throws SQLException, IOException {
                 appointmentdata = FXCollections.observableArrayList();
                 LoadAppointments();
                 setAppointmentCellTable();
-                OnIntervalCheck();
+                ApptIntervalLbl.setText(OnIntervalCheck().toString());
+
 
         }
 
@@ -255,11 +260,34 @@ public class ApptController {
                 LoadAppointments();
         }
 
-        /**This function checks time intervals*/
-        public void OnIntervalCheck() throws IOException{
+        /**
+         * This function checks time intervals
+         *
+         * @return
+         */
+        public String OnIntervalCheck() throws IOException{
 
                 LocalTime nextAppt = LocalTime.now().plusMinutes(15);
+
+//                for (int h= 0; h<=23; h++){
+//                        System.out.println(LocalTime.of(h,0));
+//                        System.out.println(LocalTime.of(h,15));
+//                        System.out.println(LocalTime.of(h,30));
+//                        System.out.println(LocalTime.of(h,45));
+//                }
+
+
+
+
+
                 LocalTime currentTime = LocalTime.now();//Gives the current time in hour and minutes
+                //break current time into hour and minutes
+                 int currenthour = LocalTime.now().getHour();
+                System.out.println(currenthour);
+                //hour must be equal or less than next hour
+                int currentminute = LocalTime.now().getMinute();
+                System.out.println(currentminute);
+                //minutes be equal or less than 15 minute interval
 
                 long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
                 System.out.println(timeDifference);//apply absolute value, maybe?
@@ -267,12 +295,38 @@ public class ApptController {
                 //long interval = (timeDifference+-1)*-1;
                 long interval = timeDifference;
 
-                if(interval>0 && interval <=15){
-                        System.out.println("Next Appointment is in "+ interval +" minutes");
+//                if(interval>0 && interval <=15){
+//
+//                }
+//                else if(interval<=1){
+//                        System.out.println("Last Appointment started "+ interval +" minute(s) ago");
+//                }
+
+//toDo: wrap a business hours check around the code
+                //toDo : fetch UDT from Login and use it for LocalTime.now()
+                //toDO: see if you can have the clock vary am and pm
+                //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
+
+
+                if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
+                        //timediff
+                        return ("Next Appointment is at "+ LocalTime.of(currenthour,15));
+
                 }
-                else if(interval<=1){
-                        System.out.println("Last Appointment started "+ interval +" minute(s) ago");
+                else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
+                        //timediff
+                        return ("Next Appointment is at "+ LocalTime.of(currenthour,30));
+
+                }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
+                        //timediff
+                        return ("Next Appointment is at "+ LocalTime.of(currenthour,45));
+                }
+                else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
+                        return "Next Appointment is at "+ LocalTime.of(currenthour+1,0);
+
                 }
 
+
+                return null;
         }
 }
