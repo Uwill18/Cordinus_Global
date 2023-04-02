@@ -1,6 +1,5 @@
 package cordinus.cordinus_global.appointment;
 
-import cordinus.cordinus_global.controller.LoginController;
 import cordinus.cordinus_global.controller.MainController;
 import cordinus.cordinus_global.controller.ModifyApptController;
 import cordinus.cordinus_global.customer.CustomerController;
@@ -14,15 +13,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.logging.Level;
@@ -91,7 +89,8 @@ public class ApptController {
                 LoadAppointments();
                 setAppointmentCellTable();
                 ApptIntervalLbl.setText(OnIntervalCheck().toString());
-
+                //ApptIntervalLbl.setText(CheckFifteenMinutes().toString());
+                FifteenMinutesAlert();
 
         }
 
@@ -266,91 +265,94 @@ public class ApptController {
          *
          * @return
          */
-        public String OnIntervalCheck() throws IOException{
+        public static String OnIntervalCheck() throws IOException{
 
                 LocalTime nextAppt = LocalTime.now().plusMinutes(15);
 
-//                for (int h= 0; h<=23; h++){
-//                        System.out.println(LocalTime.of(h,0));
-//                        System.out.println(LocalTime.of(h,15));
-//                        System.out.println(LocalTime.of(h,30));
-//                        System.out.println(LocalTime.of(h,45));
-//                }
 
 
 
 
 
-                LocalTime currentTime = LocalTime.now();//Gives the current time in hour and minutes
-                //break current time into hour and minutes
-                 int currenthour = LocalTime.now().getHour();
-                //System.out.println(currenthour);
-                //hour must be equal or less than next hour
-                int currentminute = LocalTime.now().getMinute();
-               // System.out.println(currentminute);
-                //minutes be equal or less than 15 minute interval
+                 LocalTime currentTime = LocalTime.now();
+                 int currenthour = LocalTime.now().getHour();//fetches the current hour to compare for logic
+                 long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
+                 long interval = timeDifference;
 
-                long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
-                //System.out.println(timeDifference);//apply absolute value, maybe?
 
-                //long interval = (timeDifference+-1)*-1;
-                long interval = timeDifference;
-
-//                if(interval>0 && interval <=15){
-//
-//                }
-//                else if(interval<=1){
-//                        System.out.println("Last Appointment started "+ interval +" minute(s) ago");
-//                }
 
 //toDo: wrap a business hours check around the code
                 //toDo : fetch UDT from Login and use it for LocalTime.now()
                 //toDO: see if you can have the clock vary am and pm
                 //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
 
+                LocalTime BusinessStart = LocalTime.of(8,0);
+                LocalTime BusinessEnd = LocalTime.of(22,0);
+
+                if(!((LocalTime.now().isBefore(BusinessStart))||(LocalTime.now().isAfter(BusinessEnd)))){
+
+                        if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
+                                //timediff
+                                return ("Next Appointment is at :"+ LocalTime.of(currenthour,15));
+
+                        }
+                        else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
+                                //timediff
+                                return ("Next Appointment is at :"+ LocalTime.of(currenthour,30));
+
+                        }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
+                                //timediff
+                                return ("Next Appointment is at :"+ LocalTime.of(currenthour,45));
+                        }
+                        else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
+                                return "Next Appointment is at :"+ LocalTime.of(currenthour+1,0);
+
+                        }
 //
-//                if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
-//                        //timediff
-//                        return ("Next Appointment is at "+ LocalTime.of(currenthour,15));
 //
-//                }
-//                else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
-//                        //timediff
-//                        return ("Next Appointment is at "+ LocalTime.of(currenthour,30));
-//
-//                }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
-//                        //timediff
-//                        return ("Next Appointment is at "+ LocalTime.of(currenthour,45));
-//                }
-//                else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
-//                        return "Next Appointment is at "+ LocalTime.of(currenthour+1,0);
-//
-//                }
+                        return null;
 
-
-
-
-
-
-                if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
-                        //timediff
-                        return ("Next Appointment is at "+ LocalTime.of(currenthour,15));
-
-                }
-                else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
-                        //timediff
-                        return ("Next Appointment is at "+ LocalTime.of(currenthour,30));
-
-                }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
-                        //timediff
-                        return ("Next Appointment is at "+ LocalTime.of(currenthour,45));
-                }
-                else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
-                        return "Next Appointment is at "+ LocalTime.of(currenthour+1,0);
-
+                }else{
+                        return "There are no upcoming Appointments.";
                 }
 
 
-                return null;
+        }
+
+        public ObservableList CheckFifteenMinutes(){
+                ObservableList AppointmentsFifteen = FXCollections.observableArrayList();
+                for(AppointmentsList a: appointmentdata){//get list of appts
+                        if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
+                             AppointmentsFifteen.add(a);
+                        }
+                }
+            return AppointmentsFifteen;
+        }
+
+
+        public void FifteenMinutesAlert() throws SQLException, IOException {
+
+                String sql = "SELECT * FROM APPOINTMENTS ";
+                PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+
+                if(rs.next()){
+/**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
+ * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+
+
+
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Appointment Update");
+                        alert.setContentText(OnIntervalCheck().toString() +"\nToday is : " + LocalDate.now()+ "  \n"+"The Upcoming Appointment ID is: " + rs.getInt(1));
+                        alert.showAndWait();
+
+
+
+                }
+
+
+
+
         }
 }
