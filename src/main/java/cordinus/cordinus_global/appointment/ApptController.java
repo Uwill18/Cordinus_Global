@@ -292,24 +292,17 @@ public class ApptController {
                 if(!((LocalTime.now().isBefore(BusinessStart))||(LocalTime.now().isAfter(BusinessEnd)))){
 
                         if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
-                                //timediff
                                 return ("Next Appointment is at :"+ LocalTime.of(currenthour,15));
-
                         }
                         else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
-                                //timediff
                                 return ("Next Appointment is at :"+ LocalTime.of(currenthour,30));
 
                         }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
-                                //timediff
                                 return ("Next Appointment is at :"+ LocalTime.of(currenthour,45));
                         }
                         else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
                                 return "Next Appointment is at :"+ LocalTime.of(currenthour+1,0);
-
                         }
-//
-//
                         return null;
 
                 }else{

@@ -32,6 +32,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)  {
 
         CurrentTimeLbl.setText(ZoneId.systemDefault().toString());
+        //toDO: discuss the alert method
 //        FXMLLoader loader = new FXMLLoader();
 //        //loader.load();
 //        ApptController apptController = loader.getController();
