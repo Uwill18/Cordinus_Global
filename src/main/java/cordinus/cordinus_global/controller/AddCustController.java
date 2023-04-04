@@ -21,6 +21,8 @@ import java.util.Date;
 
 //https://www.youtube.com/watch?v=at4xyBOdgME
 //https://www.youtube.com/watch?v=i0j2AmsJQz0
+
+
 public class AddCustController {
 
 
@@ -62,6 +64,8 @@ public class AddCustController {
     @FXML
     private TextField Postal_Code;
 
+    private Customer customer;
+
 
 
     //https://www.youtube.com/watch?v=tw_NXq08NUE
@@ -75,7 +79,7 @@ public class AddCustController {
 
 
 
-       // int custID = Integer.parseInt(Customer_ID.getText());
+       int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
         String custname = Customer_Name.getText();
         String Address = AddressTxt.getText();
         String ZipCode = Postal_Code.getText();

@@ -329,11 +329,10 @@ public class ApptController {
                 PreparedStatement ps = JDBC.connection.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
 
-                if(rs.next()){
+
+                //if(rs.next()){
 /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-
-
 
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Appointment Update");
@@ -342,7 +341,7 @@ public class ApptController {
 
 
 
-                }
+                //}
 
 
 
