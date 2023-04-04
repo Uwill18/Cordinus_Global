@@ -142,16 +142,25 @@ public class CustomerController {
 //
     @FXML
     void OnUpdateCustomer(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
-        loader.load();
-        ModCustController modCustController = loader.getController();//get controller tied to view
-        modCustController.Customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Modify Customer");
-        Parent scene = loader.getRoot();
-        stage.setScene(new Scene(scene));
-        stage.show();
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
+            loader.load();
+            ModCustController modCustController = loader.getController();//get controller tied to view
+            modCustController.Customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Modify Customer");
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+
+        }catch (NullPointerException e){
+            SelectionError();
+
+        }
+
+
     }
 
     @FXML

@@ -227,17 +227,26 @@ public class ApptController {
         @FXML
         void OnUpdateAppt(ActionEvent event) throws IOException {
 
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
-                loader.load();
-                ModifyApptController modifyApptController = loader.getController();//get controller tied to view
-                modifyApptController.Appt_Passer(AppointmentTable.getSelectionModel().getSelectedIndex(),
-                        AppointmentTable.getSelectionModel().getSelectedItem());
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setTitle("Modify Appointments");
-                Parent scene = loader.getRoot();
-                stage.setScene(new Scene(scene));
-                stage.show();
+                try{
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
+                        loader.load();
+                        ModifyApptController modifyApptController = loader.getController();//get controller tied to view
+                        modifyApptController.Appt_Passer(AppointmentTable.getSelectionModel().getSelectedIndex(),
+                                AppointmentTable.getSelectionModel().getSelectedItem());
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setTitle("Modify Appointments");
+                        Parent scene = loader.getRoot();
+                        stage.setScene(new Scene(scene));
+                        stage.show();
+
+                }catch (NullPointerException e){
+
+                        SelectionError();
+
+                }
+
+
 
         }
 
@@ -348,6 +357,17 @@ public class ApptController {
 
 
 
+
+        }
+
+
+        public static void SelectionError(){
+
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("SELECTION ERROR");
+                alert.setContentText("No selection was made for this operation.");
+                alert.showAndWait();
 
         }
 }

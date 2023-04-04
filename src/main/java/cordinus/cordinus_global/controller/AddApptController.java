@@ -3,6 +3,7 @@ package cordinus.cordinus_global.controller;
 import cordinus.cordinus_global.appointment.AppointmentsList;
 import cordinus.cordinus_global.customer.Customer;
 import cordinus.cordinus_global.helper.AppointmentsQuery;
+import cordinus.cordinus_global.helper.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -98,10 +97,20 @@ public class AddApptController implements Initializable {
     private Customer customer;
     private int index;
 
+    private  AppointmentsList appointmentsList;
+
 
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException {
-        //String apptID = ApptIDTxt.getText();//disabled in this and modappt
+
+        String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+
+
+
+
 
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
