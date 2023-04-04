@@ -325,23 +325,26 @@ public class ApptController {
 
         public void FifteenMinutesAlert() throws SQLException, IOException {
 
-                String sql = "SELECT * FROM APPOINTMENTS ";
+                String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
                 PreparedStatement ps = JDBC.connection.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
 
 
-                //if(rs.next()){
+                if(rs.next()){
 /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
 
+
+                        int x = rs.getInt(1);
+
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Appointment Update");
-                        alert.setContentText(OnIntervalCheck().toString() +"\nToday is : " + LocalDate.now()+ "  \n"+"The Upcoming Appointment ID is: " + rs.getInt(1));
+                        alert.setContentText(OnIntervalCheck().toString() +"\nToday is : " + LocalDate.now()+ "  \n"+"The Upcoming Appointment ID will be: " + (x + 1));
                         alert.showAndWait();
 
 
 
-                //}
+                }
 
 
 
