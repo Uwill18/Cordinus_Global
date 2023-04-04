@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.appointment.AppointmentsList;
+import cordinus.cordinus_global.customer.Customer;
 import cordinus.cordinus_global.helper.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,7 +68,9 @@ public class ModifyApptController implements Initializable {
     private AppointmentsList appointment;
 
     private int selectedIndex;
+    private Customer customer;
 
+    private int index;
     //•  All of the original appointment information is displayed on the update form in local time zone.
     //•  All of the appointment fields can be updated except Appointment_ID, which must be disabled.
 
@@ -178,7 +181,7 @@ public class ModifyApptController implements Initializable {
         this.selectedIndex = selectedIndex;
 
 
-
+        ApptIDTxt.setText(String.valueOf(appointment.getAppointment_ID()));
         TitleTxt.setText((String.valueOf(appointment.getTitle())));
         DescriptionTxt.setText(String.valueOf(appointment.getDescription()));
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
@@ -202,7 +205,19 @@ public class ModifyApptController implements Initializable {
 
     }
 
+    public void Customer_Passer(int index, Customer customer){
+        this.customer = customer;
+        this.index = index;
 
+        CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
+        UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
+        //Customer_Name.setText(customer.getCustomer_Name());
+        //AddressTxt.setText(customer.getAddress());
+        //Postal_Code.setText(customer.getPostal_Code());
+        //Phone.setText(customer.getPhone());
+        //Division_ID.setText((String.valueOf(customer.getDivision_ID())));
+
+    }
 
 
 }

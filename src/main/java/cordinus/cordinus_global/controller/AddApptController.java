@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.appointment.AppointmentsList;
+import cordinus.cordinus_global.customer.Customer;
 import cordinus.cordinus_global.helper.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,6 +73,30 @@ public class AddApptController implements Initializable {
     @FXML
     private TextField UserIDTxt;
 
+
+    @FXML
+    private TextField AddressTxt;
+
+    @FXML
+    private TextField Customer_ID;
+
+    @FXML
+    private TextField Customer_Name;
+
+
+
+    @FXML
+    private TextField Division_ID;
+
+    @FXML
+    private TextField Phone;
+
+
+
+    @FXML
+    private TextField Postal_Code;
+    private Customer customer;
+    private int index;
 
 
     @FXML
@@ -197,6 +222,22 @@ public class AddApptController implements Initializable {
             }
 
 
+
+    }
+
+    public void Customer_Passer(int index, Customer customer){
+        this.customer = customer;
+        this.index = index;
+
+        CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
+       // Customer_Name.setText(customer.getCustomer_Name());
+        ContactTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDo switch to Contact
+        UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDO: switch to UserID
+        //TitleTxt.setText(customer.getCustomer_Name() + "'s Appointment");
+        //AddressTxt.setText(customer.getAddress());
+        //Postal_Code.setText(customer.getPostal_Code());
+        //Phone.setText(customer.getPhone());
+        //Division_ID.setText((String.valueOf(customer.getDivision_ID())));
 
     }
 

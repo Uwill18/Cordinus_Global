@@ -30,8 +30,12 @@
                         <Label fx:id="CurrentTimeLbl" text="Current Time" textAlignment="CENTER" />
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#MainMenuScreenButton" text="Valid" />
-                  <Button mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#MainMenuScreenButton" text="Login" />
+                        <Button mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

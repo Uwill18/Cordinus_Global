@@ -1,7 +1,9 @@
 package cordinus.cordinus_global.customer;
 
+import cordinus.cordinus_global.controller.AddApptController;
 import cordinus.cordinus_global.controller.MainController;
 import cordinus.cordinus_global.controller.ModCustController;
+import cordinus.cordinus_global.controller.ModifyApptController;
 import cordinus.cordinus_global.helper.CustomersQuery;
 import cordinus.cordinus_global.helper.JDBC;
 import javafx.collections.FXCollections;
@@ -12,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -67,6 +70,9 @@ public class CustomerController {
 
 
 
+    private Customer customer;
+
+    private int index;
 
 
     public void initialize() throws SQLException {
@@ -158,6 +164,64 @@ public class CustomerController {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    @FXML
+    void AddAppointment(ActionEvent event) throws IOException {
+
+        try{
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
+            loader.load();
+            AddApptController addApptController = loader.getController();
+            addApptController.Customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Add Appointments");
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+
+        }catch (NullPointerException e){
+            SelectionError();
+        }
+
+
+    }
+
+    @FXML
+    void UpdateAppointment(ActionEvent event) throws IOException {
+
+        try{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
+        loader.load();
+        ModifyApptController modifyApptController = loader.getController();
+        modifyApptController.Customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Update Appointments");
+        Parent scene = loader.getRoot();
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+        }catch (NullPointerException e){
+        SelectionError();
+        }
+
+    }
+
+
+    public static void SelectionError(){
+
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("SELECTION ERROR");
+        alert.setContentText("No selection was made for this operation.");
+        alert.showAndWait();
+
+    }
+
+
 
 //Customer Controller must select Data from the TableView and pass
 // it ModifyCust
