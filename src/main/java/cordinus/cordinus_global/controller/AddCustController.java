@@ -73,13 +73,13 @@ public class AddCustController {
     //https://beginnersbook.com/2014/01/how-to-convert-12-hour-time-to-24-hour-date-in-java/
 
     @FXML
-    public void CreateCustomer(ActionEvent event) throws SQLException {
+    public void CreateCustomer(ActionEvent event) throws SQLException,IOException {
 
 
 
 
 
-       int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
+       //int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
         String custname = Customer_Name.getText();
         String Address = AddressTxt.getText();
         String ZipCode = Postal_Code.getText();
@@ -91,9 +91,13 @@ public class AddCustController {
 
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-        String CreatedBy ="test";
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
+        loader.load();
+        LoginController loginController= loader.getController();
+        String CreatedBy =String.valueOf(loginController.UsernameTxt);
 
-        String LastUpdatedBy ="test";
+        String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);
         int DivID = Integer.parseInt(Division_ID.getText());
         //System.out.print( CreateDate);
         CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);

@@ -77,7 +77,7 @@ public class ModifyApptController implements Initializable {
 
 
     @FXML
-    public void UpdateAppt(ActionEvent event) throws SQLException {
+    public void UpdateAppt(ActionEvent event) throws SQLException, IOException {
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
@@ -90,9 +90,14 @@ public class ModifyApptController implements Initializable {
 
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-        String CreatedBy ="test";
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
+        loader.load();
+        LoginController loginController= loader.getController();
+        String CreatedBy = String.valueOf(loginController.UsernameTxt);
+        //String CreatedBy ="test";
 
-        String LastUpdatedBy ="test";
+        String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);;
 
         int customerid = Integer.parseInt(CustomerIDTxt.getText());
         int userid = Integer.parseInt(UserIDTxt.getText());

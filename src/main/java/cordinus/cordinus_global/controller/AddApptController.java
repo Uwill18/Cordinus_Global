@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.appointment.AppointmentsList;
+import cordinus.cordinus_global.appointment.ApptController;
 import cordinus.cordinus_global.customer.Customer;
 import cordinus.cordinus_global.helper.AppointmentsQuery;
 import cordinus.cordinus_global.helper.JDBC;
@@ -101,7 +102,7 @@ public class AddApptController implements Initializable {
 
 
     @FXML
-    void InsertAppt(ActionEvent event) throws SQLException {
+    void InsertAppt(ActionEvent event) throws SQLException,IOException {
 
         String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -125,7 +126,11 @@ public class AddApptController implements Initializable {
 
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-        String CreatedBy ="test";
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
+        loader.load();
+        LoginController loginController= loader.getController();
+        String CreatedBy = String.valueOf(loginController.UsernameTxt);
 
         //combobox is going to list local time objects
         //then insert times as timestamp, formatting not necessary
@@ -135,7 +140,7 @@ public class AddApptController implements Initializable {
 
 
 
-        String LastUpdatedBy ="test";
+        String LastUpdatedBy =String.valueOf(loginController.UsernameTxt);;
 
 
         ///Dates

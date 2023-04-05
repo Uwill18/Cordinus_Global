@@ -224,7 +224,8 @@ public class CustomerController {
 
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("SELECTION ERROR");
+        alert.setTitle("Error");
+        alert.setHeaderText("SELECTION ERROR");
         alert.setContentText("No selection was made for this operation.");
         alert.showAndWait();
 

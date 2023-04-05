@@ -149,7 +149,17 @@ public class ApptController {
                                                 /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
                                                  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
 
-                                                appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+                                                appointmentdata.add(new AppointmentsList(
+                                                        rs.getInt(1),
+                                                        rs.getString(2),
+                                                        rs.getString(3),
+                                                        rs.getString(4),
+                                                        rs.getString(14),
+                                                        rs.getString(5),
+                                                        rs.getTimestamp(6).toLocalDateTime(),
+                                                        rs.getTimestamp(7).toLocalDateTime(),
+                                                        rs.getString(12),
+                                                        rs.getString(13)));
 
                                                  }
                                         }
@@ -353,8 +363,9 @@ public class ApptController {
                         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
                         String strDate = formatter.format(date);
 
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Appointment Update");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText("Upcoming Appointment");
+                        alert.setTitle("Appointment Notification");
                         alert.setContentText("Hello!\nToday is : " + strDate + "  \n"+OnIntervalCheck().toString()+"\nAppointment ID#: " + (x + 1));
                         alert.showAndWait();
 
