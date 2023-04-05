@@ -90,7 +90,7 @@ public class ApptController {
                 setAppointmentCellTable();
                 ApptIntervalLbl.setText(OnIntervalCheck().toString());
                 //ApptIntervalLbl.setText(CheckFifteenMinutes().toString());
-                FifteenMinutesAlert();
+                //FifteenMinutesAlert();
 
         }
 
@@ -245,8 +245,6 @@ public class ApptController {
                         SelectionError();
 
                 }
-
-
 
         }
 

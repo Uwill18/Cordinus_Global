@@ -49,6 +49,12 @@ public class LoginController implements Initializable {
 
     public void MainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
 
+        //toDo: remove when going back to validation
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
+        loader.load();
+        ApptController apptController = loader.getController();
+        apptController.FifteenMinutesAlert();
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -89,6 +95,11 @@ public class LoginController implements Initializable {
 //                  outputFile.println( "ACCESS GRANTED to user of USERNAME: " + username+ " AT TIME: "+ UserLDT);
 //                  //todo username and timestamp, then say if successful or not
 //                 System.out.println("File written!");
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
+//        loader.load();
+//        ApptController apptController = loader.getController();
+//        apptController.FifteenMinutesAlert();
 //
 //             } else {
 //                outputFile.println( "ACCESS DENIED to user of USERNAME: " + username + " AT TIME: "+UserLDT);
