@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cordinus.cordinus_global.controller.LoginController">
    <children>
-      <Pane layoutX="19.0" layoutY="22.0" prefHeight="357.0" prefWidth="563.0" style="-fx-background-color: #C4A484;">
+      <Pane layoutX="19.0" layoutY="22.0" prefHeight="357.0" prefWidth="563.0" style="-fx-background-color: #C4A484; -fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 1px 1px 1px 1px;">
          <children>
             <VBox alignment="CENTER" layoutX="125.0" layoutY="-1.0" prefHeight="357.0" prefWidth="301.0" spacing="15.0">
                <children>
@@ -32,8 +32,8 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#MainMenuScreenButton" text="Login" />
-                        <Button mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
+                        <Button mnemonicParsing="false" onAction="#MainMenuScreenButton" text="Confirm" />
+                        <Button mnemonicParsing="false" onAction="#onActionExit" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 3px;" text="Exit" textFill="#f8f6f6" />
                      </children>
                   </HBox>
                </children>

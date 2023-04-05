@@ -19,10 +19,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -299,16 +301,16 @@ public class ApptController {
                 if(!((LocalTime.now().isBefore(BusinessStart))||(LocalTime.now().isAfter(BusinessEnd)))){
 
                         if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
-                                return ("Next Appointment is at :"+ LocalTime.of(currenthour,15));
+                                return ("The next appointment is at : "+ LocalTime.of(currenthour,15));
                         }
                         else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
-                                return ("Next Appointment is at :"+ LocalTime.of(currenthour,30));
+                                return ("The next appointment is at : "+ LocalTime.of(currenthour,30));
 
                         }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
-                                return ("Next Appointment is at :"+ LocalTime.of(currenthour,45));
+                                return ("The next appointment is at : "+ LocalTime.of(currenthour,45));
                         }
                         else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
-                                return "Next Appointment is at :"+ LocalTime.of(currenthour+1,0);
+                                return "The next appointment is at : "+ LocalTime.of(currenthour+1,0);
                         }
                         return null;
 
@@ -343,10 +345,17 @@ public class ApptController {
 
 
                         int x = rs.getInt(1);
+//                        Date date = new Date();
+//                        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+//                        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
+
+                        Date date = new Date();
+                        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+                        String strDate = formatter.format(date);
 
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Appointment Update");
-                        alert.setContentText(OnIntervalCheck().toString() +"\nToday is : " + LocalDate.now()+ "  \n"+"The Upcoming Appointment ID will be: " + (x + 1));
+                        alert.setContentText("Hello!\nToday is : " + strDate + "  \n"+OnIntervalCheck().toString()+"\nAppointment ID#: " + (x + 1));
                         alert.showAndWait();
 
 
