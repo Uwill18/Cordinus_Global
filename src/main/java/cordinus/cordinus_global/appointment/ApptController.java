@@ -284,19 +284,15 @@ public class ApptController {
          *
          * @return
          */
-        public static String OnIntervalCheck() throws IOException{
+
+        public String OnIntervalCheck() throws IOException{
 
                 LocalTime nextAppt = LocalTime.now().plusMinutes(15);
 
-
-
-
-
-
-                 LocalTime currentTime = LocalTime.now();
-                 int currenthour = LocalTime.now().getHour();//fetches the current hour to compare for logic
-                 long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
-                 long interval = timeDifference;
+                LocalTime currentTime = LocalTime.now();
+                int currenthour = LocalTime.now().getHour();//fetches the current hour to compare for logic
+                long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
+                long interval = timeDifference;
 
 
 
@@ -328,8 +324,8 @@ public class ApptController {
                         return "There are no upcoming Appointments.";
                 }
 
-
         }
+
 
         public ObservableList CheckFifteenMinutes(){
                 ObservableList AppointmentsFifteen = FXCollections.observableArrayList();
@@ -342,41 +338,6 @@ public class ApptController {
         }
 
 
-        public void FifteenMinutesAlert() throws SQLException, IOException {
-
-                String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
-                PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-                ResultSet rs = ps.executeQuery();
-
-
-                if(rs.next()){
-/**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
- * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-
-
-                        int x = rs.getInt(1);
-//                        Date date = new Date();
-//                        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-//                        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
-
-                        Date date = new Date();
-                        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-                        String strDate = formatter.format(date);
-
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText("Upcoming Appointment");
-                        alert.setTitle("Appointment Notification");
-                        alert.setContentText("Hello!\nToday is : " + strDate + "  \n"+OnIntervalCheck().toString()+"\nAppointment ID#: " + (x + 1));
-                        alert.showAndWait();
-
-
-
-                }
-
-
-
-
-        }
 
 
         public static void SelectionError(){

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -42,6 +43,12 @@ public class ModCustController {
 
         @FXML
         private TextField Postal_Code;
+
+        @FXML
+        private ComboBox<?> CountriesComboBox;
+
+        @FXML
+        private ComboBox<?> StatesComboBox;
 
         private Customer customer;
 

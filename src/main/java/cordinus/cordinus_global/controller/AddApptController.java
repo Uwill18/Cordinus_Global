@@ -95,6 +95,10 @@ public class AddApptController implements Initializable {
 
     @FXML
     private TextField Postal_Code;
+
+
+
+
     private Customer customer;
     private int index;
 
@@ -130,7 +134,7 @@ public class AddApptController implements Initializable {
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
         loader.load();
         LoginController loginController= loader.getController();
-        String CreatedBy = String.valueOf(loginController.UsernameTxt);
+        String CreatedBy = String.valueOf(loginController.UsernameTxt);//toDo:how to access the username variable
 
         //combobox is going to list local time objects
         //then insert times as timestamp, formatting not necessary
@@ -140,7 +144,7 @@ public class AddApptController implements Initializable {
 
 
 
-        String LastUpdatedBy =String.valueOf(loginController.UsernameTxt);;
+        String LastUpdatedBy =String.valueOf(loginController.UsernameTxt);//toDo:how to access the username variable
 
 
         ///Dates
@@ -222,18 +226,18 @@ public class AddApptController implements Initializable {
         //would help format the time
 
 
-            for(int h = 0; h < 23; h++){
-                /**Intervals are hard coded for appt start-times*/
-                StartTimeCombo.getItems().add(LocalTime.of(h,0));
-                StartTimeCombo.getItems().add(LocalTime.of(h,15));
-                StartTimeCombo.getItems().add(LocalTime.of(h,30));
-                StartTimeCombo.getItems().add(LocalTime.of(h,45));
-                /**Intervals are hard coded for appt end-times*/
-                EndTimeCombo.getItems().add(LocalTime.of(h,0));
-                EndTimeCombo.getItems().add(LocalTime.of(h,15));
-                EndTimeCombo.getItems().add(LocalTime.of(h,30));
-                EndTimeCombo.getItems().add(LocalTime.of(h,45));
-            }
+        for(int h = 0; h < 23; h++){
+            /**Intervals are hard coded for appt start-times*/
+            StartTimeCombo.getItems().add(LocalTime.of(h,0));
+            StartTimeCombo.getItems().add(LocalTime.of(h,15));
+            StartTimeCombo.getItems().add(LocalTime.of(h,30));
+            StartTimeCombo.getItems().add(LocalTime.of(h,45));
+            /**Intervals are hard coded for appt end-times*/
+            EndTimeCombo.getItems().add(LocalTime.of(h,0));
+            EndTimeCombo.getItems().add(LocalTime.of(h,15));
+            EndTimeCombo.getItems().add(LocalTime.of(h,30));
+            EndTimeCombo.getItems().add(LocalTime.of(h,45));
+        }
 
 
 

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C4A484; -fx-background-image: url(&quot;C:\Users\Hoshi Holiday\Pictures\Saved Pictures\Globe.png&quot;);" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cordinus.cordinus_global.controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #C4A484; -fx-background-image: url(&quot;C:\Users\Hoshi Holiday\Pictures\Saved Pictures\Globe.png&quot;);" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cordinus.cordinus_global.controller.MainController">
    <children>
-      <Button blendMode="SRC_ATOP" layoutX="223.0" layoutY="319.0" mnemonicParsing="false" onAction="#LoginScreenButton" prefHeight="25.0" prefWidth="134.0" scaleX="1.25" scaleY="1.25" style="-fx-border-radius: 20px; -fx-background-radius: 15px; -fx-background-color: #B88A44; -fx-text-fill: white; -fx-translate-z: 2;" text="Proceed to Login" />
+      <Button blendMode="SRC_ATOP" layoutX="229.0" layoutY="319.0" mnemonicParsing="false" onAction="#LoginScreenButton" prefHeight="25.0" prefWidth="134.0" scaleX="1.25" scaleY="1.25" style="-fx-border-radius: 20px; -fx-background-radius: 15px; -fx-background-color: #B88A44; -fx-text-fill: white; -fx-translate-z: 2;" text="Proceed to Login" />
       <Label contentDisplay="CENTER" layoutX="201.0" layoutY="44.0" prefHeight="75.0" prefWidth="213.0" text="Cordinus Global">
          <font>
             <Font size="27.0" />

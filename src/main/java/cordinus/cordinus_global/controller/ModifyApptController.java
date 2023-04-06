@@ -65,6 +65,13 @@ public class ModifyApptController implements Initializable {
 
     @FXML
     private TextField TypeTxt;
+
+    @FXML
+    private TextField CountryTxt;
+
+    @FXML
+    private TextField StateTxt;
+
     private AppointmentsList appointment;
 
     private int selectedIndex;

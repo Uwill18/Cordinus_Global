@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 //https://www.youtube.com/watch?v=at4xyBOdgME
 //https://www.youtube.com/watch?v=i0j2AmsJQz0
@@ -64,7 +66,15 @@ public class AddCustController {
     @FXML
     private TextField Postal_Code;
 
+    @FXML
+    private ComboBox<Locale> CountriesComboBox;
+
+    @FXML
+    private ComboBox<Locale> StatesComboBox;
+
     private Customer customer;
+
+
 
 
 
@@ -72,11 +82,10 @@ public class AddCustController {
     //https://www.youtube.com/watch?v=vpwvWdnILuo&list=PLmCsXDGbJHdia3cLNvK4e2Gp4S9TUkK3G&index=15
     //https://beginnersbook.com/2014/01/how-to-convert-12-hour-time-to-24-hour-date-in-java/
 
+
+
     @FXML
     public void CreateCustomer(ActionEvent event) throws SQLException,IOException {
-
-
-
 
 
        //int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
@@ -91,13 +100,16 @@ public class AddCustController {
 
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
-        loader.load();
-        LoginController loginController= loader.getController();
-        String CreatedBy =String.valueOf(loginController.UsernameTxt);
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
+//        loader.load();
+//        LoginController loginController= loader.getController();
+        //String CreatedBy =String.valueOf(loginController.UsernameTxt);
+        String CreatedBy ="test";
 
-        String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);
+
+        //String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);
+        String LastUpdatedBy ="test";
         int DivID = Integer.parseInt(Division_ID.getText());
         //System.out.print( CreateDate);
         CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);
