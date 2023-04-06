@@ -2,7 +2,7 @@ package cordinus.cordinus_global.appointment;
 
 import java.time.LocalDateTime;
 
-public class AppointmentsList {
+public class Appointment {
 
     private int Appointment_ID;
 
@@ -32,7 +32,7 @@ public class AppointmentsList {
 
 
 
-    public AppointmentsList(int appointment_ID, String title, String description, String location, String contact_ID, String type, LocalDateTime start, LocalDateTime end, String customerID, String userID  ) {
+    public Appointment(int appointment_ID, String title, String description, String location, String contact_ID, String type, LocalDateTime start, LocalDateTime end, String customerID, String userID  ) {
         Appointment_ID = appointment_ID;//autogen
         Title = title;
         Description = description;

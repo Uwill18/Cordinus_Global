@@ -1,10 +1,8 @@
-package cordinus.cordinus_global.appointment;
+package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.controller.MainController;
-import cordinus.cordinus_global.controller.ModifyApptController;
-import cordinus.cordinus_global.customer.CustomerController;
-import cordinus.cordinus_global.helper.AppointmentsQuery;
-import cordinus.cordinus_global.helper.JDBC;
+import cordinus.cordinus_global.appointment.Appointment;
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
+import cordinus.cordinus_global.DAO.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,12 +17,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,11 +33,11 @@ public class ApptController {
 
         private PreparedStatement pst = null;//or this..
         //private ResultSet rs = null;
-        private ObservableList<AppointmentsList> appointmentdata;
+        private ObservableList<Appointment> appointmentdata;
 
 
         @FXML
-        private TableView<AppointmentsList> AppointmentTable;
+        private TableView<Appointment> AppointmentTable;
 
         @FXML
         private TableColumn<?, ?> Appointment_ID;
@@ -136,20 +131,20 @@ public class ApptController {
 //                        while (rs.next()){
 
                                //while(rs.next()){
-                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
+                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
                                          * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
 
-                                       // appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+                                       // appointmentdata.add(new Appointment( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
 
                                         if (AllRB.isSelected()){
 
-                                        //appointmentdata.add(new AppointmentsList( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
+                                        //appointmentdata.add(new Appointment( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
 
                                         while(rs.next()){
-                                                /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
+                                                /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
                                                  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
 
-                                                appointmentdata.add(new AppointmentsList(
+                                                appointmentdata.add(new Appointment(
                                                         rs.getInt(1),
                                                         rs.getString(2),
                                                         rs.getString(3),
@@ -167,7 +162,7 @@ public class ApptController {
                                                while(mthrs.next()){
                                                         /**This line filters the above sql query for the radiobutton selection of months, and the according resultset is generated as done above*/
 
-                                                        appointmentdata.add(new AppointmentsList( mthrs.getInt(1),
+                                                        appointmentdata.add(new Appointment( mthrs.getInt(1),
                                                                 mthrs.getString(2),
                                                                 mthrs.getString(3),
                                                                 mthrs.getString(4),
@@ -182,7 +177,7 @@ public class ApptController {
                                         else if(WeekRB.isSelected()) {
                                                 while(wkrs.next()){
                                                         /**This line filters the above sql query for the radiobutton selection of weeks, and the according resultset is generated as done above*/
-                                                        appointmentdata.add(new AppointmentsList(
+                                                        appointmentdata.add(new Appointment(
                                                                 wkrs.getInt(1),
                                                                 wkrs.getString(2),
                                                                 wkrs.getString(3),
@@ -329,7 +324,7 @@ public class ApptController {
 
         public ObservableList CheckFifteenMinutes(){
                 ObservableList AppointmentsFifteen = FXCollections.observableArrayList();
-                for(AppointmentsList a: appointmentdata){//get list of appts
+                for(Appointment a: appointmentdata){//get list of appts
                         if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
                              AppointmentsFifteen.add(a);
                         }

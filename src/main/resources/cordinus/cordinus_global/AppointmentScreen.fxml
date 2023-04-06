@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="941.0" style="-fx-background-color: #C4A484;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cordinus.cordinus_global.appointment.ApptController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="941.0" style="-fx-background-color: #C4A484;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cordinus.cordinus_global.controller.ApptController">
    <children>
       <HBox alignment="CENTER" layoutX="334.0" layoutY="32.0" prefHeight="100.0" prefWidth="200.0">
          <children>

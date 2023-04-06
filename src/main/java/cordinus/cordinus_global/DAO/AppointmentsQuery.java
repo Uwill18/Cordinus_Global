@@ -1,4 +1,4 @@
-package cordinus.cordinus_global.helper;
+package cordinus.cordinus_global.DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

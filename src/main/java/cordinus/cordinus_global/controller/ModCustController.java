@@ -1,7 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.customer.Customer;
-import cordinus.cordinus_global.helper.CustomersQuery;
+import cordinus.cordinus_global.DAO.CustomersQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

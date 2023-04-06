@@ -1,11 +1,8 @@
-package cordinus.cordinus_global.customer;
+package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.controller.AddApptController;
-import cordinus.cordinus_global.controller.MainController;
-import cordinus.cordinus_global.controller.ModCustController;
-import cordinus.cordinus_global.controller.ModifyApptController;
-import cordinus.cordinus_global.helper.CustomersQuery;
-import cordinus.cordinus_global.helper.JDBC;
+import cordinus.cordinus_global.customer.Customer;
+import cordinus.cordinus_global.DAO.CustomersQuery;
+import cordinus.cordinus_global.DAO.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

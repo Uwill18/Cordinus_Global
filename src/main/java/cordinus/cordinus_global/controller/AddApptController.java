@@ -1,10 +1,9 @@
 package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.appointment.AppointmentsList;
-import cordinus.cordinus_global.appointment.ApptController;
+import cordinus.cordinus_global.appointment.Appointment;
 import cordinus.cordinus_global.customer.Customer;
-import cordinus.cordinus_global.helper.AppointmentsQuery;
-import cordinus.cordinus_global.helper.JDBC;
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
+import cordinus.cordinus_global.DAO.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +19,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import static java.time.LocalDateTime.parse;
@@ -102,7 +96,7 @@ public class AddApptController implements Initializable {
     private Customer customer;
     private int index;
 
-    private  AppointmentsList appointmentsList;
+    private Appointment appointment;
 
 
     @FXML

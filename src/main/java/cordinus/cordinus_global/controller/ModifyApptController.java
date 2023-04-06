@@ -1,8 +1,8 @@
 package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.appointment.AppointmentsList;
+import cordinus.cordinus_global.appointment.Appointment;
 import cordinus.cordinus_global.customer.Customer;
-import cordinus.cordinus_global.helper.AppointmentsQuery;
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +18,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -72,7 +70,7 @@ public class ModifyApptController implements Initializable {
     @FXML
     private TextField StateTxt;
 
-    private AppointmentsList appointment;
+    private Appointment appointment;
 
     private int selectedIndex;
     private Customer customer;
@@ -188,7 +186,7 @@ public class ModifyApptController implements Initializable {
     }
 
 
-    public void Appt_Passer(int selectedIndex, AppointmentsList appointment){
+    public void Appt_Passer(int selectedIndex, Appointment appointment){
         this.appointment = appointment;
         this.selectedIndex = selectedIndex;
 

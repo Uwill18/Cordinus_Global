@@ -1,7 +1,6 @@
 package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.appointment.ApptController;
-import cordinus.cordinus_global.helper.JDBC;
+import cordinus.cordinus_global.DAO.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,9 +18,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
@@ -40,19 +37,6 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)  {
 
         CurrentTimeLbl.setText(ZoneId.systemDefault().toString());
-        //toDO: discuss the alert method
-//        FXMLLoader loader = new FXMLLoader();
-//        //loader.load();
-//        ApptController apptController = loader.getController();
-//        try {
-//            apptController.FifteenMinutesAlert();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
-
     }
 
     public void MainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
@@ -150,9 +134,7 @@ public class LoginController implements Initializable {
 
 
 
-//toDo: wrap a business hours check around the code
-        //toDo : fetch UDT from Login and use it for LocalTime.now()
-        //toDO: see if you can have the clock vary am and pm
+
         //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
 
         LocalTime BusinessStart = LocalTime.of(8,0);
@@ -190,7 +172,7 @@ public class LoginController implements Initializable {
 
 
         if(rs.next()){
-/**This line filters the above sql string to select  data from specific columns, then sends them to an instance of AppointmentsList
+/**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
 
 

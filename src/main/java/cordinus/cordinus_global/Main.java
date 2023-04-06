@@ -1,18 +1,12 @@
 package cordinus.cordinus_global;
 
-import cordinus.cordinus_global.controller.MainController;
-import cordinus.cordinus_global.customer.CustomerController;
-import cordinus.cordinus_global.helper.AppointmentsQuery;
-import cordinus.cordinus_global.helper.CustomersQuery;
-import cordinus.cordinus_global.helper.JDBC;
+import cordinus.cordinus_global.DAO.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Month;
 
 //loads homescreen in this case, the loginscreen
 public class Main extends Application {

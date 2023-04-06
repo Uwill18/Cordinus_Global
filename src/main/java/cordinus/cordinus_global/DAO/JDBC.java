@@ -1,9 +1,8 @@
-package cordinus.cordinus_global.helper;
+package cordinus.cordinus_global.DAO;
 
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import cordinus.cordinus_global.customer.CustomerController;
 
 public abstract class JDBC {
 
