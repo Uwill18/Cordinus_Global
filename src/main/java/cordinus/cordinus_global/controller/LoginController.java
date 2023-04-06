@@ -123,6 +123,11 @@ public class LoginController implements Initializable {
     }
 
 
+    //toDo: clarify "e.  Write code to provide an alert when there is an appointment within 15 minutes of the user’s log-in. A custom message should be displayed in the user interface and include the appointment ID, date, and time.
+    // If the user does not have any appointments within 15 minutes of logging in, display a custom message in the user interface indicating there are no upcoming appointments. x"
+
+
+
     public String OnIntervalCheck() throws IOException{
 
         LocalTime nextAppt = LocalTime.now().plusMinutes(15);

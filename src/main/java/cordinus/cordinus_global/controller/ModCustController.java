@@ -79,11 +79,11 @@ public class ModCustController {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
 
-                Timestamp CreateDate = timestamp;
-                Timestamp LastUpdate = timestamp;
-                String CreatedBy ="test";
+                Timestamp CreateDate = timestamp;//stay same
+                Timestamp LastUpdate = timestamp;//grab current
+                String CreatedBy ="test";//stay same
 
-                String LastUpdatedBy ="test";
+                String LastUpdatedBy ="test";//grab curremt
                 int DivID = Integer.parseInt(Division_ID.getText());
                 //System.out.print( CreateDate);
                 CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID, customerid);

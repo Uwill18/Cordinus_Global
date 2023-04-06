@@ -35,10 +35,10 @@ public abstract class CustomersQuery {
         ps.setString(2,Address);
         ps.setString(3,ZipCode);
         ps.setString(4,PhoneNumber);
-        ps.setTimestamp(5,CreateDate);//setTimestamp, valueof ldt
-        ps.setString(6,CreatedBy);
-        ps.setTimestamp(7,LastUpdate);//setTimestamp
-        ps.setString(8,LastUpdatedBy);
+        ps.setTimestamp(5,CreateDate);//setTimestamp, valueof ldt stay same, should I not pass?
+        ps.setString(6,CreatedBy);//stay same, should I not pass?
+        ps.setTimestamp(7,LastUpdate);//grab current NOW()
+        ps.setString(8,LastUpdatedBy);//grab current
         ps.setInt(9,DivID);
         ps.setInt(10,customerid);
         int rowsAffected = ps.executeUpdate();

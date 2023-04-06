@@ -105,7 +105,7 @@ public class AddCustController {
 //        loader.load();
 //        LoginController loginController= loader.getController();
         //String CreatedBy =String.valueOf(loginController.UsernameTxt);
-        String CreatedBy ="test";
+        String CreatedBy ="test";//toDo: update createby and last updated by to userlogin
 
 
         //String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);

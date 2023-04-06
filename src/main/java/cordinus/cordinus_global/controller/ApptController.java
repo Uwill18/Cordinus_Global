@@ -290,8 +290,11 @@ public class ApptController {
                 long interval = timeDifference;
 
 
+//toDo: clarify "e.  Write code to provide an alert when there is an appointment within 15 minutes of the user’s log-in. A custom message should be displayed in the user interface and include the appointment ID, date, and time.
+// If the user does not have any appointments within 15 minutes of logging in, display a custom message in the user interface indicating there are no upcoming appointments. x"
 
 //toDo: wrap a business hours check around the code
+
                 //toDo : fetch UDT from Login and use it for LocalTime.now()
                 //toDO: see if you can have the clock vary am and pm
                 //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
