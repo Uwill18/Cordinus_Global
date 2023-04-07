@@ -1,7 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 
-import cordinus.cordinus_global.customer.Customer;
+import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -121,7 +121,21 @@ public class AddCustController {
         ////Timestamp timestamp = UDT;
         //
 
-
+//--there should be a combobox for division respective to the country
+//--List of 3 countries to access from any controller
+//
+//    public static countriesdisplay(ArrayList<String> names) {
+//        for (int i = 0; i < names.size(); i = i + 1) {
+//            System.out.println(names.get(i));
+//        }
+//    }
+//
+//
+//--get all divisions as objects, and do processing as list for each time you process the countries with forloop, see if division list matches country, and when match, add it to list
+//
+//if(divisionid = countryid){
+//        DivisionComboBox.getItems.add(division);
+//    }
 
 
 

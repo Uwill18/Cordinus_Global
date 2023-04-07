@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
           PreparedStatement ps = JDBC.connection.prepareStatement(sql);
           ResultSet rs = ps.executeQuery();
 
-          String filename ="src/main/java/cordinus/cordinus_global/reports/login_activity.txt";
+          String filename ="login_activity.txt";
 
 
           //Create FileWriter object
@@ -168,6 +168,8 @@ public class LoginController implements Initializable {
     }
 
 
+    //toDo: for any user signing in the alert needs to check appointments within fifteen minutes of when the user signs in
+    //toDo: where user is apart of the appointment
 
     public void FifteenMinutesAlert() throws SQLException, IOException {
 

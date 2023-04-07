@@ -1,4 +1,4 @@
-package cordinus.cordinus_global.appointment;
+package cordinus.cordinus_global.model;
 
 import java.time.LocalDateTime;
 

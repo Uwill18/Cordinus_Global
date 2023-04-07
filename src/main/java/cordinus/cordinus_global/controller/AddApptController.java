@@ -1,7 +1,7 @@
 package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.appointment.Appointment;
-import cordinus.cordinus_global.customer.Customer;
+import cordinus.cordinus_global.model.Appointment;
+import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
 import javafx.event.ActionEvent;

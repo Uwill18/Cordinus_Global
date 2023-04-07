@@ -1,6 +1,6 @@
 package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.customer.Customer;
+import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
 import cordinus.cordinus_global.DAO.JDBC;
 import javafx.collections.FXCollections;
@@ -114,6 +114,16 @@ public class CustomerController {
 
 //toDO : select customer and pass data back to select/add appt for customer, add appt for
     //toDo allow a search for a customer
+    //toDO:
+//    --insert division id as fk
+//--country object will have and id
+//    Country countryid = countryid.getCountry_ID;
+//
+//--division object will have div id, and info
+//    Division divisionid = divsionid.getDivision_ID;
+//
+
+
 
 
 

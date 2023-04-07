@@ -1,6 +1,6 @@
 package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.appointment.Appointment;
+import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
 import javafx.collections.FXCollections;
@@ -17,9 +17,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -85,10 +82,6 @@ public class ApptController {
                 appointmentdata = FXCollections.observableArrayList();
                 LoadAppointments();
                 setAppointmentCellTable();
-                ApptIntervalLbl.setText(OnIntervalCheck().toString());
-                //ApptIntervalLbl.setText(CheckFifteenMinutes().toString());
-                //FifteenMinutesAlert();
-
         }
 
 
@@ -279,61 +272,6 @@ public class ApptController {
          *
          * @return
          */
-
-        public String OnIntervalCheck() throws IOException{
-
-                LocalTime nextAppt = LocalTime.now().plusMinutes(15);
-
-                LocalTime currentTime = LocalTime.now();
-                int currenthour = LocalTime.now().getHour();//fetches the current hour to compare for logic
-                long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
-                long interval = timeDifference;
-
-
-//toDo: clarify "e.  Write code to provide an alert when there is an appointment within 15 minutes of the user’s log-in. A custom message should be displayed in the user interface and include the appointment ID, date, and time.
-// If the user does not have any appointments within 15 minutes of logging in, display a custom message in the user interface indicating there are no upcoming appointments. x"
-
-//toDo: wrap a business hours check around the code
-
-                //toDo : fetch UDT from Login and use it for LocalTime.now()
-                //toDO: see if you can have the clock vary am and pm
-                //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
-
-                LocalTime BusinessStart = LocalTime.of(8,0);
-                LocalTime BusinessEnd = LocalTime.of(22,0);
-
-                if(!((LocalTime.now().isBefore(BusinessStart))||(LocalTime.now().isAfter(BusinessEnd)))){
-
-                        if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
-                                return ("The next appointment is at : "+ LocalTime.of(currenthour,15));
-                        }
-                        else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
-                                return ("The next appointment is at : "+ LocalTime.of(currenthour,30));
-
-                        }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
-                                return ("The next appointment is at : "+ LocalTime.of(currenthour,45));
-                        }
-                        else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
-                                return "The next appointment is at : "+ LocalTime.of(currenthour+1,0);
-                        }
-                        return null;
-
-                }else{
-                        return "There are no upcoming Appointments.";
-                }
-
-        }
-
-
-        public ObservableList CheckFifteenMinutes(){
-                ObservableList AppointmentsFifteen = FXCollections.observableArrayList();
-                for(Appointment a: appointmentdata){//get list of appts
-                        if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
-                             AppointmentsFifteen.add(a);
-                        }
-                }
-            return AppointmentsFifteen;
-        }
 
 
 

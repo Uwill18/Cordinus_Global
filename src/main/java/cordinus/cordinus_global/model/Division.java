@@ -1,4 +1,4 @@
-package cordinus.cordinus_global.countries;
+package cordinus.cordinus_global.model;
 
 public class Division {
 

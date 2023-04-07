@@ -1,4 +1,4 @@
-package cordinus.cordinus_global.customer;
+package cordinus.cordinus_global.model;
 
 public class Customer {
 
