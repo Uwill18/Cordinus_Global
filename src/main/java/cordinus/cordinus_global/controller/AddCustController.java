@@ -1,7 +1,6 @@
 package cordinus.cordinus_global.controller;
 
 
-import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
 import javafx.collections.FXCollections;
@@ -17,13 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 //https://www.youtube.com/watch?v=at4xyBOdgME
 //https://www.youtube.com/watch?v=i0j2AmsJQz0
@@ -74,7 +70,7 @@ public class AddCustController implements CountryLoader {
     private ComboBox<String> CountriesComboBox;
 
     @FXML
-    private ComboBox<Locale> StatesComboBox;
+    private ComboBox<String> StatesComboBox;
 
     private Customer customer;
 
@@ -89,6 +85,7 @@ public class AddCustController implements CountryLoader {
 
 
     private ObservableList<String> CountriesList = FXCollections.observableArrayList();
+    private ObservableList<String> StatesList = FXCollections.observableArrayList();
 
 
     @Override
@@ -97,6 +94,8 @@ public class AddCustController implements CountryLoader {
 
         CountryLoader.LoadCountries (CountriesList);
         CountriesComboBox.setItems(CountriesList);
+        StatesLoader.LoadStates(StatesList);
+        StatesComboBox.setItems(StatesList);
     }
 
 

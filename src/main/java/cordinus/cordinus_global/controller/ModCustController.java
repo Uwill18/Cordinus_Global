@@ -2,6 +2,8 @@ package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +19,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ModCustController {
+public class ModCustController implements CountryLoader{
     //when edit an existing customer, you have to update lastupdate
     //by new login user
     //only change lastupdate and lastupdateby
@@ -45,7 +47,7 @@ public class ModCustController {
         private TextField Postal_Code;
 
         @FXML
-        private ComboBox<?> CountriesComboBox;
+        private ComboBox<String> CountriesComboBox;
 
         @FXML
         private ComboBox<?> StatesComboBox;
@@ -55,8 +57,25 @@ public class ModCustController {
         private int index;
 
 
+        private ObservableList<String> CountriesList = FXCollections.observableArrayList();
+
+
+        @Override
+        public void initialize() throws SQLException {
+                //Connection conn = SQLConnection.getConnection();
+
+                CountryLoader.LoadCountries (CountriesList);
+                CountriesComboBox.setItems(CountriesList);
+        }
+
+        @Override
+        public void CreateCustomer(ActionEvent event) throws SQLException, IOException {
+
+        }
+
+
         @FXML
-        void CustomerScreenButton(ActionEvent event) throws IOException {
+        public void CustomerScreenButton(ActionEvent event) throws IOException {
 
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
