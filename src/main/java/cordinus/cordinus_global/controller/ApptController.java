@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -219,8 +220,32 @@ public class ApptController {
 
         @FXML
         void OnDeleteAppt(ActionEvent event) throws SQLException{
+                //toDO if selected alert, else if nothing selected.. selection error
 
-                AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
+                if((AppointmentTable.getSelectionModel().getSelectedItem() != null)){
+
+                        try{    //AppointmentTable.getSelectionModel().getSelectedIndex();
+                                //AppointmentTable.getSelectionModel().getSelectedItem();
+
+                                Alert alert = new Alert(Alert.AlertType.WARNING);
+                                alert.setTitle("Delete Warning");
+                                alert.setHeaderText("Deleting Appointment");
+                                alert.setContentText("Are you sure you plan to delete this appointment?");
+                                Optional<ButtonType> result = alert.showAndWait();
+                                if(result.isPresent()  && result.get() != ButtonType.CANCEL){
+                                        AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
+                                }
+                        }catch(NullPointerException e){
+
+                                SelectionError();
+
+                        }
+
+                }else{
+                        SelectionError();
+                }
+
+
 
         }
 

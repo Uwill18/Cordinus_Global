@@ -90,8 +90,6 @@ public class AddCustController implements CountryLoader {
 
     @Override
     public void initialize() throws SQLException {
-        //Connection conn = SQLConnection.getConnection();
-
         CountryLoader.LoadCountries (CountriesList);
         CountriesComboBox.setItems(CountriesList);
         StatesLoader.LoadStates(StatesList);
@@ -129,7 +127,11 @@ public class AddCustController implements CountryLoader {
         String LastUpdatedBy ="test";
         int DivID = Integer.parseInt(Division_ID.getText());
         //System.out.print( CreateDate);
-        CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);
+
+        String CountryName = CountriesComboBox.getValue();
+
+        CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID,CountryName);
+
         //timestamp for utc createddate and last update start as the same
         //createdby and lastupdate by user login, can be "test"/ the same
         //next steps are to implement user login, and to implement timestamps

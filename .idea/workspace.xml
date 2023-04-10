@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Loading countries to AddCustController">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/StatesLoader.java" afterDir="false" />
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Loading states to AddCustController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ModCust.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ModCust.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,13 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Business hours adjustment&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1678318675727</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1678318675728</updated>
     </task>
     <task id="LOCAL-00043" summary="setup update&#10;Merge remote-tracking branch 'origin/master'&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <created>1678320918887</created>
@@ -426,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681088050549</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Loading states to AddCustController">
+      <created>1681089627325</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1681089627327</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -441,7 +441,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="RadioButton Functions now and All appointment display by selected button" />
     <MESSAGE value="Refactored Radiobutton function" />
     <MESSAGE value="Alert and Business Logic part 1" />
     <MESSAGE value="Alert and Business Logic fine tuning" />
@@ -466,7 +465,8 @@
     <MESSAGE value="Updating queries to match the existing ones" />
     <MESSAGE value="Updating classes for future use" />
     <MESSAGE value="Loading countries to AddCustController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loading countries to AddCustController" />
+    <MESSAGE value="Loading states to AddCustController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Loading states to AddCustController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -59,6 +59,8 @@ public abstract class AppointmentsQuery {
 
     }
 
+
+    //toDO:revisit this for countries and divisions
     public static int delete(int customerId) throws SQLException {
         String sql = "DELETE FROM APPOINTMENTS WHERE APPOINTMENT_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
