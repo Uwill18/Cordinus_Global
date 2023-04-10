@@ -1,5 +1,6 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
 import cordinus.cordinus_global.DAO.JDBC;
@@ -12,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,6 +23,7 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -143,7 +146,51 @@ public class CustomerController {
     void OnDeleteCustomer(ActionEvent event) throws SQLException {
 
 
-        CustomersQuery.delete(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID());
+        if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
+
+            try{    //AppointmentTable.getSelectionModel().getSelectedIndex();
+                //AppointmentTable.getSelectionModel().getSelectedItem();
+
+
+
+
+
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Delete Warning");
+                alert.setHeaderText("Deleting Customer");
+                alert.setContentText("Are you sure you wish to delete this customer? "
+                        + "\nCUSTOMER ID# : " + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()
+                        +"\nCUSTOMER NAME :" + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_Name());
+                Optional<ButtonType> result = alert.showAndWait();
+                if(result.isPresent()  && result.get() != ButtonType.CANCEL){
+                    if(result.isPresent()  && result.get() ==ButtonType.OK){
+                        Alert delete_alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        delete_alert.setTitle("Delete Confirmation");
+                        delete_alert.setHeaderText("Customer Deleted");
+                        delete_alert.setContentText("THE FOLLOWING CUSTOMER HAS BEEN DELETED!" +
+                                "\nCUSTOMER ID# : " + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()
+                                +"\nCUSTOMER NAME : "
+                                + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_Name());
+                        Optional<ButtonType> delete_result = delete_alert.showAndWait();
+                        CustomersQuery.delete(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID());
+                    }
+
+                }
+
+
+            }catch(NullPointerException e){
+
+                SelectionError();
+
+            }
+
+        }else{
+            SelectionError();
+        }
+
+
+
+        //
 
     }
 //

@@ -227,34 +227,32 @@ public class ApptController {
                         try{    //AppointmentTable.getSelectionModel().getSelectedIndex();
                                 //AppointmentTable.getSelectionModel().getSelectedItem();
 
-                                String sql = "SELECT * FROM APPOINTMENTS";
-                                PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-                                ResultSet rs = ps.executeQuery();
 
-                                if(rs.next()){
-                                        //int x = rs.getInt(1);
-                                        //String y = rs.getString(5);
+
+
+
                                         Alert alert = new Alert(Alert.AlertType.WARNING);
                                         alert.setTitle("Delete Warning");
                                         alert.setHeaderText("Deleting Appointment");
-                                        alert.setContentText("Are you sure you wish to delete this appointment?\nAPPOINTMENT_TYPE : " +
-                                                AppointmentTable.getSelectionModel().getSelectedItem().getType() + "\nAPPOINTMENT_ID# : " +
-                                                AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
+                                        alert.setContentText("Are you sure you wish to delete this appointment? "
+                                                + "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
+                                        +"\nAPPOINTMENT TYPE :" + AppointmentTable.getSelectionModel().getSelectedItem().getType());
                                         Optional<ButtonType> result = alert.showAndWait();
                                         if(result.isPresent()  && result.get() != ButtonType.CANCEL){
                                                 if(result.isPresent()  && result.get() ==ButtonType.OK){
                                                         Alert delete_alert = new Alert(Alert.AlertType.CONFIRMATION);
                                                         delete_alert.setTitle("Delete Confirmation");
                                                         delete_alert.setHeaderText("Appointment Deleted");
-                                                        delete_alert.setContentText("\nAPPOINTMENT_TYPE : "
-                                                                + AppointmentTable.getSelectionModel().getSelectedItem().getType() +
-                                                                "\nAPPOINTMENT_ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID() +" has been deleted.");
+                                                        delete_alert.setContentText("THE FOLLOWING APPOINTMENT HAS BEEN DELETED!" +
+                                                                "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
+                                                                +"\nAPPOINTMENT TYPE : "
+                                                                + AppointmentTable.getSelectionModel().getSelectedItem().getType());
                                                         Optional<ButtonType> delete_result = delete_alert.showAndWait();
                                                         AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
                                                 }
 
                                         }
-                                }
+
 
                         }catch(NullPointerException e){
 
