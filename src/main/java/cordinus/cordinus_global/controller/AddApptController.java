@@ -4,6 +4,8 @@ import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -252,6 +254,16 @@ public class AddApptController implements Initializable {
         //Division_ID.setText((String.valueOf(customer.getDivision_ID())));
 
     }
+
+//    public ObservableList CheckFifteenMinutes(){
+//        ObservableList AppointmentsFifteen = FXCollections.observableArrayList();
+//        for(Appointment a: appointment){//get list of appts
+//            if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
+//                AppointmentsFifteen.add(a);
+//            }
+//        }
+//        return AppointmentsFifteen;
+//    }
 
     public static void ValueWarning(){
 

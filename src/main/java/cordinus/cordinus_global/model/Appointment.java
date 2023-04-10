@@ -1,5 +1,8 @@
 package cordinus.cordinus_global.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.time.LocalDateTime;
 
 public class Appointment {
@@ -29,6 +32,8 @@ public class Appointment {
     private String Customer_ID;
 
     private String User_ID;
+
+    public Appointment appointment;
 
 
 
@@ -133,6 +138,8 @@ public class Appointment {
     public void setUser_ID(String user_ID) {
         User_ID = user_ID;
     }
+
+
 
 
 

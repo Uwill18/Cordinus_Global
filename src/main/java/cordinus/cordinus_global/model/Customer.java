@@ -8,8 +8,6 @@ public class Customer {
 
     private String Customer_Name;
 
-
-
     private String Address;
     private String Postal_Code;
     private String Phone;
