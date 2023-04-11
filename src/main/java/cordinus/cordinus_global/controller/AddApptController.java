@@ -110,9 +110,8 @@ public class AddApptController implements Initializable {
 
 
 
-
-
-
+        //System.out.println(appointment);
+        //ApptIDTxt.setText(String.valueOf(appointment.getAppointment_ID()));
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
@@ -189,7 +188,8 @@ public class AddApptController implements Initializable {
             if((startTime.isBefore(BusinessStart) || startTime.isAfter(BusinessEnd))|| (endTime.isAfter(BusinessEnd)|| endTime.isBefore(BusinessStart)) || startDate.isAfter(endDate)  ){
                 ValueWarning();
             }else if((startTime.equals(BusinessStart) || startTime.isAfter(BusinessStart)) && ((endTime.isBefore(BusinessEnd) || endTime.equals(BusinessEnd)))){
-                System.out.println("Valid choice");
+                //System.out.println("Valid choice");
+
                 AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
 
             }

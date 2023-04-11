@@ -83,6 +83,7 @@ public class ApptController {
                 appointmentdata = FXCollections.observableArrayList();
                 LoadAppointments();
                 setAppointmentCellTable();
+
         }
 
 
@@ -198,6 +199,11 @@ public class ApptController {
                 }
                 /**customer data is added to the CustomerTable in the view*/
                 AppointmentTable.setItems(appointmentdata);
+                //System.out.println(appointmentdata.lastIndexOf(AppointmentTable.getSelectionModel()));
+                System.out.println();
+                //AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID();
+                //AppointmentTable.getSelectionModel().selectLast();
+
         }
 
 

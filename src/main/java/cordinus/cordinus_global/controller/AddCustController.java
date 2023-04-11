@@ -1,10 +1,13 @@
 package cordinus.cordinus_global.controller;
 
 
+import cordinus.cordinus_global.DAO.DivisionsQuery;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
+import cordinus.cordinus_global.model.Division;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,7 +73,7 @@ public class AddCustController implements CountryLoader {
     private ComboBox<String> CountriesComboBox;
 
     @FXML
-    private ComboBox<String> StatesComboBox;
+    private ComboBox<Division> StatesComboBox;
 
     private Customer customer;
 
@@ -92,8 +95,13 @@ public class AddCustController implements CountryLoader {
     public void initialize() throws SQLException {
         CountryLoader.LoadCountries (CountriesList);
         CountriesComboBox.setItems(CountriesList);
-        StatesLoader.LoadStates(StatesList);
-        StatesComboBox.setItems(StatesList);
+        //try to link CountriesCombo to StatesCombo
+        OnActionSelectCountry();
+        StatesComboBox.setItems(DivisionsQuery.getAll());
+
+
+        //StatesLoader.LoadStates(StatesList);
+        //StatesComboBox.setItems(StatesList);
     }
 
 
@@ -160,7 +168,13 @@ public class AddCustController implements CountryLoader {
 
 
 
+    public void OnActionSelectCountry(){
+        //do a lamba connecting states to Divisions
+        ObservableList<Division> allDivisions = DivisionsQuery.getAll();
+        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == StatesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
+        StatesComboBox.setItems(selectedDivision);
 
+    }
 
 
 
