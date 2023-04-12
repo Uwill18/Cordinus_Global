@@ -46,7 +46,7 @@
                   <Label text="Country:" GridPane.rowIndex="6" />
                   <Label text="State/Province:" GridPane.rowIndex="7" />
                   <ComboBox fx:id="CountriesComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <ComboBox fx:id="StatesComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ComboBox fx:id="StatesComboBox" onAction="#OnActionSelectCountry" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

@@ -70,6 +70,9 @@ public class ModifyApptController implements Initializable {
     @FXML
     private TextField StateTxt;
 
+    @FXML
+    private ComboBox<?> ContactComboBox;
+
     private Appointment appointment;
 
     private int selectedIndex;

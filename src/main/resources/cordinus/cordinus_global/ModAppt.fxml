@@ -37,7 +37,7 @@
             <Label text="Title" GridPane.rowIndex="3" />
             <Label text="Description" GridPane.rowIndex="4" />
             <Label text="Location" GridPane.rowIndex="5" />
-            <Label text="Contact" GridPane.rowIndex="8" />
+            <Label text="Contact ID &amp; Name" GridPane.rowIndex="8" />
             <Label text="Type" GridPane.rowIndex="9" />
             <Label text="Start Time" GridPane.rowIndex="6" />
             <Label text="End Time" GridPane.rowIndex="7" />
@@ -55,6 +55,7 @@
             <TextField fx:id="UserIDTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="StartTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <ComboBox fx:id="EndTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <ComboBox fx:id="ContactComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" layoutX="283.0" layoutY="349.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">

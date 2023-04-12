@@ -96,8 +96,8 @@ public class AddCustController implements CountryLoader {
         CountryLoader.LoadCountries (CountriesList);
         CountriesComboBox.setItems(CountriesList);
         //try to link CountriesCombo to StatesCombo
-        OnActionSelectCountry();
-        StatesComboBox.setItems(DivisionsQuery.getAll());
+       // OnActionSelectCountry();
+        //StatesComboBox.setItems(DivisionsQuery.getAll());
 
 
         //StatesLoader.LoadStates(StatesList);
@@ -139,6 +139,7 @@ public class AddCustController implements CountryLoader {
         String CountryName = CountriesComboBox.getValue();
 
         CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID,CountryName);
+        OnActionSelectCountry();
 
         //timestamp for utc createddate and last update start as the same
         //createdby and lastupdate by user login, can be "test"/ the same

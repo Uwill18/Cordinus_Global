@@ -92,6 +92,9 @@ public class AddApptController implements Initializable {
     @FXML
     private TextField Postal_Code;
 
+    @FXML
+    private ComboBox<?> ContactComboBox;
+
 
 
 

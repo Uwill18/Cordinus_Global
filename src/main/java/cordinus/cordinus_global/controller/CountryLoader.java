@@ -14,7 +14,7 @@ public interface CountryLoader {
     static void LoadCountries(ObservableList<String> CountriesList) throws SQLException {
 
 
-        String sql = "SELECT Country FROM Countries";
+        String sql = "SELECT * FROM Countries";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
