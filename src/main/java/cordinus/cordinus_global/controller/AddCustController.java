@@ -1,7 +1,9 @@
 package cordinus.cordinus_global.controller;
 
 
+import cordinus.cordinus_global.DAO.CountriesQuery;
 import cordinus.cordinus_global.DAO.DivisionsQuery;
+import cordinus.cordinus_global.model.Country;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
 import cordinus.cordinus_global.model.Division;
@@ -23,6 +25,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+//import static javafx.scene.control.DatePicker.StyleableProperties.country;
 
 //https://www.youtube.com/watch?v=at4xyBOdgME
 //https://www.youtube.com/watch?v=i0j2AmsJQz0
@@ -93,8 +97,18 @@ public class AddCustController implements CountryLoader {
 
     @Override
     public void initialize() throws SQLException {
-        CountryLoader.LoadCountries (CountriesList);
-        CountriesComboBox.setItems(CountriesList);
+        //CountryLoader.LoadCountries (CountriesList);
+        ObservableList<Country> allCountries = CountriesQuery.getAllCountries();
+        //Country country = allCountries.getClass();
+       System.out.println(allCountries);
+       CountriesQuery.getCountryByDivision().getCountry().toString();
+       CountriesComboBox.setItems();
+
+        //CountriesComboBox.setItems(CountriesList);
+
+
+
+        //CountriesComboBox.setItems();
         //try to link CountriesCombo to StatesCombo
        // OnActionSelectCountry();
         //StatesComboBox.setItems(DivisionsQuery.getAll());
@@ -102,6 +116,11 @@ public class AddCustController implements CountryLoader {
 
         //StatesLoader.LoadStates(StatesList);
         //StatesComboBox.setItems(StatesList);
+
+
+  //      ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
+//        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == StatesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
+        //StatesComboBox.setItems(selectedDivision);
     }
 
 
@@ -171,7 +190,7 @@ public class AddCustController implements CountryLoader {
 
     public void OnActionSelectCountry(){
         //do a lamba connecting states to Divisions
-        ObservableList<Division> allDivisions = DivisionsQuery.getAll();
+        ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
         FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == StatesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
         StatesComboBox.setItems(selectedDivision);
 

@@ -93,7 +93,7 @@ public class CustomerController {
         Postal_Code.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
         Phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
         Division_ID.setCellValueFactory(new PropertyValueFactory<>("Division_ID"));
-        Countries.setCellValueFactory(new PropertyValueFactory<>("Countries"));
+        Countries.setCellValueFactory(new PropertyValueFactory<>("Country"));
     }
 
     public void LoadCustomers() throws SQLException {

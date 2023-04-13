@@ -1,5 +1,7 @@
 package cordinus.cordinus_global.model;
 
+import cordinus.cordinus_global.DAO.CountriesQuery;
+
 public class Customer {
 
 
@@ -12,7 +14,7 @@ public class Customer {
     private String Postal_Code;
     private String Phone;
 
-    private String Division_ID;
+    private String Division_ID;//
 
 /**Discovered that matching the order of the constructor attributes with the view counterparts ensures that
  * they are displayed properly when loaded*/
@@ -73,6 +75,10 @@ public class Customer {
 
     public void setDivision_ID(String division_ID) {
         Division_ID = division_ID;
+    }
+
+    public Country getCountry(){
+        return CountriesQuery.getCountryByDivision(Integer.parseInt(Division_ID));
     }
 
 }

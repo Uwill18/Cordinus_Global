@@ -27,4 +27,9 @@ public class Country {
     public void setCountry(String country) {
         Country = country;
     }
+
+    @Override
+    public String toString(){
+        return Country;
+    }
 }

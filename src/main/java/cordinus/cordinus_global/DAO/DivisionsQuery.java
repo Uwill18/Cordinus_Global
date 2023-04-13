@@ -11,8 +11,8 @@ import java.sql.SQLException;
 
 public abstract class DivisionsQuery {
 
-    public static ObservableList<Division> getAll() {
-        ObservableList<Division> list = FXCollections.observableArrayList();
+    public static ObservableList<Division> getAllDivisions() {
+        ObservableList<Division> divisionList = FXCollections.observableArrayList();
 
         try {
             String sql = "SELECT * FROM First_Level_Divisions";
@@ -23,13 +23,13 @@ public abstract class DivisionsQuery {
                 int divisionID = rs.getInt("Division_ID");
                 String divisionName = rs.getString("Division");
                 int countryID = rs.getInt("Country_ID");
-                list.add(new Division(divisionID,divisionName,countryID));
+                divisionList.add(new Division(divisionID,divisionName,countryID));
 
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return list;
+        return divisionList;
     }
 
 }
