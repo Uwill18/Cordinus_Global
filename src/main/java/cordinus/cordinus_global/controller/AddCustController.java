@@ -101,51 +101,6 @@ public class AddCustController {
 
         CountriesComboBox.setItems(CountriesQuery.getAllCountries());
 
-        // ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
-//        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == StatesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
-//        StatesComboBox.setItems(selectedDivision);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //System.out.println(allCountries);
-        //String CountriesList = CountriesQuery.getCountryByDivision(1).getCountry().toString();
-
-
-        //System.out.println(allDivisions);
-
-
-
-
-
-
-
-
-
-        //int divid = division.getDivision_ID();
-
-        //a string observablelist is needed to set the combobox items
-
-
-
-
-       //System.out.println(CountriesList);
-
-
-
 
     }
 

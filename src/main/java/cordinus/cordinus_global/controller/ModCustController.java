@@ -1,9 +1,14 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.DAO.CountriesQuery;
+import cordinus.cordinus_global.DAO.DivisionsQuery;
+import cordinus.cordinus_global.model.Country;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
+import cordinus.cordinus_global.model.Division;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,10 +52,10 @@ public class ModCustController {
         private TextField Postal_Code;
 
         @FXML
-        private ComboBox<String> CountriesComboBox;
+        private ComboBox<Country> CountriesComboBox;
 
         @FXML
-        private ComboBox<?> StatesComboBox;
+        private ComboBox<Division> StatesComboBox;
 
         private Customer customer;
 
@@ -58,6 +63,13 @@ public class ModCustController {
 
 
         private ObservableList<String> CountriesList = FXCollections.observableArrayList();
+
+
+        public void initialize() throws SQLException {
+
+               CountriesComboBox.setItems(CountriesQuery.getAllCountries());
+
+        }
 
 
 
@@ -104,6 +116,38 @@ public class ModCustController {
         //ModifyCust must autopop selected data from customercontroller
         //allow editing of select fields, then pass that data back to the db
         //afterwards both the database and the app should hold an updated customers view
+
+
+
+        public void OnActionSelectCountry(){
+                //do a lamba connecting states to Divisions
+                ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
+                FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
+                StatesComboBox.setItems(selectedDivision);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //--there should be a combobox for division respective to the country
 //--List of 3 countries to access from any controller

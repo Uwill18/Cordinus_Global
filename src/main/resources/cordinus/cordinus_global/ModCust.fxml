@@ -45,7 +45,7 @@
                   <TextField fx:id="Division_ID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Country:" GridPane.rowIndex="6" />
                   <Label text="State/Province" GridPane.rowIndex="7" />
-                  <ComboBox fx:id="CountriesComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="CountriesComboBox" onAction="#OnActionSelectCountry" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ComboBox fx:id="StateComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>

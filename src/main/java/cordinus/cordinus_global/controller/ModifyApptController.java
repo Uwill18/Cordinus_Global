@@ -1,6 +1,8 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.DAO.ContactsQuery;
 import cordinus.cordinus_global.model.Appointment;
+import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import javafx.event.ActionEvent;
@@ -71,7 +73,7 @@ public class ModifyApptController implements Initializable {
     private TextField StateTxt;
 
     @FXML
-    private ComboBox<?> ContactComboBox;
+    private ComboBox<Contact> ContactComboBox;
 
     private Appointment appointment;
 
@@ -186,6 +188,7 @@ public class ModifyApptController implements Initializable {
             //hardcode the times for forloops
         }
 
+        ContactComboBox.setItems(ContactsQuery.getAllContacts());
     }
 
 

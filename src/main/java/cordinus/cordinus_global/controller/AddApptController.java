@@ -126,6 +126,7 @@ public class AddApptController implements Initializable {
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
         int contact = ContactComboBox.getValue().getContact_ID();
+
         String type = TypeTxt.getText();
 
         LocalDateTime date =LocalDateTime.now();//use LocalDateTime
@@ -249,8 +250,12 @@ public class AddApptController implements Initializable {
         }
 
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
+        //ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
 
     }
+
+
+    //
 
     public void Customer_Passer(int index, Customer customer){
         this.customer = customer;
@@ -258,7 +263,7 @@ public class AddApptController implements Initializable {
 
         CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
        // Customer_Name.setText(customer.getCustomer_Name());
-        ContactTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDo switch to Contact
+        //ContactTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDo switch to Contact
         UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDO: switch to UserID
         //TitleTxt.setText(customer.getCustomer_Name() + "'s Appointment");
         //AddressTxt.setText(customer.getAddress());
@@ -268,6 +273,14 @@ public class AddApptController implements Initializable {
 
     }
 
+
+
+    public void ContactUpdate(){
+        int contact = ContactComboBox.getValue().getContact_ID();
+        ContactTxt.setText(String.valueOf(contact));
+
+
+    }
 //    public ObservableList CheckFifteenMinutes(){
 //        ObservableList AppointmentsFifteen = FXCollections.observableArrayList();
 //        for(Appointment a: appointment){//get list of appts

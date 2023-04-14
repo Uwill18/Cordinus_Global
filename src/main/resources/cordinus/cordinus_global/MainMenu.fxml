@@ -11,7 +11,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#AppointmentScreenButton" prefHeight="50.0" prefWidth="251.0" text="Appointments" />
                   <Button mnemonicParsing="false" onAction="#CustomerScreenButton" prefHeight="50.0" prefWidth="250.0" text="Customers" />
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="252.0" text="Reports" />
+                  <Button mnemonicParsing="false" onAction="#ReportScreenButton" prefHeight="50.0" prefWidth="252.0" text="Reports" />
                   <Button mnemonicParsing="false" onAction="#LoginScreenButton" prefHeight="50.0" prefWidth="254.0" text="Back" />
                </children>
             </VBox>
