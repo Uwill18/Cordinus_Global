@@ -23,30 +23,30 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="CustomerNameLbl" text="Customer Name:" />
-                  <Label fx:id="AddressLbl" layoutX="10.0" layoutY="17.0" text="Address:" GridPane.rowIndex="1" />
-                  <Label fx:id="PostalCodeLbl" layoutX="10.0" layoutY="47.0" text="Postal Code:" GridPane.rowIndex="2" />
-                  <Label fx:id="PhoneLbl" layoutX="10.0" layoutY="77.0" text="Phone Number:" GridPane.rowIndex="3" />
-                  <Label fx:id="CustomerID_Lbl" layoutX="10.0" layoutY="17.0" text="Customer ID:" GridPane.rowIndex="4" />
-                  <TextField fx:id="Customer_Name" GridPane.columnIndex="1" />
-                  <TextField fx:id="AddressTxt" layoutX="277.0" layoutY="13.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="Postal_Code" layoutX="277.0" layoutY="43.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="Phone" layoutX="277.0" layoutY="73.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="Customer_ID" disable="true" layoutX="277.0" layoutY="103.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="DivisionID_Lbl" text="Division ID:" GridPane.rowIndex="5" />
-                  <TextField fx:id="Division_ID" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="Country:" GridPane.rowIndex="6" />
-                  <Label text="State/Province:" GridPane.rowIndex="7" />
-                  <ComboBox fx:id="CountriesComboBox" onAction="#OnActionSelectCountry" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <ComboBox fx:id="StatesComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="CustomerNameLbl" text="Customer Name:" GridPane.rowIndex="1" />
+                  <Label fx:id="AddressLbl" layoutX="10.0" layoutY="17.0" text="Address:" GridPane.rowIndex="2" />
+                  <Label fx:id="PostalCodeLbl" layoutX="10.0" layoutY="47.0" text="Postal Code:" GridPane.rowIndex="3" />
+                  <Label fx:id="PhoneLbl" layoutX="10.0" layoutY="77.0" text="Phone Number:" GridPane.rowIndex="4" />
+                  <Label fx:id="CustomerID_Lbl" layoutX="10.0" layoutY="17.0" text="Customer ID:" />
+                  <TextField fx:id="Customer_Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="AddressTxt" layoutX="277.0" layoutY="13.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="Postal_Code" layoutX="277.0" layoutY="43.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="Phone" layoutX="277.0" layoutY="73.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="Customer_ID" disable="true" layoutX="277.0" layoutY="103.0" GridPane.columnIndex="1" />
+                  <Label fx:id="DivisionID_Lbl" text="Division ID:" GridPane.rowIndex="7" />
+                  <TextField fx:id="Division_ID" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label text="Country:" GridPane.rowIndex="5" />
+                  <Label text="State/Province:" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="CountriesComboBox" onAction="#OnActionSelectCountry" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="StatesComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

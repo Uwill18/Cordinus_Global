@@ -11,7 +11,7 @@
    <children>
       <ImageView fx:id="GlobeImgView" fitHeight="161.0" fitWidth="244.0" layoutX="221.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" style="-fx-translate-z: 1;">
          <image>
-            <Image url="@../../../java/cordinus/cordinus_global/image/CordinusGlobe.jpg" />
+            <Image url="@../../../java/cordinus/cordinus_global/image/Globe.png" />
          </image>
       </ImageView>
       <Button blendMode="SRC_ATOP" layoutX="229.0" layoutY="319.0" mnemonicParsing="false" onAction="#LoginScreenButton" prefHeight="25.0" prefWidth="134.0" scaleX="1.25" scaleY="1.25" style="-fx-border-radius: 20px; -fx-background-radius: 15px; -fx-background-color: #B88A44; -fx-text-fill: white; -fx-translate-z: 2;" text="Proceed to Login" />

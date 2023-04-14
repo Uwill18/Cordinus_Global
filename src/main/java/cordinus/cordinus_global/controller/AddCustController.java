@@ -32,7 +32,7 @@ import java.util.*;
 //https://www.youtube.com/watch?v=i0j2AmsJQz0
 
 
-public class AddCustController implements CountryLoader {
+public class AddCustController {
 
 
     private ObservableList<Customer> customerdata;
@@ -95,45 +95,9 @@ public class AddCustController implements CountryLoader {
     private ObservableList<String> StatesList = FXCollections.observableArrayList();
 
 
-    @Override
+
     public void initialize() throws SQLException {
-        //CountryLoader.LoadCountries (CountriesList);
 
-
-
-        //ObservableList<Country> allCountries = CountriesQuery.getAllCountries();
-        //ObservableList<String> countriesList = FXCollections.observableArrayList();
-        //CountriesList.add(allCountries.toString());
-        // CountriesComboBox.setItems(countriesList);
-
-
-
-                //ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
-                //Division division = new Division(1,"USA",1);
-                //int x = division.getDivision_ID();
-        //System.out.println(allDivisions);
-
-
-                //String countryNames = CountriesQuery.getCountryByDivision(1).getCountry();
-
-//                ObservableList<String> countryNamesList = FXCollections.observableArrayList();
-//                countryNamesList.add(countryNames);
-//                System.out.println(countryNamesList);
-
-//                List<String> countryNames = new LinkedList<>();
-////                countryNames.add(CountriesQuery.getCountryByDivision(1).getCountry());
-////                countryNames.add(CountriesQuery.getCountryByDivision(2).getCountry());
-////                countryNames.add(CountriesQuery.getCountryByDivision(3).getCountry());
-//
-//                Iterator<String> countryNamesIterator = countryNames.iterator();
-//
-//                while(countryNamesIterator.hasNext()){
-//                    System.out.println(countryNamesIterator.next().toString());
-//                }
-
-//                for(String s : countryNames){
-//                    System.out.println(s);
-//                }
 
         CountriesComboBox.setItems(CountriesQuery.getAllCountries());
 
@@ -187,7 +151,7 @@ public class AddCustController implements CountryLoader {
 
 
 
-    @Override
+
     @FXML
     public void CreateCustomer(ActionEvent event) throws SQLException,IOException {
 

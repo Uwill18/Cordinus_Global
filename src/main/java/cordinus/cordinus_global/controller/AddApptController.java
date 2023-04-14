@@ -1,6 +1,8 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.DAO.ContactsQuery;
 import cordinus.cordinus_global.model.Appointment;
+import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
@@ -44,6 +46,9 @@ public class AddApptController implements Initializable {
     public ComboBox<LocalTime> StartTimeCombo;
 
     public ComboBox<LocalTime> EndTimeCombo;
+
+    @FXML
+    private ComboBox<Contact> ContactComboBox;
 
     @FXML
     private TextField ApptIDTxt;
@@ -92,8 +97,7 @@ public class AddApptController implements Initializable {
     @FXML
     private TextField Postal_Code;
 
-    @FXML
-    private ComboBox<?> ContactComboBox;
+
 
 
 
@@ -102,6 +106,9 @@ public class AddApptController implements Initializable {
     private int index;
 
     private Appointment appointment;
+
+
+
 
 
     @FXML
@@ -118,7 +125,7 @@ public class AddApptController implements Initializable {
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
-        int contact = Integer.parseInt(ContactTxt.getText());
+        int contact = ContactComboBox.getValue().getContact_ID();
         String type = TypeTxt.getText();
 
         LocalDateTime date =LocalDateTime.now();//use LocalDateTime
@@ -201,6 +208,7 @@ public class AddApptController implements Initializable {
 
 
 
+
         //cust id
         //user id
 
@@ -240,7 +248,7 @@ public class AddApptController implements Initializable {
             EndTimeCombo.getItems().add(LocalTime.of(h,45));
         }
 
-
+        ContactComboBox.setItems(ContactsQuery.getAllContacts());
 
     }
 

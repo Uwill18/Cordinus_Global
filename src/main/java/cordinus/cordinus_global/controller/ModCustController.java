@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ModCustController implements CountryLoader{
+public class ModCustController {
     //when edit an existing customer, you have to update lastupdate
     //by new login user
     //only change lastupdate and lastupdateby
@@ -60,18 +60,9 @@ public class ModCustController implements CountryLoader{
         private ObservableList<String> CountriesList = FXCollections.observableArrayList();
 
 
-        @Override
-        public void initialize() throws SQLException {
-                //Connection conn = SQLConnection.getConnection();
 
-                CountryLoader.LoadCountries (CountriesList);
-                CountriesComboBox.setItems(CountriesList);
-        }
 
-        @Override
-        public void CreateCustomer(ActionEvent event) throws SQLException, IOException {
 
-        }
 
 
         @FXML

@@ -1,9 +1,11 @@
 package cordinus.cordinus_global.model;
 
+import cordinus.cordinus_global.DAO.ContactsQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Appointment {
 
@@ -138,6 +140,11 @@ public class Appointment {
     public void setUser_ID(String user_ID) {
         User_ID = user_ID;
     }
+
+    public List<Contact> getContact(){
+        return ContactsQuery.getAllContacts();
+    }
+
 
 
 
