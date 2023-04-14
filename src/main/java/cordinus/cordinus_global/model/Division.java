@@ -37,4 +37,9 @@ public class Division {
     public void setCountry_ID(int country_ID) {
         Country_ID = country_ID;
     }
+
+    @Override
+    public String toString(){
+        return Division;
+    }
 }

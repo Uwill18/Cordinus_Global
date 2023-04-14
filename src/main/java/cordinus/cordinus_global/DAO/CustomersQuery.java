@@ -9,7 +9,7 @@ public abstract class CustomersQuery {
 
 
     //paste updated insert method here, then call it in AddCustController, and pass all values from the fxml into the method
-    public static int insert( String custName, String Address, String Postal, String Phone,Timestamp CreateDate, String CreatedBy,Timestamp LastUpdate, String LastUpdatedBy, int DivID, String CountryName) throws SQLException {
+    public static int insert( String custName, String Address, String Postal, String Phone,Timestamp CreateDate, String CreatedBy,Timestamp LastUpdate, String LastUpdatedBy, int DivID) throws SQLException {
         String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ps.setString(1,custName);
@@ -21,7 +21,6 @@ public abstract class CustomersQuery {
             ps.setTimestamp(7,LastUpdate);//setTimestamp
             ps.setString(8,LastUpdatedBy);
             ps.setInt(9,DivID);
-            ps.setString(10,CountryName);
 
 
          int rowsAffected = ps.executeUpdate();

@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Updating homescreen with image">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Established a country object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CountriesQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CountriesQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/DivisionsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/DivisionsQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Country.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Division.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Division.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddCust.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddCust.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,13 +87,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00049" summary="Updating hoursloops&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1678416126873</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1678416126873</updated>
     </task>
     <task id="LOCAL-00050" summary="Basic Login &#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <created>1678563866197</created>
@@ -432,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681330450344</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Established a country object">
+      <created>1681354856787</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1681354856789</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -447,7 +446,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Appointment Alert Update" />
     <MESSAGE value="Adjusting Views" />
     <MESSAGE value="Adjusting View functionalities" />
     <MESSAGE value="Adjusting View ID displays" />
@@ -472,21 +470,12 @@
     <MESSAGE value="Delete Confirmation for Customers complete" />
     <MESSAGE value="attempting lambda expression to filter divisions" />
     <MESSAGE value="Updating homescreen with image" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating homescreen with image" />
+    <MESSAGE value="Established a country object" />
+    <option name="LAST_COMMIT_MESSAGE" value="Established a country object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java</url>
-          <line>105</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java</url>
           <line>102</line>
@@ -502,11 +491,10 @@
           <line>165</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java</url>
-          <line>42</line>
-          <properties field="customerdata" class="cordinus.cordinus_global.customer.CustomerController" />
-          <option name="timeStamp" value="5" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java</url>
+          <line>254</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

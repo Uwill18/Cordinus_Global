@@ -77,6 +77,7 @@ public class Customer {
         Division_ID = division_ID;
     }
 
+    /**This function displays the countries to the customer table*/
     public Country getCountry(){
         return CountriesQuery.getCountryByDivision(Integer.parseInt(Division_ID));
     }

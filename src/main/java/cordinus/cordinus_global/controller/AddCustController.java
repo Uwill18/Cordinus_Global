@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 //import static javafx.scene.control.DatePicker.StyleableProperties.country;
 
@@ -74,7 +74,7 @@ public class AddCustController implements CountryLoader {
     private TextField Postal_Code;
 
     @FXML
-    private ComboBox<String> CountriesComboBox;
+    private ComboBox<Country> CountriesComboBox;
 
     @FXML
     private ComboBox<Division> StatesComboBox;
@@ -98,29 +98,91 @@ public class AddCustController implements CountryLoader {
     @Override
     public void initialize() throws SQLException {
         //CountryLoader.LoadCountries (CountriesList);
-        ObservableList<Country> allCountries = CountriesQuery.getAllCountries();
-        //Country country = allCountries.getClass();
-       System.out.println(allCountries);
-       CountriesQuery.getCountryByDivision().getCountry().toString();
-       CountriesComboBox.setItems();
-
-        //CountriesComboBox.setItems(CountriesList);
 
 
 
-        //CountriesComboBox.setItems();
-        //try to link CountriesCombo to StatesCombo
-       // OnActionSelectCountry();
-        //StatesComboBox.setItems(DivisionsQuery.getAll());
+        //ObservableList<Country> allCountries = CountriesQuery.getAllCountries();
+        //ObservableList<String> countriesList = FXCollections.observableArrayList();
+        //CountriesList.add(allCountries.toString());
+        // CountriesComboBox.setItems(countriesList);
 
 
-        //StatesLoader.LoadStates(StatesList);
-        //StatesComboBox.setItems(StatesList);
+
+                //ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
+                //Division division = new Division(1,"USA",1);
+                //int x = division.getDivision_ID();
+        //System.out.println(allDivisions);
 
 
-  //      ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
+                //String countryNames = CountriesQuery.getCountryByDivision(1).getCountry();
+
+//                ObservableList<String> countryNamesList = FXCollections.observableArrayList();
+//                countryNamesList.add(countryNames);
+//                System.out.println(countryNamesList);
+
+//                List<String> countryNames = new LinkedList<>();
+////                countryNames.add(CountriesQuery.getCountryByDivision(1).getCountry());
+////                countryNames.add(CountriesQuery.getCountryByDivision(2).getCountry());
+////                countryNames.add(CountriesQuery.getCountryByDivision(3).getCountry());
+//
+//                Iterator<String> countryNamesIterator = countryNames.iterator();
+//
+//                while(countryNamesIterator.hasNext()){
+//                    System.out.println(countryNamesIterator.next().toString());
+//                }
+
+//                for(String s : countryNames){
+//                    System.out.println(s);
+//                }
+
+        CountriesComboBox.setItems(CountriesQuery.getAllCountries());
+
+        // ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
 //        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == StatesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
-        //StatesComboBox.setItems(selectedDivision);
+//        StatesComboBox.setItems(selectedDivision);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //System.out.println(allCountries);
+        //String CountriesList = CountriesQuery.getCountryByDivision(1).getCountry().toString();
+
+
+        //System.out.println(allDivisions);
+
+
+
+
+
+
+
+
+
+        //int divid = division.getDivision_ID();
+
+        //a string observablelist is needed to set the combobox items
+
+
+
+
+       //System.out.println(CountriesList);
+
+
+
+
     }
 
 
@@ -142,23 +204,26 @@ public class AddCustController implements CountryLoader {
 
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
-//        loader.load();
-//        LoginController loginController= loader.getController();
-        //String CreatedBy =String.valueOf(loginController.UsernameTxt);
         String CreatedBy ="test";//toDo: update createby and last updated by to userlogin
 
 
-        //String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);
         String LastUpdatedBy ="test";
-        int DivID = Integer.parseInt(Division_ID.getText());
-        //System.out.print( CreateDate);
 
-        String CountryName = CountriesComboBox.getValue();
+        /**Grabs divisionID from State selection, and populates in the field*/
+        int DivID = StatesComboBox.getValue().getDivision_ID();
+        Division_ID.setText(String.valueOf(DivID));
 
-        CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID,CountryName);
-        OnActionSelectCountry();
+
+        CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);
+
+
+
+        //get country by division needs an int parameter, maybe from divisions
+
+
+
+
+
 
         //timestamp for utc createddate and last update start as the same
         //createdby and lastupdate by user login, can be "test"/ the same
@@ -191,7 +256,7 @@ public class AddCustController implements CountryLoader {
     public void OnActionSelectCountry(){
         //do a lamba connecting states to Divisions
         ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
-        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == StatesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
+        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
         StatesComboBox.setItems(selectedDivision);
 
     }
