@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class AppointmentsQuery {
@@ -76,25 +77,32 @@ public abstract class AppointmentsQuery {
     }
 
     public static ObservableList<Appointment> getAllAppointments(){
-        ObservableList<Appointment> contactList = FXCollections.observableArrayList();
+        ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM Appointments";
+            String sql = "SELECT * FROM APPOINTMENTS";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int contactID = rs.getInt("Contact_ID");
-                String contactName = rs.getString("Contact_Name");
-                String Email = rs.getString("Email");
-                //contactList.add(new Contact(contactID,contactName,Email));
+                int appointmentID = rs.getInt("Appointment_ID");
+                String contactID = rs.getString("Contact_ID");
+                String description = rs.getString("Description");
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                String location = rs.getString("Location");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                String title = rs.getString("Title");
+                String type = rs.getString("Type");
+                String customerID = rs.getString("Customer_ID");
+                String userID = rs.getString("User_ID");
+                appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
 
 
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return contactList;
+        return appointmentList;
 
     }
 }

@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.DAO;
 
 import cordinus.cordinus_global.model.Contact;
+import cordinus.cordinus_global.model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -62,26 +63,29 @@ public abstract class CustomersQuery {
     }
 
     //change over
-    public static ObservableList<Contact> getAllContacts(){
-        ObservableList<Contact> contactList = FXCollections.observableArrayList();
+    public static ObservableList<Customer> getAllCustomers(){
+        ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM Contacts";
+            String sql = "SELECT * FROM CUSTOMERS";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int contactID = rs.getInt("Contact_ID");
-                String contactName = rs.getString("Contact_Name");
-                String Email = rs.getString("Email");
-                contactList.add(new Contact(contactID,contactName,Email));
+                int customerID = rs.getInt("Customer_ID");
+                String customerName = rs.getString("Customer_Name");
+                String address = rs.getString("Address");
+                String postalCode = rs.getString("Postal_Code");
+                String phone = rs.getString("Phone");
+                String divisionID = rs.getString("Division_ID");
+                customerList.add(new Customer(customerID, customerName, address, postalCode, phone, divisionID));
 
 
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return contactList;
+        return customerList;
 
     }
 
