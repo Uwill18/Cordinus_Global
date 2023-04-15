@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 //This file is responsible for loading data applicable to Main
@@ -50,6 +52,27 @@ public class MainController {
 
     //Language Translation set by radio button, and connected to Language bundle
     //if translate is selected may have to set up screens just for french translation
+
+
+//    public static boolean langSwap (){
+//        ResourceBundle rb = ResourceBundle.getBundle("Nat", Locale.getDefault());
+//
+//        if( Locale.getDefault().getLanguage().equals("fr")){
+//            frenchMode();
+//
+//        }else {
+//            return false;
+//        }
+//        return true;
+//
+//    }
+//    public void langSwap() {
+//    }
+
+    public  void frenchMode(ActionEvent event){
+        Locale france = new Locale("fr","FR");
+        Locale.setDefault(france);
+    }
 
     //Time Display according to time alerts videos
 
@@ -120,6 +143,8 @@ void LoginScreenButton(ActionEvent event) throws IOException {
         stage.setScene(scene);
         stage.show();
     }
+
+
     //LoginReturnButton
 
 

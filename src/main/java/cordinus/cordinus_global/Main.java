@@ -26,14 +26,14 @@ public class Main extends Application {
 
         //https://www.tutorialspoint.com/javafx/javafx_images.htm
         //Creating an image
+       // Image image = new Image(new FileInputStream("src/main/java/cordinus/cordinus_global/image/Globe.png"));
         Image image = new Image(new FileInputStream("src/main/java/cordinus/cordinus_global/image/Globe.png"));
-
         //Setting the image view
         ImageView imageView = new ImageView(image);
 
         //Setting the position of the image
         imageView.setX(225);
-        imageView.setY(125);
+        imageView.setY(100);
 
         //setting the fit height and width of the image view
         imageView.setFitHeight(150);
@@ -42,9 +42,11 @@ public class Main extends Application {
         //Setting the preserve ratio of the image view
         imageView.setPreserveRatio(true);
 
+
+
         //Creating a Group object
         /**after researching loading multiple views, I learned that I could load the fxmlloader in with the Group object*/
-        Group root = new Group( fxmlLoader.load(),imageView);
+        Group root = new Group( fxmlLoader.load(), imageView);
 
         //Creating a scene object
        Scene scene = new Scene(root);
@@ -58,19 +60,8 @@ public class Main extends Application {
         stage.show();
 
 
-
-
-        //displayImage();
-
     }
 
-//    private void displayImage() {
-//
-//
-//        //Image myImage = new Image(getClass().getResourceAsStream("src/main/java/cordinus/cordinus_global/image/Globe.png"));
-//        //GlobeImgView.setImage(myImage);
-//       // GlobeImgView.getImage();
-//    }
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
@@ -78,6 +69,4 @@ public class Main extends Application {
         JDBC.closeConnection();
     }
 
-    @FXML
-    ImageView GlobeImgView;
 }
