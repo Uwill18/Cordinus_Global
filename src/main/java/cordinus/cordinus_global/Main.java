@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
 
 //loads homescreen in this case, the loginscreen
 
@@ -64,9 +65,13 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws SQLException, IOException {
+        Locale locale = new Locale("fr");
+        Locale.setDefault(locale);
         JDBC.openConnection();
         launch();
         JDBC.closeConnection();
+
+
     }
 
 }

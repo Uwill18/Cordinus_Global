@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -32,13 +33,22 @@ public class LoginController implements Initializable {
     public TextField UsernameTxt;
     public TextField PasswordTxt;
     public Label CurrentTimeLbl;
+    public Button confirmButton;
+    public Button exitButton;
+    public Label timeLabel;
+    public Label usernameLabel;
+    public Label passwordLabel;
 
-
+    private ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)  {
-
+        usernameLabel.setText(rb.getString("Username"));
+        passwordLabel.setText(rb.getString("Password"));
+        timeLabel.setText(rb.getString("Time"));
         CurrentTimeLbl.setText(ZoneId.systemDefault().toString());
+        confirmButton.setText(rb.getString("Confirm"));
+        exitButton.setText(rb.getString("Exit"));
     }
 
     public void MainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
@@ -104,9 +114,9 @@ public class LoginController implements Initializable {
                 }else{
                     outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }.");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Login Error");
-                    alert.setContentText("Invalid Credentials were entered at this time. Please try again.");
+                    alert.setTitle(rb.getString("Error"));
+                    alert.setHeaderText(rb.getString("Login"));
+                    alert.setContentText(rb.getString("Invalid"));
                     alert.showAndWait();
                 }
                 outputFile.close();
@@ -115,9 +125,9 @@ public class LoginController implements Initializable {
 
             outputFile.println("ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }." );
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Login Error");
-            alert.setContentText("Invalid Credentials were entered at this time. Please try again.");
+            alert.setTitle(rb.getString("Error"));
+            alert.setHeaderText(rb.getString("Login"));
+            alert.setContentText(rb.getString("Invalid"));
             alert.showAndWait();
 
           }

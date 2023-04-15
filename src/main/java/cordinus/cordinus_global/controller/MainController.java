@@ -3,14 +3,17 @@ package cordinus.cordinus_global.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 //import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -18,9 +21,10 @@ import java.util.ResourceBundle;
 //This file is responsible for loading data applicable to Main
 //Password Validation
 //and Navigation
-public class MainController {
+public class MainController implements Initializable {
 
 
+    public Button proceedButton;
     @FXML
     private TextField PasswordTxt;
 
@@ -29,6 +33,7 @@ public class MainController {
 
     @FXML
     private Label CurrentTimeLbl;
+    private ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
 
 //Updated Main Menu Button Navigation
@@ -81,7 +86,11 @@ public class MainController {
 //Main Menu Navigation//
     //ToLoginButton
 
+@Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        proceedButton.setText(rb.getString("Proceed"));
 
+}
 
 
 @FXML
@@ -90,12 +99,8 @@ void LoginScreenButton(ActionEvent event) throws IOException {
     Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     Scene scene = new Scene(fxmlLoader.load());
     stage.setTitle("Login Form");
-
     stage.setScene(scene);
-
     stage.show();
-
-
 }
 
 
