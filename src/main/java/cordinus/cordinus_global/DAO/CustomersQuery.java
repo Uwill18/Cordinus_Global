@@ -1,6 +1,11 @@
 package cordinus.cordinus_global.DAO;
 
+import cordinus.cordinus_global.model.Contact;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -56,25 +61,31 @@ public abstract class CustomersQuery {
 
     }
 
-    public static void select() throws SQLException {
+    //change over
+    public static ObservableList<Contact> getAllContacts(){
+        ObservableList<Contact> contactList = FXCollections.observableArrayList();
 
+        try {
+            String sql = "SELECT * FROM Contacts";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int contactID = rs.getInt("Contact_ID");
+                String contactName = rs.getString("Contact_Name");
+                String Email = rs.getString("Email");
+                contactList.add(new Contact(contactID,contactName,Email));
+
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return contactList;
 
     }
 
-//    public static void select(int colorId) throws SQLException {
-//        String sql = "SELECT * FROM FRUITS WHERE Color_ID = ?";
-//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-//        ps.setInt(1,colorId);
-//        ResultSet rs = ps.executeQuery();
-//        while(rs.next()){
-//            int fruitId = rs.getInt( "Fruit_ID");//retrieve data from result set
-//            String fruitName = rs.getString("Fruit_Name");
-//            int colorIdFk = rs.getInt("Color_ID");
-//            System.out.print(fruitId + " | " );
-//            System.out.print(fruitName + "  |   " );
-//            System.out.print(colorIdFk + "\n" );
-//        }
-//    }
+
 }
 
 

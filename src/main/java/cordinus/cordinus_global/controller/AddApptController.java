@@ -6,6 +6,7 @@ import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.utils.TimeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -170,9 +171,6 @@ public class AddApptController implements Initializable {
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
 
-        LocalTime BusinessStart = LocalTime.of(8,0);
-        LocalTime BusinessEnd = LocalTime.of(22,0);
-
 
 
 
@@ -193,18 +191,19 @@ public class AddApptController implements Initializable {
         //todo or use combobox with only available entries from the db
 
 
+//business hours check
+        //create a method for startdatetime
+        if(TimeUtil.businessHoursCheck(start, end)){
 
-        if(!((startTime.isAfter(endTime))) || startDate.isAfter(endDate)){
 
-            if((startTime.isBefore(BusinessStart) || startTime.isAfter(BusinessEnd))|| (endTime.isAfter(BusinessEnd)|| endTime.isBefore(BusinessStart)) || startDate.isAfter(endDate)  ){
-                ValueWarning();
-            }else if((startTime.equals(BusinessStart) || startTime.isAfter(BusinessStart)) && ((endTime.isBefore(BusinessEnd) || endTime.equals(BusinessEnd)))){
-                //System.out.println("Valid choice");
-
+                //Overlap()
                 AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
 
-            }
 
+
+        }
+        else{
+            ValueWarning();
         }
 
 
@@ -297,6 +296,11 @@ public class AddApptController implements Initializable {
         alert.setTitle("VALUE WARNING");
         alert.setContentText("Invalid Date and/or Time Selection. Please Try Again.");
         alert.showAndWait();
+
+    }
+
+
+    public static void BusinessHoursCheck(){
 
     }
 }

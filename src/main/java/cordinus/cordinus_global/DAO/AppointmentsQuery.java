@@ -1,5 +1,10 @@
 package cordinus.cordinus_global.DAO;
 
+import cordinus.cordinus_global.model.Appointment;
+import cordinus.cordinus_global.model.Contact;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -70,31 +75,27 @@ public abstract class AppointmentsQuery {
 
     }
 
-    public static void select() throws SQLException {
-        String sql = "SELECT * FROM client_schedule.customers ";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            int customerId = rs.getInt( "Customer_ID");//retrieve data from result set
-            String customerName = rs.getString("Customer_Name");
-            System.out.print(customerId + " | " );
-            System.out.print(customerName+ "\n" );
-        }
-    }
+    public static ObservableList<Appointment> getAllAppointments(){
+        ObservableList<Appointment> contactList = FXCollections.observableArrayList();
 
-    public static void select(int colorId) throws SQLException {
-        String sql = "SELECT * FROM FRUITS WHERE Color_ID = ?";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setInt(1,colorId);
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            int fruitId = rs.getInt( "Fruit_ID");//retrieve data from result set
-            String fruitName = rs.getString("Fruit_Name");
-            int colorIdFk = rs.getInt("Color_ID");
-            System.out.print(fruitId + " | " );
-            System.out.print(fruitName + "  |   " );
-            System.out.print(colorIdFk + "\n" );
+        try {
+            String sql = "SELECT * FROM Appointments";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int contactID = rs.getInt("Contact_ID");
+                String contactName = rs.getString("Contact_Name");
+                String Email = rs.getString("Email");
+                //contactList.add(new Contact(contactID,contactName,Email));
+
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+        return contactList;
+
     }
 }
 
