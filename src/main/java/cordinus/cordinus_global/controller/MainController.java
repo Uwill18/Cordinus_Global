@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
 
+
     public Button proceedButton;
     @FXML
     private TextField PasswordTxt;
@@ -33,7 +34,7 @@ public class MainController implements Initializable {
 
     @FXML
     private Label CurrentTimeLbl;
-    private ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
+    public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
 
 //Updated Main Menu Button Navigation
@@ -53,32 +54,6 @@ public class MainController implements Initializable {
 
 
 
-    //for now use next button
-
-    //Language Translation set by radio button, and connected to Language bundle
-    //if translate is selected may have to set up screens just for french translation
-
-
-//    public static boolean langSwap (){
-//        ResourceBundle rb = ResourceBundle.getBundle("Nat", Locale.getDefault());
-//
-//        if( Locale.getDefault().getLanguage().equals("fr")){
-//            frenchMode();
-//
-//        }else {
-//            return false;
-//        }
-//        return true;
-//
-//    }
-//    public void langSwap() {
-//    }
-
-    public  void frenchMode(ActionEvent event){
-        Locale france = new Locale("fr","FR");
-        Locale.setDefault(france);
-    }
-
     //Time Display according to time alerts videos
 
     //Exit button/sign out
@@ -86,9 +61,10 @@ public class MainController implements Initializable {
 //Main Menu Navigation//
     //ToLoginButton
 
-@Override
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        proceedButton.setText(rb.getString("Proceed"));
+     //proceedButton.setText(rb.getString("Proceed"));
 
 }
 

@@ -39,9 +39,9 @@ public class LoginController implements Initializable {
     public Label usernameLabel;
     public Label passwordLabel;
 
-    private ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
+    public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
-    @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle)  {
         usernameLabel.setText(rb.getString("Username"));
         passwordLabel.setText(rb.getString("Password"));
@@ -49,47 +49,36 @@ public class LoginController implements Initializable {
         CurrentTimeLbl.setText(ZoneId.systemDefault().toString());
         confirmButton.setText(rb.getString("Confirm"));
         exitButton.setText(rb.getString("Exit"));
+
     }
 
     public void MainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
 
-        //toDo: remove when going back to validation
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
-//        loader.load();
-//        ApptController apptController = loader.getController();
-//        apptController.FifteenMinutesAlert();
-//
 //        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        Scene scene = new Scene(fxmlLoader.load());
-//        stage.setTitle("Main Menu");
-//        stage.setScene(scene);
-//        stage.show();
-
+//                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                        Scene scene = new Scene(fxmlLoader.load());
+//                        stage.setTitle("Main Menu");
+//                        stage.setScene(scene);
+//                        stage.show();
 
         String username = UsernameTxt.getText();
         String password = PasswordTxt.getText();
 
         /**compares values from the database with the text stored in the variables*/
-          String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
-          PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-          ResultSet rs = ps.executeQuery();
+        String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
 
-          String filename ="login_activity.txt";
+        String filename ="login_activity.txt";
 
 
-          //Create FileWriter object
-          FileWriter fwriter = new FileWriter(filename, true);
+        //Create FileWriter object
+        FileWriter fwriter = new FileWriter(filename, true);
 
 
         //Create and Open file
-         PrintWriter outputFile = new PrintWriter(fwriter);
+        PrintWriter outputFile = new PrintWriter(fwriter);
 
-         //LocalDateTime UserLDT = LocalDateTime.now();
-//        Date UserLDT = new Date();//use LocalDateTime
-//        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-//        Timestamp timestamp = Timestamp.valueOf(formatter.format(UserLDT).toString());
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -98,86 +87,84 @@ public class LoginController implements Initializable {
 
         try{
 
-                if (rs.next()) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(fxmlLoader.load());
-                    stage.setTitle("Main Menu");
-                    stage.setScene(scene);
-                    stage.show();
-                    outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+" }.");
-                    //todo username and timestamp, then say if successful or not
-                    System.out.println("File written!");
-                    //FifteenMinutesAlert();
+            if (rs.next()) {
+                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(fxmlLoader.load());
+                stage.setTitle("Main Menu");
+                stage.setScene(scene);
+                stage.show();
+                outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+" }.");
+                //todo username and timestamp, then say if successful or not
+                System.out.println("File written!");
+                //FifteenMinutesAlert();
 
-
-                }else{
-                    outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }.");
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle(rb.getString("Error"));
-                    alert.setHeaderText(rb.getString("Login"));
-                    alert.setContentText(rb.getString("Invalid"));
-                    alert.showAndWait();
-                }
-                outputFile.close();
+            }else{
+                outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }.");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Login Error");
+                alert.setContentText("Invalid Credentials were entered at this time. Please try again.");
+                alert.showAndWait();
+            }
+            outputFile.close();
 
         }catch(Exception e){
 
             outputFile.println("ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }." );
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle(rb.getString("Error"));
-            alert.setHeaderText(rb.getString("Login"));
-            alert.setContentText(rb.getString("Invalid"));
+            alert.setTitle("Error");
+            alert.setHeaderText("Login Error");
+            alert.setContentText("Invalid Credentials were entered at this time. Please try again.");
             alert.showAndWait();
 
-          }
-
+        }
     }
 
 
     //toDo: clarify "e.  Write code to provide an alert when there is an appointment within 15 minutes of the user’s log-in. A custom message should be displayed in the user interface and include the appointment ID, date, and time.
     // If the user does not have any appointments within 15 minutes of logging in, display a custom message in the user interface indicating there are no upcoming appointments. x"
 
-
-
-    public String OnIntervalCheck() throws IOException{
-
-        LocalTime nextAppt = LocalTime.now().plusMinutes(15);
-
-        LocalTime currentTime = LocalTime.now();
-        int currenthour = LocalTime.now().getHour();//fetches the current hour to compare for logic
-        long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
-        long interval = timeDifference;
-
-
-
-
-        //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
-
-        LocalTime BusinessStart = LocalTime.of(8,0);
-        LocalTime BusinessEnd = LocalTime.of(22,0);
-
-        if(!((LocalTime.now().isBefore(BusinessStart))||(LocalTime.now().isAfter(BusinessEnd)))){
-
-            if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
-                return ("The next appointment is at : "+ LocalTime.of(currenthour,15));
-            }
-            else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
-                return ("The next appointment is at : "+ LocalTime.of(currenthour,30));
-
-            }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
-                return ("The next appointment is at : "+ LocalTime.of(currenthour,45));
-            }
-            else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
-                return "The next appointment is at : "+ LocalTime.of(currenthour+1,0);
-            }
-            return null;
-
-        }else{
-            return "There are no upcoming Appointments.";
-        }
-
-    }
+//
+//
+//    public String OnIntervalCheck() throws IOException{
+//
+//        LocalTime nextAppt = LocalTime.now().plusMinutes(15);
+//
+//        LocalTime currentTime = LocalTime.now();
+//        int currenthour = LocalTime.now().getHour();//fetches the current hour to compare for logic
+//        long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
+//        long interval = timeDifference;
+//
+//
+//
+//
+//        //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
+//
+//        LocalTime BusinessStart = LocalTime.of(8,0);
+//        LocalTime BusinessEnd = LocalTime.of(22,0);
+//
+//        if(!((LocalTime.now().isBefore(BusinessStart))||(LocalTime.now().isAfter(BusinessEnd)))){
+//
+//            if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
+//                return ("The next appointment is at : "+ LocalTime.of(currenthour,15));
+//            }
+//            else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
+//                return ("The next appointment is at : "+ LocalTime.of(currenthour,30));
+//
+//            }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
+//                return ("The next appointment is at : "+ LocalTime.of(currenthour,45));
+//            }
+//            else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
+//                return "The next appointment is at : "+ LocalTime.of(currenthour+1,0);
+//            }
+//            return null;
+//
+//        }else{
+//            return "There are no upcoming Appointments.";
+//        }
+//
+//    }
 
 
     //toDo: for any user signing in the alert needs to check appointments within fifteen minutes of when the user signs in

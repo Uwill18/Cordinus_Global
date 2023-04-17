@@ -1,7 +1,10 @@
 package cordinus.cordinus_global;
 
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.model.Appointment;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -70,6 +73,7 @@ public class Main extends Application {
         JDBC.openConnection();
         launch();
         JDBC.closeConnection();
+
 
 
     }

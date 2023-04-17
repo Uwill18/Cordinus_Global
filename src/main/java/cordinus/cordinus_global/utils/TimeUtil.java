@@ -24,6 +24,7 @@ public class TimeUtil {
 //case 4 start w/i and is after, start after start andends after end
 //how to differentiate instances of existing appointments from instances of appointments "to be", with new, we create
     //an instance, but how do we make sure it is the same instance? do we need references, and or pointers?
+//https://java-programming.mooc.fi/part-5/4-objects-and-references
 
 //            NAS = newAppointmentStart
 //    EAS = existingAppointmentStart
