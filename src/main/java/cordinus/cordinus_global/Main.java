@@ -72,6 +72,8 @@ public class Main extends Application {
         Locale.setDefault(locale);
         JDBC.openConnection();
         launch();
+
+
         JDBC.closeConnection();
 
 

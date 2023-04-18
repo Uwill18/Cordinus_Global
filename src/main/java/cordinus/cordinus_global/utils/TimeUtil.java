@@ -1,5 +1,8 @@
 package cordinus.cordinus_global.utils;
 
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
+import cordinus.cordinus_global.model.Appointment;
+
 import java.time.*;
 
 public class TimeUtil {
@@ -27,6 +30,7 @@ public class TimeUtil {
 //https://java-programming.mooc.fi/part-5/4-objects-and-references
 
 //            NAS = newAppointmentStart
+
 //    EAS = existingAppointmentStart
 //            EAE = existingAppointmentEnd
 //if ((NAS > EAS) && (NAS < EAE))

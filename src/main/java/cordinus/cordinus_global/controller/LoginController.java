@@ -85,7 +85,7 @@ public class LoginController implements Initializable {
         String strDate = formatter.format(date);
 
 
-        try{
+//        try{
 
             if (rs.next()) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
@@ -102,23 +102,23 @@ public class LoginController implements Initializable {
             }else{
                 outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }.");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Login Error");
-                alert.setContentText("Invalid Credentials were entered at this time. Please try again.");
+                alert.setTitle(rb.getString("Error"));
+                alert.setHeaderText(rb.getString("Login"));
+                alert.setContentText(rb.getString("Invalid"));
                 alert.showAndWait();
             }
             outputFile.close();
 
-        }catch(Exception e){
-
-            outputFile.println("ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }." );
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Login Error");
-            alert.setContentText("Invalid Credentials were entered at this time. Please try again.");
-            alert.showAndWait();
-
-        }
+//        }catch(Exception e){
+//
+//            outputFile.println("ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }." );
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Login Error");
+//            alert.setContentText("Invalid Credentials were entered at this time. Please try again.");
+//            alert.showAndWait();
+//
+//        }
     }
 
 

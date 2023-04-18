@@ -25,7 +25,8 @@ public class MainController implements Initializable {
 
 
 
-    public Button proceedButton;
+//    public Button proceedButton;
+public Button proceedButton;
     @FXML
     private TextField PasswordTxt;
 
@@ -62,9 +63,9 @@ public class MainController implements Initializable {
     //ToLoginButton
 
 
-    @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle){
-     //proceedButton.setText(rb.getString("Proceed"));
+         //proceedButton.setText(rb.getString("Proceed"));
 
 }
 

@@ -197,6 +197,7 @@ public class AddApptController implements Initializable {
 
 
                 //Overlap()
+
                 AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
 
 

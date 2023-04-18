@@ -77,8 +77,11 @@ public class ReportController {
 
 
     //tab1 --total appts
+    //the total number of customer appointments by type and month
 
     //tab2 -- contact schedule
+   //a schedule for each contact in your organization that includes appointment ID, title, type and description, start date and time, end date and time, and customer ID
+
 
 
 

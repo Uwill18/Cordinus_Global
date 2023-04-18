@@ -200,7 +200,8 @@ public class ApptController {
                 /**customer data is added to the CustomerTable in the view*/
                 AppointmentTable.setItems(appointmentdata);
                 //System.out.println(appointmentdata.lastIndexOf(AppointmentTable.getSelectionModel()));
-                System.out.println();
+                String apptest = String.valueOf(appointmentdata);
+                System.out.println(apptest+"\n");
                 //AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID();
                 //AppointmentTable.getSelectionModel().selectLast();
 
@@ -327,8 +328,6 @@ public class ApptController {
 
 
         public static void SelectionError(){
-
-
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("SELECTION ERROR");
                 alert.setContentText("No selection was made for this operation.");

@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Language Resource Bundles complete">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Testing ReportScreen.fxml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/LangUtils.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Login updated&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1678767459174</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1678767459174</updated>
     </task>
     <task id="LOCAL-00058" summary="Login updated last time&#10;&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
       <created>1678767546042</created>
@@ -443,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681591423262</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Testing ReportScreen.fxml">
+      <created>1681704661090</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1681704661090</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +455,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update Appointments Alert final version" />
     <MESSAGE value="View Updates" />
     <MESSAGE value="Login &amp; View Updates" />
     <MESSAGE value="File Reorganization" />
@@ -483,14 +479,15 @@
     <MESSAGE value="Updating GetAll() functions" />
     <MESSAGE value="Updating Language Resource Bundles" />
     <MESSAGE value="Language Resource Bundles complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Language Resource Bundles complete" />
+    <MESSAGE value="Testing ReportScreen.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing ReportScreen.fxml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java</url>
-          <line>106</line>
+          <line>107</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -510,19 +507,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java</url>
-          <line>92</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java</url>
           <line>41</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="30" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
