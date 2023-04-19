@@ -1,7 +1,6 @@
 package cordinus.cordinus_global.model;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDateTime;
@@ -144,6 +143,16 @@ public class Appointment {
     public List<Contact> getContact(){
         return ContactsQuery.getAllContacts();
     }
+
+    public String toString(){
+        return Start.toString() +" "+End.toString()+"\n";
+    }
+
+
+    public LocalDateTime toTimestamp(ObservableList<Appointment> appointmentdata){
+        return LocalDateTime.parse(Start +" "+ End+"\n");
+    }
+
 
 
 

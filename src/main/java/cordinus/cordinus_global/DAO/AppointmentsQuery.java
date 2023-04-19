@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class AppointmentsQuery {
@@ -96,14 +98,12 @@ public abstract class AppointmentsQuery {
                 String customerID = rs.getString("Customer_ID");
                 String userID = rs.getString("User_ID");
                 appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
-
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return appointmentList;
-
     }
+
 }
 

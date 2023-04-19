@@ -35,10 +35,7 @@ public Button proceedButton;
 
     @FXML
     private Label CurrentTimeLbl;
-    public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
-
-//Updated Main Menu Button Navigation
 
 
 //Password Validation//
@@ -63,9 +60,11 @@ public Button proceedButton;
     //ToLoginButton
 
 
+    //create a dialog that has a picture with a timer to expire, and you proceed from there
+    //toDO: have another controller, then main controller come in, may do welcome controller
 
     public void initialize(URL url, ResourceBundle resourceBundle){
-         //proceedButton.setText(rb.getString("Proceed"));
+        // proceedButton.setText(rb.getString("Proceed"));
 
 }
 
@@ -125,14 +124,5 @@ void LoginScreenButton(ActionEvent event) throws IOException {
         stage.setScene(scene);
         stage.show();
     }
-
-
-    //LoginReturnButton
-
-
-
-
-
-
 
 }

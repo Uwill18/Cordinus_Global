@@ -194,14 +194,8 @@ public class AddApptController implements Initializable {
 //business hours check
         //create a method for startdatetime
         if(TimeUtil.businessHoursCheck(start, end)){
-
-
                 //Overlap()
-
                 AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
-
-
-
         }
         else{
             ValueWarning();

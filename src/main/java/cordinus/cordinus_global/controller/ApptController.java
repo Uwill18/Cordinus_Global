@@ -3,6 +3,7 @@ package cordinus.cordinus_global.controller;
 import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.utils.TimeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,12 +26,6 @@ import java.util.logging.Logger;
 //initiate getters and setters
 public class ApptController {
 
-
-
-        private Connection con = null;//not sure if I need this...
-
-        private PreparedStatement pst = null;//or this..
-        //private ResultSet rs = null;
         private ObservableList<Appointment> appointmentdata;
 
 
@@ -78,6 +73,8 @@ public class ApptController {
 
         @FXML
         private Label ApptIntervalLbl;
+        
+        public Appointment appointment;
 
         public void initialize() throws SQLException, IOException {
                 appointmentdata = FXCollections.observableArrayList();
@@ -108,8 +105,6 @@ public class ApptController {
         public void LoadAppointments() throws SQLException {
 
                 try{
-
-
                         String sql = "SELECT * FROM APPOINTMENTS ";
                         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
                         ResultSet rs = ps.executeQuery();
@@ -129,11 +124,8 @@ public class ApptController {
                                         /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
                                          * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
 
-                                       // appointmentdata.add(new Appointment( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
-
                                         if (AllRB.isSelected()){
 
-                                        //appointmentdata.add(new Appointment( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
 
                                         while(rs.next()){
                                                 /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
@@ -150,7 +142,6 @@ public class ApptController {
                                                         rs.getTimestamp(7).toLocalDateTime(),
                                                         rs.getString(12),
                                                         rs.getString(13)));
-
                                                  }
                                         }
                                          if(MonthRB.isSelected()){
@@ -183,12 +174,8 @@ public class ApptController {
                                                                 wkrs.getTimestamp(7).toLocalDateTime(),
                                                                 wkrs.getString(12),
                                                                 wkrs.getString(13)));
-
-
                                                 }
                                         }
-
-
                         //}
 
 
@@ -199,17 +186,7 @@ public class ApptController {
                 }
                 /**customer data is added to the CustomerTable in the view*/
                 AppointmentTable.setItems(appointmentdata);
-                //System.out.println(appointmentdata.lastIndexOf(AppointmentTable.getSelectionModel()));
-                String apptest = String.valueOf(appointmentdata);
-                System.out.println(apptest+"\n");
-                //AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID();
-                //AppointmentTable.getSelectionModel().selectLast();
-
         }
-
-
-
-
 
 
         @FXML
@@ -231,13 +208,7 @@ public class ApptController {
 
                 if((AppointmentTable.getSelectionModel().getSelectedItem() != null)){
 
-                        try{    //AppointmentTable.getSelectionModel().getSelectedIndex();
-                                //AppointmentTable.getSelectionModel().getSelectedItem();
-
-
-
-
-
+                        try{
                                         Alert alert = new Alert(Alert.AlertType.WARNING);
                                         alert.setTitle("Delete Warning");
                                         alert.setHeaderText("Deleting Appointment");
@@ -260,11 +231,8 @@ public class ApptController {
 
                                         }
 
-
                         }catch(NullPointerException e){
-
                                 SelectionError();
-
                         }
 
                 }else{
