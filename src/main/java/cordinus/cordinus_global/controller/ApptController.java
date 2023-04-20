@@ -96,10 +96,6 @@ public class ApptController {
                 End.setCellValueFactory(new PropertyValueFactory<>("End"));//7,8
                 Customer_ID.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
                 User_ID.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-
-                //add customer_id
-                //user_id
-
         }
 
         public void LoadAppointments() throws SQLException {
@@ -197,9 +193,7 @@ public class ApptController {
                 Scene scene = new Scene(fxmlLoader.load());
                 stage.setTitle("Add Appointments");
                 stage.setScene(scene);
-
                 stage.show();
-
         }
 
         @FXML

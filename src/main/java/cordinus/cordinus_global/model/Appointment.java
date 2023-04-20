@@ -34,7 +34,7 @@ public class Appointment {
 
     private String User_ID;
 
-    public Appointment appointment;
+    public static Appointment appointment;
 
 
 
@@ -124,8 +124,8 @@ public class Appointment {
         Type = type;
     }
 
-    public String getCustomer_ID() {
-        return Customer_ID;
+    public int getCustomer_ID() {
+        return Integer.parseInt(Customer_ID);
     }
 
     public void setCustomer_ID(String customer_ID) {

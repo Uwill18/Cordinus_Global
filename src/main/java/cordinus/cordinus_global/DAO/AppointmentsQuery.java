@@ -24,7 +24,6 @@ public abstract class AppointmentsQuery {
         ps.setString(3,location);
         ps.setString(4,type);
         ps.setTimestamp(5,startby);//setTimestamp, valueof ldt
-
         ps.setTimestamp(6,endby);//setTimestamp
         ps.setTimestamp(7,CreatedDate);
         ps.setString(8,CreatedBy);

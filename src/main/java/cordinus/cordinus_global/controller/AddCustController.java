@@ -97,11 +97,7 @@ public class AddCustController {
 
 
     public void initialize() throws SQLException {
-
-
         CountriesComboBox.setItems(CountriesQuery.getAllCountries());
-
-
     }
 
 
@@ -109,8 +105,6 @@ public class AddCustController {
 
     @FXML
     public void CreateCustomer(ActionEvent event) throws SQLException,IOException {
-
-
        //int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
         String custname = Customer_Name.getText();
         String Address = AddressTxt.getText();
@@ -154,16 +148,7 @@ public class AddCustController {
 
 //--there should be a combobox for division respective to the country
 //--List of 3 countries to access from any controller
-//
 
-
-//
-        //String sql = "SELECT COUNTRY FROM COUNTRIES";
-//
-//--get all divisions as objects, and do processing as list for each time you process the countries with forloop, see if division list matches country, and when match, add it to list
-//
-//if(divisionid = countryid){
-//        DivisionComboBox.getItems.add(division);
 //    }
 
         //https://stackoverflow.com/questions/57619189/how-to-query-data-into-jfxcombobox

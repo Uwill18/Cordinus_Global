@@ -6,6 +6,7 @@ import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.model.CustomerSchedule;
 import cordinus.cordinus_global.utils.TimeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -108,6 +109,8 @@ public class AddApptController implements Initializable {
 
     private Appointment appointment;
 
+    private CustomerSchedule customerSchedule;
+
 
 
 
@@ -191,11 +194,18 @@ public class AddApptController implements Initializable {
         //todo or use combobox with only available entries from the db
 
 
+
+
 //business hours check
         //create a method for startdatetime
         if(TimeUtil.businessHoursCheck(start, end)){
-                //Overlap()
-                AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+
+            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+//            if (TimeUtil.appointmentOverlapCheck(appointment, customerSchedule)) {
+//
+//                //return;
+//            }
+
         }
         else{
             ValueWarning();
@@ -294,8 +304,4 @@ public class AddApptController implements Initializable {
 
     }
 
-
-    public static void BusinessHoursCheck(){
-
-    }
 }

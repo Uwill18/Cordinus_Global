@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.utils;
 
 import cordinus.cordinus_global.model.Appointment;
+import cordinus.cordinus_global.model.CustomerSchedule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -8,6 +9,7 @@ import java.time.*;
 
 public class TimeUtil {
     private static final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8,0), ZoneId.of("America/New_York"));
+    private Appointment appointment;
 
     public static boolean businessHoursCheck( LocalDateTime start, LocalDateTime end){
         ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
@@ -41,18 +43,29 @@ public class TimeUtil {
     //apptid of -1
     //correct customer and with different appointmentID
 
-    //Start, End, Customer_ID
+    //Start, End, Customer_ID define distinct existing appts. new appts. are ! this
     //new ObservableList
     //LDT .isAfter() and .isBefore() already optimized
     //real-life let db do filtering for you, it will be able to process the results faster
 
+//CustomerSchedule
+    //Start LDT
+    //End LDT
+    //Appt_ID
+    //Cust_ID
+
+    //CSQ
+    //parameter is queried for
+
+    //query parameters are stored inside object for comparison
 
 
 
-    //    EAS = existingAppointmentStart
+
+    //    EAS = existingAppointmentStart     , CustomerSchedule.Start()
     //Thinking of grabbing the  start from FXCollections
-//            EAE = existingAppointmentEnd
-//if ((NAS > EAS) && (NAS < EAE))
+//            EAE = existingAppointmentEnd   , CustomerSchedule.End()
+//if ((NAS > EAS) && (NAS < EAE)) ,,  x
 //    error
 //else if ((NAS < EAS)&&(NAE > EAE))
 //    error
@@ -64,10 +77,25 @@ public class TimeUtil {
 //
 //if no appt -1
 
-    Appointment appointment = null;
+    //private static final Appointment appointment = null;
     ObservableList<Appointment> ScheduledAppts = FXCollections.observableArrayList();
-    public static boolean appointmentOverlapCheck(){
+    public static boolean appointmentOverlapCheck(Appointment appointment, CustomerSchedule customerSchedule){
+        if(customerSchedule.getStart().isBefore(appointment.getStart()) && customerSchedule.getEnd().isAfter(appointment.getStart())){
+            System.out.println("Overlap");
+        }
+        if(customerSchedule.getStart().isAfter(appointment.getStart()) && customerSchedule.getStart().isBefore(appointment.getEnd())){
+            System.out.println("Overlap");
+        }
+
+
+        if(customerSchedule.getStart().equals(appointment.getStart())){
+            System.out.println("Overlap");
+        }
+
+
 
     return true;
     }
+
+    //condensed forloop checking appointment id. if matches continue
 }

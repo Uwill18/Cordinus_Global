@@ -51,7 +51,6 @@ public abstract class CountriesQuery {
             throw new RuntimeException(e);
         }
         return null;
-
     }
 }
 
