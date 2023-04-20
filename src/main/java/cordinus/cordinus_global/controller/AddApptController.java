@@ -142,9 +142,7 @@ public class AddApptController implements Initializable {
         Timestamp LastUpdate = timestamp;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
-        //loader.load();
-        //LoginController loginController= loader.getController();
-        //String CreatedBy = String.valueOf(loginController.UsernameTxt);//toDo:how to access the username variable
+
         String CreatedBy= "test";
 
         //combobox is going to list local time objects
@@ -154,7 +152,6 @@ public class AddApptController implements Initializable {
         //if set to UTC
 
 
-
         //String LastUpdatedBy =String.valueOf(loginController.UsernameTxt);//toDo:how to access the username variable
         String LastUpdatedBy="test";
 
@@ -162,11 +159,6 @@ public class AddApptController implements Initializable {
         ///Dates
         LocalDate startDate = LocalDate.from(StartDatePicker.getValue());
         LocalDate endDate = LocalDate.from(EndDatePicker.getValue());
-
-
-
-
-
 
 
         //Times

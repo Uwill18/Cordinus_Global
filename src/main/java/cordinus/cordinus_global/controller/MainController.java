@@ -69,25 +69,6 @@ public Button proceedButton;
 }
 
 
-@FXML
-void LoginScreenButton(ActionEvent event) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
-    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    Scene scene = new Scene(fxmlLoader.load());
-    stage.setTitle("Login Form");
-    stage.setScene(scene);
-    stage.show();
-}
-
-
-
-
-
-
-
-
-
-
 
     //AppointmentScreenButton
 
@@ -103,7 +84,15 @@ void LoginScreenButton(ActionEvent event) throws IOException {
 
 
     //CustomerScreenButton
-
+    @FXML
+    void LoginScreenButton(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Login Form");
+        stage.setScene(scene);
+        stage.show();
+    }
         @FXML
         void CustomerScreenButton(ActionEvent event) throws IOException {
             FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));

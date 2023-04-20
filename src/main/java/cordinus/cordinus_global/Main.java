@@ -7,16 +7,20 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 //loads homescreen in this case, the loginscreen
 
@@ -24,6 +28,8 @@ import java.util.Locale;
 
 
 public class Main extends Application {
+
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
@@ -68,8 +74,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws SQLException, IOException {
-        Locale locale = new Locale("fr");
-        Locale.setDefault(locale);
+       // Locale locale = new Locale("fr");
+      //  Locale.setDefault(locale);
         JDBC.openConnection();
         launch();
 
