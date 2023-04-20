@@ -11,7 +11,6 @@ public class Appointment {
     private int Appointment_ID;
 
 
-
     private String Contact_ID;
 
 

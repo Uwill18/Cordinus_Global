@@ -1,15 +1,15 @@
 package cordinus.cordinus_global.utils;
 
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.CustomerSchedule;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.time.*;
 
 public class TimeUtil {
     private static final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8,0), ZoneId.of("America/New_York"));
-    private Appointment appointment;
+
 
     public static boolean businessHoursCheck( LocalDateTime start, LocalDateTime end){
         ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
@@ -78,23 +78,40 @@ public class TimeUtil {
 //if no appt -1
 
     //private static final Appointment appointment = null;
-    ObservableList<Appointment> ScheduledAppts = FXCollections.observableArrayList();
-    public static boolean appointmentOverlapCheck(Appointment appointment, CustomerSchedule customerSchedule){
-        if(customerSchedule.getStart().isBefore(appointment.getStart()) && customerSchedule.getEnd().isAfter(appointment.getStart())){
-            System.out.println("Overlap");
+
+
+    /**
+     * Determines if an appointment defined by start and end overlap with another appointment
+     * for the same customer and not colliding with itself
+     * @param start Start of the Appointment to be compared
+     * @param end End of the Appointment to be compared
+     * @param customerID ID of Customer for the appointment being checked
+     * @param appointmentID ID of the appointment to be excluded "same appointment"
+     * @return true if no overlap, false otherwise
+     */
+    public static boolean appointmentOverlapCheck(LocalDateTime start, LocalDateTime end, int customerID){
+
+        //foreach Appointment in all appointments
+            //if customer for current appointment != customerid || current appointmentid == appointmentID
+                //skip to next iteration (continue;)
+            //else
+                //perform overlap comparisons (multiple if-else ifs)
+                //if any of these conditions are true return false
+        //ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
+        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
+        for (Appointment appointment: allAppointments ) {
+            if((appointment.getCustomer_ID() != customerID)){
+                continue;
+            }else if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
+                System.out.println("Overlap");
+            }else if(start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())){
+                System.out.println("Overlap");
+            }else if(start.equals(appointment.getStart())){
+                System.out.println("Overlap");
+            }
         }
-        if(customerSchedule.getStart().isAfter(appointment.getStart()) && customerSchedule.getStart().isBefore(appointment.getEnd())){
-            System.out.println("Overlap");
-        }
 
-
-        if(customerSchedule.getStart().equals(appointment.getStart())){
-            System.out.println("Overlap");
-        }
-
-
-
-    return true;
+        return true; //after the foreach loop return true
     }
 
     //condensed forloop checking appointment id. if matches continue

@@ -174,9 +174,6 @@ public class ApptController {
                                         }
                         //}
 
-
-
-
                 } catch (SQLException e){
                         Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
                 }

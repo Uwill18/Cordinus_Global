@@ -125,7 +125,8 @@ public class AddApptController implements Initializable {
 
 
         //System.out.println(appointment);
-        //ApptIDTxt.setText(String.valueOf(appointment.getAppointment_ID()));
+
+        int appointmentID = appointment.getAppointment_ID();
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
@@ -151,37 +152,26 @@ public class AddApptController implements Initializable {
         //db takes time as string and timestamp, timestamp preferred since it will convert to sql server timezone
         //if set to UTC
 
-
-        //String LastUpdatedBy =String.valueOf(loginController.UsernameTxt);//toDo:how to access the username variable
+    //toDo:how to access the username variable
         String LastUpdatedBy="test";
-
 
         ///Dates
         LocalDate startDate = LocalDate.from(StartDatePicker.getValue());
         LocalDate endDate = LocalDate.from(EndDatePicker.getValue());
 
-
         //Times
-
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
-
-
-
 
         LocalDateTime start = LocalDateTime.of(startDate,startTime);
         LocalDateTime end = LocalDateTime.of(endDate,endTime);
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
-//        ChronoUnit monthopt = ChronoUnit.MONTHS.toString();
-//        Calendar.getInstance().get(Calendar.MONTH);
-
-
         int custid = Integer.parseInt(CustomerIDTxt.getText());
         int userid = Integer.parseInt(UserIDTxt.getText());
 
-        //todo add a business hours check
+        //todo add a business hours check and fix appointment id with appointmentOverlapCheck
         //todo exception handle for what is entered,or check for valid customer
         //todo or use combobox with only available entries from the db
 
@@ -192,11 +182,10 @@ public class AddApptController implements Initializable {
         //create a method for startdatetime
         if(TimeUtil.businessHoursCheck(start, end)){
 
-            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
-//            if (TimeUtil.appointmentOverlapCheck(appointment, customerSchedule)) {
-//
-//                //return;
-//            }
+            if (TimeUtil.appointmentOverlapCheck(start,end,custid)) {
+
+                AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+           }
 
         }
         else{
