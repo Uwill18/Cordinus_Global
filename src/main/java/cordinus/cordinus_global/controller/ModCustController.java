@@ -32,7 +32,6 @@ public class ModCustController {
     //https://www.youtube.com/watch?v=1AmIKxHbLJo
     //https://www.youtube.com/watch?v=mY54KZkuZPQ
 
-
         @FXML
         private TextField AddressTxt;
 

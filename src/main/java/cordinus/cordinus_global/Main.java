@@ -32,7 +32,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("HomeScreen.fxml"));
 
         //https://www.tutorialspoint.com/javafx/javafx_images.htm
         //Creating an image
@@ -52,8 +52,6 @@ public class Main extends Application {
         //Setting the preserve ratio of the image view
         imageView.setPreserveRatio(true);
 
-
-
         //Creating a Group object
         /**after researching loading multiple views, I learned that I could load the fxmlloader in with the Group object*/
         Group root = new Group( fxmlLoader.load(), imageView);
@@ -61,30 +59,18 @@ public class Main extends Application {
         //Creating a scene object
        Scene scene = new Scene(root);
 
-
-
         //Scene scene = new Scene(fxmlLoader.load());
         //scene.getStylesheets().add("src/main/resources/cordinus/cordinus_global/styles.css");
         stage.setTitle("Cordinus Global");
         stage.setScene(scene);
         stage.show();
-
-
     }
-
 
     public static void main(String[] args) throws SQLException, IOException {
-      // Locale locale = new Locale("fr");
-     //  Locale.setDefault(locale);
+        //Locale locale = new Locale("fr");
+        //Locale.setDefault(locale);
         JDBC.openConnection();
-        //System.out.println(AppointmentsQuery.getAllAppointments());
         launch();
-
-
         JDBC.closeConnection();
-
-
-
     }
-
 }

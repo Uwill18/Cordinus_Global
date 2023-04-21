@@ -102,7 +102,6 @@ public class ApptController {
                  * is stored in the observablelist in view*/
                                         if (AllRB.isSelected()){
                                                 appointmentdata = AppointmentsQuery.getAllAppointments();
-
                                         }
                                          if(MonthRB.isSelected()){
                                                 appointmentdata = AppointmentsQuery.getMonthAppointments();
@@ -110,9 +109,6 @@ public class ApptController {
                                         else if(WeekRB.isSelected()) {
                                                appointmentdata = AppointmentsQuery.getWeekAppointments();
                                         }
-                        //}
-
-
                 /**customer data is added to the CustomerTable in the view*/
                 AppointmentTable.setItems(appointmentdata);
         }
@@ -133,8 +129,12 @@ public class ApptController {
         void OnDeleteAppt(ActionEvent event) throws SQLException{
                 //toDO if selected alert, else if nothing selected.. selection error
 
-                if((AppointmentTable.getSelectionModel().getSelectedItem() != null)){
 
+
+
+
+
+                if((AppointmentTable.getSelectionModel().getSelectedItem() != null)){
                         try{
                                         Alert alert = new Alert(Alert.AlertType.WARNING);
                                         alert.setTitle("Delete Warning");
@@ -187,9 +187,7 @@ public class ApptController {
                         stage.show();
 
                 }catch (NullPointerException e){
-
                         Alerts.SelectionError();
-
                 }
 
         }

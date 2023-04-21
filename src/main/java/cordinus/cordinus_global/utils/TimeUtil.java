@@ -93,14 +93,6 @@ public class TimeUtil {
      */
     public static boolean appointmentOverlapCheck() throws SQLException {
 
-        //foreach Appointment in all appointments
-            //if customer for current appointment != customerid || current appointmentid == appointmentID
-                //skip to next iteration (continue;)
-            //else
-                //perform overlap comparisons (multiple if-else ifs)
-                //if any of these conditions are true return false
-        //ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
-
         String sql = "SELECT Appointment_ID, Customer_ID, Start, End  FROM APPOINTMENTS ;";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -113,7 +105,7 @@ public class TimeUtil {
 
             ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
             for (Appointment appointment: allAppointments ) {
-                if((appointment.getCustomer_ID() != customerID) || (appointment.getAppointment_ID() != appointmentID)){
+                if((appointment.getCustomer_ID() != customerID)){
                     continue;
                 }
                 if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
