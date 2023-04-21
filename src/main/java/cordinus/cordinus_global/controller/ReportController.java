@@ -212,4 +212,6 @@ public class ReportController {
 
 
     //tab3 -- remaining appts/day
+    //https://www.tutorialspoint.com/javafx/bar_chart.htm
+    //https://docs.oracle.com/javafx/2/charts/bar-chart.htm
 }

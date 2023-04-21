@@ -1,15 +1,13 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
+import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
-import cordinus.cordinus_global.model.CustomerSchedule;
 import cordinus.cordinus_global.utils.TimeUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,43 +74,8 @@ public class AddApptController implements Initializable {
     @FXML
     private TextField UserIDTxt;
 
-
-    @FXML
-    private TextField AddressTxt;
-
-    @FXML
-    private TextField Customer_ID;
-
-    @FXML
-    private TextField Customer_Name;
-
-
-
-    @FXML
-    private TextField Division_ID;
-
-    @FXML
-    private TextField Phone;
-
-
-
-    @FXML
-    private TextField Postal_Code;
-
-
-
-
-
-
     private Customer customer;
     private int index;
-
-    private Appointment appointment;
-
-    private CustomerSchedule customerSchedule;
-
-
-
 
 
     @FXML
@@ -122,16 +85,12 @@ public class AddApptController implements Initializable {
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
-
-
-        //System.out.println(appointment);
-
-        int appointmentID = appointment.getAppointment_ID();
+        int userid = Integer.parseInt(UserIDTxt.getText());
+        int custid = Integer.parseInt(CustomerIDTxt.getText());
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
         int contact = ContactComboBox.getValue().getContact_ID();
-
         String type = TypeTxt.getText();
 
         LocalDateTime date =LocalDateTime.now();//use LocalDateTime
@@ -168,8 +127,7 @@ public class AddApptController implements Initializable {
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
-        int custid = Integer.parseInt(CustomerIDTxt.getText());
-        int userid = Integer.parseInt(UserIDTxt.getText());
+
 
         //todo add a business hours check and fix appointment id with appointmentOverlapCheck
         //todo exception handle for what is entered,or check for valid customer
@@ -182,21 +140,17 @@ public class AddApptController implements Initializable {
         //create a method for startdatetime
         if(TimeUtil.businessHoursCheck(start, end)){
 
-            if (TimeUtil.appointmentOverlapCheck(start,end,custid)) {
+            if (TimeUtil.appointmentOverlapCheck()) {
 
                 AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
-           }
+           }else {
+                Alerts.ValueWarning();
+            }
 
         }
         else{
-            ValueWarning();
+            Alerts.ValueWarning();
         }
-
-
-
-
-        //cust id
-        //user id
 
     }
 
@@ -276,13 +230,6 @@ public class AddApptController implements Initializable {
 //        return AppointmentsFifteen;
 //    }
 
-    public static void ValueWarning(){
 
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("VALUE WARNING");
-        alert.setContentText("Invalid Date and/or Time Selection. Please Try Again.");
-        alert.showAndWait();
-
-    }
 
 }

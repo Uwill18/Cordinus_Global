@@ -33,10 +33,6 @@ import java.util.*;
 
 
 public class AddCustController {
-
-
-    private ObservableList<Customer> customerdata;
-
     @FXML
     private TextField AddressTxt;
 
@@ -79,29 +75,14 @@ public class AddCustController {
     @FXML
     private ComboBox<Division> StatesComboBox;
 
-    private Customer customer;
-
-
-
-
-
     //https://www.youtube.com/watch?v=tw_NXq08NUE
     //https://www.youtube.com/watch?v=vpwvWdnILuo&list=PLmCsXDGbJHdia3cLNvK4e2Gp4S9TUkK3G&index=15
     //https://beginnersbook.com/2014/01/how-to-convert-12-hour-time-to-24-hour-date-in-java/
 
 
-
-    private ObservableList<String> CountriesList = FXCollections.observableArrayList();
-    private ObservableList<String> StatesList = FXCollections.observableArrayList();
-
-
-
     public void initialize() throws SQLException {
         CountriesComboBox.setItems(CountriesQuery.getAllCountries());
     }
-
-
-
 
     @FXML
     public void CreateCustomer(ActionEvent event) throws SQLException,IOException {
@@ -133,11 +114,6 @@ public class AddCustController {
 
         //get country by division needs an int parameter, maybe from divisions
 
-
-
-
-
-
         //timestamp for utc createddate and last update start as the same
         //createdby and lastupdate by user login, can be "test"/ the same
         //next steps are to implement user login, and to implement timestamps
@@ -156,7 +132,6 @@ public class AddCustController {
     }
 
 
-
     public void OnActionSelectCountry(){
         //do a lamba connecting states to Divisions
         ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
@@ -164,8 +139,6 @@ public class AddCustController {
         StatesComboBox.setItems(selectedDivision);
 
     }
-
-
 
 
     @FXML
@@ -177,7 +150,5 @@ public class AddCustController {
         stage.setScene(scene);
         stage.show();
     }
-
-
 
 }

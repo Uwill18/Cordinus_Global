@@ -1,10 +1,14 @@
 package cordinus.cordinus_global.utils;
 
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
+import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Appointment;
-import cordinus.cordinus_global.model.CustomerSchedule;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.*;
 
 public class TimeUtil {
@@ -83,13 +87,11 @@ public class TimeUtil {
     /**
      * Determines if an appointment defined by start and end overlap with another appointment
      * for the same customer and not colliding with itself
-     * @param start Start of the Appointment to be compared
-     * @param end End of the Appointment to be compared
-     * @param customerID ID of Customer for the appointment being checked
-     * @param appointmentID ID of the appointment to be excluded "same appointment"
+     *
      * @return true if no overlap, false otherwise
+     * The Logic for this variable is reusable for Add Appointment Controller and the Modify Appointment Controller
      */
-    public static boolean appointmentOverlapCheck(LocalDateTime start, LocalDateTime end, int customerID){
+    public static boolean appointmentOverlapCheck() throws SQLException {
 
         //foreach Appointment in all appointments
             //if customer for current appointment != customerid || current appointmentid == appointmentID
@@ -98,17 +100,36 @@ public class TimeUtil {
                 //perform overlap comparisons (multiple if-else ifs)
                 //if any of these conditions are true return false
         //ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
-        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
-        for (Appointment appointment: allAppointments ) {
-            if((appointment.getCustomer_ID() != customerID)){
-                continue;
-            }else if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
-                System.out.println("Overlap");
-            }else if(start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())){
-                System.out.println("Overlap");
-            }else if(start.equals(appointment.getStart())){
-                System.out.println("Overlap");
+
+        String sql = "SELECT Appointment_ID, Customer_ID, Start, End  FROM APPOINTMENTS ;";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            int appointmentID = rs.getInt("Appointment_ID");
+            int customerID = rs.getInt("Customer_ID");
+            LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+            LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+
+            ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
+            for (Appointment appointment: allAppointments ) {
+                if((appointment.getCustomer_ID() != customerID) || (appointment.getAppointment_ID() != appointmentID)){
+                    continue;
+                }
+                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
+                    System.out.println("Overlap 1");
+                    Alerts.overlapWarning();
+                }
+                if(start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())){
+                    System.out.println("Overlap 2");
+                    Alerts.overlapWarning();
+                }
+                if(start.equals(appointment.getStart())){
+                    System.out.println("Overlap 3");
+                    Alerts.overlapWarning();
+                }
             }
+
         }
 
         return true; //after the foreach loop return true

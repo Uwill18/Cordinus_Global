@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
+import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
 import cordinus.cordinus_global.DAO.JDBC;
@@ -69,21 +70,11 @@ public class CustomerController {
     private TableColumn<?, ?> Countries;
 
 
-
-    private Customer customer;
-
-    private int index;
-
-
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
         LoadCustomers();
         setCustomerCellTable();
-
     }
-
-
-
 
     private void setCustomerCellTable(){
 
@@ -98,8 +89,6 @@ public class CustomerController {
 
     public void LoadCustomers() throws SQLException {
         //CustomersQuery.select();
-        try{
-
             String sql = "SELECT * FROM CUSTOMERS ";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -108,9 +97,6 @@ public class CustomerController {
                  * that appends to customerdata*/
                 customerdata.add(new Customer( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(10)));
             }
-        } catch (SQLException e){
-            Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
-        }
         /**customer data is added to the CustomerTable in the view*/
        CustomerTable.setItems(customerdata);
     }
@@ -127,18 +113,13 @@ public class CustomerController {
 //
 
 
-
-
-
     @FXML
     void OnAddCustomer(ActionEvent event) throws IOException {
-
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AddCust.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Add Customer");
         stage.setScene(scene);
-
         stage.show();
     }
 //
@@ -148,13 +129,7 @@ public class CustomerController {
 
         if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
 
-            try{    //AppointmentTable.getSelectionModel().getSelectedIndex();
-                //AppointmentTable.getSelectionModel().getSelectedItem();
-
-
-
-
-
+            try{
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Delete Warning");
                 alert.setHeaderText("Deleting Customer");
@@ -174,23 +149,15 @@ public class CustomerController {
                         Optional<ButtonType> delete_result = delete_alert.showAndWait();
                         CustomersQuery.delete(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID());
                     }
-
                 }
 
-
             }catch(NullPointerException e){
-
-                SelectionError();
-
+               Alerts.SelectionError();
             }
 
         }else{
-            SelectionError();
+            Alerts.SelectionError();
         }
-
-
-
-        //
 
     }
 //
@@ -210,7 +177,7 @@ public class CustomerController {
             stage.show();
 
         }catch (NullPointerException e){
-            SelectionError();
+            Alerts.SelectionError();
 
         }
 
@@ -246,7 +213,7 @@ public class CustomerController {
             stage.show();
 
         }catch (NullPointerException e){
-            SelectionError();
+            Alerts.SelectionError();;
         }
 
 
@@ -268,24 +235,10 @@ public class CustomerController {
         stage.show();
 
         }catch (NullPointerException e){
-        SelectionError();
+            Alerts.SelectionError();
         }
 
     }
-
-
-    public static void SelectionError(){
-
-
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("SELECTION ERROR");
-        alert.setContentText("No selection was made for this operation.");
-        alert.showAndWait();
-
-    }
-
-
 
 //Customer Controller must select Data from the TableView and pass
 // it ModifyCust

@@ -1,10 +1,12 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
+import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
+import cordinus.cordinus_global.utils.TimeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +29,6 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import static cordinus.cordinus_global.controller.AddApptController.ValueWarning;
 
 ////https://www.youtube.com/watch?v=3Ht-JMQh2JI
 public class ModifyApptController implements Initializable {
@@ -66,11 +67,6 @@ public class ModifyApptController implements Initializable {
     @FXML
     private TextField TypeTxt;
 
-    @FXML
-    private TextField CountryTxt;
-
-    @FXML
-    private TextField StateTxt;
 
     @FXML
     private ComboBox<Contact> ContactComboBox;
@@ -114,14 +110,7 @@ public class ModifyApptController implements Initializable {
 
         ///Dates
         LocalDate startDate = LocalDate.from(ApptStartPicker.getValue());
-
-
-
         LocalDate endDate = LocalDate.from(ApptEndPicker.getValue());
-
-
-
-
 
 
 
@@ -137,20 +126,19 @@ public class ModifyApptController implements Initializable {
         Timestamp endby = Timestamp.valueOf(end);
 
 
-        if(!((startTime.isAfter(endTime))) || startDate.isAfter(endDate)){
+        if(TimeUtil.businessHoursCheck(start, end)){
 
-            if((startTime.isBefore(BusinessStart) || startTime.isAfter(BusinessEnd))|| (endTime.isAfter(BusinessEnd)|| endTime.isBefore(BusinessStart)) || startDate.isAfter(endDate)  ){
-                ValueWarning();
-            }else if((startTime.equals(BusinessStart) || startTime.isAfter(BusinessStart)) && ((endTime.isBefore(BusinessEnd) || endTime.equals(BusinessEnd)))){
-                System.out.println("Valid choice");
+            if (TimeUtil.appointmentOverlapCheck()) {
+
                 AppointmentsQuery.update(title, description, location, type, startby, endby, CreatedBy, LastUpdate,LastUpdatedBy, CreateDate,customerid, userid, contactid);
-
+            }else {
+                Alerts.ValueWarning();
             }
 
         }
-
-
-
+        else{
+            Alerts.ValueWarning();
+        }
 
     }
 
@@ -209,13 +197,8 @@ public class ModifyApptController implements Initializable {
          * then they set them as timestamp values to be passed back to the view**/
         ApptStartPicker.setValue(appointment.getStart().toLocalDate());
         ApptEndPicker.setValue(appointment.getEnd().toLocalDate());
-
         StartTimeCombo.setValue(appointment.getStart().toLocalTime());
         EndTimeCombo.setValue(appointment.getEnd().toLocalTime());
-
-
-
-        //System.out.println(appointment.getEnd());
         CustomerIDTxt.setText(String.valueOf(appointment.getCustomer_ID()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 

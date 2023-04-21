@@ -66,27 +66,17 @@ public class ModCustController {
 
 
         public void initialize() throws SQLException {
-
                CountriesComboBox.setItems(CountriesQuery.getAllCountries());
-
         }
-
-
-
-
-
-
 
         @FXML
         public void CustomerScreenButton(ActionEvent event) throws IOException {
-
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
                 stage.setTitle("Customer");
                 stage.setScene(scene);
                 stage.show();
-
         }
 
         @FXML
@@ -107,7 +97,6 @@ public class ModCustController {
 
                 String LastUpdatedBy ="test";//grab curremt
                 int DivID = Integer.parseInt(Division_ID.getText());
-                //System.out.print( CreateDate);
                 CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID, customerid);
 
         }
@@ -126,27 +115,6 @@ public class ModCustController {
                 StatesComboBox.setItems(selectedDivision);
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         //--there should be a combobox for division respective to the country

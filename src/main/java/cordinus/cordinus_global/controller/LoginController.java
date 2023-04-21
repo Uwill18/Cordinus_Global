@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.model.Alerts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -68,9 +69,7 @@ public class LoginController implements Initializable {
         String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-
         String filename ="login_activity.txt";
-
 
         //Create FileWriter object
         FileWriter fwriter = new FileWriter(filename, true);
@@ -85,7 +84,7 @@ public class LoginController implements Initializable {
         String strDate = formatter.format(date);
 
 
-//        try{
+        try{
 
             if (rs.next()) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
@@ -101,24 +100,13 @@ public class LoginController implements Initializable {
 
             }else{
                 outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }.");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle(rb.getString("Error"));
-                alert.setHeaderText(rb.getString("Login"));
-                alert.setContentText(rb.getString("Invalid"));
-                alert.showAndWait();
+                Alerts.loginError();
             }
             outputFile.close();
-
-//        }catch(Exception e){
-//
-//            outputFile.println("ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }." );
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Error");
-//            alert.setHeaderText("Login Error");
-//            alert.setContentText("Invalid Credentials were entered at this time. Please try again.");
-//            alert.showAndWait();
-//
-//        }
+        }catch(Exception e){
+            outputFile.println("ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }." );
+            Alerts.loginError();
+        }
     }
 
 
@@ -141,31 +129,6 @@ public class LoginController implements Initializable {
 //
 //        //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
 //
-//        LocalTime BusinessStart = LocalTime.of(8,0);
-//        LocalTime BusinessEnd = LocalTime.of(22,0);
-//
-//        if(!((LocalTime.now().isBefore(BusinessStart))||(LocalTime.now().isAfter(BusinessEnd)))){
-//
-//            if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
-//                return ("The next appointment is at : "+ LocalTime.of(currenthour,15));
-//            }
-//            else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
-//                return ("The next appointment is at : "+ LocalTime.of(currenthour,30));
-//
-//            }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
-//                return ("The next appointment is at : "+ LocalTime.of(currenthour,45));
-//            }
-//            else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
-//                return "The next appointment is at : "+ LocalTime.of(currenthour+1,0);
-//            }
-//            return null;
-//
-//        }else{
-//            return "There are no upcoming Appointments.";
-//        }
-//
-//    }
-
 
     //toDo: for any user signing in the alert needs to check appointments within fifteen minutes of when the user signs in
     //toDo: where user is apart of the appointment
