@@ -26,7 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 //implement similar to product in that appointments associate with customers

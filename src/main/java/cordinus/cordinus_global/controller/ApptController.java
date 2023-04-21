@@ -1,5 +1,6 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Optional;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 //implement similar to Part
 //initiate getters and setters
@@ -100,7 +101,6 @@ public class ApptController {
 
         public void LoadAppointments() throws SQLException {
 
-                try{
                         String sql = "SELECT * FROM APPOINTMENTS ";
                         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
                         ResultSet rs = ps.executeQuery();
@@ -174,9 +174,7 @@ public class ApptController {
                                         }
                         //}
 
-                } catch (SQLException e){
-                        Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
-                }
+
                 /**customer data is added to the CustomerTable in the view*/
                 AppointmentTable.setItems(appointmentdata);
         }
@@ -223,11 +221,11 @@ public class ApptController {
                                         }
 
                         }catch(NullPointerException e){
-                                SelectionError();
+                                Alerts.SelectionError();
                         }
 
                 }else{
-                        SelectionError();
+                        Alerts.SelectionError();
                 }
 
 
@@ -252,7 +250,7 @@ public class ApptController {
 
                 }catch (NullPointerException e){
 
-                        SelectionError();
+                        Alerts.SelectionError();
 
                 }
 
@@ -285,12 +283,4 @@ public class ApptController {
 
 
 
-
-        public static void SelectionError(){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("SELECTION ERROR");
-                alert.setContentText("No selection was made for this operation.");
-                alert.showAndWait();
-
-        }
 }

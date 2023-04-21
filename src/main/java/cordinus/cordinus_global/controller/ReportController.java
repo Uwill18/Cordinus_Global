@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 //https://www.youtube.com/watch?v=KzfhgGGzWMQ
 public class ReportController {
@@ -105,9 +105,6 @@ public class ReportController {
 
     public void LoadReports() throws SQLException {
 
-        try{
-
-
             String sql = "SELECT * FROM APPOINTMENTS ";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -186,22 +183,9 @@ public class ReportController {
                 }
             }
 
-
-            //}
-
-
-
-
-        } catch (SQLException e){
-            Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE,null,e);
-        }
-        /**customer data is added to the CustomerTable in the view*/
+        /**report data is added to the ReportTable in the view*/
         AppointmentTable.setItems(reportdata);
-        //System.out.println(appointmentdata.lastIndexOf(AppointmentTable.getSelectionModel()));
         System.out.println();
-        //AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID();
-        //AppointmentTable.getSelectionModel().selectLast();
-
     }
 
 

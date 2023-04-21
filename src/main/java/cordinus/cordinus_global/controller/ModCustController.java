@@ -62,9 +62,6 @@ public class ModCustController {
         private int index;
 
 
-        private ObservableList<String> CountriesList = FXCollections.observableArrayList();
-
-
         public void initialize() throws SQLException {
                CountriesComboBox.setItems(CountriesQuery.getAllCountries());
         }
@@ -110,6 +107,8 @@ public class ModCustController {
 
         public void OnActionSelectCountry(){
                 //do a lamba connecting states to Divisions
+                /**This lambda expression filters the Observable list allDivisions of Type Division and matches
+                 * all division objects that share the same CountryID as the selected country from the CountriesComboBox*/
                 ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
                 FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
                 StatesComboBox.setItems(selectedDivision);

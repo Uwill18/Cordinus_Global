@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="updating appointmentOverlap">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Alerts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomerScheduleQuery.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Alerts and ModifyApptController refactor">
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/CustomerSchedule.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/LoginForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/LoginForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,13 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00063" summary="tried implementing sql statements">
-      <created>1679963193436</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1679963193436</updated>
     </task>
     <task id="LOCAL-00064" summary="implementing appt sql statements 2">
       <created>1680137817923</created>
@@ -443,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682031440393</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Alerts and ModifyApptController refactor">
+      <created>1682058731171</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1682058731171</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +452,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adding future required classes" />
     <MESSAGE value="Updating queries to match the existing ones" />
     <MESSAGE value="Updating classes for future use" />
     <MESSAGE value="Loading countries to AddCustController" />
@@ -483,7 +476,8 @@
     <MESSAGE value="Sucessfully changed Homescreen with RBs" />
     <MESSAGE value="updatign appointmentOverlap" />
     <MESSAGE value="updating appointmentOverlap" />
-    <option name="LAST_COMMIT_MESSAGE" value="updating appointmentOverlap" />
+    <MESSAGE value="Alerts and ModifyApptController refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alerts and ModifyApptController refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -505,12 +499,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java</url>
-          <line>136</line>
+          <line>137</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java</url>
-          <line>41</line>
+          <line>42</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
