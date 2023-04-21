@@ -70,6 +70,8 @@ public abstract class CustomersQuery {
             String sql = "SELECT * FROM CUSTOMERS";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
+            /**This line filters the above sql string to select  data from specific columns, then send them to an instance of Customer
+             * that appends to customerdata*/
 
             while (rs.next()) {
                 int customerID = rs.getInt("Customer_ID");

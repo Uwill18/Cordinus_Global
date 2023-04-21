@@ -77,11 +77,71 @@ public abstract class AppointmentsQuery {
 
     }
 
+
+    /**This line filters the below sql string to select  data from specific columns, then sends them to an instance of Appointment
+     * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates. Similar operations
+     * are implemented in this file to condense code*/
     public static ObservableList<Appointment> getAllAppointments(){
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
+
         try {
             String sql = "SELECT * FROM APPOINTMENTS";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentID = rs.getInt("Appointment_ID");
+                String contactID = rs.getString("Contact_ID");
+                String description = rs.getString("Description");
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                String location = rs.getString("Location");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                String title = rs.getString("Title");
+                String type = rs.getString("Type");
+                String customerID = rs.getString("Customer_ID");
+                String userID = rs.getString("User_ID");
+                appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentList;
+    }
+
+
+    public static ObservableList<Appointment> getMonthAppointments(){
+        ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM APPOINTMENTS WHERE MONTH(Start) = month(now())";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentID = rs.getInt("Appointment_ID");
+                String contactID = rs.getString("Contact_ID");
+                String description = rs.getString("Description");
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                String location = rs.getString("Location");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                String title = rs.getString("Title");
+                String type = rs.getString("Type");
+                String customerID = rs.getString("Customer_ID");
+                String userID = rs.getString("User_ID");
+                appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentList;
+    }
+
+    public static ObservableList<Appointment> getWeekAppointments(){
+        ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM APPOINTMENTS WHERE Start >= current_date() AND Start <= date_add(current_date(),interval 7 day)";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 

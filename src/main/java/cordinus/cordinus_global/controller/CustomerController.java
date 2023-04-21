@@ -38,9 +38,6 @@ import java.util.logging.Level;
 
 public class CustomerController {
 
-
-
-
     private ObservableList<Customer> customerdata;
     @FXML
     private TableColumn<?, ?> Address;
@@ -88,15 +85,7 @@ public class CustomerController {
     }
 
     public void LoadCustomers() throws SQLException {
-        //CustomersQuery.select();
-            String sql = "SELECT * FROM CUSTOMERS ";
-            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                /**This line filters the above sql string to select  data from specific columns, then send them to an instance of Customer
-                 * that appends to customerdata*/
-                customerdata.add(new Customer( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(10)));
-            }
+        customerdata = CustomersQuery.getAllCustomers();
         /**customer data is added to the CustomerTable in the view*/
        CustomerTable.setItems(customerdata);
     }
@@ -178,10 +167,7 @@ public class CustomerController {
 
         }catch (NullPointerException e){
             Alerts.SelectionError();
-
         }
-
-
     }
 
     @FXML

@@ -29,7 +29,6 @@ public class ApptController {
 
         private ObservableList<Appointment> appointmentdata;
 
-
         @FXML
         private TableView<Appointment> AppointmentTable;
 
@@ -81,12 +80,10 @@ public class ApptController {
                 appointmentdata = FXCollections.observableArrayList();
                 LoadAppointments();
                 setAppointmentCellTable();
-
         }
 
 
         private void setAppointmentCellTable(){
-
                 Appointment_ID.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));//1,1
                 Title.setCellValueFactory(new PropertyValueFactory<>("Title"));//2,2
                 Description.setCellValueFactory(new PropertyValueFactory<>("Description"));//3,3
@@ -100,77 +97,18 @@ public class ApptController {
         }
 
         public void LoadAppointments() throws SQLException {
-
-                        String sql = "SELECT * FROM APPOINTMENTS ";
-                        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-                        ResultSet rs = ps.executeQuery();
-
-                        String sqlmonth = "SELECT * FROM APPOINTMENTS WHERE MONTH(Start) = month(now())";
-                        PreparedStatement mps = JDBC.connection.prepareStatement(sqlmonth);
-                        ResultSet mthrs = mps.executeQuery();
-
-
-                        String sqlweek = "SELECT * FROM APPOINTMENTS WHERE Start >= current_date() AND Start <= date_add(current_date(),interval 7 day)";
-                        PreparedStatement wkps = JDBC.connection.prepareStatement(sqlweek);
-                        ResultSet wkrs = wkps.executeQuery();
-
-//                        while (rs.next()){
-
-                               //while(rs.next()){
-                                        /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
-                                         * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-
+                /**To maximize refactoring, the sql queries that return the required object attributes for the observablelist are
+                 * executed in the relevant queries file, and the corresponding function that returns the appropriate observablelist
+                 * is stored in the observablelist in view*/
                                         if (AllRB.isSelected()){
+                                                appointmentdata = AppointmentsQuery.getAllAppointments();
 
-
-                                        while(rs.next()){
-                                                /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
-                                                 * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-
-                                                appointmentdata.add(new Appointment(
-                                                        rs.getInt(1),
-                                                        rs.getString(2),
-                                                        rs.getString(3),
-                                                        rs.getString(4),
-                                                        rs.getString(14),
-                                                        rs.getString(5),
-                                                        rs.getTimestamp(6).toLocalDateTime(),
-                                                        rs.getTimestamp(7).toLocalDateTime(),
-                                                        rs.getString(12),
-                                                        rs.getString(13)));
-                                                 }
                                         }
                                          if(MonthRB.isSelected()){
-                                               while(mthrs.next()){
-                                                        /**This line filters the above sql query for the radiobutton selection of months, and the according resultset is generated as done above*/
-
-                                                        appointmentdata.add(new Appointment( mthrs.getInt(1),
-                                                                mthrs.getString(2),
-                                                                mthrs.getString(3),
-                                                                mthrs.getString(4),
-                                                                mthrs.getString(14),
-                                                                mthrs.getString(5),
-                                                                mthrs.getTimestamp(6).toLocalDateTime(),
-                                                                mthrs.getTimestamp(7).toLocalDateTime(),
-                                                                mthrs.getString(12),
-                                                                mthrs.getString(13)));
-                                                }
+                                                appointmentdata = AppointmentsQuery.getMonthAppointments();
                                         }
                                         else if(WeekRB.isSelected()) {
-                                                while(wkrs.next()){
-                                                        /**This line filters the above sql query for the radiobutton selection of weeks, and the according resultset is generated as done above*/
-                                                        appointmentdata.add(new Appointment(
-                                                                wkrs.getInt(1),
-                                                                wkrs.getString(2),
-                                                                wkrs.getString(3),
-                                                                wkrs.getString(4),
-                                                                wkrs.getString(14),
-                                                                wkrs.getString(5),
-                                                                wkrs.getTimestamp(6).toLocalDateTime(),
-                                                                wkrs.getTimestamp(7).toLocalDateTime(),
-                                                                wkrs.getString(12),
-                                                                wkrs.getString(13)));
-                                                }
+                                               appointmentdata = AppointmentsQuery.getWeekAppointments();
                                         }
                         //}
 

@@ -1,5 +1,6 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.model.Appointment;
 import javafx.collections.FXCollections;
@@ -105,83 +106,16 @@ public class ReportController {
 
     public void LoadReports() throws SQLException {
 
-            String sql = "SELECT * FROM APPOINTMENTS ";
-            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+        if (AllRB.isSelected()){
+            reportdata = AppointmentsQuery.getAllAppointments();
+        }
+        if(MonthRB.isSelected()){
+            reportdata = AppointmentsQuery.getMonthAppointments();
+        }
+        else if(WeekRB.isSelected()) {
+            reportdata = AppointmentsQuery.getWeekAppointments();
+        }
 
-            String sqlmonth = "SELECT * FROM APPOINTMENTS WHERE MONTH(Start) = month(now())";
-            PreparedStatement mps = JDBC.connection.prepareStatement(sqlmonth);
-            ResultSet mthrs = mps.executeQuery();
-
-
-            String sqlweek = "SELECT * FROM APPOINTMENTS WHERE Start >= current_date() AND Start <= date_add(current_date(),interval 7 day)";
-            PreparedStatement wkps = JDBC.connection.prepareStatement(sqlweek);
-            ResultSet wkrs = wkps.executeQuery();
-
-//                        while (rs.next()){
-
-            //while(rs.next()){
-            /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
-             * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-
-            // appointmentdata.add(new Appointment( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
-
-            if (AllRB.isSelected()){
-
-                //appointmentdata.add(new Appointment( rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(14), rs.getString(5),rs.getTimestamp(6).toLocalDateTime(),rs.getTimestamp(7).toLocalDateTime(), rs.getString(12), rs.getString(13)));
-
-                while(rs.next()){
-                    /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
-                     * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-
-                    reportdata.add(new Appointment(
-                            rs.getInt(1),
-                            rs.getString(2),
-                            rs.getString(3),
-                            rs.getString(4),
-                            rs.getString(14),
-                            rs.getString(5),
-                            rs.getTimestamp(6).toLocalDateTime(),
-                            rs.getTimestamp(7).toLocalDateTime(),
-                            rs.getString(12),
-                            rs.getString(13)));
-
-                }
-            }
-            if(MonthRB.isSelected()){
-                while(mthrs.next()){
-                    /**This line filters the above sql query for the radiobutton selection of months, and the according resultset is generated as done above*/
-
-                    reportdata.add(new Appointment( mthrs.getInt(1),
-                            mthrs.getString(2),
-                            mthrs.getString(3),
-                            mthrs.getString(4),
-                            mthrs.getString(14),
-                            mthrs.getString(5),
-                            mthrs.getTimestamp(6).toLocalDateTime(),
-                            mthrs.getTimestamp(7).toLocalDateTime(),
-                            mthrs.getString(12),
-                            mthrs.getString(13)));
-                }
-            }
-            else if(WeekRB.isSelected()) {
-                while(wkrs.next()){
-                    /**This line filters the above sql query for the radiobutton selection of weeks, and the according resultset is generated as done above*/
-                    reportdata.add(new Appointment(
-                            wkrs.getInt(1),
-                            wkrs.getString(2),
-                            wkrs.getString(3),
-                            wkrs.getString(4),
-                            wkrs.getString(14),
-                            wkrs.getString(5),
-                            wkrs.getTimestamp(6).toLocalDateTime(),
-                            wkrs.getTimestamp(7).toLocalDateTime(),
-                            wkrs.getString(12),
-                            wkrs.getString(13)));
-
-
-                }
-            }
 
         /**report data is added to the ReportTable in the view*/
         AppointmentTable.setItems(reportdata);
