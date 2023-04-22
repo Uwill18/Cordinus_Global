@@ -126,19 +126,19 @@ public class ModifyApptController implements Initializable {
         Timestamp endby = Timestamp.valueOf(end);
 
 
-        if(TimeUtil.businessHoursCheck(start, end)){
-
-            if (TimeUtil.appointmentOverlapCheck()) {
+//        if(TimeUtil.businessHoursCheck(start, end)){
+//
+//            if (TimeUtil.appointmentOverlapCheck()) {
 
                 AppointmentsQuery.update(title, description, location, type, startby, endby, CreatedBy, LastUpdate,LastUpdatedBy, CreateDate,customerid, userid, contactid);
-            }else {
-                Alerts.ValueWarning();
-            }
-
-        }
-        else{
-            Alerts.ValueWarning();
-        }
+//            }else {
+//                Alerts.ValueWarning();
+//            }
+//
+//        }
+//        else{
+//            Alerts.ValueWarning();
+//        }
 
     }
 
@@ -193,6 +193,11 @@ public class ModifyApptController implements Initializable {
         TypeTxt.setText(String.valueOf(appointment.getType()));
 
 
+//        ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
+//        FilteredList<Contact> showContactID = new FilteredList<>(allContacts, i-> i.getContact_ID() == ContactComboBox.getSelectionModel().getSelectedItem().getContact_ID());
+//        ContactComboBox.setItems(showContactID);
+
+
         /**These sets of pickers take the Local Date, and LocalTime values,
          * then they set them as timestamp values to be passed back to the view**/
         ApptStartPicker.setValue(appointment.getStart().toLocalDate());
@@ -202,7 +207,9 @@ public class ModifyApptController implements Initializable {
         CustomerIDTxt.setText(String.valueOf(appointment.getCustomer_ID()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 
+
     }
+
 
     public void Customer_Passer(int index, Customer customer){
         this.customer = customer;

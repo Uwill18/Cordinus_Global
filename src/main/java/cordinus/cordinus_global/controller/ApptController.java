@@ -129,11 +129,6 @@ public class ApptController {
         void OnDeleteAppt(ActionEvent event) throws SQLException{
                 //toDO if selected alert, else if nothing selected.. selection error
 
-
-
-
-
-
                 if((AppointmentTable.getSelectionModel().getSelectedItem() != null)){
                         try{
                                         Alert alert = new Alert(Alert.AlertType.WARNING);

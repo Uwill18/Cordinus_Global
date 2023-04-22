@@ -2,19 +2,19 @@ package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
 import cordinus.cordinus_global.model.Alerts;
-import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.utils.TimeUtil;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -34,46 +34,30 @@ import static java.time.LocalDateTime.parse;
 //https://www.youtube.com/watch?v=i0j2AmsJQz0https://www.youtube.com/watch?v=i0j2AmsJQz0
 //https://www.youtube.com/watch?v=3Ht-JMQh2JI
 public class AddApptController implements Initializable {
-
-
     @FXML
     private DatePicker EndDatePicker;
-
     @FXML
     private DatePicker StartDatePicker;
-
-
     public ComboBox<LocalTime> StartTimeCombo;
-
     public ComboBox<LocalTime> EndTimeCombo;
-
     @FXML
     private ComboBox<Contact> ContactComboBox;
-
     @FXML
     private TextField ApptIDTxt;
-
     @FXML
     private TextField ContactTxt;
-
     @FXML
     private TextField DescriptionTxt;
-
     @FXML
     private TextField LocationTxt;
-
     @FXML
     private TextField TitleTxt;
-
     @FXML
     private TextField TypeTxt;
-
     @FXML
     private TextField CustomerIDTxt;
-
     @FXML
     private TextField UserIDTxt;
-
     private Customer customer;
     private int index;
 
@@ -92,6 +76,7 @@ public class AddApptController implements Initializable {
         String location = LocationTxt.getText();
         int contact = ContactComboBox.getValue().getContact_ID();
         String type = TypeTxt.getText();
+
 
         LocalDateTime date =LocalDateTime.now();//use LocalDateTime
         //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
@@ -139,18 +124,18 @@ public class AddApptController implements Initializable {
 //business hours check
         //create a method for startdatetime
         if(TimeUtil.businessHoursCheck(start, end)){
-
-            if (TimeUtil.appointmentOverlapCheck()) {
+//
+//            if (TimeUtil.appointmentOverlapCheck()) {
 
                 AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
-           }else {
-                Alerts.ValueWarning();
-            }
-
+//           }else {
+//                Alerts.ValueWarning();
+//            }
+//
         }
-        else{
-            Alerts.ValueWarning();
-        }
+//        else{
+//            Alerts.ValueWarning();
+//       }
 
     }
 
@@ -189,7 +174,7 @@ public class AddApptController implements Initializable {
         }
 
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
-        //ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
+        //
 
     }
 
@@ -202,8 +187,12 @@ public class AddApptController implements Initializable {
 
         CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
        // Customer_Name.setText(customer.getCustomer_Name());
+        //ContactTxt.setText(  );
+
+
+
         //ContactTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDo switch to Contact
-        UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDO: switch to UserID
+        //UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDO: switch to UserID
         //TitleTxt.setText(customer.getCustomer_Name() + "'s Appointment");
         //AddressTxt.setText(customer.getAddress());
         //Postal_Code.setText(customer.getPostal_Code());
@@ -215,9 +204,7 @@ public class AddApptController implements Initializable {
 
 
     public void ContactUpdate(){
-        int contact = ContactComboBox.getValue().getContact_ID();
-        ContactTxt.setText(String.valueOf(contact));
-
+        ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
 
     }
 //    public ObservableList CheckFifteenMinutes(){

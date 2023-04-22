@@ -45,7 +45,7 @@
             <TextField fx:id="TitleTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="DescriptionTxt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="LocationTxt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="ContactTxt" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="ContactTxt" disable="true" editable="false"  GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <TextField fx:id="TypeTxt" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <DatePicker fx:id="ApptStartPicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <DatePicker fx:id="ApptEndPicker" GridPane.columnIndex="1" GridPane.rowIndex="7" />

@@ -1,7 +1,7 @@
 package cordinus.cordinus_global.DAO;
 
+import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.Contact;
-import cordinus.cordinus_global.model.Country;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

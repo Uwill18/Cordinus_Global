@@ -10,23 +10,45 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.*;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ValueRange;
 
 public class TimeUtil {
     private static final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8,0), ZoneId.of("America/New_York"));
+   // private static final ZonedDateTime EST_BH_START_RANGE = ZonedDateTime.of(LocalDate.now().plusMonths(1), LocalTime.of(8,0), ZoneId.of("America/New_York"));
 
 
     public static boolean businessHoursCheck( LocalDateTime start, LocalDateTime end){
         ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
         ZonedDateTime localEnd = localStart.plusHours(14);
+        ZonedDateTime selectionRange = localEnd.plusMonths(1);
 
-        if(end.isBefore(localStart.toLocalDateTime()) || start.isAfter(localEnd.toLocalDateTime())){
-            return false;
-        } else {
-            return true;
+
+        // ZonedDateTime selectionRange = EST_BH_START_RANGE.withZoneSameInstant(ZoneId.systemDefault());
+        //ValueRange selectionRange = localStart.range(ChronoField.MONTH_OF_YEAR);
+
+        //https://www.google.com/search?q=how+to+use+Zondedatetime+to+filter+day+selection+within+a+month&rlz=1C1VDKB_enUS1022US1022&oq=how+to+use+Zondedatetime+to+filter+day+selection+within+a+month&aqs=chrome..69i57.14196j0j4&sourceid=chrome&ie=UTF-8
+//https://stackoverflow.com/questions/26824020/java-check-if-a-given-date-is-within-current-month
+        if(localStart.getMonth() == LocalDate.now().getMonth()){
+            if(end.isBefore(localStart.toLocalDateTime()) || start.isAfter(localEnd.toLocalDateTime())){
+                return false;
+            } else {
+                return true;
+            }
+
         }
-
-
+        return true;
     }
+//
+//        if(end.isBefore(localStart.toLocalDateTime()) || start.isAfter(localEnd.toLocalDateTime()) ){
+//            return false;
+//        } else {
+//            return true;
+//        }
+
+
+
+
 
 //    case 1 identical or w/i (start after start and ends before end)
 //case 2 start before and end after (start  before start and end after end)

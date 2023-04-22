@@ -115,7 +115,6 @@ public class CustomerController {
     @FXML
     void OnDeleteCustomer(ActionEvent event) throws SQLException {
 
-
         if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
 
             try{
@@ -139,15 +138,12 @@ public class CustomerController {
                         CustomersQuery.delete(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID());
                     }
                 }
-
             }catch(NullPointerException e){
                Alerts.SelectionError();
             }
-
         }else{
             Alerts.SelectionError();
         }
-
     }
 //
     @FXML
