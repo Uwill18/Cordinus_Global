@@ -6,6 +6,7 @@ import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.model.User;
 import cordinus.cordinus_global.utils.TimeUtil;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -68,6 +69,7 @@ public class AddApptController implements Initializable {
         String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
+        User user = null;
 
         int userid = Integer.parseInt(UserIDTxt.getText());
         int custid = Integer.parseInt(CustomerIDTxt.getText());

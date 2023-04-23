@@ -1,9 +1,12 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.DAO.UsersQuery;
 import cordinus.cordinus_global.model.Alerts;
+import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.User;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,12 +25,16 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+//import static jdk.internal.org.jline.utils.Colors.s;
 
 //https://stackoverflow.com/questions/39539838/javafx-populating-a-combobox-with-data-from-a-mysql-database-stringconverter-b
 
@@ -52,6 +59,7 @@ public class LoginController implements Initializable {
         CurrentTimeLbl.setText(ZoneId.systemDefault().toString());
         confirmButton.setText(rb.getString("Confirm"));
         exitButton.setText(rb.getString("Exit"));
+        //FifteenMinutesAlert();
 
     }
 
@@ -84,8 +92,8 @@ public class LoginController implements Initializable {
         String strDate = formatter.format(date);
 
 
-        try{
 
+        try{
             if (UsersQuery.userConfirmation(username,password)) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -95,8 +103,10 @@ public class LoginController implements Initializable {
                 stage.show();
                 outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+" }.");
                 //todo username and timestamp, then say if successful or not
+                User user = UsersQuery.getCurrentUserData(username,password);
                 System.out.println("File written!");
-                //FifteenMinutesAlert();
+                System.out.println(user.getUser_Name() +" "+user.getPassword()+" "+user.getUser_ID());
+                FifteenMinutesAlert();
 
             }else{
                 outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }.");
@@ -133,36 +143,43 @@ public class LoginController implements Initializable {
     //toDo: for any user signing in the alert needs to check appointments within fifteen minutes of when the user signs in
     //toDo: where user is apart of the appointment
 
-//    public void FifteenMinutesAlert() throws SQLException, IOException {
-//
-//        String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
-//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-//        ResultSet rs = ps.executeQuery();
-//
-//
-//        if(rs.next()){
-///**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
-// * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-//
-//
-//            int x = rs.getInt(1);
-////                        Date date = new Date();
-////                        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-////                        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
-//
-//            Date date = new Date();
-//            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-//            String strDate = formatter.format(date);
-//
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setHeaderText("Upcoming Appointment");
-//            alert.setTitle("Appointment Notification");
-//            alert.setContentText("Hello!\nToday is : " + strDate + "  \n"+OnIntervalCheck().toString()+"\nAppointment ID#: " + (x + 1));
-//            alert.showAndWait();
-//
-//
-//
-//        }
+    public ObservableList FifteenMinutesAlert(){
+
+/**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
+ * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Upcoming Appointment");
+            alert.setTitle("Appointment Notification");
+            alert.setContentText(CheckFifteenMinutes());
+            alert.showAndWait();
+        return null;
+    }
+/**This function checks all existing appointments for an appointment coming within fifteen minutes, and returns the result
+ * for the above alert*/
+        public String CheckFifteenMinutes(){
+            for(Appointment a: AppointmentsQuery.getAllAppointments()){//get list of appts
+                if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
+                      ZonedDateTime ldt = ZonedDateTime.from(a.getStart());
+                      DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+                      String formatDate = ldt.format(dateformatter);
+                      DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
+                      String formatTime = ldt.format(timeformatter);
+                    return  "You have an upcoming appointment with the following criteria:\n"+
+                            "\nAppointment Start: " + formatTime +
+                            "\nAppointment Date: " + formatDate +
+                            "\nAppointment ID#: " + a.getAppointment_ID();
+                }else {
+                    return "There are no upcoming appointments at this time.";
+                }
+            }
+            return null;
+        }
+
+
+
+
+
 //
 //
 //

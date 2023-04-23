@@ -92,7 +92,7 @@ public class AddCustController {
         String ZipCode = Postal_Code.getText();
         String PhoneNumber = Phone.getText();
 
-        Date date = new Date();//use LocalDateTime
+        Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
 

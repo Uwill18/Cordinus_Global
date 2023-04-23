@@ -191,7 +191,7 @@ public class ModifyApptController implements Initializable {
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
         TypeTxt.setText(String.valueOf(appointment.getType()));
-
+        UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 
 //        ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
 //        FilteredList<Contact> showContactID = new FilteredList<>(allContacts, i-> i.getContact_ID() == ContactComboBox.getSelectionModel().getSelectedItem().getContact_ID());
