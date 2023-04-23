@@ -1,7 +1,9 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.DAO.UsersQuery;
 import cordinus.cordinus_global.model.Alerts;
+import cordinus.cordinus_global.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,10 +76,8 @@ public class LoginController implements Initializable {
         //Create FileWriter object
         FileWriter fwriter = new FileWriter(filename, true);
 
-
         //Create and Open file
         PrintWriter outputFile = new PrintWriter(fwriter);
-
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -86,7 +86,7 @@ public class LoginController implements Initializable {
 
         try{
 
-            if (rs.next()) {
+            if (UsersQuery.userConfirmation(username,password)) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
