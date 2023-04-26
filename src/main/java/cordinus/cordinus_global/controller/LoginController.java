@@ -103,9 +103,10 @@ public class LoginController implements Initializable {
                 stage.show();
                 outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+" }.");
                 //todo username and timestamp, then say if successful or not
-                User user = UsersQuery.getCurrentUserData(username,password);
+
                 System.out.println("File written!");
-                System.out.println(user.getUser_Name() +" "+user.getPassword()+" "+user.getUser_ID());
+//                User user = UsersQuery.setCurrentUserData(username,password);
+//                System.out.println(user.getUser_Name() +" "+user.getPassword()+" "+user.getUser_ID());
                 FifteenMinutesAlert();
 
             }else{
@@ -155,26 +156,25 @@ public class LoginController implements Initializable {
             alert.showAndWait();
         return null;
     }
-/**This function checks all existing appointments for an appointment coming within fifteen minutes, and returns the result
- * for the above alert*/
-        public String CheckFifteenMinutes(){
-            for(Appointment a: AppointmentsQuery.getAllAppointments()){//get list of appts
-                if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
-                      ZonedDateTime ldt = ZonedDateTime.from(a.getStart());
-                      DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-                      String formatDate = ldt.format(dateformatter);
-                      DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
-                      String formatTime = ldt.format(timeformatter);
-                    return  "You have an upcoming appointment with the following criteria:\n"+
-                            "\nAppointment Start: " + formatTime +
-                            "\nAppointment Date: " + formatDate +
-                            "\nAppointment ID#: " + a.getAppointment_ID();
-                }else {
-                    return "There are no upcoming appointments at this time.";
-                }
+    /**This function checks all existing appointments for an appointment coming within fifteen minutes, and returns the result
+     * for the above alert*/
+
+    public String CheckFifteenMinutes(){
+        for(Appointment a: AppointmentsQuery.getAllAppointments()){//get list of appts
+            if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
+                LocalDateTime ldt = a.getStart();
+                DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+                String formatDate = ldt.format(dateformatter);
+                DateTimeFormatter timeformatter = DateTimeFormatter.ofPattern("HH:mm");
+                String formatTime = ldt.format(timeformatter);
+                return  "You have an upcoming appointment with the following criteria:\n"+
+                        "\nAppointment Start: " + formatTime +
+                        "\nAppointment Date: " + formatDate +
+                        "\nAppointment ID#: " + a.getAppointment_ID();
             }
-            return null;
         }
+        return "There are no upcoming appointments at this time.";
+    }
 
 
 

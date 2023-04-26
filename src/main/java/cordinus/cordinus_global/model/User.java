@@ -1,9 +1,5 @@
 package cordinus.cordinus_global.model;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-
 public class User {
     int User_ID;
     String User_Name;
@@ -21,8 +17,9 @@ public class User {
         return User_ID;
     }
 
-    public void setUser_ID(int user_ID) {
+    public int setUser_ID(int user_ID) {
         User_ID = user_ID;
+        return user_ID;
     }
 
     public String getUser_Name() {

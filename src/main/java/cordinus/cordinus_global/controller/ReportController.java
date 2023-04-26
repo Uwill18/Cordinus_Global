@@ -3,6 +3,7 @@ package cordinus.cordinus_global.controller;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.model.Appointment;
+import cordinus.cordinus_global.reports.ReportsInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,11 +17,12 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.logging.Level;
 
 
 //https://www.youtube.com/watch?v=KzfhgGGzWMQ
-public class ReportController {
+public abstract class ReportController implements ReportsInterface {
     //FXML VARIABLES
     private ObservableList<Appointment> reportdata;
 
@@ -79,6 +81,8 @@ public class ReportController {
 
     //tab1 --total appts
     //the total number of customer appointments by type and month
+
+
 
     //tab2 -- contact schedule
    //a schedule for each contact in your organization that includes appointment ID, title, type and description, start date and time, end date and time, and customer ID

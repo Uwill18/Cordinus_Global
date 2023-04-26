@@ -1,5 +1,6 @@
 package cordinus.cordinus_global.controller;
 
+import cordinus.cordinus_global.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,8 @@ public Button proceedButton;
     @FXML
     private Label CurrentTimeLbl;
 
+    User user;
+
 
 
 //Password Validation//
@@ -64,8 +67,6 @@ public Button proceedButton;
     //toDO: have another controller, then main controller come in, may do welcome controller
 
     public void initialize(URL url, ResourceBundle resourceBundle){
-        // proceedButton.setText(rb.getString("Proceed"));
-
 }
 
 
