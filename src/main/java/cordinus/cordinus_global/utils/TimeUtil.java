@@ -29,48 +29,14 @@ public class TimeUtil {
 
         ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
         ZonedDateTime localEnd = localStart.plusHours(14);
-        ZonedDateTime selectionRange = localEnd.plusMonths(1);
 
-        if(end.isAfter(selectionRange.toLocalDateTime()) || localStart.isAfter(localEnd) || localStart.isEqual(localEnd)){
+        /**selection can happen any time after the present date, but end date time values do not occur before  start date time values selected by the user*/
+
+        if(start.isAfter(localEnd.toLocalDateTime()) || start.isEqual(localEnd.toLocalDateTime()) || start.isBefore(LocalDateTime.now())  || end.isBefore(localStart.toLocalDateTime()) || end.isAfter(localEnd.toLocalDateTime()) || end.isBefore(start) || end.equals(start)){
             return false;
         }else {
-            //start.isBefore(ChronoLocalDateTime.from(localEnd)) && end.isBefore(ChronoLocalDateTime.from(localEnd)) || end.equals(localEnd)
             return true;
         }
-
-       // return true;
-
-
-        // ZonedDateTime selectionRange = EST_BH_START_RANGE.withZoneSameInstant(ZoneId.systemDefault());
-        //ValueRange selectionRange = localStart.range(ChronoField.MONTH_OF_YEAR);
-
-        //https://www.google.com/search?q=how+to+use+Zondedatetime+to+filter+day+selection+within+a+month&rlz=1C1VDKB_enUS1022US1022&oq=how+to+use+Zondedatetime+to+filter+day+selection+within+a+month&aqs=chrome..69i57.14196j0j4&sourceid=chrome&ie=UTF-8
-//https://stackoverflow.com/questions/26824020/java-check-if-a-given-date-is-within-current-month
-//        if(localStart.getMonth() == LocalDate.now().getMonth()){
-//            if(end.isBefore(localStart.toLocalDateTime()) || start.isAfter(localEnd.toLocalDateTime())){
-//                return false;
-//            } else {
-//                return true;
-//            }
-//
-//        }
-//        return true;
-//    }
-//
-//        if(end.isBefore(localStart.toLocalDateTime()) || start.isAfter(localEnd.toLocalDateTime()) || start.isAfter(selectionRange.toLocalDateTime())){
-//            return false;
-//        } else {
-//            return true;
-//        }
-
-//        if(end.isAfter(selectionRange.toLocalDateTime()) || start.isAfter(selectionRange.toLocalDateTime())){
-//            return false;
-//        }else if(end.isBefore(localStart.toLocalDateTime())){
-//            return true;
-//        }
-//
-//        return true;
-
     }
 
 
