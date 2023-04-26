@@ -105,8 +105,15 @@ public class TimeUtil {
      * @return true if no overlap, false otherwise
      * The Logic for this variable is reusable for Add Appointment Controller and the Modify Appointment Controller
      */
-    public static boolean appointmentOverlapCheck() throws SQLException {
 
+    //if ((NAS > EAS) && (NAS < EAE)) ,,
+    //    error
+    //else if ((NAS < EAS)&&(NAE > EAE)) x
+    //    error
+    //else if((NAE>NAS)&&(NAE < EAE))
+    //    error
+    //else if((NAS==EAS)||(NAE == EAE))
+    public static boolean appointmentOverlapCheck( LocalDateTime start, LocalDateTime end) throws SQLException {
         String sql = "SELECT Appointment_ID, Customer_ID, Start, End  FROM APPOINTMENTS ;";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -114,26 +121,40 @@ public class TimeUtil {
         if (rs.next()) {
             int appointmentID = rs.getInt("Appointment_ID");
             int customerID = rs.getInt("Customer_ID");
-            LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-            LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+            //LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+            //LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
 
             ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
             for (Appointment appointment: allAppointments ) {
-                if((appointment.getCustomer_ID() != customerID)){
+                if((appointment.getCustomer_ID() != customerID) || (appointment.getAppointment_ID() != appointmentID)){
                     continue;
                 }
-                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
-                    System.out.println("Overlap 1");
+                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())){
+                    System.out.println("Engulfing Overlap");
                     Alerts.overlapWarning();
+                    return false;
                 }
-                if(start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())){
-                    System.out.println("Overlap 2");
+                if(start.isAfter(appointment.getStart()) && end.isAfter(appointment.getEnd())){
+                    System.out.println("Late Start Overlap");
                     Alerts.overlapWarning();
-                }
-                if(start.equals(appointment.getStart())){
-                    System.out.println("Overlap 3");
+                    return false;
+               }
+                if(start.isBefore(appointment.getStart()) && end.isBefore(appointment.getEnd())){
+                    System.out.println("Start Before and End During Overlap");
                     Alerts.overlapWarning();
+                    return false;
                 }
+                if(start.isAfter(appointment.getStart()) && end.isBefore(appointment.getEnd())){
+                    System.out.println("Inner Appointment schedule");
+                    Alerts.overlapWarning();
+                    return false;
+                }
+                if(start.equals(appointment.getStart()) && end.equals(appointment.getEnd())){
+                    System.out.println("Exact Appointment Overlap");
+                    Alerts.overlapWarning();
+                    return false;
+                }
+                return true;
             }
 
         }
