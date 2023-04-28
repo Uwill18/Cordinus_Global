@@ -69,8 +69,6 @@ public Button proceedButton;
     public void initialize(URL url, ResourceBundle resourceBundle){
 }
 
-
-
     //AppointmentScreenButton
 
     @FXML
@@ -110,7 +108,7 @@ public Button proceedButton;
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/ReportScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Reports");
+        stage.setTitle("Report");
         stage.setScene(scene);
         stage.show();
     }

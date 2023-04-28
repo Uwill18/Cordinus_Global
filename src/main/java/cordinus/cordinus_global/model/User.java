@@ -1,5 +1,7 @@
 package cordinus.cordinus_global.model;
 
+import cordinus.cordinus_global.DAO.UsersQuery;
+
 public class User {
     int User_ID;
     String User_Name;
@@ -26,16 +28,24 @@ public class User {
         return User_Name;
     }
 
-    public void setUser_Name(String user_Name) {
+    public String setUser_Name(String user_Name) {
         User_Name = user_Name;
+        return user_Name;
     }
 
     public String getPassword() {
         return Password;
     }
 
-    public void setPassword(String password) {
+    public String setPassword(String password) {
         Password = password;
+        return password;
+    }
+
+    public User getUserData(User user){
+        User currentUser = user;
+        //user = UsersQuery.setCurrentUserData(user.getUser_Name(),user.getPassword());
+        return currentUser;
     }
 
 }

@@ -62,6 +62,8 @@ public class AddApptController implements Initializable {
     private Customer customer;
     private int index;
 
+    private User user;
+
 
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException,IOException {
@@ -69,9 +71,14 @@ public class AddApptController implements Initializable {
         String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-        User user = null;
+        //User user = null;
+        //user = user.getUserData();
 
-        int userid = Integer.parseInt(UserIDTxt.getText());
+
+
+        //int userid = Integer.parseInt(UserIDTxt.getText());
+        int userid = user.getUser_ID();
+        UserIDTxt.setText(String.valueOf(user.getUser_ID()));
         int custid = Integer.parseInt(CustomerIDTxt.getText());
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
@@ -129,9 +136,8 @@ public class AddApptController implements Initializable {
                 AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
         }
         else{
-            Alerts.ValueWarning();
+            Alerts.selectionWarning();
        }
-
     }
 
     @FXML
@@ -169,6 +175,8 @@ public class AddApptController implements Initializable {
         }
 
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
+
+        //System.out.println(user.getUserData().getUser_ID() + " "+ user.getUserData().getUser_Name() + " " + user.getUserData().getPassword());
         //
 
     }

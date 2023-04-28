@@ -8,21 +8,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 
 //https://www.youtube.com/watch?v=KzfhgGGzWMQ
-public abstract class ReportController implements ReportsInterface {
+public  class ReportController implements Initializable {
     //FXML VARIABLES
     private ObservableList<Appointment> reportdata;
 
@@ -69,14 +72,9 @@ public abstract class ReportController implements ReportsInterface {
     @FXML
     private RadioButton WeekRB;
 
-
+private ReportsInterface myReport = n -> {return n*n;};
     //initialize
-    public void initialize() throws SQLException, IOException {
-        reportdata = FXCollections.observableArrayList();
-        LoadReports();
-        setReportCellTable();
 
-    }
 
 
     //tab1 --total appts
@@ -130,6 +128,20 @@ public abstract class ReportController implements ReportsInterface {
     public void OnRadioButton(ActionEvent event) throws SQLException {
         reportdata.clear();
         LoadReports();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        reportdata = FXCollections.observableArrayList();
+        try {
+            LoadReports();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        setReportCellTable();
+        int x = myReport.calculateSquare(4);
+        System.out.println("the square is : " + x);
+
     }
 
 

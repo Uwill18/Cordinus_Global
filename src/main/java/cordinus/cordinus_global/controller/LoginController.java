@@ -103,11 +103,14 @@ public class LoginController implements Initializable {
                 stage.show();
                 outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+" }.");
                 //todo username and timestamp, then say if successful or not
-
                 System.out.println("File written!");
-//                User user = UsersQuery.setCurrentUserData(username,password);
-//                System.out.println(user.getUser_Name() +" "+user.getPassword()+" "+user.getUser_ID());
                 FifteenMinutesAlert();
+                //User user = UsersQuery.setCurrentUserData(username,password);
+                //System.out.println(user.getUser_Name() +" "+user.getPassword()+" "+user.getUser_ID());
+                //User currentUser = new User(user.getUser_ID(), username,password);
+               // System.out.println(currentUser.getUser_Name() +" "+currentUser.getPassword()+" "+currentUser.getUser_ID());
+               // System.out.println(user.getUserData().getUser_ID() + " "+ user.getUserData().getUser_Name() + " " + user.getUserData().getPassword());
+                //System.out.println(UsersQuery.setCurrentUserData(username,password).getUser_Name());
 
             }else{
                 outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }.");

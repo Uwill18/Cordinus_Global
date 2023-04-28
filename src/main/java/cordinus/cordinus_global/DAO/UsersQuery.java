@@ -53,23 +53,27 @@ public abstract class UsersQuery {
     public static User setCurrentUserData(String username, String password){
         User user = null;
         try {
-            String sql = "SELECT * FROM USERS";
+            String sql = "SELECT User_ID FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            int userID = 0;
+            //int userID = 0;
             while (rs.next()) {
-                userID = rs.getInt("User_ID");
+                int userID = rs.getInt("User_ID");
                 //String userName = rs.getString("User_Name");
                 //String passWord = rs.getString("Password");
                 //int user_ID = user.setUser_ID(userID);
+//                int currentID = user.setUser_ID(userID);
+//                String currentUser = user.setUser_Name(username);
+//                String currentPass = user.setPassword(password);es
                 user = new User(userID, username, password);
+                return user;
             }
-            int user_ID = user.setUser_ID(userID);
-            return user;
+            //int user_ID = user.setUser_ID(userID);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
 
