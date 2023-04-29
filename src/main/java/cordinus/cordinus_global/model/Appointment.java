@@ -1,7 +1,7 @@
 package cordinus.cordinus_global.model;
 
+import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.ContactsQuery;
-import javafx.collections.ObservableList;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,32 +9,16 @@ import java.util.List;
 public class Appointment {
 
     private int Appointment_ID;
-
-
     private String Contact_ID;
-
-
     private String Description;
-
-
     private LocalDateTime End;
-
-
     private String Location;
-
-
     private LocalDateTime Start;
-
     private String Title;
-
     private String Type;
-
     private String Customer_ID;
-
     private String User_ID;
-
     public static Appointment appointment;
-
 
 
     public Appointment(int appointment_ID, String title, String description, String location, String contact_ID, String type, LocalDateTime start, LocalDateTime end, String customerID, String userID  ) {
@@ -147,16 +131,8 @@ public class Appointment {
         return Start.toString() +" "+End.toString()+"\n";
     }
 
-
-    public LocalDateTime toTimestamp(ObservableList<Appointment> appointmentdata){
-        return LocalDateTime.parse(Start +" "+ End+"\n");
+    public String getCustomerByID(){
+        return AppointmentsQuery.getCustomerByID(Integer.parseInt(Customer_ID));
     }
-
-
-
-
-
-
-
 
 }

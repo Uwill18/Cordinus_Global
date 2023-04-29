@@ -149,7 +149,7 @@ public class TimeUtil {
                     Alerts.overlapWarning();
                     return false;
                 }
-                if(start.equals(appointment.getStart()) && end.equals(appointment.getEnd())){
+                if(start.equals(appointment.getStart()) || end.equals(appointment.getEnd())){
                     System.out.println("Exact Appointment Overlap");
                     Alerts.overlapWarning();
                     return false;

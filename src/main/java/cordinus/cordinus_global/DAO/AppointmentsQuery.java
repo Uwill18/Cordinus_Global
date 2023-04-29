@@ -116,11 +116,13 @@ public abstract class AppointmentsQuery {
                 String customerID = rs.getString("Customer_ID");
                 String userID = rs.getString("User_ID");
                 appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
+                getCustomerByID(Integer.parseInt(customerID));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return appointmentList;
+
     }
 
 
@@ -176,6 +178,22 @@ public abstract class AppointmentsQuery {
             throw new RuntimeException(e);
         }
         return appointmentList;
+    }
+
+    public static String getCustomerByID(int customerID){
+        try {
+            String sql = "SELECT *, Customers.Customer_Name FROM APPOINTMENTS INNER JOIN CUSTOMERS ON CUSTOMERS.Customer_ID = APPOINTMENTS.Customer_ID";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+           // ps.setInt(1, customerID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String customerName = rs.getString("Customer_Name");
+                return customerName;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
 }

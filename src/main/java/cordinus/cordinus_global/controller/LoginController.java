@@ -59,18 +59,9 @@ public class LoginController implements Initializable {
         CurrentTimeLbl.setText(ZoneId.systemDefault().toString());
         confirmButton.setText(rb.getString("Confirm"));
         exitButton.setText(rb.getString("Exit"));
-        //FifteenMinutesAlert();
-
     }
 
     public void MainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
-
-//        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-//                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                        Scene scene = new Scene(fxmlLoader.load());
-//                        stage.setTitle("Main Menu");
-//                        stage.setScene(scene);
-//                        stage.show();
 
         String username = UsernameTxt.getText();
         String password = PasswordTxt.getText();

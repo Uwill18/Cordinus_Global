@@ -31,6 +31,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label prefHeight="17.0" prefWidth="114.0" text="Appointment ID" />
@@ -45,8 +46,7 @@
             <TextField fx:id="TitleTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="DescriptionTxt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="LocationTxt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="ContactTxt" disable="true" editable="false"  GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="TypeTxt" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="ContactTxt" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <DatePicker fx:id="ApptStartPicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <DatePicker fx:id="ApptEndPicker" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label text="Customer ID" GridPane.rowIndex="2" />
@@ -56,6 +56,7 @@
             <ComboBox fx:id="StartTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <ComboBox fx:id="EndTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <ComboBox fx:id="ContactComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <ComboBox fx:id="TypeCombo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" layoutX="283.0" layoutY="349.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">

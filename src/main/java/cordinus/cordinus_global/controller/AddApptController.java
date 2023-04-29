@@ -1,12 +1,9 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
-import cordinus.cordinus_global.model.Alerts;
-import cordinus.cordinus_global.model.Contact;
-import cordinus.cordinus_global.model.Customer;
+import cordinus.cordinus_global.model.*;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
-import cordinus.cordinus_global.model.User;
 import cordinus.cordinus_global.utils.TimeUtil;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -59,6 +56,9 @@ public class AddApptController implements Initializable {
     private TextField CustomerIDTxt;
     @FXML
     private TextField UserIDTxt;
+
+    @FXML
+    private ComboBox<String> TypeCombo;
     private Customer customer;
     private int index;
 
@@ -68,17 +68,12 @@ public class AddApptController implements Initializable {
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException,IOException {
 
-        String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        //User user = null;
-        //user = user.getUserData();
+//        String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
+//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+//        ResultSet rs = ps.executeQuery();
 
 
-
-        //int userid = Integer.parseInt(UserIDTxt.getText());
-        int userid = user.getUser_ID();
-        UserIDTxt.setText(String.valueOf(user.getUser_ID()));
+        int userid = Integer.parseInt(UserIDTxt.getText());
         int custid = Integer.parseInt(CustomerIDTxt.getText());
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
@@ -173,11 +168,12 @@ public class AddApptController implements Initializable {
             EndTimeCombo.getItems().add(LocalTime.of(h,30));
             EndTimeCombo.getItems().add(LocalTime.of(h,45));
         }
+//
+//        for(Appointment appointment: AppointmentsQuery.getAllAppointments()){
+//            TypeCombo.getItems().add(appointment.getType());
+//        }
 
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
-
-        //System.out.println(user.getUserData().getUser_ID() + " "+ user.getUserData().getUser_Name() + " " + user.getUserData().getPassword());
-        //
 
     }
 

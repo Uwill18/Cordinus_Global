@@ -81,8 +81,6 @@ public abstract class CustomersQuery {
                 String phone = rs.getString("Phone");
                 String divisionID = rs.getString("Division_ID");
                 customerList.add(new Customer(customerID, customerName, address, postalCode, phone, divisionID));
-
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -90,7 +88,6 @@ public abstract class CustomersQuery {
         return customerList;
 
     }
-
 
 }
 

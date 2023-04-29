@@ -116,7 +116,6 @@ public class CustomerController {
     void OnDeleteCustomer(ActionEvent event) throws SQLException {
 
         if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
-
             try{
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Delete Warning");
@@ -148,7 +147,6 @@ public class CustomerController {
 //
     @FXML
     void OnUpdateCustomer(ActionEvent event) throws IOException {
-
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
@@ -160,7 +158,6 @@ public class CustomerController {
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
-
         }catch (NullPointerException e){
             Alerts.SelectionError();
         }
@@ -168,7 +165,6 @@ public class CustomerController {
 
     @FXML
     void MainMenuReturn(ActionEvent event) throws IOException{
-
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
@@ -180,9 +176,7 @@ public class CustomerController {
 
     @FXML
     void AddAppointment(ActionEvent event) throws IOException {
-
         try{
-
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
             loader.load();
@@ -193,7 +187,6 @@ public class CustomerController {
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
-
         }catch (NullPointerException e){
             Alerts.SelectionError();;
         }
@@ -203,7 +196,6 @@ public class CustomerController {
 
     @FXML
     void UpdateAppointment(ActionEvent event) throws IOException {
-
         try{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
@@ -215,11 +207,9 @@ public class CustomerController {
         Parent scene = loader.getRoot();
         stage.setScene(new Scene(scene));
         stage.show();
-
         }catch (NullPointerException e){
             Alerts.SelectionError();
         }
-
     }
 
 //Customer Controller must select Data from the TableView and pass
