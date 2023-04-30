@@ -2,7 +2,7 @@ package cordinus.cordinus_global.DAO;
 
 import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Appointment;
-import cordinus.cordinus_global.model.Contact;
+import cordinus.cordinus_global.model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class AppointmentsQuery {
@@ -116,7 +114,7 @@ public abstract class AppointmentsQuery {
                 String customerID = rs.getString("Customer_ID");
                 String userID = rs.getString("User_ID");
                 appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
-                getCustomerByID(Integer.parseInt(customerID));
+                //getCustomerByID(Integer.parseInt(customerID));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -180,15 +178,22 @@ public abstract class AppointmentsQuery {
         return appointmentList;
     }
 
-    public static String getCustomerByID(int customerID){
+    public static Customer getCustomerByID(int customerID){
         try {
-            String sql = "SELECT *, Customers.Customer_Name FROM APPOINTMENTS INNER JOIN CUSTOMERS ON CUSTOMERS.Customer_ID = APPOINTMENTS.Customer_ID";
+            String sql = "SELECT * FROM APPOINTMENTS AS A INNER JOIN CUSTOMERS AS C ON C.Customer_ID = A.Customer_ID AND C.Customer_ID = ?";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-           // ps.setInt(1, customerID);
+            ps.setInt(1, customerID);
             ResultSet rs = ps.executeQuery();
+            Customer customer = null;
             while (rs.next()) {
+                //int customerID = rs.getInt("Customer_ID");
                 String customerName = rs.getString("Customer_Name");
-                return customerName;
+                String address = rs.getString("Address");
+                String postalCode = rs.getString("Postal_Code");
+                String phone = rs.getString("Phone");
+                String divisionID = rs.getString("Division_ID");
+                customer = new Customer(customerID,customerName,address,postalCode,phone,divisionID);
+                return customer;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

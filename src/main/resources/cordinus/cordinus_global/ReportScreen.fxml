@@ -34,7 +34,7 @@
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #000;">
                                  <children>
                                     <ComboBox fx:id="TypeComboBox" layoutX="35.0" layoutY="259.0" prefWidth="150.0" />
-                                    <TextField disable="true" layoutX="36.0" layoutY="389.0" />
+                                    <TextField fx:id="apptTotals" disable="true" layoutX="36.0" layoutY="389.0" />
                                     <Label layoutX="35.0" layoutY="7.0" prefHeight="17.0" prefWidth="149.0" text="Months:" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold Italic" size="18.0" />
@@ -57,11 +57,11 @@
                                  <children>
                                     <TableView fx:id="reportTotalsTable" layoutX="62.0" layoutY="50.0" prefHeight="368.0" prefWidth="646.0">
                                       <columns>
-                                        <TableColumn fx:id="Appointment_ID" prefWidth="133.0" text="Appointment_ID" />
-                                        <TableColumn fx:id="Appointment_Type" prefWidth="127.0" text="Appointment_Type" />
-                                          <TableColumn fx:id="Description" prefWidth="125.0" text="Description" />
-                                          <TableColumn fx:id="Customer_ID" prefWidth="113.0" text="CustomerID" />
-                                          <TableColumn fx:id="Customer_Name" prefWidth="147.0" text="Customer_Name" />
+                                        <TableColumn fx:id="totAppointmentID" prefWidth="133.0" text="Appointment_ID" />
+                                        <TableColumn fx:id="totAppointment_Type" prefWidth="127.0" text="Appointment_Type" />
+                                          <TableColumn fx:id="totDescription" prefWidth="125.0" text="Description" />
+                                          <TableColumn fx:id="totCustomer_ID" prefWidth="113.0" text="CustomerID" />
+                                          <TableColumn fx:id="totCustomer_Name" prefWidth="147.0" text="Customer_Name" />
                                       </columns>
                                     </TableView>
                                  </children>
@@ -79,7 +79,7 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #000;">
                                  <children>
-                                    <ComboBox fx:id="ContactComboBox" layoutX="11.0" layoutY="33.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="ContactComboBox" layoutX="11.0" layoutY="33.0" onAction="#ContactFilter" prefWidth="150.0" />
                                     <Label layoutX="45.0" layoutY="6.0" text="Select Contact " textFill="WHITE">
                                        <font>
                                           <Font name="System Bold Italic" size="12.0" />
@@ -95,7 +95,6 @@
                               <TableColumn fx:id="Appointment_ID" prefWidth="75.0" text="Appt. ID" />
                               <TableColumn fx:id="Title" prefWidth="75.0" text="Title" />
                               <TableColumn fx:id="Description" prefWidth="75.0" text="Description" />
-                              <TableColumn fx:id="Location" prefWidth="75.0" text="Location" />
                               <TableColumn fx:id="Type" prefWidth="113.0" text="Type" />
                               <TableColumn fx:id="Start" minWidth="8.0" prefWidth="128.0" text="Start" />
                               <TableColumn fx:id="End" prefWidth="132.0" text="End" />

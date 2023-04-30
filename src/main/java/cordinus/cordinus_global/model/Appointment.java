@@ -9,14 +9,14 @@ import java.util.List;
 public class Appointment {
 
     private int Appointment_ID;
-    private String Contact_ID;
+    private int Contact_ID;
     private String Description;
     private LocalDateTime End;
     private String Location;
     private LocalDateTime Start;
     private String Title;
     private String Type;
-    private String Customer_ID;
+    private int Customer_ID;
     private String User_ID;
     public static Appointment appointment;
 
@@ -26,11 +26,11 @@ public class Appointment {
         Title = title;
         Description = description;
         Location = location;
-        Contact_ID = contact_ID;
+        Contact_ID = Integer.parseInt(contact_ID);
         Type = type;
         Start = start;
         End = end;
-        Customer_ID = customerID;
+        Customer_ID = Integer.parseInt(customerID);
         User_ID = userID;
         //add customer_id
         //user_id
@@ -47,11 +47,11 @@ public class Appointment {
         Appointment_ID = appointment_ID;
     }
 
-    public String getContact_ID() {
+    public int getContact_ID() {
         return Contact_ID;
     }
 
-    public void setContact_ID(String contact_ID) {
+    public void setContact_ID(int contact_ID) {
         Contact_ID = contact_ID;
     }
 
@@ -62,6 +62,10 @@ public class Appointment {
     public void setDescription(String description) {
         Description = description;
     }
+
+    public String appointmentMonth;
+    public int appointmentTotal;
+    public String appointmentType;
 
     /**used getters and setters for localdatetime objects under type of LocalDatetime,
      * that way it is easier to send back as LocalDate or Localtime, from the timestamps*/
@@ -108,11 +112,11 @@ public class Appointment {
     }
 
     public int getCustomer_ID() {
-        return Integer.parseInt(Customer_ID);
+        return Integer.parseInt(String.valueOf(Customer_ID));
     }
 
     public void setCustomer_ID(String customer_ID) {
-        Customer_ID = customer_ID;
+        Customer_ID = Integer.parseInt(customer_ID);
     }
 
     public String getUser_ID() {
@@ -127,12 +131,54 @@ public class Appointment {
         return ContactsQuery.getAllContacts();
     }
 
-    public String toString(){
-        return Start.toString() +" "+End.toString()+"\n";
+   // public String toString(){
+//        return ;
+//    }
+
+    public Customer getCustomerByID(){
+        return AppointmentsQuery.getCustomerByID(Integer.parseInt(String.valueOf(Customer_ID)));
     }
 
-    public String getCustomerByID(){
-        return AppointmentsQuery.getCustomerByID(Integer.parseInt(Customer_ID));
+
+
+    /**
+     * @param appointmentMonth
+     * @param appointmentTotal
+     */
+
+
+    /**
+     * @return appointmentMonth
+     */
+    public String getAppointmentMonth() {
+
+        return appointmentMonth;
     }
+
+    /**
+     * @return appointmentTotal
+     */
+    public int getAppointmentTotal() {
+
+        return appointmentTotal;
+    }
+
+    public String getAppointmentType() {
+
+        return appointmentType;
+    }
+
+    public Appointment apptTypeCount(String appointmentType, int appointmentTotal) {
+        this.appointmentType = appointmentType;
+        this.appointmentTotal = appointmentTotal;
+        return null;
+    }
+
+    public Appointment apptMonthCount(String appointmentMonth, int appointmentTotal) {
+        this.appointmentMonth = appointmentMonth;
+        this.appointmentTotal = appointmentTotal;
+        return null;
+    }
+
 
 }

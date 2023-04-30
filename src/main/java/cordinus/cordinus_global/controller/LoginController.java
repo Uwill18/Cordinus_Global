@@ -92,7 +92,7 @@ public class LoginController implements Initializable {
                 stage.setTitle("Main Menu");
                 stage.setScene(scene);
                 stage.show();
-                outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+" }.");
+                outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+ " } " +ZoneId.systemDefault() + " Time.");
                 //todo username and timestamp, then say if successful or not
                 System.out.println("File written!");
                 FifteenMinutesAlert();
@@ -104,42 +104,18 @@ public class LoginController implements Initializable {
                 //System.out.println(UsersQuery.setCurrentUserData(username,password).getUser_Name());
 
             }else{
-                outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }.");
+                outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate + " } " +ZoneId.systemDefault() + " Time.");
                 Alerts.loginError();
             }
             outputFile.close();
         }catch(Exception e){
-            outputFile.println("ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate +" }." );
+            outputFile.println("ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate + " } " +ZoneId.systemDefault() + " Time." );
             Alerts.loginError();
         }
     }
 
 
-    //toDo: clarify "e.  Write code to provide an alert when there is an appointment within 15 minutes of the user’s log-in. A custom message should be displayed in the user interface and include the appointment ID, date, and time.
-    // If the user does not have any appointments within 15 minutes of logging in, display a custom message in the user interface indicating there are no upcoming appointments. x"
-
-//
-//
-//    public String OnIntervalCheck() throws IOException{
-//
-//        LocalTime nextAppt = LocalTime.now().plusMinutes(15);
-//
-//        LocalTime currentTime = LocalTime.now();
-//        int currenthour = LocalTime.now().getHour();//fetches the current hour to compare for logic
-//        long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
-//        long interval = timeDifference;
-//
-//
-//
-//
-//        //toDo: see if you can make the app sign out after three suggested times e.g. 1 hour
-//
-
-    //toDo: for any user signing in the alert needs to check appointments within fifteen minutes of when the user signs in
-    //toDo: where user is apart of the appointment
-
     public ObservableList FifteenMinutesAlert(){
-
 /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
 
