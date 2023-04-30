@@ -67,7 +67,8 @@ public Button proceedButton;
     //toDO: have another controller, then main controller come in, may do welcome controller
 
     public void initialize(URL url, ResourceBundle resourceBundle){
-}
+
+    }
 
     //AppointmentScreenButton
 

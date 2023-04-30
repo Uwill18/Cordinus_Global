@@ -177,6 +177,7 @@ public class ModifyApptController implements Initializable {
         }
 
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
+
     }
 
 

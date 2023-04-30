@@ -56,7 +56,7 @@
             <ComboBox fx:id="StartTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <ComboBox fx:id="EndTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <ComboBox fx:id="ContactComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <ComboBox fx:id="TypeCombo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <ComboBox fx:id="TypeComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" layoutX="283.0" layoutY="349.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">

@@ -59,6 +59,7 @@ public class LoginController implements Initializable {
         CurrentTimeLbl.setText(ZoneId.systemDefault().toString());
         confirmButton.setText(rb.getString("Confirm"));
         exitButton.setText(rb.getString("Exit"));
+
     }
 
     public void MainMenuScreenButton(ActionEvent event) throws SQLException, IOException {

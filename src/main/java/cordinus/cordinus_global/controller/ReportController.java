@@ -9,14 +9,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.time.temporal.ChronoField;
 import java.util.*;
 
 
@@ -101,6 +107,9 @@ public  class ReportController implements Initializable {
 
 private ReportsInterface myReport = n -> {return n*n;};
     //initialize
+    /**https://www.geeksforgeeks.org/how-to-remove-duplicates-from-arraylist-in-java/*/
+    ObservableList<String> appointmentTypeList = FXCollections.observableArrayList();
+    ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reportContactData = FXCollections.observableArrayList();
@@ -121,26 +130,22 @@ private ReportsInterface myReport = n -> {return n*n;};
         ContactComboBox.setItems(allContacts);
 
 
-        /**https://www.geeksforgeeks.org/how-to-remove-duplicates-from-arraylist-in-java/*/
-        ObservableList<String> appointmentTypeList = FXCollections.observableArrayList();
-        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
-        for(Appointment a : allAppointments){
-            if(!appointmentTypeList.contains(a.getType())) {
+
+        for (Appointment a : allAppointments) {
+            if (!appointmentTypeList.contains(a.getType())) {
                 appointmentTypeList.add(a.getType());
             }
             TypeComboBox.setItems(appointmentTypeList);
-            }
+        }
 /**https://stackoverflow.com/questions/44031561/get-month-name-from-month-number-for-a-series-of-numbers*/
         ObservableList<Month> allMonths = FXCollections.observableArrayList();
-        for ( int monthNumber = 1; monthNumber <= 12; monthNumber++ ) {
+        for (int monthNumber = 1; monthNumber <= 12; monthNumber++) {
             Locale.getDefault();
-            Month month = Month.of( monthNumber );  // Get a month for number, 1-12 for January-December.
+            Month month = Month.of(monthNumber);  // Get a month for number, 1-12 for January-December.
             allMonths.add(Month.valueOf(String.valueOf(month)));
         }
         MonthComboBox.setItems(allMonths);
         MonthComboBox.setVisibleRowCount(4);
-
-
     }
 
 
@@ -161,39 +166,55 @@ private ReportsInterface myReport = n -> {return n*n;};
         /**report data is added to the ReportTable in the view*/
         reportTotalData = AppointmentsQuery.getMonthAppointments();
         reportTotalsTable.setItems(reportTotalData);
+        //int total = 0
+        // if TypeComboBoxvalue.matches a.getType && MonthComboBoxValue matches a.getStart.getMonth total++
+
+
 
     }
 
-    public void typeFilter(){
 
-        ContactComboBox.setItems(ContactsQuery.getAllContacts());
-        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
-         //FilteredList<Appointment> selectedType = new FilteredList<>(allAppointments, i-> i.getAppointmentType().equals(TypeComboBox.getSelectionModel().getSelectedItem().getAppointmentType()));
-         //TypeComboBox.setItems(selectedType);
-        ObservableList<String> appointmentTypeList = FXCollections.observableArrayList();
-        for(Appointment a : AppointmentsQuery.getAllAppointments()) {
-            a.getAppointmentType();
+public void typeFilter(){
+    String selectedType = TypeComboBox.getValue();
+    String selectedMonth = String.valueOf(MonthComboBox.getValue());
+    int monthNum = Month.valueOf(selectedMonth.toUpperCase()).getValue();
 
-            //appointmentTypeList.add(a.getType());
-
-            //TypeComboBox.setItems(appointmentTypeList);
-            //TypeComboBox.setItems(appointmentTypeList.set(Appointment.appointment.getAppointment_ID(), AppointmentsQuery.getAllAppointments()));
-            // appointmentTypeList.stream().count();
-            /***/
-
-            Appointment appointment = null;
-            TypeComboBox.setVisibleRowCount(3);
-            TypeComboBox.getSelectionModel().selectFirst();
+//    for(Appointment a: allAppointments){
+//        if((selectedType == a.getType()) && (monthNum==a.getStart().getMonthValue()) ){
+//            total++;
+//        }
+//        apptTotals.setText(String.valueOf(total));
+    int sum = 0;
+    for(Appointment a: allAppointments){
+        for(int total =0; total <= allAppointments.size(); total++){
+            if((selectedType == a.getType()) && (monthNum==a.getStart().getMonthValue()) ){
+                sum+=total;
+            }
+            apptTotals.setText(String.valueOf(sum/allAppointments.size()));
         }
-
     }
 
-    public void monthFilter(){
-
-    }
+}
 
 
+//    public void monthFilter(){
+//        String selectedType = TypeComboBox.getValue();
+//        String selectedMonth = String.valueOf(MonthComboBox.getValue());
+//        int monthNum = Month.valueOf(selectedMonth.toUpperCase()).getValue();
+//        int total = 0;
+//        for(Appointment a: allAppointments)
+//            while((selectedType == a.getType()) && (monthNum==a.getStart().getMonthValue()) ){
+//                total++;
+//            }
+//        apptTotals.setText(String.valueOf(total));
+//    }
 
+
+
+
+
+
+/**TAB II -- CONTACT SCHEDULE*/
     //tab2 -- contact schedule
    //a schedule for each contact in your organization that includes appointment ID, title, type and description, start date and time, end date and time, and customer ID
 
@@ -263,4 +284,15 @@ private ReportsInterface myReport = n -> {return n*n;};
     //tab3 -- remaining appts/day
     //https://www.tutorialspoint.com/javafx/bar_chart.htm
     //https://docs.oracle.com/javafx/2/charts/bar-chart.htm
+
+
+    @FXML
+    void MainMenuReturn(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Main Menu");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

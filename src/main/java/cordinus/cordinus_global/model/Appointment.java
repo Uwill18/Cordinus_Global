@@ -72,53 +72,39 @@ public class Appointment {
     public LocalDateTime getEnd() {
         return End;
     }
-
     public void setEnd(LocalDateTime end) {
         End = end;
     }
-
     public LocalDateTime getStart() {
         return Start;
     }
-
     public void setStart(LocalDateTime start) {
         Start = start;
     }
-
     public String getLocation() {
         return Location;
     }
-
     public void setLocation(String location) {
         Location = location;
     }
-
-
-
     public String getTitle() {
         return Title;
     }
-
     public void setTitle(String title) {
         Title = title;
     }
-
     public String getType() {
         return Type;
     }
-
     public void setType(String type) {
         Type = type;
     }
-
     public int getCustomer_ID() {
         return Integer.parseInt(String.valueOf(Customer_ID));
     }
-
     public void setCustomer_ID(String customer_ID) {
         Customer_ID = Integer.parseInt(customer_ID);
     }
-
     public String getUser_ID() {
         return User_ID;
     }

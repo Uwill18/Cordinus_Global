@@ -3,10 +3,9 @@ package cordinus.cordinus_global.controller;
 import cordinus.cordinus_global.DAO.ContactsQuery;
 import cordinus.cordinus_global.model.*;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
-import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.utils.TimeUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,7 +57,7 @@ public class AddApptController implements Initializable {
     private TextField UserIDTxt;
 
     @FXML
-    private ComboBox<String> TypeCombo;
+    private ComboBox<String> TypeComboBox;
     private Customer customer;
     private int index;
 
@@ -79,12 +78,9 @@ public class AddApptController implements Initializable {
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
         int contact = ContactComboBox.getValue().getContact_ID();
-        String type = TypeTxt.getText();
-
+        String type = TypeComboBox.getValue();
 
         LocalDateTime date =LocalDateTime.now();//use LocalDateTime
-        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        //Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
         Timestamp timestamp = Timestamp.valueOf(date);
 
         Timestamp CreateDate = timestamp;
@@ -130,9 +126,9 @@ public class AddApptController implements Initializable {
         if(TimeUtil.businessHoursCheck(start, end) && TimeUtil.appointmentOverlapCheck(start,end)){
                 AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
         }
-        else{
-            Alerts.selectionWarning();
-       }
+//        else{
+//            Alerts.selectionWarning();
+//       }
     }
 
     @FXML
@@ -172,6 +168,12 @@ public class AddApptController implements Initializable {
 //        for(Appointment appointment: AppointmentsQuery.getAllAppointments()){
 //            TypeCombo.getItems().add(appointment.getType());
 //        }
+
+        ObservableList<String> typeCount = FXCollections.observableArrayList();
+        for(int i = 1; i<=3; i++){
+            TypeComboBox.getItems().add(String.valueOf(i));
+        }
+        //TypeComboBox.setItems(typeCount);
 
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
 

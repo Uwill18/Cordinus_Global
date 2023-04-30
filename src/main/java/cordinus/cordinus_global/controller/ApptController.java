@@ -26,54 +26,37 @@ import java.util.logging.Level;
 //implement similar to Part
 //initiate getters and setters
 public class ApptController {
-
         private ObservableList<Appointment> appointmentdata;
-
         @FXML
         private TableView<Appointment> AppointmentTable;
-
         @FXML
         private TableColumn<?, ?> Appointment_ID;
-
         @FXML
         private TableColumn<?, ?> Contact_ID;
-
         @FXML
         private TableColumn<?, ?> Description;
-
         @FXML
         private TableColumn<?, ?> End;
-
         @FXML
         private TableColumn<?, ?> Location;
-
         @FXML
         private TableColumn<?, ?> Start;
-
         @FXML
         private TableColumn<?, ?> Title;
-
         @FXML
         private TableColumn<?, ?> Type;
-
         @FXML
         private TableColumn<?, ?> Customer_ID;
-
         @FXML
         private TableColumn<?, ?> User_ID;
-
         @FXML
         private RadioButton AllRB;
-
         @FXML
         private RadioButton MonthRB;
-
         @FXML
         private RadioButton WeekRB;
-
         @FXML
         private Label ApptIntervalLbl;
-        
         public Appointment appointment;
 
         public void initialize() throws SQLException, IOException {
@@ -81,7 +64,6 @@ public class ApptController {
                 LoadAppointments();
                 setAppointmentCellTable();
         }
-
 
         private void setAppointmentCellTable(){
                 Appointment_ID.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));//1,1
@@ -116,7 +98,6 @@ public class ApptController {
 
         @FXML
         void OnAddAppt(ActionEvent event) throws IOException {
-
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
@@ -128,7 +109,6 @@ public class ApptController {
         @FXML
         void OnDeleteAppt(ActionEvent event) throws SQLException{
                 //toDO if selected alert, else if nothing selected.. selection error
-
                 if((AppointmentTable.getSelectionModel().getSelectedItem() != null)){
                         try{
                                         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -150,24 +130,17 @@ public class ApptController {
                                                         Optional<ButtonType> delete_result = delete_alert.showAndWait();
                                                         AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
                                                 }
-
                                         }
-
                         }catch(NullPointerException e){
                                 Alerts.SelectionError();
                         }
-
                 }else{
                         Alerts.SelectionError();
                 }
-
-
-
         }
 
         @FXML
         void OnUpdateAppt(ActionEvent event) throws IOException {
-
                 try{
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
@@ -180,11 +153,9 @@ public class ApptController {
                         Parent scene = loader.getRoot();
                         stage.setScene(new Scene(scene));
                         stage.show();
-
                 }catch (NullPointerException e){
                         Alerts.SelectionError();
                 }
-
         }
 
         @FXML
