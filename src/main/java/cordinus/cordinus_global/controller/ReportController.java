@@ -117,6 +117,10 @@ private ReportsInterface myReport = n -> {return n*n;};
         int x = myReport.calculateSquare(4);
         System.out.println("the square is : " + x);
 
+        ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
+        ContactComboBox.setItems(allContacts);
+
+
         /**https://www.geeksforgeeks.org/how-to-remove-duplicates-from-arraylist-in-java/*/
         ObservableList<String> appointmentTypeList = FXCollections.observableArrayList();
         ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
@@ -135,6 +139,7 @@ private ReportsInterface myReport = n -> {return n*n;};
         }
         MonthComboBox.setItems(allMonths);
         MonthComboBox.setVisibleRowCount(4);
+
 
     }
 
