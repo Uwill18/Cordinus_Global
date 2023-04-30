@@ -24,8 +24,6 @@ public abstract class ContactsQuery {
                 String contactName = rs.getString("Contact_Name");
                 String Email = rs.getString("Email");
                 contactList.add(new Contact(contactID,contactName,Email));
-
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

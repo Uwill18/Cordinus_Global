@@ -7,7 +7,6 @@ import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.reports.ReportsInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,8 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.Month;
-import java.util.Collections;
-import java.util.ResourceBundle;
+import java.time.format.TextStyle;
+import java.util.*;
 
 
 //https://www.youtube.com/watch?v=KzfhgGGzWMQ
@@ -92,10 +91,10 @@ public  class ReportController implements Initializable {
     private TableColumn<?, ?> totAppointment_Type;
 
     @FXML
-    private ComboBox<Appointment> MonthComboBox;
+    private ComboBox<Month> MonthComboBox;
 
     @FXML
-    private ComboBox<Appointment> TypeComboBox;
+    private ComboBox<String> TypeComboBox;
 
     @FXML
     private TextField apptTotals;
@@ -118,13 +117,27 @@ private ReportsInterface myReport = n -> {return n*n;};
         int x = myReport.calculateSquare(4);
         System.out.println("the square is : " + x);
 
-
-        MonthComboBox.setVisibleRowCount(6);
-
-        //MonthComboBox.setValue(appointment.getStart().getMonth());
-
+        /**https://www.geeksforgeeks.org/how-to-remove-duplicates-from-arraylist-in-java/*/
+        ObservableList<String> appointmentTypeList = FXCollections.observableArrayList();
+        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
+        for(Appointment a : allAppointments){
+            if(!appointmentTypeList.contains(a.getType())) {
+                appointmentTypeList.add(a.getType());
+            }
+            TypeComboBox.setItems(appointmentTypeList);
+            }
+/**https://stackoverflow.com/questions/44031561/get-month-name-from-month-number-for-a-series-of-numbers*/
+        ObservableList<Month> allMonths = FXCollections.observableArrayList();
+        for ( int monthNumber = 1; monthNumber <= 12; monthNumber++ ) {
+            Locale.getDefault();
+            Month month = Month.of( monthNumber );  // Get a month for number, 1-12 for January-December.
+            allMonths.add(Month.valueOf(String.valueOf(month)));
+        }
+        MonthComboBox.setItems(allMonths);
+        MonthComboBox.setVisibleRowCount(4);
 
     }
+
 
 
     //tab1 --total appts
@@ -144,64 +157,14 @@ private ReportsInterface myReport = n -> {return n*n;};
         reportTotalData = AppointmentsQuery.getMonthAppointments();
         reportTotalsTable.setItems(reportTotalData);
 
-        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
-        ObservableList<Month> appointmentMonths = FXCollections.observableArrayList();
-        ObservableList<Month> monthNames = FXCollections.observableArrayList();
-        ObservableList<Month> monthOfAppointments = FXCollections.observableArrayList();
-
-        ObservableList<String> appointmentType = FXCollections.observableArrayList();
-        ObservableList<String> uniqueAppointment = FXCollections.observableArrayList();
-
-        ObservableList<Appointment> reportType = FXCollections.observableArrayList();
-        ObservableList<Appointment> reportMonths = FXCollections.observableArrayList();
-
-
-        //IDE converted to Lambda
-        allAppointments.forEach(appointments -> {
-            appointmentType.add(appointments.getType());
-            //TypeComboBox.setItems(appointments.getAppointmentType());
-        });
-
-        //IDE converted to Lambda
-        allAppointments.stream().map(appointment -> appointment.getStart().getMonth()).forEach(appointmentMonths::add);
-        allAppointments.stream().map(appointment -> appointment.getStart().getMonth().name().toString());
-
-        //IDE converted to Lambda
-        appointmentMonths.stream().filter(month -> !monthOfAppointments.contains(month)).forEach(monthOfAppointments::add);
-//
-//        for (Appointment appointments: allAppointments) {
-//            String appointmentsAppointmentType = appointments.getType();
-//            if (!uniqueAppointment.contains(appointmentsAppointmentType)) {
-//                uniqueAppointment.add(appointmentsAppointmentType);
-//            }
-//        }
-//
-//        for (Month month: monthOfAppointments) {
-//            int allMonths = Collections.frequency(appointmentMonths, month);
-//            String monthName = month.name();
-//            Appointment appointment = null;
-//            appointment = appointment.apptMonthCount(monthName, allMonths);
-//            reportMonths.add(appointment.apptMonthCount(monthName, allMonths));
-//        }
-//       // appointmentTotalAppointmentByMonth.setItems(reportMonths);
-//        MonthComboBox.setItems(reportMonths);
-//
-//        for (String type: uniqueAppointment) {
-//            String typeToSet = type;
-//            int typeTotal = Collections.frequency(appointmentType, type);
-//            Appointment appointment = null;
-//            appointment = appointment.apptTypeCount(typeToSet, typeTotal);
-//            reportType.add(appointment.apptTypeCount(typeToSet, typeTotal));
-//        }
-//        apptTotals.setText(String.valueOf(reportType));
     }
 
     public void typeFilter(){
 
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
         ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
-         FilteredList<Appointment> selectedType = new FilteredList<>(allAppointments, i-> i.getAppointmentType().equals(TypeComboBox.getSelectionModel().getSelectedItem().getAppointmentType()));
-         TypeComboBox.setItems(selectedType);
+         //FilteredList<Appointment> selectedType = new FilteredList<>(allAppointments, i-> i.getAppointmentType().equals(TypeComboBox.getSelectionModel().getSelectedItem().getAppointmentType()));
+         //TypeComboBox.setItems(selectedType);
         ObservableList<String> appointmentTypeList = FXCollections.observableArrayList();
         for(Appointment a : AppointmentsQuery.getAllAppointments()) {
             a.getAppointmentType();
