@@ -201,5 +201,23 @@ public abstract class AppointmentsQuery {
         return null;
     }
 
+    public static int getAppointmentByTypeMonth(String type, int month){
+        try {
+            String sql = "SELECT COUNT(*) AS Result FROM client_schedule.appointments WHERE TYPE=? AND month(START)=?";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ps.setString(1, type);
+            ps.setInt(2, month);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("Result");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+    //toDO create a list method that gives access to new list, public static list, return observablelist from select all
+
 }
 

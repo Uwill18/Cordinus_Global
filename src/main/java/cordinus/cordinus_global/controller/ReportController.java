@@ -13,6 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -26,34 +30,26 @@ import java.time.temporal.ChronoField;
 import java.util.*;
 
 
+
 //https://www.youtube.com/watch?v=KzfhgGGzWMQ
 public  class ReportController implements Initializable {
     //FXML VARIABLES
     private ObservableList<Appointment> reportContactData;
     private ObservableList<Appointment> reportTotalData;
-
     @FXML
     private ComboBox<Contact> ContactComboBox;
-
-
     @FXML
     private TableView<Appointment> reportContactsTable;
-
     @FXML
     private TableView<Appointment> reportTotalsTable;
-
     @FXML
     private TableColumn<?, ?> Appointment_ID;
-
     @FXML
     private TableColumn<?, ?> totAppointmentID;
-
     @FXML
     private TableColumn<?, ?> Contact_ID;
-
     @FXML
     private TableColumn<?, ?> Description;
-
     @FXML
     private TableColumn<?, ?> totDescription;
 
@@ -105,6 +101,7 @@ public  class ReportController implements Initializable {
     @FXML
     private TextField apptTotals;
 
+
 private ReportsInterface myReport = n -> {return n*n;};
     //initialize
     /**https://www.geeksforgeeks.org/how-to-remove-duplicates-from-arraylist-in-java/*/
@@ -146,6 +143,7 @@ private ReportsInterface myReport = n -> {return n*n;};
         }
         MonthComboBox.setItems(allMonths);
         MonthComboBox.setVisibleRowCount(4);
+
     }
 
 
@@ -168,9 +166,6 @@ private ReportsInterface myReport = n -> {return n*n;};
         reportTotalsTable.setItems(reportTotalData);
         //int total = 0
         // if TypeComboBoxvalue.matches a.getType && MonthComboBoxValue matches a.getStart.getMonth total++
-
-
-
     }
 
 
@@ -286,7 +281,14 @@ public void typeFilter(){
     //https://docs.oracle.com/javafx/2/charts/bar-chart.htm
 
 
-    @FXML
+
+
+
+
+
+
+
+        @FXML
     void MainMenuReturn(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -294,5 +296,12 @@ public void typeFilter(){
         stage.setTitle("Main Menu");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void onActionFilter(ActionEvent event) throws SQLException {
+        String type = TypeComboBox.getValue();
+        int month = MonthComboBox.getValue().getValue();
+        int result = AppointmentsQuery.getAppointmentByTypeMonth(type, month);
+        apptTotals.setText(String.valueOf(result));
     }
 }
