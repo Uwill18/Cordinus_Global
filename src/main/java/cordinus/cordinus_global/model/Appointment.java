@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Appointment {
-
     private int Appointment_ID;
     private int Contact_ID;
     private String Description;
@@ -32,10 +31,6 @@ public class Appointment {
         End = end;
         Customer_ID = Integer.parseInt(customerID);
         User_ID = userID;
-        //add customer_id
-        //user_id
-
-
     }
 
 
@@ -117,54 +112,11 @@ public class Appointment {
         return ContactsQuery.getAllContacts();
     }
 
-   // public String toString(){
-//        return ;
-//    }
-
+/**applied same logic as getCountryByDivision*/
     public Customer getCustomer_Name(){
         return AppointmentsQuery.getCustomerByID(Customer_ID);
     }
 
-
-
-    /**
-     * @param appointmentMonth
-     * @param appointmentTotal
-     */
-
-
-    /**
-     * @return appointmentMonth
-     */
-    public String getAppointmentMonth() {
-
-        return appointmentMonth;
-    }
-
-    /**
-     * @return appointmentTotal
-     */
-    public int getAppointmentTotal() {
-
-        return appointmentTotal;
-    }
-
-    public String getAppointmentType() {
-
-        return appointmentType;
-    }
-
-    public Appointment apptTypeCount(String appointmentType, int appointmentTotal) {
-        this.appointmentType = appointmentType;
-        this.appointmentTotal = appointmentTotal;
-        return null;
-    }
-
-    public Appointment apptMonthCount(String appointmentMonth, int appointmentTotal) {
-        this.appointmentMonth = appointmentMonth;
-        this.appointmentTotal = appointmentTotal;
-        return null;
-    }
 
 
 }

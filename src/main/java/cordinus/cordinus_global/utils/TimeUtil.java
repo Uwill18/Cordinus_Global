@@ -137,7 +137,7 @@ public class TimeUtil {
                 if(start.isAfter(appointment.getStart()) && end.isAfter(appointment.getEnd())){
                     System.out.println("Late Start Overlap");
                     Alerts.overlapWarning();
-                    return false;
+                    //return false;
                }
                 if(start.isBefore(appointment.getStart()) && end.isBefore(appointment.getEnd())){
                     System.out.println("Start Before and End During Overlap");

@@ -71,6 +71,9 @@ public class ModifyApptController implements Initializable {
     @FXML
     private ComboBox<Contact> ContactComboBox;
 
+    @FXML
+    private ComboBox<String> TypeComboBox;
+
     private Appointment appointment;
 
     private int selectedIndex;
@@ -88,7 +91,7 @@ public class ModifyApptController implements Initializable {
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
         int contactid = Integer.parseInt(ContactTxt.getText());
-        String type = TypeTxt.getText();
+        String type = TypeComboBox.getValue();
 
         Date date = new Date();//use LocalDateTime
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -100,10 +103,11 @@ public class ModifyApptController implements Initializable {
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
         loader.load();
         LoginController loginController= loader.getController();
-        String CreatedBy = String.valueOf(loginController.UsernameTxt);
-        //String CreatedBy ="test";
+        //String CreatedBy = String.valueOf(loginController.UsernameTxt);
+        String CreatedBy ="test";
 
-        String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);;
+       // String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);
+        String LastUpdatedBy ="test";
 
         int customerid = Integer.parseInt(CustomerIDTxt.getText());
         int userid = Integer.parseInt(UserIDTxt.getText());
@@ -118,8 +122,6 @@ public class ModifyApptController implements Initializable {
 
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
-        LocalTime BusinessStart = LocalTime.of(8,0);
-        LocalTime BusinessEnd = LocalTime.of(22,0);
         LocalDateTime start = LocalDateTime.of(startDate,startTime);
         LocalDateTime end = LocalDateTime.of(endDate,endTime);
         Timestamp startby = Timestamp.valueOf(start);
@@ -175,9 +177,11 @@ public class ModifyApptController implements Initializable {
             EndTimeCombo.getItems().add(LocalTime.of(hr,45));
             //hardcode the times for forloops
         }
-
+        String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
+        for(int i = 0; i<3; i++){
+            TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
+        }
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
-
     }
 
 
@@ -191,7 +195,8 @@ public class ModifyApptController implements Initializable {
         DescriptionTxt.setText(String.valueOf(appointment.getDescription()));
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
-        TypeTxt.setText(String.valueOf(appointment.getType()));
+        ContactComboBox.setValue(appointment.getContact().get(appointment.getContact_ID()-1));//gets index minus to set current contactcombo
+        TypeComboBox.setValue(String.valueOf(appointment.getType()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 
 //        ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();

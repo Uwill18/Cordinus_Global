@@ -170,6 +170,7 @@ public abstract class AppointmentsQuery {
         return appointmentList;
     }
 
+    /**applied same logic as getCountryByDivision and performed a join, and returned the object from the query*/
     public static Customer getCustomerByID(int customerID){
         try {
             String sql = "SELECT * FROM APPOINTMENTS AS A INNER JOIN CUSTOMERS AS C ON C.Customer_ID = A.Customer_ID AND C.Customer_ID = ?";

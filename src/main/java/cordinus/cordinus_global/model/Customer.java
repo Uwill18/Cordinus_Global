@@ -82,6 +82,8 @@ public class Customer {
         return CountriesQuery.getCountryByDivision(Integer.parseInt(Division_ID));
     }
 
+    /**applied same logic as getCountryByDivision to convert hash values to string for customer name
+     * in the appointment totals table*/
     @Override
     public String toString(){
         return Customer_Name;
