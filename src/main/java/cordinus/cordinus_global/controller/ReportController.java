@@ -169,27 +169,15 @@ private ReportsInterface myReport = n -> {return n*n;};
     }
 
 
-public void typeFilter(){
-    String selectedType = TypeComboBox.getValue();
-    String selectedMonth = String.valueOf(MonthComboBox.getValue());
-    int monthNum = Month.valueOf(selectedMonth.toUpperCase()).getValue();
-
-//    for(Appointment a: allAppointments){
-//        if((selectedType == a.getType()) && (monthNum==a.getStart().getMonthValue()) ){
-//            total++;
-//        }
-//        apptTotals.setText(String.valueOf(total));
-    int sum = 0;
-    for(Appointment a: allAppointments){
-        for(int total =0; total <= allAppointments.size(); total++){
-            if((selectedType == a.getType()) && (monthNum==a.getStart().getMonthValue()) ){
-                sum+=total;
-            }
-            apptTotals.setText(String.valueOf(sum/allAppointments.size()));
-        }
+    public void onActionFilter(ActionEvent event) throws SQLException {
+        String type = TypeComboBox.getValue();
+        int month = MonthComboBox.getValue().getValue();
+        int result = AppointmentsQuery.getAppointmentByTypeMonth(type, month);
+        apptTotals.setText(String.valueOf(result));
+        reportTotalData.clear();
+        reportTotalData = AppointmentsQuery.getTotalAppointments(type,month);
+        reportTotalsTable.setItems(reportTotalData);
     }
-
-}
 
 
 //    public void monthFilter(){
@@ -298,10 +286,5 @@ public void typeFilter(){
         stage.show();
     }
 
-    public void onActionFilter(ActionEvent event) throws SQLException {
-        String type = TypeComboBox.getValue();
-        int month = MonthComboBox.getValue().getValue();
-        int result = AppointmentsQuery.getAppointmentByTypeMonth(type, month);
-        apptTotals.setText(String.valueOf(result));
-    }
+
 }

@@ -169,18 +169,15 @@ public class AddApptController implements Initializable {
 //            TypeCombo.getItems().add(appointment.getType());
 //        }
 
-        ObservableList<String> typeCount = FXCollections.observableArrayList();
-        for(int i = 1; i<=3; i++){
-            TypeComboBox.getItems().add(String.valueOf(i));
+
+        String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
+        for(int i = 0; i<3; i++){
+            TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
         }
-        //TypeComboBox.setItems(typeCount);
-
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
-
     }
 
 
-    //
 
     public void Customer_Passer(int index, Customer customer){
         this.customer = customer;

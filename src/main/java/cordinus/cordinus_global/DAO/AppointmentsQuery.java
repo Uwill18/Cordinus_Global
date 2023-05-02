@@ -95,8 +95,6 @@ public abstract class AppointmentsQuery {
      * are implemented in this file to condense code*/
     public static ObservableList<Appointment> getAllAppointments(){
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
-
-
         try {
             String sql = "SELECT * FROM APPOINTMENTS";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -120,7 +118,6 @@ public abstract class AppointmentsQuery {
             throw new RuntimeException(e);
         }
         return appointmentList;
-
     }
 
 
@@ -218,6 +215,37 @@ public abstract class AppointmentsQuery {
         return 0;
     }
     //toDO create a list method that gives access to new list, public static list, return observablelist from select all
+
+    public static ObservableList<Appointment> getTotalAppointments(String totaltype, int month){
+        ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM APPOINTMENTS WHERE TYPE=? AND month(START)=?";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+
+            ps.setString(1, totaltype);
+            ps.setInt(2, month);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentID = rs.getInt("Appointment_ID");
+                String contactID = rs.getString("Contact_ID");
+                String description = rs.getString("Description");
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                String location = rs.getString("Location");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                String title = rs.getString("Title");
+                String type = rs.getString("Type");
+                String customerID = rs.getString("Customer_ID");
+                String userID = rs.getString("User_ID");
+                appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
+                //getCustomerByID(Integer.parseInt(customerID));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentList;
+    }
 
 }
 
