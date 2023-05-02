@@ -121,8 +121,8 @@ public class Appointment {
 //        return ;
 //    }
 
-    public Customer getCustomerByID(){
-        return AppointmentsQuery.getCustomerByID(Integer.parseInt(String.valueOf(Customer_ID)));
+    public Customer getCustomer_Name(){
+        return AppointmentsQuery.getCustomerByID(Customer_ID);
     }
 
 

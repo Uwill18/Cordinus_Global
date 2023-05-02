@@ -82,4 +82,9 @@ public class Customer {
         return CountriesQuery.getCountryByDivision(Integer.parseInt(Division_ID));
     }
 
+    @Override
+    public String toString(){
+        return Customer_Name;
+    }
+
 }
