@@ -30,6 +30,7 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+import static java.lang.Math.floor;
 
 
 //https://www.youtube.com/watch?v=KzfhgGGzWMQ
@@ -165,6 +166,8 @@ private ReportsInterface myReport = n -> {return n*n;};
         String currentDOW = dow.toString();
         todayLbl.setText(currentDOW);
 
+
+
         remainingFifteen();
         remainingThirty();
         remainingFortyFive();
@@ -284,9 +287,15 @@ private ReportsInterface myReport = n -> {return n*n;};
 //-- return number to string +"/x"
 
     public void remainingHours(){
-        long businessDayMinutes = 840;
+        //long businessDayMinutes = 840;
+        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
+        ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
+        ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
+        long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        long timeTotal = (businessDayMinutes- appointmentTimeSum)/60;
+        //long timeTotal = (businessDayMinutes- appointmentTimeSum)/60;
+
+        long timeTotal = (businessDayMinutes)/60;
         hourTxt.setText(String.valueOf(timeTotal));
     }
 
@@ -298,10 +307,17 @@ private ReportsInterface myReport = n -> {return n*n;};
     }
 
     public void remainingThirty(){
-        long businessDayMinutes = 840;
+        //long businessDayMinutes = 840;
         //long businessHours = 14;
+
+        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
+        ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
+        ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
+        long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        long timeTotal = (businessDayMinutes- appointmentTimeSum)/30;
+        //long timeTotal = (businessDayMinutes- appointmentTimeSum)/30;
+
+        int timeTotal = (int) floor((businessDayMinutes)/30);
         halfPastTxt.setText(String.valueOf(timeTotal));
     }
 
