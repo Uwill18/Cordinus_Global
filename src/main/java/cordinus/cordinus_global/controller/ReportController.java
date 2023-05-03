@@ -161,9 +161,10 @@ private ReportsInterface myReport = n -> {return n*n;};
         MonthComboBox.setVisibleRowCount(4);
 
 
-        //DayOfWeek dow = LocalDate.now().getDayOfWeek();
-        //String currentDOW = dow.toString();
-        //todayLbl.setText(currentDOW);
+        DayOfWeek dow = LocalDate.now().getDayOfWeek();
+        String currentDOW = dow.toString();
+        todayLbl.setText(currentDOW);
+
         remainingFifteen();
         remainingThirty();
         remainingFortyFive();
@@ -306,15 +307,15 @@ private ReportsInterface myReport = n -> {return n*n;};
 
     public void remainingFifteen(){
         //Duration  durly = Duration.ofDays(LocalTime.now().toSecondOfDay());
-       // long businessDayMinutes = 840;
+        long businessDayMinutes = 840;
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        long test = ChronoField.MINUTE_OF_DAY.ordinal();
+        //long test = ChronoField.MINUTE_OF_DAY.ordinal();
 //       long timeDifference = ChronoUnit.MINUTES.between(ChronoField.MINUTE_OF_DAY,appointmentTimeSum);
-       // long timeTotal = (businessDayMinutes- appointmentTimeSum)/15;
+        long timeTotal = (businessDayMinutes- appointmentTimeSum)/15;
         //long timeTotal = (test- appointmentTimeSum)/15;
-        long timeTotal = test;
-        //quarterPastTxt.setText(String.valueOf(timeTotal));
-        quarterPastTxt.setText(ChronoField.DAY_OF_WEEK.name());
+        //long timeTotal = test;
+        quarterPastTxt.setText(String.valueOf(timeTotal));
+
     }
 
 

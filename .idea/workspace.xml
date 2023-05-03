@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="ModifyApptController updated for typecombo">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="brainstorming report three">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,13 +90,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Login &amp; View Updates">
-      <created>1680755560361</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1680755560361</updated>
     </task>
     <task id="LOCAL-00084" summary="File Reorganization">
       <created>1680803176622</created>
@@ -437,7 +427,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683012904558</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="brainstorming report three">
+      <created>1683076447759</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1683076447759</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -452,7 +449,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Testing Appointment Scheduling" />
     <MESSAGE value="Testing Appointment Overlap" />
     <MESSAGE value="Sucessfully changed Homescreen with RBs" />
     <MESSAGE value="updatign appointmentOverlap" />
@@ -477,7 +473,8 @@
     <MESSAGE value="Updating db and AddAppt per reqs" />
     <MESSAGE value="CustomerName applied to reports view" />
     <MESSAGE value="ModifyApptController updated for typecombo" />
-    <option name="LAST_COMMIT_MESSAGE" value="ModifyApptController updated for typecombo" />
+    <MESSAGE value="brainstorming report three" />
+    <option name="LAST_COMMIT_MESSAGE" value="brainstorming report three" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
