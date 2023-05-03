@@ -24,9 +24,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.Month;
+import java.time.*;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
@@ -101,6 +102,21 @@ public  class ReportController implements Initializable {
     @FXML
     private TextField apptTotals;
 
+    @FXML
+    private TextField halfPastTxt;
+
+    @FXML
+    private TextField hourTxt;
+
+    @FXML
+    private TextField quarterPastTxt;
+
+    @FXML
+    private TextField quarterToTxt;
+
+    @FXML
+    private Label todayLbl;
+
 
 private ReportsInterface myReport = n -> {return n*n;};
     //initialize
@@ -144,6 +160,15 @@ private ReportsInterface myReport = n -> {return n*n;};
         MonthComboBox.setItems(allMonths);
         MonthComboBox.setVisibleRowCount(4);
 
+
+        //DayOfWeek dow = LocalDate.now().getDayOfWeek();
+        //String currentDOW = dow.toString();
+        //todayLbl.setText(currentDOW);
+        remainingFifteen();
+        remainingThirty();
+        remainingFortyFive();
+        remainingHours();
+
     }
 
 
@@ -160,12 +185,9 @@ private ReportsInterface myReport = n -> {return n*n;};
     }
 
     public void LoadReportTotals() throws SQLException {
-
         /**report data is added to the ReportTable in the view*/
         reportTotalData = AppointmentsQuery.getMonthAppointments();
         reportTotalsTable.setItems(reportTotalData);
-        //int total = 0
-        // if TypeComboBoxvalue.matches a.getType && MonthComboBoxValue matches a.getStart.getMonth total++
     }
 
 
@@ -178,22 +200,6 @@ private ReportsInterface myReport = n -> {return n*n;};
         reportTotalData = AppointmentsQuery.getTotalAppointments(type,month);
         reportTotalsTable.setItems(reportTotalData);
     }
-
-
-//    public void monthFilter(){
-//        String selectedType = TypeComboBox.getValue();
-//        String selectedMonth = String.valueOf(MonthComboBox.getValue());
-//        int monthNum = Month.valueOf(selectedMonth.toUpperCase()).getValue();
-//        int total = 0;
-//        for(Appointment a: allAppointments)
-//            while((selectedType == a.getType()) && (monthNum==a.getStart().getMonthValue()) ){
-//                total++;
-//            }
-//        apptTotals.setText(String.valueOf(total));
-//    }
-
-
-
 
 
 
@@ -269,8 +275,47 @@ private ReportsInterface myReport = n -> {return n*n;};
     //https://docs.oracle.com/javafx/2/charts/bar-chart.htm
 
 
+//
+//--get local time difference of a day
+//--subtract duration of all appointment object for that day by getting the difference of end from start.
+//            --subtract apptimediff from local time difference
+//--divide remaining local time by relative time measurement
+//-- return number to string +"/x"
 
+    public void remainingHours(){
+        long businessDayMinutes = 840;
+        long appointmentTimeSum = AppointmentsQuery.getTimeSum();
+        long timeTotal = (businessDayMinutes- appointmentTimeSum)/60;
+        hourTxt.setText(String.valueOf(timeTotal));
+    }
 
+    public void remainingFortyFive(){
+        long businessDayMinutes = 840;
+        long appointmentTimeSum = AppointmentsQuery.getTimeSum();
+        long timeTotal = (businessDayMinutes- appointmentTimeSum)/45;
+        quarterToTxt.setText(String.valueOf(timeTotal));
+    }
+
+    public void remainingThirty(){
+        long businessDayMinutes = 840;
+        //long businessHours = 14;
+        long appointmentTimeSum = AppointmentsQuery.getTimeSum();
+        long timeTotal = (businessDayMinutes- appointmentTimeSum)/30;
+        halfPastTxt.setText(String.valueOf(timeTotal));
+    }
+
+    public void remainingFifteen(){
+        //Duration  durly = Duration.ofDays(LocalTime.now().toSecondOfDay());
+       // long businessDayMinutes = 840;
+        long appointmentTimeSum = AppointmentsQuery.getTimeSum();
+        long test = ChronoField.MINUTE_OF_DAY.ordinal();
+//       long timeDifference = ChronoUnit.MINUTES.between(ChronoField.MINUTE_OF_DAY,appointmentTimeSum);
+       // long timeTotal = (businessDayMinutes- appointmentTimeSum)/15;
+        //long timeTotal = (test- appointmentTimeSum)/15;
+        long timeTotal = test;
+        //quarterPastTxt.setText(String.valueOf(timeTotal));
+        quarterPastTxt.setText(ChronoField.DAY_OF_WEEK.name());
+    }
 
 
 

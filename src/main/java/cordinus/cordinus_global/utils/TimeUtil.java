@@ -24,7 +24,7 @@ public class TimeUtil {
     public static boolean businessHoursCheck( LocalDateTime start, LocalDateTime end) {
         LocalDate selectedStart = start.toLocalDate();
         final ZonedDateTime EST_BH_START = ZonedDateTime.of(selectedStart, LocalTime.of(8,0), ZoneId.of("America/New_York"));
-        // private static final ZonedDateTime EST_BH_START_RANGE = ZonedDateTime.of(LocalDate.now().plusMonths(1), LocalTime.of(8,0), ZoneId.of("America/New_York"));
+
 
 
         ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
