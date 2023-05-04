@@ -66,20 +66,6 @@ public abstract class AppointmentsQuery {
         String sql = "DELETE FROM APPOINTMENTS WHERE APPOINTMENT_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1,customerId);
-
-
-            ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
-            for (Appointment appointment: allAppointments ) {
-                if((appointment.getCustomer_ID() != customerId)){
-                    int rowsAffected = ps.executeUpdate();
-                    return rowsAffected;
-                }
-                else{
-                    System.out.println("matching customer found");
-                    Alerts.ValueWarning();//change to delete error
-                }
-            }
-
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }

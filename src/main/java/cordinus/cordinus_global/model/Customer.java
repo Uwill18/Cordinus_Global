@@ -1,10 +1,16 @@
 package cordinus.cordinus_global.model;
 
 import cordinus.cordinus_global.DAO.CountriesQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 public class Customer {
 
-
+    private final ObservableList<Appointment> associatedAppointments = FXCollections.observableArrayList();
 
     private int Customer_ID;
 
@@ -87,6 +93,31 @@ public class Customer {
     @Override
     public String toString(){
         return Customer_Name;
+    }
+
+    public void addAssociatedAppointment(Appointment newAppt){
+        if(newAppt!=null){
+            try{
+                associatedAppointments.add(newAppt);
+            }catch (RuntimeException r){
+                Alerts.SelectionError();
+            }
+        }
+
+    }
+
+    public ObservableList<Appointment> getAllAssociatedAppointments(){
+        return associatedAppointments;
+    }
+
+    public void deleteAssociatedAppointment(Appointment newAppt){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "If you delete this customer you must delete all associated appointments first." +
+                "\nDo you wish to proceed?");
+        alert.setTitle("DELETE CONFIRMATION");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent()  && result.get() != ButtonType.CANCEL){
+            associatedAppointments.remove(newAppt);
+        }
     }
 
 }

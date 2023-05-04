@@ -4,6 +4,7 @@ import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.model.Appointment;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -70,6 +72,27 @@ public class Main extends Application {
         //Locale locale = new Locale("fr");
         //Locale.setDefault(locale);
         JDBC.openConnection();
+        ObservableList<Appointment> dayAppt = AppointmentsQuery.getDayAppointments();
+        System.out.println(dayAppt.size());
+        int totalMinutes = 0;
+        int totalBusinessMinutes = 14*60;
+        int minutesLeft = 0;
+        for(Appointment a: dayAppt){
+            totalMinutes += ChronoUnit.MINUTES.between(a.getStart(),a.getEnd());
+
+        }
+        if(totalMinutes < totalBusinessMinutes){
+            minutesLeft = totalBusinessMinutes - totalMinutes;
+            //System.out.println(totalMinutes);
+            System.out.println("hours left: " + minutesLeft/60);
+            System.out.println("forty-five intervals left: " + minutesLeft/45);
+            System.out.println("thirty intervals left: " + minutesLeft/30);
+            System.out.println("fifteen minute intervals left: " + minutesLeft/15);
+
+        }
+        else{
+            System.out.println("no more appointments for the day");
+        }
         launch();
         JDBC.closeConnection();
     }

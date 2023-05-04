@@ -1,5 +1,7 @@
 package cordinus.cordinus_global.DAO;
 
+import cordinus.cordinus_global.model.Alerts;
+import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import javafx.collections.FXCollections;
@@ -54,12 +56,27 @@ public abstract class CustomersQuery {
     }
 
     public static int delete(int customerId) throws SQLException {
+
         String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1,customerId);
-        int rowsAffected = ps.executeUpdate();
-        return rowsAffected;
 
+        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
+        for (Appointment appointment: allAppointments ) {
+            if((appointment.getCustomer_ID() == customerId)){
+               // System.out.println("matching customer found. cannot delete.");
+                //Alerts.ValueWarning();//change to delete error
+
+                return 0;
+            }
+            else{
+                int rowsAffected = ps.executeUpdate();
+                return rowsAffected;
+            }
+        }
+
+        //int rowsAffected = ps.executeUpdate();
+        return 0;
     }
 
     //change over

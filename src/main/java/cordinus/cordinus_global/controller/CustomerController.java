@@ -117,6 +117,10 @@ public class CustomerController {
 
         if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
             try{
+
+
+
+
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Delete Warning");
                 alert.setHeaderText("Deleting Customer");

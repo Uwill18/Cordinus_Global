@@ -293,45 +293,62 @@ private ReportsInterface myReport = n -> {return n*n;};
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        //long timeTotal = (businessDayMinutes- appointmentTimeSum)/60;
-
-        long timeTotal = (businessDayMinutes)/60;
-        hourTxt.setText(String.valueOf(timeTotal));
+        if(businessDayMinutes>appointmentTimeSum){
+            long timeTotal = (businessDayMinutes- appointmentTimeSum)/60;
+            hourTxt.setText(String.valueOf(timeTotal));
+        }else{
+            long timeTotal = (businessDayMinutes)/60;
+            hourTxt.setText(String.valueOf(timeTotal));
+        }
     }
 
     public void remainingFortyFive(){
-        long businessDayMinutes = 840;
-        long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        long timeTotal = (businessDayMinutes- appointmentTimeSum)/45;
-        quarterToTxt.setText(String.valueOf(timeTotal));
-    }
-
-    public void remainingThirty(){
-        //long businessDayMinutes = 840;
-        //long businessHours = 14;
 
         final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
         ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        //long timeTotal = (businessDayMinutes- appointmentTimeSum)/30;
+        if(businessDayMinutes>appointmentTimeSum){
+            long timeTotal = (businessDayMinutes- appointmentTimeSum)/45;
+            quarterToTxt.setText(String.valueOf(timeTotal));
+        }else{
+            long timeTotal = (businessDayMinutes)/45;
+            quarterToTxt.setText(String.valueOf(timeTotal));
+        }
 
-        int timeTotal = (int) floor((businessDayMinutes)/30);
-        halfPastTxt.setText(String.valueOf(timeTotal));
+    }
+
+    public void remainingThirty(){
+        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
+        ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
+        ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
+        long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
+        long appointmentTimeSum = AppointmentsQuery.getTimeSum();
+        if(businessDayMinutes>appointmentTimeSum){
+            long timeTotal = (businessDayMinutes- appointmentTimeSum)/45;
+            halfPastTxt.setText(String.valueOf(timeTotal));
+        }else{
+            long timeTotal = (businessDayMinutes)/45;
+            hourTxt.setText(String.valueOf(timeTotal));
+        }
+
     }
 
     public void remainingFifteen(){
-        //Duration  durly = Duration.ofDays(LocalTime.now().toSecondOfDay());
-        long businessDayMinutes = 840;
-        long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        //long test = ChronoField.MINUTE_OF_DAY.ordinal();
-//       long timeDifference = ChronoUnit.MINUTES.between(ChronoField.MINUTE_OF_DAY,appointmentTimeSum);
-        long timeTotal = (businessDayMinutes- appointmentTimeSum)/15;
-        //long timeTotal = (test- appointmentTimeSum)/15;
-        //long timeTotal = test;
-        quarterPastTxt.setText(String.valueOf(timeTotal));
 
+        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
+        ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
+        ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
+        long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
+        long appointmentTimeSum = AppointmentsQuery.getTimeSum();
+        if(businessDayMinutes>appointmentTimeSum){
+            long timeTotal = (businessDayMinutes- appointmentTimeSum)/45;
+            quarterPastTxt.setText(String.valueOf(timeTotal));
+        }else{
+            long timeTotal = (businessDayMinutes)/45;
+            quarterPastTxt.setText(String.valueOf(timeTotal));
+        }
     }
 
 

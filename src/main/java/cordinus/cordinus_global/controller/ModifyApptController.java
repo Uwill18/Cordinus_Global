@@ -102,7 +102,7 @@ public class ModifyApptController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
         loader.load();
-        LoginController loginController= loader.getController();
+        //LoginController loginController= loader.getController();
         //String CreatedBy = String.valueOf(loginController.UsernameTxt);
         String CreatedBy ="test";
 
@@ -212,8 +212,6 @@ public class ModifyApptController implements Initializable {
         EndTimeCombo.setValue(appointment.getEnd().toLocalTime());
         CustomerIDTxt.setText(String.valueOf(appointment.getCustomer_ID()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
-
-
     }
 
 
@@ -222,7 +220,7 @@ public class ModifyApptController implements Initializable {
         this.index = index;
 
         CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
-        UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
+        //UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
         //Customer_Name.setText(customer.getCustomer_Name());
         //AddressTxt.setText(customer.getAddress());
         //Postal_Code.setText(customer.getPostal_Code());
