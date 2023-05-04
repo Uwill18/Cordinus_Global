@@ -6,6 +6,7 @@ import cordinus.cordinus_global.model.Contact;
 import cordinus.cordinus_global.model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,22 +62,21 @@ public abstract class CustomersQuery {
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1,customerId);
 
-        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
-        for (Appointment appointment: allAppointments ) {
-            if((appointment.getCustomer_ID() == customerId)){
-               // System.out.println("matching customer found. cannot delete.");
-                //Alerts.ValueWarning();//change to delete error
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected;
+    }
 
-                return 0;
-            }
-            else{
-                int rowsAffected = ps.executeUpdate();
-                return rowsAffected;
+
+
+    public static boolean deleteConfirmation(int custID) throws SQLException {
+
+        ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
+        for (Appointment appointment : allAppointments) {
+            if ((appointment.getCustomer_ID() == custID)) {
+                return false;
             }
         }
-
-        //int rowsAffected = ps.executeUpdate();
-        return 0;
+        return true;
     }
 
     //change over

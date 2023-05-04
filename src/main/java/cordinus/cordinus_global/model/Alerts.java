@@ -52,4 +52,12 @@ public class Alerts {
         alert.setContentText("No selection was made for this operation.");
         alert.showAndWait();
     }
+
+    public static void deleteError(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("DELETE ERROR");
+        alert.setContentText("All relative appointments must be deleted prior to deleting this customer.");
+        alert.showAndWait();
+    }
 }

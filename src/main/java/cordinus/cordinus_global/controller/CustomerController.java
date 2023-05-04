@@ -129,7 +129,10 @@ public class CustomerController {
                         +"\nCUSTOMER NAME :" + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_Name());
                 Optional<ButtonType> result = alert.showAndWait();
                 if(result.isPresent()  && result.get() != ButtonType.CANCEL){
-                    if(result.isPresent()  && result.get() ==ButtonType.OK){
+                    if((result.isPresent()  && result.get() ==ButtonType.OK) && !(CustomersQuery.deleteConfirmation(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()))){
+                        Alerts.deleteError();
+                    }
+                    else{
                         Alert delete_alert = new Alert(Alert.AlertType.CONFIRMATION);
                         delete_alert.setTitle("Delete Confirmation");
                         delete_alert.setHeaderText("Customer Deleted");

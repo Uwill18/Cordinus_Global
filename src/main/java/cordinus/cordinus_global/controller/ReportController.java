@@ -286,6 +286,28 @@ private ReportsInterface myReport = n -> {return n*n;};
 //--divide remaining local time by relative time measurement
 //-- return number to string +"/x"
 
+    //        ObservableList<Appointment> dayAppt = AppointmentsQuery.getDayAppointments();
+//        System.out.println(dayAppt.size());
+//        int totalMinutes = 0;
+//        int totalBusinessMinutes = 14*60;
+//        int minutesLeft = 0;
+//        for(Appointment a: dayAppt){
+//            totalMinutes += ChronoUnit.MINUTES.between(a.getStart(),a.getEnd());
+//
+//        }
+//        if(totalMinutes < totalBusinessMinutes){
+//            minutesLeft = totalBusinessMinutes - totalMinutes;
+//            //System.out.println(totalMinutes);
+//            System.out.println("hours left: " + minutesLeft/60);
+//            System.out.println("forty-five intervals left: " + minutesLeft/45);
+//            System.out.println("thirty intervals left: " + minutesLeft/30);
+//            System.out.println("fifteen minute intervals left: " + minutesLeft/15);
+//
+//        }
+//        else{
+//            System.out.println("no more appointments for the day");
+//        }
+
     public void remainingHours(){
         //long businessDayMinutes = 840;
         final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
@@ -293,7 +315,7 @@ private ReportsInterface myReport = n -> {return n*n;};
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        if(businessDayMinutes>appointmentTimeSum){
+        if(appointmentTimeSum<businessDayMinutes){
             long timeTotal = (businessDayMinutes- appointmentTimeSum)/60;
             hourTxt.setText(String.valueOf(timeTotal));
         }else{
@@ -309,7 +331,7 @@ private ReportsInterface myReport = n -> {return n*n;};
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        if(businessDayMinutes>appointmentTimeSum){
+        if(appointmentTimeSum < businessDayMinutes){
             long timeTotal = (businessDayMinutes- appointmentTimeSum)/45;
             quarterToTxt.setText(String.valueOf(timeTotal));
         }else{
@@ -325,12 +347,12 @@ private ReportsInterface myReport = n -> {return n*n;};
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        if(businessDayMinutes>appointmentTimeSum){
-            long timeTotal = (businessDayMinutes- appointmentTimeSum)/45;
+        if(appointmentTimeSum < businessDayMinutes){
+            long timeTotal = (businessDayMinutes- appointmentTimeSum)/30;
             halfPastTxt.setText(String.valueOf(timeTotal));
         }else{
-            long timeTotal = (businessDayMinutes)/45;
-            hourTxt.setText(String.valueOf(timeTotal));
+            long timeTotal = (businessDayMinutes)/30;
+            halfPastTxt.setText(String.valueOf(timeTotal));
         }
 
     }
@@ -342,11 +364,11 @@ private ReportsInterface myReport = n -> {return n*n;};
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
-        if(businessDayMinutes>appointmentTimeSum){
-            long timeTotal = (businessDayMinutes- appointmentTimeSum)/45;
+        if(appointmentTimeSum < businessDayMinutes){
+            long timeTotal = (businessDayMinutes- appointmentTimeSum)/15;
             quarterPastTxt.setText(String.valueOf(timeTotal));
         }else{
-            long timeTotal = (businessDayMinutes)/45;
+            long timeTotal = (businessDayMinutes)/15;
             quarterPastTxt.setText(String.valueOf(timeTotal));
         }
     }
