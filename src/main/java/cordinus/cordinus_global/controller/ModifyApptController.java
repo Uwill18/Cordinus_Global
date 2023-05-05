@@ -90,7 +90,7 @@ public class ModifyApptController implements Initializable {
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
-        int contactid = Integer.parseInt(ContactTxt.getText());
+        int contactid = ContactComboBox.getValue().getContact_ID();
         String type = TypeComboBox.getValue();
 
         Date date = new Date();//use LocalDateTime
@@ -102,8 +102,6 @@ public class ModifyApptController implements Initializable {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
         loader.load();
-        //LoginController loginController= loader.getController();
-        //String CreatedBy = String.valueOf(loginController.UsernameTxt);
         String CreatedBy ="test";
 
        // String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);
@@ -132,7 +130,9 @@ public class ModifyApptController implements Initializable {
 //
 //            if (TimeUtil.appointmentOverlapCheck()) {
 
-                AppointmentsQuery.update(title, description, location, type, startby, endby, CreatedBy, LastUpdate,LastUpdatedBy, CreateDate,customerid, userid, contactid);
+                AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy,  userid,contactid, customerid);
+        //(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp CreatedDate, String CreatedBy, Timestamp LastUpdate,String LastUpdatedBy, int userid, int contact,int customerid)
+                //AppointmentsQuery.update(title, description, location, type, startby, endby, CreatedBy, LastUpdate,LastUpdatedBy, CreateDate, userid, contactid,customerid);
 //            }else {
 //                Alerts.ValueWarning();
 //            }
@@ -195,7 +195,7 @@ public class ModifyApptController implements Initializable {
         DescriptionTxt.setText(String.valueOf(appointment.getDescription()));
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
-        ContactComboBox.setValue(appointment.getContact().get(appointment.getContact_ID()-1));//gets index minus to set current contactcombo
+        ContactComboBox.setValue(appointment.getContact().get(appointment.getContact_ID()));//gets index minus to set current contactcombo
         TypeComboBox.setValue(String.valueOf(appointment.getType()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 

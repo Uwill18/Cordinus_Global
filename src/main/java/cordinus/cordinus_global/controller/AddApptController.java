@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
+import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.model.*;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.utils.TimeUtil;
@@ -67,9 +68,9 @@ public class AddApptController implements Initializable {
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException,IOException {
 
-//        String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
-//        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-//        ResultSet rs = ps.executeQuery();
+        String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
 
 
         int userid = Integer.parseInt(UserIDTxt.getText());
@@ -118,18 +119,39 @@ public class AddApptController implements Initializable {
         //todo exception handle for what is entered,or check for valid customer
         //todo or use combobox with only available entries from the db
 
-
-
-
-//business hours check
-        //create a method for startdatetime
-        if(TimeUtil.businessHoursCheck(start, end) && TimeUtil.appointmentOverlapCheck(start,end)){
-                AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+        System.out.println(TimeUtil.businessHoursCheck(start, end));
+        System.out.println(TimeUtil.appointmentOverlapCheck(start,end));
+        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start,end))){
+            //Alerts.selectionWarning();
+            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
         }
-//        else{
-//            Alerts.selectionWarning();
-//       }
-    }
+
+
+        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
+            Alerts.selectionWarning();
+            //AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+        }
+
+//        ObservableList<Appointment> dayAppt = AppointmentsQuery.getDayAppointments();
+//        for(Appointment a: dayAppt){
+//            System.out.println(a.getStart());
+//            if(start.equals(a.getStart()) || end.equals(a.getEnd())){
+//                System.out.println("overlap");
+//                break;
+//            }
+
+//        AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+
+        }
+
+
+
+
+
+
+
+
+
 
     @FXML
     void ApptScreenReturn(ActionEvent event) throws IOException {

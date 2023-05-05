@@ -39,8 +39,8 @@ public abstract class AppointmentsQuery {
 
     }
 
-    public static int update(String title, String description, String location, String type, Timestamp startby, Timestamp endby, String CreatedBy, Timestamp LastUpdate,String LastUpdatedBy, Timestamp CreatedDate,int customerid, int userid, int contact) throws SQLException {
-        String sql ="UPDATE APPOINTMENTS SET Title = ?,Description = ?,Location= ?, Type = ?, Start = ?, End = ?,Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?,Create_Date = ?, User_ID = ?, Contact_ID,  WHERE Customer_ID = ?";
+    public static int update(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp CreatedDate, String CreatedBy, Timestamp LastUpdate,String LastUpdatedBy, int userid, int contact,int customerid) throws SQLException {
+        String sql ="UPDATE APPOINTMENTS SET Title = ?,Description = ?,Location= ?, Type = ?, Start = ?, End = ?,Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, User_ID = ?, Contact_ID = ?,  WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1,title);
         ps.setString(2,description);
@@ -52,9 +52,12 @@ public abstract class AppointmentsQuery {
         ps.setString(8,CreatedBy);
         ps.setTimestamp(9,LastUpdate);
         ps.setString(10,LastUpdatedBy);
-        ps.setInt(11,customerid);
         ps.setInt(12,userid);
         ps.setInt(13,contact);
+        ps.setInt(11,customerid);
+
+
+
 
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
