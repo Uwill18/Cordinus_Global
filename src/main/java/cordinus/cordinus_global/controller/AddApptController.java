@@ -124,13 +124,13 @@ public class AddApptController implements Initializable {
         if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start,end))){
             //Alerts.selectionWarning();
             AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
-        }
+       }
 
 
         if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
             Alerts.selectionWarning();
             //AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
-        }
+       }
 
 //        ObservableList<Appointment> dayAppt = AppointmentsQuery.getDayAppointments();
 //        for(Appointment a: dayAppt){

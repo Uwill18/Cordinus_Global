@@ -132,37 +132,51 @@ public class TimeUtil {
                 //if ((NAS > EAS) && (NAS < EAE)) ,,   start is After apptgetStart && start before apptGetEnd
 //    error
 
-                if(start.isBefore(appointment.getEnd()) || end.isBefore(appointment.getEnd())){
-                    System.out.println("Late Start Overlap 1");
-                    //Alerts.overlapWarning();
-                    return true;
-                }
-
-//                if(start.isAfter(appointment.getStart()) && end.isAfter(appointment.getEnd())){
-//                    System.out.println("Late Start Overlap 2");
+//                if(start.isBefore(appointment.getEnd()) || end.isBefore(appointment.getEnd())){
+//                    System.out.println("Late Start Overlap 1");
 //                    //Alerts.overlapWarning();
 //                    return true;
 //                }
 
 
+//
 //else if ((NAS < EAS)&&(NAE > EAE))   start is before apptgetStart   end before apptgetEnd
                 if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())){
                     System.out.println("Engulfing Appointment");
                     return true;
                 }
-////else if((NAE>NAS)&&(NAE < EAE))      end before start && end before appt getEnd
+//////else if((NAE>NAS)&&(NAE < EAE))      end before start && end before appt getEnd
                 if(start.isAfter(appointment.getStart()) && end.isBefore(appointment.getEnd())){
                     System.out.println("Inner Appointment schedule");
                     //Alerts.overlapWarning();
                     return true;
                 }
+//
 
-//else if((NAS==EAS)||(NAE == EAE))    start equal apptgetStart   end equal apptGetEnd
+
+
+
+
+////else if((NAS==EAS)||(NAE == EAE))    start equal apptgetStart   end equal apptGetEnd
                 if(start.isEqual(appointment.getStart()) || end.isEqual(appointment.getEnd())){
                     System.out.println("Exact Appointment Overlap");
                     //Alerts.overlapWarning();
                     return true;
                 }
+
+//                if(start.isBefore(appointment.getStart()) && end.equals(appointment.getEnd())){
+//                    System.out.println("Start Before Error"); --
+//                    //Alerts.overlapWarning();
+//                    return true;
+//               }
+
+
+                if(((start.isEqual(appointment.getStart()))||(start.isAfter(appointment.getStart()))) && end.isAfter(appointment.getEnd())){
+                    System.out.println("End After/late start overlap ");
+                    //Alerts.overlapWarning();
+                    return true;
+                }
+
 
             }
 

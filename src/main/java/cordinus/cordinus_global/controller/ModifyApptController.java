@@ -129,10 +129,7 @@ public class ModifyApptController implements Initializable {
 //        if(TimeUtil.businessHoursCheck(start, end)){
 //
 //            if (TimeUtil.appointmentOverlapCheck()) {
-
-                AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy,  userid,contactid, customerid);
-        //(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp CreatedDate, String CreatedBy, Timestamp LastUpdate,String LastUpdatedBy, int userid, int contact,int customerid)
-                //AppointmentsQuery.update(title, description, location, type, startby, endby, CreatedBy, LastUpdate,LastUpdatedBy, CreateDate, userid, contactid,customerid);
+                AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid);
 //            }else {
 //                Alerts.ValueWarning();
 //            }

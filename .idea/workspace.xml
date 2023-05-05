@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="TimeUtil update">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Report 2 update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,13 +95,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Updating classes for future use">
-      <created>1680895266569</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1680895266569</updated>
     </task>
     <task id="LOCAL-00090" summary="Loading countries to AddCustController">
       <created>1681088050549</created>
@@ -434,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683256858307</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="Report 2 update">
+      <created>1683257794990</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1683257794990</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -449,7 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Alerts and Logger refactor" />
     <MESSAGE value="Queries Refactor" />
     <MESSAGE value="Overlap testing four and file rename" />
     <MESSAGE value="Overlap/BHC test five" />
@@ -474,7 +478,8 @@
     <MESSAGE value="modifiying report 3 again" />
     <MESSAGE value="updating customer delete" />
     <MESSAGE value="TimeUtil update" />
-    <option name="LAST_COMMIT_MESSAGE" value="TimeUtil update" />
+    <MESSAGE value="Report 2 update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Report 2 update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -490,34 +495,10 @@
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java</url>
           <line>75</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java</url>
-          <line>197</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java</url>
-          <line>132</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="30" />
-        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

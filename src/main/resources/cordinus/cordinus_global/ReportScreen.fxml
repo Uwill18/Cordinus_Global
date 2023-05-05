@@ -110,7 +110,7 @@
                               <TableColumn fx:id="Contact_ID" prefWidth="86.0" text="Contact" />
                            </columns>
                         </TableView>
-                        <HBox alignment="CENTER" layoutX="454.0" layoutY="-36.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" layoutX="415.0" layoutY="-36.0" prefHeight="100.0" prefWidth="339.0" spacing="10.0">
                            <children>
                               <RadioButton fx:id="AllRB" mnemonicParsing="false" onAction="#OnRadioButton" selected="true" text="All" textFill="WHITE">
                                  <toggleGroup>
@@ -119,6 +119,7 @@
                               </RadioButton>
                               <RadioButton fx:id="MonthRB" mnemonicParsing="false" onAction="#OnRadioButton" text="Month" textFill="WHITE" toggleGroup="$ApptRB" />
                               <RadioButton fx:id="WeekRB" mnemonicParsing="false" onAction="#OnRadioButton" text="Week" textFill="WHITE" toggleGroup="$ApptRB" />
+                              <RadioButton fx:id="AgendaRB" mnemonicParsing="false" onAction="#OnRadioButton" prefHeight="17.0" prefWidth="106.0" text="Full Agenda" textFill="WHITE" toggleGroup="$ApptRB" />
                            </children>
                         </HBox>
                         <Separator layoutX="184.0" layoutY="1.0" orientation="VERTICAL" prefHeight="446.0" prefWidth="0.0" />
@@ -158,7 +159,7 @@
                            </children>
                         </GridPane>
                         <Label layoutX="388.0" layoutY="14.0" prefHeight="46.0" prefWidth="215.0" text="Appointments Booked Per Day" textAlignment="CENTER" textFill="WHITE" />
-                        <HBox alignment="CENTER" layoutX="390.0" layoutY="60.0" prefHeight="45.0" prefWidth="195.0">
+                        <HBox alignment="CENTER" layoutX="384.0" layoutY="60.0" prefHeight="45.0" prefWidth="195.0">
                            <children>
                               <Label prefHeight="46.0" prefWidth="76.0" text="Current Day : " textAlignment="CENTER" textFill="WHITE" />
                               <Label fx:id="todayLbl" prefHeight="46.0" prefWidth="76.0" text="Today" textAlignment="CENTER" textFill="WHITE" />

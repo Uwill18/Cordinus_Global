@@ -92,6 +92,9 @@ public  class ReportController implements Initializable {
     private RadioButton WeekRB;
 
     @FXML
+    private RadioButton AgendaRB;
+
+    @FXML
     private TableColumn<?, ?> totAppointment_Type;
 
     @FXML
@@ -227,15 +230,75 @@ private ReportsInterface myReport = n -> {return n*n;};
 
     public void LoadReportContacts() throws SQLException {
 
+        int contactID = 0;
+        ObservableList<Appointment> getAllAppointmentData = AppointmentsQuery.getAllAppointments();
+        ObservableList<Appointment> appointmentInfo = FXCollections.observableArrayList();
+        ObservableList<Contact> getAllContacts = ContactsQuery.getAllContacts();
+
+        Appointment contactAppointmentInfo;
+
+        String contactName = String.valueOf(ContactComboBox.getSelectionModel().getSelectedItem());
+
         if (AllRB.isSelected()){
             reportContactData = AppointmentsQuery.getAllAppointments();
         }
+
+
+
         if(MonthRB.isSelected()){
-            reportContactData = AppointmentsQuery.getMonthAppointments();
+            for (Contact contact: getAllContacts) {
+                if (contactName.equals(contact.getContact_Name())) {
+                    contactID = contact.getContact_ID();
+                }
+            }
+
+            for (Appointment appointment: AppointmentsQuery.getMonthAppointments()) {
+                if (appointment.getContact_ID() == contactID) {
+                    contactAppointmentInfo = appointment;
+                    appointmentInfo.add(contactAppointmentInfo);
+                }
+            }
+            reportContactData = appointmentInfo;
         }
         else if(WeekRB.isSelected()) {
-            reportContactData = AppointmentsQuery.getWeekAppointments();
+
+            for (Contact contact: getAllContacts) {
+                if (contactName.equals(contact.getContact_Name())) {
+                    contactID = contact.getContact_ID();
+                }
+            }
+
+
+            for (Appointment appointment: AppointmentsQuery.getWeekAppointments()) {
+                if (appointment.getContact_ID() == contactID) {
+                    contactAppointmentInfo = appointment;
+                    appointmentInfo.add(contactAppointmentInfo);
+                }
+            }
+
+            reportContactData = appointmentInfo;
         }
+
+
+        else if (AgendaRB.isSelected()){
+
+            for (Contact contact: getAllContacts) {
+                if (contactName.equals(contact.getContact_Name())) {
+                    contactID = contact.getContact_ID();
+                }
+            }
+            for (Appointment appointment: getAllAppointmentData) {
+                if (appointment.getContact_ID() == contactID) {
+                    contactAppointmentInfo = appointment;
+                    appointmentInfo.add(contactAppointmentInfo);
+                }
+            }
+            //reportContactData = AppointmentsQuery.getAllAppointments();
+            reportContactData = appointmentInfo;
+        }
+
+        /**report data is added to the ReportTable in the view*/
+        reportContactsTable.setItems(reportContactData);
 
         /**report data is added to the ReportTable in the view*/
         reportContactsTable.setItems(reportContactData);
@@ -263,6 +326,22 @@ private ReportsInterface myReport = n -> {return n*n;};
                 appointmentInfo.add(contactAppointmentInfo);
             }
         }
+
+        for (Appointment appointment: AppointmentsQuery.getMonthAppointments()) {
+            if (appointment.getContact_ID() == contactID) {
+                contactAppointmentInfo = appointment;
+                appointmentInfo.add(contactAppointmentInfo);
+            }
+        }
+
+        for (Appointment appointment: AppointmentsQuery.getWeekAppointments()) {
+            if (appointment.getContact_ID() == contactID) {
+                contactAppointmentInfo = appointment;
+                appointmentInfo.add(contactAppointmentInfo);
+            }
+        }
+
+
         reportContactsTable.setItems(appointmentInfo);
     }
 
@@ -311,8 +390,9 @@ private ReportsInterface myReport = n -> {return n*n;};
 
     public void remainingHours(){
         //long businessDayMinutes = 840;
-        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
-        ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
+        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8, 0), ZoneId.of("America/New_York"));
+        final ZonedDateTime EST_CURRENT_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
+        ZonedDateTime localStart = EST_CURRENT_START.withZoneSameInstant(ZoneId.systemDefault());
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
@@ -323,12 +403,21 @@ private ReportsInterface myReport = n -> {return n*n;};
             long timeTotal = (businessDayMinutes)/60;
             hourTxt.setText(String.valueOf(timeTotal));
         }
+
+        if(businessDayMinutes<=0){
+            hourTxt.setText("No remaining appointments available.");
+        }
+
+        if(localStart.isBefore(EST_BH_START)){
+            hourTxt.setText("Available bookings will display at 8:00 a.m.");
+        }
     }
 
     public void remainingFortyFive(){
 
-        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
-        ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
+        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8, 0), ZoneId.of("America/New_York"));
+        final ZonedDateTime EST_CURRENT_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
+        ZonedDateTime localStart = EST_CURRENT_START.withZoneSameInstant(ZoneId.systemDefault());
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
@@ -340,11 +429,20 @@ private ReportsInterface myReport = n -> {return n*n;};
             quarterToTxt.setText(String.valueOf(timeTotal));
         }
 
+        if(businessDayMinutes<=0){
+            quarterToTxt.setText("No remaining appointments available.");
+        }
+
+        if(localStart.isBefore(EST_BH_START)){
+            quarterToTxt.setText("Available bookings will display at 8:00 a.m.");
+        }
+
     }
 
     public void remainingThirty(){
-        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
-        ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
+        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8, 0), ZoneId.of("America/New_York"));
+        final ZonedDateTime EST_CURRENT_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
+        ZonedDateTime localStart = EST_CURRENT_START.withZoneSameInstant(ZoneId.systemDefault());
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
@@ -356,12 +454,19 @@ private ReportsInterface myReport = n -> {return n*n;};
             halfPastTxt.setText(String.valueOf(timeTotal));
         }
 
+        if(businessDayMinutes<=0){
+            halfPastTxt.setText("No remaining appointments available.");
+        }
+
+        if(localStart.isBefore(EST_BH_START)){
+            halfPastTxt.setText("Available bookings will display at 8:00 a.m.");
+        }
     }
 
     public void remainingFifteen(){
-
-        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
-        ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
+        final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8, 0), ZoneId.of("America/New_York"));
+        final ZonedDateTime EST_CURRENT_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
+        ZonedDateTime localStart = EST_CURRENT_START.withZoneSameInstant(ZoneId.systemDefault());
         ZonedDateTime localEnd = ZonedDateTime.of(LocalDate.now(), LocalTime.of(22, 0), ZoneId.of("America/New_York"));
         long businessDayMinutes = ChronoUnit.MINUTES.between(localStart,localEnd);
         long appointmentTimeSum = AppointmentsQuery.getTimeSum();
@@ -371,6 +476,14 @@ private ReportsInterface myReport = n -> {return n*n;};
         }else{
             long timeTotal = (businessDayMinutes)/15;
             quarterPastTxt.setText(String.valueOf(timeTotal));
+        }
+
+        if(businessDayMinutes<=0){
+            quarterPastTxt.setText("No remaining appointments available.");
+        }
+
+        if(localStart.isBefore(EST_BH_START)){
+            quarterPastTxt.setText("Available bookings will display at 8:00 a.m.");
         }
     }
 
