@@ -222,6 +222,7 @@ private ReportsInterface myReport = n -> {return n*n;};
         Start.setCellValueFactory(new PropertyValueFactory<>("Start"));//6,7
         End.setCellValueFactory(new PropertyValueFactory<>("End"));//7,8
         Customer_ID.setCellValueFactory(new PropertyValueFactory<>("Customer_ID")); //x
+        Contact_ID.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
     }
 
     public void LoadReportContacts() throws SQLException {

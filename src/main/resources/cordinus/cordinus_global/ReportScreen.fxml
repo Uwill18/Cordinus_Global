@@ -107,6 +107,7 @@
                               <TableColumn fx:id="Start" minWidth="8.0" prefWidth="128.0" text="Start" />
                               <TableColumn fx:id="End" prefWidth="132.0" text="End" />
                               <TableColumn fx:id="Customer_ID" prefWidth="86.0" text="Cust. ID" />
+                              <TableColumn fx:id="Contact_ID" prefWidth="86.0" text="Contact" />
                            </columns>
                         </TableView>
                         <HBox alignment="CENTER" layoutX="454.0" layoutY="-36.0" prefHeight="100.0" prefWidth="200.0">
