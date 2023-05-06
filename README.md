@@ -5,11 +5,6 @@ Author: Uri W. Easter
 Student Application Version: 1.0
 Date: 04/22/2023
 Application: Cordinus Global
-
-IntelliJ IDEA Community Edition 2022.3.1, 
-JavaFX-SDK-11.0.17,
-Scene Builder 19.0.0
-mysql-connector-j-8.0.31
 ------------------------------------------
 
 Directions for how to run the program
@@ -41,4 +36,8 @@ above sections highlighted earlier. This application will also switch to French 
 to be the user's preferred language.
 
 
-
+Created With:
+IntelliJ IDEA Community Edition 2022.3.1, 
+JavaFX-SDK-11.0.17,
+Scene Builder 19.0.0
+mysql-connector-j-8.0.31
