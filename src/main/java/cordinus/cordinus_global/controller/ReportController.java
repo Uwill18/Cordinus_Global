@@ -4,7 +4,6 @@ import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.ContactsQuery;
 import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.model.Contact;
-import cordinus.cordinus_global.reports.ReportsInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,10 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -25,12 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.*;
-import java.time.format.TextStyle;
-import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-
-import static java.lang.Math.floor;
 
 
 //https://www.youtube.com/watch?v=KzfhgGGzWMQ
@@ -122,7 +113,7 @@ public  class ReportController implements Initializable {
     private Label todayLbl;
 
 
-private ReportsInterface myReport = n -> {return n*n;};
+
     //initialize
     /**https://www.geeksforgeeks.org/how-to-remove-duplicates-from-arraylist-in-java/*/
     ObservableList<String> appointmentTypeList = FXCollections.observableArrayList();
@@ -140,8 +131,7 @@ private ReportsInterface myReport = n -> {return n*n;};
         }
         setReportContactTable();
         setCustomerAppointmentCellTable();
-        int x = myReport.calculateSquare(4);
-        System.out.println("the square is : " + x);
+
 
         ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
         ContactComboBox.setItems(allContacts);
@@ -164,18 +154,14 @@ private ReportsInterface myReport = n -> {return n*n;};
         MonthComboBox.setItems(allMonths);
         MonthComboBox.setVisibleRowCount(4);
 
-
         DayOfWeek dow = LocalDate.now().getDayOfWeek();
         String currentDOW = dow.toString();
         todayLbl.setText(currentDOW);
-
-
 
         remainingFifteen();
         remainingThirty();
         remainingFortyFive();
         remainingHours();
-
     }
 
 
@@ -244,7 +230,6 @@ private ReportsInterface myReport = n -> {return n*n;};
         }
 
 
-
         if(MonthRB.isSelected()){
             for (Contact contact: getAllContacts) {
                 if (contactName.equals(contact.getContact_Name())) {
@@ -297,8 +282,6 @@ private ReportsInterface myReport = n -> {return n*n;};
             reportContactData = appointmentInfo;
         }
 
-        /**report data is added to the ReportTable in the view*/
-        reportContactsTable.setItems(reportContactData);
 
         /**report data is added to the ReportTable in the view*/
         reportContactsTable.setItems(reportContactData);

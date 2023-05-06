@@ -56,6 +56,8 @@ public class ApptController {
         @FXML
         private RadioButton WeekRB;
         @FXML
+        private RadioButton DayRB;
+        @FXML
         private Label ApptIntervalLbl;
         public Appointment appointment;
 
@@ -88,8 +90,11 @@ public class ApptController {
                                          if(MonthRB.isSelected()){
                                                 appointmentdata = AppointmentsQuery.getMonthAppointments();
                                         }
-                                        else if(WeekRB.isSelected()) {
+                                        if(WeekRB.isSelected()) {
                                                appointmentdata = AppointmentsQuery.getWeekAppointments();
+                                        }
+                                        if(DayRB.isSelected()) {
+                                                appointmentdata = AppointmentsQuery.getDayAppointments();
                                         }
                 /**customer data is added to the CustomerTable in the view*/
                 AppointmentTable.setItems(appointmentdata);

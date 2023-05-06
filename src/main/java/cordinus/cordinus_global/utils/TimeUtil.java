@@ -52,7 +52,7 @@ public class TimeUtil {
 //https://openclassrooms.com/en/courses/6031811-persist-your-java-applications-data-with-the-repository-pattern/6270111-bind-java-objects-to-a-database-schema
 
 //            NAS = newAppointmentStart
-//with newApptStart I need to compare an object with the appt to be inserted..
+//with newApptStart I need to compare an object with the appt to be inserted.
     //I thought I needed references in Java, but a new obj points to the same values in memory like a reference
     //to a newly inserted/instantiated object
     //the question stands of how to pull the values of the new Appt object that has been instantiated with
@@ -131,57 +131,65 @@ public class TimeUtil {
                 }
                 //if ((NAS > EAS) && (NAS < EAE)) ,,   start is After apptgetStart && start before apptGetEnd
 //    error
-
+//
 //                if(start.isBefore(appointment.getEnd()) || end.isBefore(appointment.getEnd())){
 //                    System.out.println("Late Start Overlap 1");
 //                    //Alerts.overlapWarning();
 //                    return true;
 //                }
-
-
 //
-//else if ((NAS < EAS)&&(NAE > EAE))   start is before apptgetStart   end before apptgetEnd
-                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())){
-                    System.out.println("Engulfing Appointment");
-                    return true;
-                }
-//////else if((NAE>NAS)&&(NAE < EAE))      end before start && end before appt getEnd
-                if(start.isAfter(appointment.getStart()) && end.isBefore(appointment.getEnd())){
-                    System.out.println("Inner Appointment schedule");
-                    //Alerts.overlapWarning();
-                    return true;
-                }
 //
-
-
-
-
-
-////else if((NAS==EAS)||(NAE == EAE))    start equal apptgetStart   end equal apptGetEnd
-                if(start.isEqual(appointment.getStart()) || end.isEqual(appointment.getEnd())){
-                    System.out.println("Exact Appointment Overlap");
-                    //Alerts.overlapWarning();
-                    return true;
-                }
-
-//                if(start.isBefore(appointment.getStart()) && end.equals(appointment.getEnd())){
-//                    System.out.println("Start Before Error"); --
-//                    //Alerts.overlapWarning();
+//
+//
+////
+////else if ((NAS < EAS)&&(NAE > EAE))   start is before apptgetStart   end before apptgetEnd
+////                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())){
+////                    System.out.println("Engulfing Appointment");
+////                    return true;
+////                }
+////////else if((NAE>NAS)&&(NAE < EAE))      end before start && end before appt getEnd
+//                if(start.isAfter(appointment.getStart()) && end.isBefore(appointment.getEnd())){
+//                    System.out.println("Inner Appointment schedule");
 //                    return true;
-//               }
+//                }
+//
+//////else if((NAS==EAS)||(NAE == EAE))    start equal apptgetStart   end equal apptGetEnd
+//                if(start.isEqual(appointment.getStart()) || end.isEqual(appointment.getEnd())){
+//                    System.out.println("Exact Appointment Overlap");
+//                    return true;
+//                }
+//
+//
+//                if((start.isEqual(appointment.getStart())) && end.isAfter(appointment.getEnd())){
+//                    System.out.println("End After/late start overlap ");
+//                    return true;
+//                }
+//
+//                if((start.isBefore(appointment.getStart())) && end.isEqual(appointment.getEnd())){
+//                    System.out.println("Early Start");
+//                    return true;
+//                }
 
 
-                if(((start.isEqual(appointment.getStart()))||(start.isAfter(appointment.getStart()))) && end.isAfter(appointment.getEnd())){
-                    System.out.println("End After/late start overlap ");
-                    //Alerts.overlapWarning();
+                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
                     return true;
                 }
+
+                if(start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())){
+                    return true;
+                }
+
+                if(start.isEqual(appointment.getStart())){
+                    return true;
+                }
+
+                //startafter start or befor end
+                        //start is equal to start
+
 
 
             }
-
         }
-
         return false; //after the foreach loop return true
     }
 
@@ -189,29 +197,3 @@ public class TimeUtil {
 }
 
 
-//                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())){
-//                    System.out.println("Engulfing Overlap");
-//                    Alerts.overlapWarning();
-//                    return false;
-//                }
-//                if(start.isAfter(appointment.getStart()) && end.isAfter(appointment.getEnd())){
-//                    System.out.println("Late Start Overlap");
-//                    Alerts.overlapWarning();
-//                    //return false;
-//               }
-//                if(start.isBefore(appointment.getStart()) && end.isBefore(appointment.getEnd())){
-//                    System.out.println("Start Before and End During Overlap");
-//                    Alerts.overlapWarning();
-//                    return false;
-//                }
-//                if(start.isAfter(appointment.getStart()) && end.isBefore(appointment.getEnd())){
-//                    System.out.println("Inner Appointment schedule");
-//                    Alerts.overlapWarning();
-//                    return false;
-//                }
-//                if(start.equals(appointment.getStart()) && end.equals(appointment.getEnd())){
-//                    System.out.println("Exact Appointment Overlap");
-//                    Alerts.overlapWarning();
-//                    return false;
-//                }
-//return true;

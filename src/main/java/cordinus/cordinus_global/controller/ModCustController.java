@@ -34,30 +34,21 @@ public class ModCustController {
 
         @FXML
         private TextField AddressTxt;
-
         @FXML
         private TextField Customer_ID;
-
         @FXML
         private TextField Customer_Name;
-
         @FXML
         private TextField Division_ID;
-
         @FXML
         private TextField Phone;
-
         @FXML
         private TextField Postal_Code;
-
         @FXML
         private ComboBox<Country> CountriesComboBox;
-
         @FXML
         private ComboBox<Division> StatesComboBox;
-
         private Customer customer;
-
         private int index;
 
 
@@ -94,15 +85,12 @@ public class ModCustController {
                 String LastUpdatedBy ="test";//grab curremt
                 int DivID = Integer.parseInt(Division_ID.getText());
                 CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID, customerid);
-
         }
 
 
         //ModifyCust must autopop selected data from customercontroller
         //allow editing of select fields, then pass that data back to the db
         //afterwards both the database and the app should hold an updated customers view
-
-
 
         public void OnActionSelectCountry(){
                 //do a lamba connecting states to Divisions
@@ -111,7 +99,6 @@ public class ModCustController {
                 ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
                 FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
                 StatesComboBox.setItems(selectedDivision);
-
         }
 
 
