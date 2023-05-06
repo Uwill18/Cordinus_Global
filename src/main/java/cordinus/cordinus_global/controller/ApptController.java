@@ -181,13 +181,4 @@ public class ApptController {
                 appointmentdata.clear();
                 LoadAppointments();
         }
-
-        /**
-         * This function checks time intervals
-         *
-         * @return
-         */
-
-
-
 }

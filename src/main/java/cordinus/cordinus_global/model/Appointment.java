@@ -6,6 +6,10 @@ import cordinus.cordinus_global.DAO.ContactsQuery;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+/**Used standard variables according to the database and functional requisites Initialed constructors, getters, and setters according to my initial understanding of the data types.
+ * In the future I would do more UML diagramming to align myself better with best practices */
+
 public class Appointment {
     private int Appointment_ID;
     private int Contact_ID;

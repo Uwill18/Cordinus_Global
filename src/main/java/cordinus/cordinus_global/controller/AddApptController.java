@@ -90,15 +90,13 @@ public class AddApptController implements Initializable {
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
 
         String CreatedBy= "test";
-
-        //combobox is going to list local time objects
-        //then insert times as timestamp, formatting not necessary
-        // have the widget provide the info
-        //db takes time as string and timestamp, timestamp preferred since it will convert to sql server timezone
-        //if set to UTC
-
-    //toDo:how to access the username variable
         String LastUpdatedBy="test";
+
+        /**Here my ComboBoxes list local time objects
+        //then upon user selection, gets the value to be inserted for the times as a timestamp,
+         //making timeformatting as a sting not necessary in this case.
+        // The db takes said timestamp and converts it to sql server timezone
+         //easier than it would a string, especially if it is set to UTC*/
 
         ///Dates
         LocalDate startDate = LocalDate.from(StartDatePicker.getValue());
@@ -113,44 +111,29 @@ public class AddApptController implements Initializable {
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
+        /**This is commented out now, but when testing my functions, this was valuable to evaluate the relationships
+         * of output to input when configuring the boolean logic*/
+        //System.out.println(TimeUtil.businessHoursCheck(start, end));
+        //System.out.println(TimeUtil.appointmentOverlapCheck(start,end));
 
 
-        //todo add a business hours check and fix appointment id with appointmentOverlapCheck
-        //todo exception handle for what is entered,or check for valid customer
-        //todo or use combobox with only available entries from the db
-
-        System.out.println(TimeUtil.businessHoursCheck(start, end));
-        System.out.println(TimeUtil.appointmentOverlapCheck(start,end));
-        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start,end))){
-            //Alerts.selectionWarning();
+        /**Reviewed with Sunitha Kandalam the logic for verifying which appointments to insert.
+         * Since this check is to verify IF something should be inserted, I thought a boolean
+         * implementation similar to UsersQuery.userConfirmation(username,password) from my LoginController and the
+         * CustomersQuery.deleteConfirmation(custID) in my  OnDeleteCustomer from the CustomerController would apply.
+         * I learned to simplify, and to check when the appointmentOverlapCheck is not false to insert,
+         * and otherwise alert if either of the boolean are false as below, as opposed to each time the functions
+         * showed false.*/
+        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start,end))){//Alerts.selectionWarning();
             AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
        }
 
 
         if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
             Alerts.selectionWarning();
-            //AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
        }
 
-//        ObservableList<Appointment> dayAppt = AppointmentsQuery.getDayAppointments();
-//        for(Appointment a: dayAppt){
-//            System.out.println(a.getStart());
-//            if(start.equals(a.getStart()) || end.equals(a.getEnd())){
-//                System.out.println("overlap");
-//                break;
-//            }
-
-//        AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
-
         }
-
-
-
-
-
-
-
-
 
 
     @FXML
@@ -168,10 +151,11 @@ public class AddApptController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //Timing nested loop
-        //Mr. Wabara reviewed timeloops with me to output to combobox
-        //we discussed that combining the times with the date picker to a timestamp
-        //would help format the time
+        /**Timing nested loop
+        //Mr. Wabara reviewed timeloops with me to output to the combobox.
+        //I learned that combining the times with the date picker to a timestamp
+        //would help format the time, and this skill was transferrable as well to implementing
+         the TypeComboBox as shown below, and the ContactComboBox.*/
 
 
         for(int h = 0; h < 23; h++){
@@ -186,12 +170,6 @@ public class AddApptController implements Initializable {
             EndTimeCombo.getItems().add(LocalTime.of(h,30));
             EndTimeCombo.getItems().add(LocalTime.of(h,45));
         }
-//
-//        for(Appointment appointment: AppointmentsQuery.getAllAppointments()){
-//            TypeCombo.getItems().add(appointment.getType());
-//        }
-
-
         String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
         for(int i = 0; i<3; i++){
             TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
@@ -200,43 +178,22 @@ public class AddApptController implements Initializable {
     }
 
 
+    /**At this time, it simply passes the id over to appointment screen
+     * I had planned to pass additional data, but that maybe applied when I
+     * revisit this project*/
 
     public void Customer_Passer(int index, Customer customer){
         this.customer = customer;
         this.index = index;
-
-        CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
-       // Customer_Name.setText(customer.getCustomer_Name());
-        //ContactTxt.setText(  );
-
-
-
-        //ContactTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDo switch to Contact
-        //UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//toDO: switch to UserID
-        //TitleTxt.setText(customer.getCustomer_Name() + "'s Appointment");
-        //AddressTxt.setText(customer.getAddress());
-        //Postal_Code.setText(customer.getPostal_Code());
-        //Phone.setText(customer.getPhone());
-        //Division_ID.setText((String.valueOf(customer.getDivision_ID())));
-
+        CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
     }
 
 
-
+/**upon selecting a contact, this function populates the contact id field with the correct value*/
     public void ContactUpdate(){
         ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
 
     }
-//    public ObservableList CheckFifteenMinutes(){
-//        ObservableList AppointmentsFifteen = FXCollections.observableArrayList();
-//        for(Appointment a: appointment){//get list of appts
-//            if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
-//                AppointmentsFifteen.add(a);
-//            }
-//        }
-//        return AppointmentsFifteen;
-//    }
-
 
 
 }

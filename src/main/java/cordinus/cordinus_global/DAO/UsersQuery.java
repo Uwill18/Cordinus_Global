@@ -32,12 +32,12 @@ public abstract class UsersQuery {
 
     }
 
-
+    /**compares values from the database with the text stored in the variables*/
     public static boolean userConfirmation(String username, String password) throws SQLException {
         String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-        User user = null;
+        //User user = null;
 
         while (rs.next()) {
             if((rs.getString("User_Name").equals(username))&&(rs.getString("Password").equals(password))){

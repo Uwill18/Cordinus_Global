@@ -66,6 +66,11 @@ public class ModCustController {
                 stage.show();
         }
 
+        /**The CustomerPasser function  autopopulates selected data from customer controller
+         and allows editing of select fields, to be passed back to the db.
+        Afterwards both the database and the app hold an updated customers view based on the submissions
+         from the ModifyCustomer Function*/
+
         @FXML
         void ModifyCustomer(ActionEvent event) throws SQLException {
                 int customerid = Integer.parseInt(Customer_ID.getText());
@@ -82,41 +87,19 @@ public class ModCustController {
                 Timestamp LastUpdate = timestamp;//grab current
                 String CreatedBy ="test";//stay same
 
-                String LastUpdatedBy ="test";//grab curremt
+                String LastUpdatedBy ="test";//grab current
                 int DivID = Integer.parseInt(Division_ID.getText());
                 CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID, customerid);
         }
 
 
-        //ModifyCust must autopop selected data from customercontroller
-        //allow editing of select fields, then pass that data back to the db
-        //afterwards both the database and the app should hold an updated customers view
-
         public void OnActionSelectCountry(){
-                //do a lamba connecting states to Divisions
                 /**This lambda expression filters the Observable list allDivisions of Type Division and matches
                  * all division objects that share the same CountryID as the selected country from the CountriesComboBox*/
                 ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
                 FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
                 StatesComboBox.setItems(selectedDivision);
         }
-
-
-        //--there should be a combobox for division respective to the country
-//--List of 3 countries to access from any controller
-//
-//    public static countriesdisplay(ArrayList<String> names) {
-//        for (int i = 0; i < names.size(); i = i + 1) {
-//            System.out.println(names.get(i));
-//        }
-//    }
-//
-//
-//--get all divisions as objects, and do processing as list for each time you process the countries with forloop, see if division list matches country, and when match, add it to list
-//
-//if(divisionid = countryid){
-//        DivisionComboBox.getItems.add(division);
-//    }
 
         public void Customer_Passer(int index, Customer customer){
                 this.customer = customer;

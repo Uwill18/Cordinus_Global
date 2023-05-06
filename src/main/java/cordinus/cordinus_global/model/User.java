@@ -2,6 +2,9 @@ package cordinus.cordinus_global.model;
 
 import cordinus.cordinus_global.DAO.UsersQuery;
 
+/**Used standard variables according to the database and functional requisites Initialed constructors, getters, and setters according to my initial understanding of the data types.
+ * In the future I would do more UML diagramming to align myself better with best practices */
+
 public class User {
     int User_ID;
     String User_Name;
@@ -13,7 +16,6 @@ public class User {
         Password = password;
 
     }
-
 
     public int getUser_ID() {
         return User_ID;
@@ -37,15 +39,19 @@ public class User {
         return Password;
     }
 
-    public String setPassword(String password) {
-        Password = password;
-        return password;
-    }
 
-    public User getUserData(User user){
-        User currentUser = user;
-        //user = UsersQuery.setCurrentUserData(user.getUser_Name(),user.getPassword());
-        return currentUser;
-    }
+    /**I may experiment with functions below in the future to properly
+     * manipulate user data across the application*/
+//
+//    public String setPassword(String password) {
+//        Password = password;
+//        return password;
+//    }
+//
+//    public User getUserData(User user){
+//        User currentUser = user;
+//        //user = UsersQuery.setCurrentUserData(user.getUser_Name(),user.getPassword());
+//        return currentUser;
+//    }
 
 }

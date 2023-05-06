@@ -90,17 +90,6 @@ public class CustomerController {
        CustomerTable.setItems(customerdata);
     }
 
-//toDO : select customer and pass data back to select/add appt for customer, add appt for
-    //toDo allow a search for a customer
-    //toDO:
-//    --insert division id as fk
-//--country object will have and id
-//    Country countryid = countryid.getCountry_ID;
-//
-//--division object will have div id, and info
-//    Division divisionid = divsionid.getDivision_ID;
-//
-
 
     @FXML
     void OnAddCustomer(ActionEvent event) throws IOException {
@@ -111,16 +100,20 @@ public class CustomerController {
         stage.setScene(scene);
         stage.show();
     }
-//
+/**
+ * I want to spend some time talking about this line of code:
+ *                     if((result.isPresent()  && result.get() ==ButtonType.OK) && !(CustomersQuery.deleteConfirmation(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()))){
+ *                         Alerts.deleteError();
+ *                     }
+ * The default return for deleteConfirmation was true. if it was not true, then that entailed that there were appointments with matching ids, and that a delete should not happen.
+ * else the delete operation from Customer's Query is executed
+ *
+ * */
     @FXML
     void OnDeleteCustomer(ActionEvent event) throws SQLException {
 
         if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
             try{
-
-
-
-
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Delete Warning");
                 alert.setHeaderText("Deleting Customer");

@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
 
     public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
-
+/**The initialize method gathers the keys from the resource bundle dictionary to translate upon system default settings*/
     public void initialize(URL url, ResourceBundle resourceBundle)  {
         usernameLabel.setText(rb.getString("Username"));
         passwordLabel.setText(rb.getString("Password"));
@@ -67,10 +67,7 @@ public class LoginController implements Initializable {
         String username = UsernameTxt.getText();
         String password = PasswordTxt.getText();
 
-        /**compares values from the database with the text stored in the variables*/
-        String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
+
         String filename ="login_activity.txt";
 
         //Create FileWriter object
@@ -86,6 +83,8 @@ public class LoginController implements Initializable {
 
 
         try{
+            /**Used the input text above to compare with a function called from User'sQuery
+             * primary source was: https://www.youtube.com/watch?v=1jiuM-gNyBc */
             if (UsersQuery.userConfirmation(username,password)) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -96,14 +95,8 @@ public class LoginController implements Initializable {
                 outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+ " } " +ZoneId.systemDefault() + " Time.");
                 //todo username and timestamp, then say if successful or not
                 System.out.println("File written!");
+                /**upon successful validation the alert is called*/
                 FifteenMinutesAlert();
-                //User user = UsersQuery.setCurrentUserData(username,password);
-                //System.out.println(user.getUser_Name() +" "+user.getPassword()+" "+user.getUser_ID());
-                //User currentUser = new User(user.getUser_ID(), username,password);
-               // System.out.println(currentUser.getUser_Name() +" "+currentUser.getPassword()+" "+currentUser.getUser_ID());
-               // System.out.println(user.getUserData().getUser_ID() + " "+ user.getUserData().getUser_Name() + " " + user.getUserData().getPassword());
-                //System.out.println(UsersQuery.setCurrentUserData(username,password).getUser_Name());
-
             }else{
                 outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate + " } " +ZoneId.systemDefault() + " Time.");
                 Alerts.loginError();
@@ -149,20 +142,7 @@ public class LoginController implements Initializable {
         return "There are no upcoming appointments at this time.";
     }
 
-
-
-
-
-//
-//
-//
-//
-//    }
-
-
-
-
-
+    /**allows the User to exit the Loginform and application if needed*/
     public void onActionExit(ActionEvent event) {
         System.exit(0);
     }

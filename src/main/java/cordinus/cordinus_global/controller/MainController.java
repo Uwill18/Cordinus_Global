@@ -37,34 +37,6 @@ public Button proceedButton;
     @FXML
     private Label CurrentTimeLbl;
 
-    User user;
-
-
-
-//Password Validation//
-    //https://www.youtube.com/watch?v=1jiuM-gNyBc  > used
-    //https://www.youtube.com/watch?v=Y8F-k925O-w  good
-    //https://www.youtube.com/watch?v=wII6ufsn82c
-    //https://www.youtube.com/watch?v=ipz3Ezdeu3M
-    //https://www.youtube.com/watch?v=1RftX8HMxdg >> preferred next step, best use case for multiple users,
-    //                                               as it pulls info from the database
-
-    //up results being correct or incorrect use file i/o options to print them to a file
-    //in filewriter file, where i <  attempt sum (incorrect attempts, and correct attempts should sum less than 3)
-
-
-
-
-    //Time Display according to time alerts videos
-
-    //Exit button/sign out
-
-//Main Menu Navigation//
-    //ToLoginButton
-
-
-    //create a dialog that has a picture with a timer to expire, and you proceed from there
-    //toDO: have another controller, then main controller come in, may do welcome controller
 
     public void initialize(URL url, ResourceBundle resourceBundle){
 
@@ -102,7 +74,6 @@ public Button proceedButton;
             stage.setScene(scene);
             stage.show();
         }
-    //ReportScreenButton
 
     @FXML
     void ReportScreenButton(ActionEvent event) throws IOException {

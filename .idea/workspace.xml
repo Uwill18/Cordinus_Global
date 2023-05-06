@@ -4,15 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="ModifyApptController mod">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Final Reviews 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/UsersQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/UsersQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/HomeScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/HomeScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/reports/ReportsInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Division.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Division.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Report.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AppointmentScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AppointmentScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,13 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Loading states to AddCustController">
-      <created>1681089627325</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1681089627327</updated>
     </task>
     <task id="LOCAL-00092" summary="Delete Confirmation for Appointments in effect">
       <created>1681099889690</created>
@@ -440,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683318894122</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="Final Reviews 1">
+      <created>1683404319353</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1683404319353</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Overlap testing four and file rename" />
     <MESSAGE value="Overlap/BHC test five" />
     <MESSAGE value="userlogin refactor" />
     <MESSAGE value="Login Alert designed to specs" />
@@ -480,19 +492,20 @@
     <MESSAGE value="TimeUtil update" />
     <MESSAGE value="Report 2 update" />
     <MESSAGE value="ModifyApptController mod" />
-    <option name="LAST_COMMIT_MESSAGE" value="ModifyApptController mod" />
+    <MESSAGE value="Final Reviews 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Reviews 1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java</url>
-          <line>95</line>
+          <line>67</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java</url>
-          <line>137</line>
+          <line>102</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

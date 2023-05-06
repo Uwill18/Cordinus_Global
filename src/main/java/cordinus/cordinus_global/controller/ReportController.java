@@ -132,7 +132,6 @@ public  class ReportController implements Initializable {
         setReportContactTable();
         setCustomerAppointmentCellTable();
 
-
         ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
         ContactComboBox.setItems(allContacts);
 
@@ -166,8 +165,7 @@ public  class ReportController implements Initializable {
 
 
 
-    //tab1 --total appts
-    //the total number of customer appointments by type and month
+    /**TAB1 -- Total number of customer appointments by type and month*/
 
     private void setCustomerAppointmentCellTable(){
         totAppointmentID.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));//1,1
@@ -183,7 +181,12 @@ public  class ReportController implements Initializable {
         reportTotalsTable.setItems(reportTotalData);
     }
 
-
+/**sets the result Textfield by obtaining the value of the ComboBoxes
+ * passing them to AppointmentsQuery.getAppointmentByTypeMonth,
+ * and storing them in the result integer.
+ * upon each selection the reportsTotalData collection is reset
+ * and has the values per the AppointmentsQuery.getTotalAppointments reassigned
+ * to it. The reportsTotalTable is then set according to reportTotalData*/
     public void onActionFilter(ActionEvent event) throws SQLException {
         String type = TypeComboBox.getValue();
         int month = MonthComboBox.getValue().getValue();
@@ -197,11 +200,6 @@ public  class ReportController implements Initializable {
 
 
 /**TAB II -- CONTACT SCHEDULE*/
-    //tab2 -- contact schedule
-   //a schedule for each contact in your organization that includes appointment ID, title, type and description, start date and time, end date and time, and customer ID
-
-
-
 
     private void setReportContactTable(){
         Appointment_ID.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));//1,1  x
@@ -214,6 +212,7 @@ public  class ReportController implements Initializable {
         Contact_ID.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
     }
 
+    /**Used Radiobuttons to filter selection of contacts according to appointments per the selected time range*/
     public void LoadReportContacts() throws SQLException {
 
         int contactID = 0;
@@ -224,7 +223,7 @@ public  class ReportController implements Initializable {
         Appointment contactAppointmentInfo;
 
         String contactName = String.valueOf(ContactComboBox.getSelectionModel().getSelectedItem());
-
+/**Selects all appointments for all contacts*/
         if (AllRB.isSelected()){
             reportContactData = AppointmentsQuery.getAllAppointments();
         }
@@ -264,9 +263,8 @@ public  class ReportController implements Initializable {
             reportContactData = appointmentInfo;
         }
 
-
+/**Gets all Appointments for a selected contact*/
         else if (AgendaRB.isSelected()){
-
             for (Contact contact: getAllContacts) {
                 if (contactName.equals(contact.getContact_Name())) {
                     contactID = contact.getContact_ID();
@@ -278,55 +276,14 @@ public  class ReportController implements Initializable {
                     appointmentInfo.add(contactAppointmentInfo);
                 }
             }
-            //reportContactData = AppointmentsQuery.getAllAppointments();
             reportContactData = appointmentInfo;
         }
-
 
         /**report data is added to the ReportTable in the view*/
         reportContactsTable.setItems(reportContactData);
     }
 
-    public void ContactFilter(){
 
-        int contactID = 0;
-        ObservableList<Appointment> getAllAppointmentData = AppointmentsQuery.getAllAppointments();
-        ObservableList<Appointment> appointmentInfo = FXCollections.observableArrayList();
-        ObservableList<Contact> getAllContacts = ContactsQuery.getAllContacts();
-
-        Appointment contactAppointmentInfo;
-
-        String contactName = String.valueOf(ContactComboBox.getSelectionModel().getSelectedItem());
-
-        for (Contact contact: getAllContacts) {
-            if (contactName.equals(contact.getContact_Name())) {
-                contactID = contact.getContact_ID();
-            }
-        }
-        for (Appointment appointment: getAllAppointmentData) {
-            if (appointment.getContact_ID() == contactID) {
-                contactAppointmentInfo = appointment;
-                appointmentInfo.add(contactAppointmentInfo);
-            }
-        }
-
-        for (Appointment appointment: AppointmentsQuery.getMonthAppointments()) {
-            if (appointment.getContact_ID() == contactID) {
-                contactAppointmentInfo = appointment;
-                appointmentInfo.add(contactAppointmentInfo);
-            }
-        }
-
-        for (Appointment appointment: AppointmentsQuery.getWeekAppointments()) {
-            if (appointment.getContact_ID() == contactID) {
-                contactAppointmentInfo = appointment;
-                appointmentInfo.add(contactAppointmentInfo);
-            }
-        }
-
-
-        reportContactsTable.setItems(appointmentInfo);
-    }
 
 
     public void OnRadioButton(ActionEvent event) throws SQLException {
@@ -337,42 +294,22 @@ public  class ReportController implements Initializable {
 
 
 
-    //tab3 -- remaining appts/day
-    //https://www.tutorialspoint.com/javafx/bar_chart.htm
-    //https://docs.oracle.com/javafx/2/charts/bar-chart.htm
+    /**TAB3 -- remaining appts/day*/
 
 
-//
-//--get local time difference of a day
-//--subtract duration of all appointment object for that day by getting the difference of end from start.
-//            --subtract apptimediff from local time difference
-//--divide remaining local time by relative time measurement
-//-- return number to string +"/x"
-
-    //        ObservableList<Appointment> dayAppt = AppointmentsQuery.getDayAppointments();
-//        System.out.println(dayAppt.size());
-//        int totalMinutes = 0;
-//        int totalBusinessMinutes = 14*60;
-//        int minutesLeft = 0;
-//        for(Appointment a: dayAppt){
-//            totalMinutes += ChronoUnit.MINUTES.between(a.getStart(),a.getEnd());
-//
-//        }
-//        if(totalMinutes < totalBusinessMinutes){
-//            minutesLeft = totalBusinessMinutes - totalMinutes;
-//            //System.out.println(totalMinutes);
-//            System.out.println("hours left: " + minutesLeft/60);
-//            System.out.println("forty-five intervals left: " + minutesLeft/45);
-//            System.out.println("thirty intervals left: " + minutesLeft/30);
-//            System.out.println("fifteen minute intervals left: " + minutesLeft/15);
-//
-//        }
-//        else{
-//            System.out.println("no more appointments for the day");
-//        }
 
     public void remainingHours(){
-        //long businessDayMinutes = 840;
+        /**While I could simply calculate the difference of appointments remaining by subtracting the
+         * time difference of appointments booked from the total length of a business day in minutes, being 840,
+         * it was important to me that this function factor in that past appointments cannot be booked, and catering
+         * to a length of time starting at the beginning of the day does not take that into consideration.
+         * So.. in this function I find the difference between the LocalTime of now and the end of BusinessDay,
+         * subtract the length of existing appointments while the length of the businessday is greater than all appointments
+         * and divide by the time constant. Otherwise, if there are no appointments,
+         * it will simply divide the remaining time by the time constant, and output No remaining appointments available after business end
+         * if it is before business start it will output Available bookings will display at 8:00 a.m.
+         * Remaining appointments are also displayed according to system timezone of the user's device and from the sql server.*/
+
         final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8, 0), ZoneId.of("America/New_York"));
         final ZonedDateTime EST_CURRENT_START = ZonedDateTime.of(LocalDate.now(), LocalTime.now(), ZoneId.of("America/New_York"));
         ZonedDateTime localStart = EST_CURRENT_START.withZoneSameInstant(ZoneId.systemDefault());
@@ -387,7 +324,7 @@ public  class ReportController implements Initializable {
             hourTxt.setText(String.valueOf(timeTotal));
         }
 
-        if(businessDayMinutes<=0){
+        if(businessDayMinutes<0){
             hourTxt.setText("No remaining appointments available.");
         }
 

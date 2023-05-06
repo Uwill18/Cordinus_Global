@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 public class HomeScreenController implements Initializable {
 
+    /**This separate Homescreen leads to the Login screen, and does begin in French if that is the system default*/
     public Button proceedButton;
     public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
     @Override

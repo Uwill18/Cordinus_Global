@@ -35,55 +35,34 @@ public class ModifyApptController implements Initializable {
 
     @FXML
     private DatePicker ApptEndPicker;
-
     @FXML
     private TextField ApptIDTxt;
-
     @FXML
     private DatePicker ApptStartPicker;
-
     public ComboBox<LocalTime> StartTimeCombo;
-
     public ComboBox<LocalTime> EndTimeCombo;
-
     @FXML
     private TextField ContactTxt;
-
     @FXML
     private TextField CustomerIDTxt;
-
     @FXML
     private TextField UserIDTxt;
-
     @FXML
     private TextField DescriptionTxt;
-
     @FXML
     private TextField LocationTxt;
-
     @FXML
     private TextField TitleTxt;
-
     @FXML
     private TextField TypeTxt;
-
-
     @FXML
     private ComboBox<Contact> ContactComboBox;
-
     @FXML
     private ComboBox<String> TypeComboBox;
-
     private Appointment appointment;
-
     private int selectedIndex;
     private Customer customer;
-
     private int index;
-    //•  All of the original appointment information is displayed on the update form in local time zone.
-    //•  All of the appointment fields can be updated except Appointment_ID, which must be disabled.
-
-
 
     @FXML
     public void UpdateAppt(ActionEvent event) throws SQLException, IOException {
@@ -92,21 +71,16 @@ public class ModifyApptController implements Initializable {
         String location = LocationTxt.getText();
         int contactid = ContactComboBox.getValue().getContact_ID();
         String type = TypeComboBox.getValue();
-
         Date date = new Date();//use LocalDateTime
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
-
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
         loader.load();
         String CreatedBy ="test";
-
-       // String LastUpdatedBy = String.valueOf(loginController.UsernameTxt);
         String LastUpdatedBy ="test";
-
         int customerid = Integer.parseInt(CustomerIDTxt.getText());
         int userid = Integer.parseInt(UserIDTxt.getText());
 
@@ -114,10 +88,7 @@ public class ModifyApptController implements Initializable {
         LocalDate startDate = LocalDate.from(ApptStartPicker.getValue());
         LocalDate endDate = LocalDate.from(ApptEndPicker.getValue());
 
-
-
         //Times
-
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
         LocalDateTime start = LocalDateTime.of(startDate,startTime);
@@ -125,44 +96,29 @@ public class ModifyApptController implements Initializable {
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
+/**Applying the same logic as in AddApptController*/
+        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start,end))){//Alerts.selectionWarning();
+            AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid);
+        }
 
-//        if(TimeUtil.businessHoursCheck(start, end)){
-//
-//            if (TimeUtil.appointmentOverlapCheck()) {
-                AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid);
-//            }else {
-//                Alerts.ValueWarning();
-//            }
-//
-//        }
-//        else{
-//            Alerts.ValueWarning();
-//        }
+        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
+            Alerts.selectionWarning();
+        }
 
     }
 
-
     @FXML
     public void ApptScreenReturn(ActionEvent event) throws IOException {
-
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
-
     }
 
 
-
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        //Timing nested loop
-        //Mr. Wabara reviewed timeloops with me to output to combobox
-        //we discussed that combining the times with the date picker to a timestamp
-        //would help format the time
         for(int hr = 8; hr < 22; hr++){
             StartTimeCombo.getItems().add(LocalTime.of(hr,0));
             StartTimeCombo.getItems().add(LocalTime.of(hr,15));
@@ -172,7 +128,6 @@ public class ModifyApptController implements Initializable {
             EndTimeCombo.getItems().add(LocalTime.of(hr,15));
             EndTimeCombo.getItems().add(LocalTime.of(hr,30));
             EndTimeCombo.getItems().add(LocalTime.of(hr,45));
-            //hardcode the times for forloops
         }
         String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
         for(int i = 0; i<3; i++){
@@ -186,7 +141,6 @@ public class ModifyApptController implements Initializable {
         this.appointment = appointment;
         this.selectedIndex = selectedIndex;
 
-
         ApptIDTxt.setText(String.valueOf(appointment.getAppointment_ID()));
         TitleTxt.setText((String.valueOf(appointment.getTitle())));
         DescriptionTxt.setText(String.valueOf(appointment.getDescription()));
@@ -195,11 +149,6 @@ public class ModifyApptController implements Initializable {
         ContactComboBox.setValue(appointment.getContact().get(appointment.getContact_ID()));//gets index minus to set current contactcombo
         TypeComboBox.setValue(String.valueOf(appointment.getType()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
-
-//        ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
-//        FilteredList<Contact> showContactID = new FilteredList<>(allContacts, i-> i.getContact_ID() == ContactComboBox.getSelectionModel().getSelectedItem().getContact_ID());
-//        ContactComboBox.setItems(showContactID);
-
 
         /**These sets of pickers take the Local Date, and LocalTime values,
          * then they set them as timestamp values to be passed back to the view**/
@@ -211,20 +160,10 @@ public class ModifyApptController implements Initializable {
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
     }
 
-
     public void Customer_Passer(int index, Customer customer){
         this.customer = customer;
         this.index = index;
-
         CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
-        //UserIDTxt.setText((String.valueOf(customer.getCustomer_ID())));//use same logic to setid for addapt and addcust
-        //Customer_Name.setText(customer.getCustomer_Name());
-        //AddressTxt.setText(customer.getAddress());
-        //Postal_Code.setText(customer.getPostal_Code());
-        //Phone.setText(customer.getPhone());
-        //Division_ID.setText((String.valueOf(customer.getDivision_ID())));
-
     }
-
 
 }

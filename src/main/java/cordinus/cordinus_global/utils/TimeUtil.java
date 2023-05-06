@@ -129,48 +129,25 @@ public class TimeUtil {
                 if( (appointment.getCustomer_ID() != customerID)){
                     continue;
                 }
-                //if ((NAS > EAS) && (NAS < EAE)) ,,   start is After apptgetStart && start before apptGetEnd
-//    error
-//
-//                if(start.isBefore(appointment.getEnd()) || end.isBefore(appointment.getEnd())){
-//                    System.out.println("Late Start Overlap 1");
-//                    //Alerts.overlapWarning();
-//                    return true;
-//                }
-//
-//
-//
-//
-////
-////else if ((NAS < EAS)&&(NAE > EAE))   start is before apptgetStart   end before apptgetEnd
-////                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())){
-////                    System.out.println("Engulfing Appointment");
-////                    return true;
-////                }
-////////else if((NAE>NAS)&&(NAE < EAE))      end before start && end before appt getEnd
-//                if(start.isAfter(appointment.getStart()) && end.isBefore(appointment.getEnd())){
-//                    System.out.println("Inner Appointment schedule");
-//                    return true;
-//                }
-//
-//////else if((NAS==EAS)||(NAE == EAE))    start equal apptgetStart   end equal apptGetEnd
-//                if(start.isEqual(appointment.getStart()) || end.isEqual(appointment.getEnd())){
-//                    System.out.println("Exact Appointment Overlap");
-//                    return true;
-//                }
-//
-//
-//                if((start.isEqual(appointment.getStart())) && end.isAfter(appointment.getEnd())){
-//                    System.out.println("End After/late start overlap ");
-//                    return true;
-//                }
-//
-//                if((start.isBefore(appointment.getStart())) && end.isEqual(appointment.getEnd())){
-//                    System.out.println("Early Start");
-//                    return true;
-//                }
 
 
+/**https://wgu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3eef99f0-356a-4422-b92b-adf900f99fec
+ * Reviewed the above video hosted by Carolyn Sher-DeCusatis after finte-tuning my time logic with her
+ * appointment.getStart() = s
+ * appointment.getEnd() = e
+ * start = s1
+ * end = e1
+ * There are three cases to check for overlaps per the video.
+ * First case is:
+ * s1 < s && e1 > s
+ *
+ * Second case of classes is:
+ * s1 = s
+ *
+ * Third case of classes is:
+ * s1 > s && s1 < e
+ *
+ * */
                 if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
                     return true;
                 }
@@ -179,21 +156,19 @@ public class TimeUtil {
                     return true;
                 }
 
-                if(start.isEqual(appointment.getStart())){
+                if(start.isAfter(appointment.getStart()) && appointment.getEnd().isBefore(end)){
                     return true;
                 }
 
-                //startafter start or befor end
-                        //start is equal to start
-
-
+                if(start.isEqual(appointment.getStart())){
+                    return true;
+                }
 
             }
         }
         return false; //after the foreach loop return true
     }
 
-    //condensed forloop checking appointment id. if matches continue
 }
 
 

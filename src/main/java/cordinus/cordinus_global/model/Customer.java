@@ -8,18 +8,16 @@ import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
+/**Used standard variables according to the database and functional requisites Initialed constructors, getters, and setters according to my initial understanding of the data types.
+ * In the future I would do more UML diagramming to align myself better with best practices */
 public class Customer {
 
     private final ObservableList<Appointment> associatedAppointments = FXCollections.observableArrayList();
-
     private int Customer_ID;
-
     private String Customer_Name;
-
     private String Address;
     private String Postal_Code;
     private String Phone;
-
     private String Division_ID;//
 
 /**Discovered that matching the order of the constructor attributes with the view counterparts ensures that
@@ -32,8 +30,6 @@ public class Customer {
         Phone = phone;
         Division_ID = division_ID;
     }
-
-
 
     public int getCustomer_ID() {
         return Customer_ID;
@@ -93,31 +89,6 @@ public class Customer {
     @Override
     public String toString(){
         return Customer_Name;
-    }
-
-    public void addAssociatedAppointment(Appointment newAppt){
-        if(newAppt!=null){
-            try{
-                associatedAppointments.add(newAppt);
-            }catch (RuntimeException r){
-                Alerts.SelectionError();
-            }
-        }
-
-    }
-
-    public ObservableList<Appointment> getAllAssociatedAppointments(){
-        return associatedAppointments;
-    }
-
-    public void deleteAssociatedAppointment(Appointment newAppt){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "If you delete this customer you must delete all associated appointments first." +
-                "\nDo you wish to proceed?");
-        alert.setTitle("DELETE CONFIRMATION");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isPresent()  && result.get() != ButtonType.CANCEL){
-            associatedAppointments.remove(newAppt);
-        }
     }
 
 }
