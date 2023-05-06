@@ -1,10 +1,7 @@
 This desktop scheduling application retrieves information from a mysql database, and allows the user to manipulate the datasets in the application view through the use of JavaFX controls for appointments, customers, and reports.
 
 -----------------------------------------
-Author: Uri W. Easter
-Student Application Version: 1.0
-Date: 04/22/2023
-Application: Cordinus Global
+Cordinus Global v1.0
 ------------------------------------------
 
 Directions for how to run the program
@@ -36,8 +33,13 @@ above sections highlighted earlier. This application will also switch to French 
 to be the user's preferred language.
 
 
-Created With:
+-----------------------------------------
+Author: Uri W. Easter
+Student Application Version: 1.0
+Date: 05/07/2023
+
 IntelliJ IDEA Community Edition 2022.3.1, 
 JavaFX-SDK-11.0.17,
 Scene Builder 19.0.0
 mysql-connector-j-8.0.31
+------------------------------------------
