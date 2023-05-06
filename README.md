@@ -1,12 +1,10 @@
-
-Cordinus Global
-
 This desktop scheduling application retrieves information from a mysql database, and allows the user to manipulate the datasets in the application view through the use of JavaFX controls for appointments, customers, and reports.
 
 -----------------------------------------
 Author: Uri W. Easter
 Student Application Version: 1.0
 Date: 04/22/2023
+Application: Cordinus Global
 
 IntelliJ IDEA Community Edition 2022.3.1, 
 JavaFX-SDK-11.0.17,
