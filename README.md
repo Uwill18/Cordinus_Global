@@ -37,9 +37,9 @@ to be the user's preferred language.
 
 
 -----------------------------------------
-Author: Uri W. Easter
-Student Application Version: 1.0
-Date: 05/07/2023
+Author: Uri W. Easter "\n"
+Student Application Version: 1.0 "\n"
+Date: 05/07/2023 "\n"
 
 IntelliJ IDEA Community Edition 2022.3.1, 
 JavaFX-SDK-11.0.17,
