@@ -19,7 +19,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -112,6 +114,10 @@ public  class ReportController implements Initializable {
     @FXML
     private Label todayLbl;
 
+    @FXML
+    private Label currDateLbl;
+
+    public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
 
     //initialize
@@ -135,8 +141,6 @@ public  class ReportController implements Initializable {
         ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
         ContactComboBox.setItems(allContacts);
 
-
-
         for (Appointment a : allAppointments) {
             if (!appointmentTypeList.contains(a.getType())) {
                 appointmentTypeList.add(a.getType());
@@ -156,6 +160,11 @@ public  class ReportController implements Initializable {
         DayOfWeek dow = LocalDate.now().getDayOfWeek();
         String currentDOW = dow.toString();
         todayLbl.setText(currentDOW);
+
+        LocalDateTime ldt = LocalDateTime.now();
+        DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
+        String formatDate = ldt.format(date_format);
+        currDateLbl.setText(formatDate);
 
         remainingFifteen();
         remainingThirty();

@@ -32,7 +32,6 @@ import java.util.ResourceBundle;
 
 ////https://www.youtube.com/watch?v=3Ht-JMQh2JI
 public class ModifyApptController implements Initializable {
-
     @FXML
     private DatePicker ApptEndPicker;
     @FXML

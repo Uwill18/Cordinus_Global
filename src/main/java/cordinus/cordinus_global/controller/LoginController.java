@@ -128,7 +128,8 @@ public class LoginController implements Initializable {
         for(Appointment a: AppointmentsQuery.getAllAppointments()){//get list of appts
             if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
                 LocalDateTime ldt = a.getStart();
-                DateTimeFormatter date_format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                //DateTimeFormatter date_format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
                 String formatDate = ldt.format(date_format);
                 DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
                 String formatTime = ldt.format(time_format);

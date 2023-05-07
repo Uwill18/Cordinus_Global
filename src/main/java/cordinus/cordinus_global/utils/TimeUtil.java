@@ -16,17 +16,11 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.ValueRange;
 
 public class TimeUtil {
-//    private static final ZonedDateTime EST_BH_START = ZonedDateTime.of(LocalDate.now(), LocalTime.of(8,0), ZoneId.of("America/New_York"));
-//    // private static final ZonedDateTime EST_BH_START_RANGE = ZonedDateTime.of(LocalDate.now().plusMonths(1), LocalTime.of(8,0), ZoneId.of("America/New_York"));
-//
-
-
+    /** Learned from Mr. Ruiz that best practices when doing time comparisons are to do so
+     * from the references ZonedateTime Object and User System Settings.*/
     public static boolean businessHoursCheck( LocalDateTime start, LocalDateTime end) {
         LocalDate selectedStart = start.toLocalDate();
         final ZonedDateTime EST_BH_START = ZonedDateTime.of(selectedStart, LocalTime.of(8,0), ZoneId.of("America/New_York"));
-
-
-
         ZonedDateTime localStart = EST_BH_START.withZoneSameInstant(ZoneId.systemDefault());
         ZonedDateTime localEnd = localStart.plusHours(14);
 
@@ -66,36 +60,6 @@ public class TimeUtil {
     //LDT .isAfter() and .isBefore() already optimized
     //real-life let db do filtering for you, it will be able to process the results faster
 
-//CustomerSchedule
-    //Start LDT
-    //End LDT
-    //Appt_ID
-    //Cust_ID
-
-    //CSQ
-    //parameter is queried for
-
-    //query parameters are stored inside object for comparison
-
-
-
-
-    //    EAS = existingAppointmentStart     , CustomerSchedule.Start()
-    //Thinking of grabbing the  start from FXCollections
-//            EAE = existingAppointmentEnd   , CustomerSchedule.End()
-//if ((NAS > EAS) && (NAS < EAE)) ,,   start is After apptgetStart && start before apptGetEnd
-//    error
-//else if ((NAS < EAS)&&(NAE > EAE))   start is before apptgetStart   end before apptgetEnd
-//    error
-//else if((NAE>NAS)&&(NAE < EAE))      end before start && end before appt getEnd
-//    error
-//else if((NAS==EAS)||(NAE == EAE))    start equal apptgetStart   end equal apptGetEnd
-//
-//    in AddAppt compare CustID, in ModAppt compare for not existing ApptID
-//
-//if no appt -1
-
-    //private static final Appointment appointment = null;
 
 
     /**
@@ -106,13 +70,6 @@ public class TimeUtil {
      * The Logic for this variable is reusable for Add Appointment Controller and the Modify Appointment Controller
      */
 
-    //if ((NAS > EAS) && (NAS < EAE)) ,,
-    //    error
-    //else if ((NAS < EAS)&&(NAE > EAE)) x
-    //    error
-    //else if((NAE>NAS)&&(NAE < EAE))
-    //    error
-    //else if((NAS==EAS)||(NAE == EAE))
     public static boolean appointmentOverlapCheck( LocalDateTime start, LocalDateTime end) throws SQLException {
         String sql = "SELECT Appointment_ID, Customer_ID, Start, End  FROM APPOINTMENTS ;";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -132,7 +89,7 @@ public class TimeUtil {
 
 
 /**https://wgu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3eef99f0-356a-4422-b92b-adf900f99fec
- * Reviewed the above video hosted by Carolyn Sher-DeCusatis after finte-tuning my time logic with her
+ * Reviewed the above video hosted by Carolyn Sher-DeCusatis after fine-tuning my time logic with her
  * appointment.getStart() = s
  * appointment.getEnd() = e
  * start = s1
@@ -156,13 +113,26 @@ public class TimeUtil {
                     return true;
                 }
 
-                if(start.isAfter(appointment.getStart()) && appointment.getEnd().isBefore(end)){
-                    return true;
-                }
 
                 if(start.isEqual(appointment.getStart())){
                     return true;
                 }
+
+                /**This final case does not work, but something like it is needed to complete the appointment overlaps*/
+//                if(start.isAfter(appointment.getStart()) && appointment.getEnd().isBefore(end)){
+//                    return true;
+//                }
+
+                // if(start.isAfter(appointment.getStart()) && !end.isAfter(appointment.getEnd())){
+//                    return true;
+//                }
+
+
+                //if time interval b/t end, appointmentgetEnd >0 &&  !start.isAfter(appointment.getEnd)
+
+
+
+
 
             }
         }

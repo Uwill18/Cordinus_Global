@@ -68,29 +68,24 @@ public class AddApptController implements Initializable {
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException,IOException {
 
-        String sql = "SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID DESC LIMIT 1";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
+//        int userid = Integer.parseInt(UserIDTxt.getText());
+//        int custid = Integer.parseInt(CustomerIDTxt.getText());
+//        String title = TitleTxt.getText();
+//        String description = DescriptionTxt.getText();
+//        String location = LocationTxt.getText();
+//        int contact = ContactComboBox.getValue().getContact_ID();
+//        String type = TypeComboBox.getValue();
 
-
-        int userid = Integer.parseInt(UserIDTxt.getText());
-        int custid = Integer.parseInt(CustomerIDTxt.getText());
-        String title = TitleTxt.getText();
-        String description = DescriptionTxt.getText();
-        String location = LocationTxt.getText();
-        int contact = ContactComboBox.getValue().getContact_ID();
-        String type = TypeComboBox.getValue();
-
-        LocalDateTime date =LocalDateTime.now();//use LocalDateTime
-        Timestamp timestamp = Timestamp.valueOf(date);
-
-        Timestamp CreateDate = timestamp;
-        Timestamp LastUpdate = timestamp;
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
-
-        String CreatedBy= "test";
-        String LastUpdatedBy="test";
+//        LocalDateTime date =LocalDateTime.now();//use LocalDateTime
+//        Timestamp timestamp = Timestamp.valueOf(date);
+//
+//        Timestamp CreateDate = timestamp;
+//        Timestamp LastUpdate = timestamp;
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
+//
+//        String CreatedBy= "test";
+//        String LastUpdatedBy="test";
 
         /**Here my ComboBoxes list local time objects
         //then upon user selection, gets the value to be inserted for the times as a timestamp,
@@ -108,8 +103,47 @@ public class AddApptController implements Initializable {
 
         LocalDateTime start = LocalDateTime.of(startDate,startTime);
         LocalDateTime end = LocalDateTime.of(endDate,endTime);
-        Timestamp startby = Timestamp.valueOf(start);
-        Timestamp endby = Timestamp.valueOf(end);
+        boolean isOverlapping = false;
+        for(Appointment a: AppointmentsQuery.getDayAppointments()){
+            if(start.equals(a.getStart()) || end.equals(a.getEnd())){
+                //System.out.println("overlap"); //exact overlap
+                isOverlapping = true;
+                break;
+            }
+            else if(start.isAfter(a.getStart()) && start.isBefore(a.getEnd())){
+                //System.out.println("overlap 2"); // selected start within existing appoinmentment
+                isOverlapping = true;
+                break;
+            }
+            else if(end.isAfter(a.getStart()) && end.isBefore(a.getEnd())){
+                //System.out.println("overlap 3");// new appointment ends during existing appointment
+                isOverlapping = true;
+                break;
+            }
+            else if(a.getStart().isAfter(start) && a.getStart().isBefore(end)){
+                //System.out.println("overlap 4");//existing appointment starts within time of new appointment
+                isOverlapping = true;
+                break;
+            }
+            else if(a.getEnd().isAfter(start) && a.getEnd().isBefore(end)){
+                //System.out.println("overlap 5");//existing appointment ends within time of new appointment
+                isOverlapping = true;
+                break;
+            }
+
+
+        }
+        if(isOverlapping){
+            System.out.println("overlaps");
+        }
+        else {
+            System.out.println("no overlaps");
+        }
+
+
+
+//        Timestamp startby = Timestamp.valueOf(start);
+//        Timestamp endby = Timestamp.valueOf(end);
 
         /**This is commented out now, but when testing my functions, this was valuable to evaluate the relationships
          * of output to input when configuring the boolean logic*/
@@ -123,15 +157,17 @@ public class AddApptController implements Initializable {
          * CustomersQuery.deleteConfirmation(custID) in my  OnDeleteCustomer from the CustomerController would apply.
          * I learned to simplify, and to check when the appointmentOverlapCheck is not false to insert,
          * and otherwise alert if either of the boolean are false as below, as opposed to each time the functions
-         * showed false.*/
-        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start,end))){//Alerts.selectionWarning();
-            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
-       }
+//         * showed false.*/
+//        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start,end))){//Alerts.selectionWarning();
+           //AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+//       }
+//
+//
+//        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
+//            Alerts.selectionWarning();
+//       }
 
 
-        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
-            Alerts.selectionWarning();
-       }
 
         }
 

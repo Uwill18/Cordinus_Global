@@ -25,10 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ModCustController {
-    //when edit an existing customer, you have to update lastupdate
-    //by new login user
-    //only change lastupdate and lastupdateby
-    //**CreatedBy and CreateDate are NOT to be modified,
     //https://www.youtube.com/watch?v=1AmIKxHbLJo
     //https://www.youtube.com/watch?v=mY54KZkuZPQ
 
