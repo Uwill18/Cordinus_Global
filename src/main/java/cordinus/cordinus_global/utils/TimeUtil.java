@@ -70,6 +70,40 @@ public class TimeUtil {
      * The Logic for this variable is reusable for Add Appointment Controller and the Modify Appointment Controller
      */
 
+
+    /**https://wgu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3eef99f0-356a-4422-b92b-adf900f99fec
+     * Reviewed the above video hosted by Carolyn Sher-DeCusatis after fine-tuning my time logic with her
+     * appointment.getStart() = s
+     * appointment.getEnd() = e
+     * start = s1
+     * end = e1
+     * There are three cases to check for overlaps per the video.
+     * First case is:
+     * s1 < s && e1 > s
+     * //                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
+     * //                    return true;
+     * //                }
+     *
+     * Second case of classes is:
+     * s1 = s
+     *
+     *
+     //                if(start.isEqual(appointment.getStart())){
+     //                    return true;
+     //                }
+     *
+     * Third case of classes is:
+     * s1 > s && s1 < e
+     *
+     *
+     //                if(start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())){
+     //                    return true;
+     //                }
+     // I was also very grateful to get help from Mr. Wabara in analyzing additional cases for overlaps that occurred
+     //post-testing. I have documented my understanding of the cases below, and their relationships to earlier code.
+     *
+     // * */
+
     public static boolean appointmentOverlapCheck( LocalDateTime start, LocalDateTime end) throws SQLException {
         String sql = "SELECT Appointment_ID, Customer_ID, Start, End  FROM APPOINTMENTS ;";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -78,65 +112,44 @@ public class TimeUtil {
         if (rs.next()) {
             //int appointmentID = rs.getInt("Appointment_ID");
             int customerID = rs.getInt("Customer_ID");
-            //LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-            //LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
 
-            ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
-            for (Appointment appointment: allAppointments ) {
-                if( (appointment.getCustomer_ID() != customerID)){
-                    continue;
-                }
+            ObservableList<Appointment> dayAppointments = AppointmentsQuery.getDayAppointments();
 
+                for(Appointment appointment: dayAppointments){
 
-/**https://wgu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3eef99f0-356a-4422-b92b-adf900f99fec
- * Reviewed the above video hosted by Carolyn Sher-DeCusatis after fine-tuning my time logic with her
- * appointment.getStart() = s
- * appointment.getEnd() = e
- * start = s1
- * end = e1
- * There are three cases to check for overlaps per the video.
- * First case is:
- * s1 < s && e1 > s
- *
- * Second case of classes is:
- * s1 = s
- *
- * Third case of classes is:
- * s1 > s && s1 < e
- *
- * */
-                if(start.isBefore(appointment.getStart()) && end.isAfter(appointment.getStart())){
-                    return true;
-                }
-
-                if(start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())){
-                    return true;
-                }
+                    if( (appointment.getCustomer_ID() != customerID)){
+                        continue;
+                    }
 
 
-                if(start.isEqual(appointment.getStart())){
-                    return true;
-                }
-
-                /**This final case does not work, but something like it is needed to complete the appointment overlaps*/
-//                if(start.isAfter(appointment.getStart()) && appointment.getEnd().isBefore(end)){
-//                    return true;
-//                }
-
-                // if(start.isAfter(appointment.getStart()) && !end.isAfter(appointment.getEnd())){
-//                    return true;
-//                }
-
-
-                //if time interval b/t end, appointmentgetEnd >0 &&  !start.isAfter(appointment.getEnd)
-
-
-
-
-
+                    if(start.equals(appointment.getStart()) || end.equals(appointment.getEnd())){
+                        //System.out.println("overlap");
+                        /**exact overlap, s1 = s && e1 =e*/
+                        break;
+                    }
+                    else if(start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())){
+                        //System.out.println("overlap 2");
+                        /** selected start within existing appoinmentment, s1 > s && s1 < e*/
+                        return true;
+                    }
+                    else if(end.isAfter(appointment.getStart()) && end.isBefore(appointment.getEnd())){
+                        //System.out.println("overlap 3");
+                        /**new appointment ends during existing appointment*/
+                        return true;
+                    }
+                    else if(appointment.getStart().isAfter(start) && appointment.getStart().isBefore(end)){
+                        //System.out.println("overlap 4");
+                        /**existing appointment starts within time of new appointment, s1 < s && e1 > s*/
+                        return true;
+                    }
+                    else if(appointment.getEnd().isAfter(start) && appointment.getEnd().isBefore(end)){
+                        //System.out.println("overlap 5");
+                        /**existing appointment ends within time of new appointment*/
+                        return true;
+                    }
             }
         }
-        return false; //after the foreach loop return true
+        return false;
     }
 
 }
