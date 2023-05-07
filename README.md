@@ -30,7 +30,7 @@ Report one exacts the total number of customer appointments by type and month. T
 report shows a schedule for each contact within the organization. The final and third report
 relays to textfield the remaining number of appointments per day by scheduling interval.
 
---Exception Control & Alerts
+Exception Control & Alerts
 Last but not least error control is implemented with a series of alerts catered to each of the
 above sections highlighted earlier. This application will also switch to French if that is detected
 to be the user's preferred language.
