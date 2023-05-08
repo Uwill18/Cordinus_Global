@@ -113,8 +113,7 @@ public class Main extends Application {
         //Creating a scene object
        Scene scene = new Scene(root);
 
-        //Scene scene = new Scene(fxmlLoader.load());
-        //scene.getStylesheets().add("src/main/resources/cordinus/cordinus_global/styles.css");
+
         stage.setTitle("Cordinus Global");
         stage.setScene(scene);
         stage.show();
