@@ -38,7 +38,7 @@ import java.util.Locale;
  * I would also look for opportunities to map through objects and their properties  to display the correct data sets
  * for the user to interact with.
  * I would try be clear on system requirements, so as not to overthink them.
- * I would also look for opportunities touse the database and the DAO to my
+ * I would also look for opportunities to use the database and the DAO to my
  * advantage as it is most effective at calculating data quickly, and retrieving specified data to the view.
  * Further, in reports I might also enable a button to save and print out current report data.
  * Lastly, if I had more time I would have the whole app translate to French when prompted since one of the use cases
