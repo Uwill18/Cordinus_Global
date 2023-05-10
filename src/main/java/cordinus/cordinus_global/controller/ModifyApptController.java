@@ -96,11 +96,11 @@ public class ModifyApptController implements Initializable {
         Timestamp endby = Timestamp.valueOf(end);
 
 /**Applying the same logic as in AddApptController*/
-        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start,end))){//Alerts.selectionWarning();
+        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapModCheck(start,end))){//Alerts.selectionWarning();
             AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid);
         }
 
-        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
+        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapModCheck(start,end))){
             Alerts.selectionWarning();
         }
 
@@ -145,7 +145,7 @@ public class ModifyApptController implements Initializable {
         DescriptionTxt.setText(String.valueOf(appointment.getDescription()));
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
-        ContactComboBox.setValue(appointment.getContact().get(appointment.getContact_ID()));//gets index minus to set current contactcombo
+        ContactComboBox.setValue(appointment.getContact().get(appointment.getContact_ID()-1));//gets index minus to set current contactcombo
         TypeComboBox.setValue(String.valueOf(appointment.getType()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 

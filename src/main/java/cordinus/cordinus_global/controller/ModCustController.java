@@ -91,7 +91,9 @@ public class ModCustController {
 
         public void OnActionSelectCountry(){
                 /**This lambda expression filters the Observable list allDivisions of Type Division and matches
-                 * all division objects that share the same CountryID as the selected country from the CountriesComboBox*/
+                 * all division objects that share the same CountryID as the selected country from the CountriesComboBox.
+                 * This lambda expression is needed at this combox to filter the selection pool of divisions to their respective
+                 * countries by matching the CountryID attribute that both entities share.*/
                 ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
                 FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
                 StatesComboBox.setItems(selectedDivision);
