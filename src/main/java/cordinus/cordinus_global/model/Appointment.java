@@ -111,9 +111,9 @@ public class Appointment {
         User_ID = user_ID;
     }
 
-    public List<Contact> getContact(){
-        return ContactsQuery.getAllContacts();
-    }
+    //public Contact getContact(){
+        //return ;
+    //}
 
 /**applied same logic as getCountryByDivision*/
     public Customer getCustomer_Name(){

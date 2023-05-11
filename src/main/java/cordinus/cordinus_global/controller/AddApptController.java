@@ -1,12 +1,10 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
-import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.DAO.UsersQuery;
 import cordinus.cordinus_global.model.*;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.utils.TimeUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,7 +65,31 @@ public class AddApptController implements Initializable {
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException,IOException {
 
-        int userid = Integer.parseInt(UserIDTxt.getText());
+
+
+
+        //LoginController loginController;
+        //int userid = Integer.parseInt(UserIDTxt.getText());
+       // int userid = UserIDTxt.setText(loginController.User_Passer(););
+
+
+
+
+
+
+       // UserIDTxt.setText(); // set to displayUserID
+
+
+        for(User user: UsersQuery.getAllUsers() ){
+//            user.getUser_ID();
+//            user.getUser_Name();
+//            user.getPassword();
+        }
+
+
+
+
+
         int custid = Integer.parseInt(CustomerIDTxt.getText());
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
@@ -80,11 +102,11 @@ public class AddApptController implements Initializable {
 
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
+        //FXMLLoader loader = new FXMLLoader();
+        //loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
 
-        String CreatedBy= "test";
-        String LastUpdatedBy="test";
+        String CreatedBy= displayCurrentUserName();
+        //String LastUpdatedBy="test";
 
         /**Here my ComboBoxes list local time objects
         //then upon user selection, gets the value to be inserted for the times as a timestamp,
@@ -108,8 +130,7 @@ public class AddApptController implements Initializable {
 
         /**This is commented out now, but when testing my functions, this was valuable to evaluate the relationships
          * of output to input when configuring the boolean logic*/
-        //System.out.println(TimeUtil.businessHoursCheck(start, end));
-        //System.out.println(TimeUtil.appointmentOverlapCheck(start,end));
+
 
 
         /**Reviewed with Sunitha Kandalam the logic for verifying which appointments to insert.
@@ -121,23 +142,12 @@ public class AddApptController implements Initializable {
          * showed false.*/
 
 
-        //System.out.println("appointmentOverlapCheck : " +(!TimeUtil.appointmentOverlapCheck(start,end)));//false
-        //apptOverlap must be false
-        //where overlap occurs, return true, break
-        //if true return overlap
-        //else insert
-
         if(TimeUtil.businessHoursCheck(start, end) && (!TimeUtil.appointmentOverlapCheck(start, end, custid, -1 ))){//false
            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
        }
         else{
             Alerts.selectionWarning();
         }
-
-        //false && false
-//        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
-//            Alerts.selectionWarning();
-//       }
 
     }
 
@@ -199,4 +209,15 @@ public class AddApptController implements Initializable {
     public void ContactUpdate(){
         ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
     }
+
+    public int displayCurrentUserID(int userid){
+      return userid;
+    }
+
+    public User displayCurrentUserData(String username, String password){
+        User currentUser = UsersQuery.getCurrentUserData(username, password);
+        return currentUser;
+    }
+
+
 }

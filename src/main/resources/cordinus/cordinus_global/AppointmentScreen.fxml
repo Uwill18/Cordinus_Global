@@ -20,7 +20,6 @@
                </toggleGroup></RadioButton>
             <RadioButton fx:id="MonthRB" mnemonicParsing="false" onAction="#OnRadioButton" text="Month" toggleGroup="$ApptRB" />
             <RadioButton fx:id="WeekRB" mnemonicParsing="false" onAction="#OnRadioButton" text="Week" toggleGroup="$ApptRB" />
-            <RadioButton fx:id="DayRB" mnemonicParsing="false" onAction="#OnRadioButton" text="Day" toggleGroup="$ApptRB" />
          </children>
       </HBox>
       <TableView fx:id="AppointmentTable" layoutX="10.0" layoutY="100.0" prefHeight="200.0" prefWidth="922.0">

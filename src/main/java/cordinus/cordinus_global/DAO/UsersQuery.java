@@ -50,7 +50,7 @@ public abstract class UsersQuery {
         return false;
     }
 
-    public static User setCurrentUserData(String username, String password){
+    public static User getCurrentUserData(String username, String password){
         User user = null;
         try {
             String sql = "SELECT User_ID FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
@@ -76,7 +76,11 @@ public abstract class UsersQuery {
         return null;
     }
 
-
+    //userIDValidation
+    //store them in list of UserIDs
+    //return list of userIDs
+    //check if input matches current or existing id
+    //return error if input not in list of ids
 
 
 }

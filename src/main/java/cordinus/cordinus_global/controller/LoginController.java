@@ -50,8 +50,9 @@ public class LoginController implements Initializable {
     public Label passwordLabel;
 
     public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
+    private User user;
 
-/**The initialize method gathers the keys from the resource bundle dictionary to translate upon system default settings*/
+    /**The initialize method gathers the keys from the resource bundle dictionary to translate upon system default settings*/
     public void initialize(URL url, ResourceBundle resourceBundle)  {
         usernameLabel.setText(rb.getString("Username"));
         passwordLabel.setText(rb.getString("Password"));
@@ -93,7 +94,8 @@ public class LoginController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+ " } " +ZoneId.systemDefault() + " Time.");
-                //todo username and timestamp, then say if successful or not
+                User tempUser = UsersQuery.getCurrentUserData(username,password);
+                User_Passer(tempUser);
                 System.out.println("File written!");
                 /**upon successful validation the alert is called*/
                 FifteenMinutesAlert();
@@ -141,6 +143,26 @@ public class LoginController implements Initializable {
             }
         }
         return "There are no upcoming appointments at this time.";
+    }
+
+    public User User_Passer(User user) throws IOException {
+        this.user = user;
+        int userid = user.getUser_ID();;
+        String username = user.getUser_Name();
+        String password = user.getPassword();
+
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
+        loader.load();
+        AddApptController addApptController= loader.getController();
+        addApptController.displayCurrentUserID(userid);
+        addApptController.displayCurrentUserData(username, password);
+
+
+
+
+        return user;
     }
 
     /**allows the User to exit the Loginform and application if needed*/

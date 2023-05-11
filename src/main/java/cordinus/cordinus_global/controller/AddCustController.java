@@ -105,9 +105,7 @@ public class AddCustController {
         ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
         FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
         StatesComboBox.setItems(selectedDivision);
-
     }
-
 
     @FXML
     public void CustomerScreenButton(ActionEvent event) throws IOException {

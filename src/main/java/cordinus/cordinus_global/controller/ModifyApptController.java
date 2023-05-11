@@ -1,12 +1,11 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
-import cordinus.cordinus_global.model.Alerts;
-import cordinus.cordinus_global.model.Appointment;
-import cordinus.cordinus_global.model.Contact;
-import cordinus.cordinus_global.model.Customer;
+import cordinus.cordinus_global.model.*;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.utils.TimeUtil;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,7 +77,7 @@ public class ModifyApptController implements Initializable {
         String CreatedBy ="test";
         String LastUpdatedBy ="test";
         int customerid = Integer.parseInt(CustomerIDTxt.getText());//not mutable
-        int userid = Integer.parseInt(UserIDTxt.getText());
+        int userid = Integer.parseInt(UserIDTxt.getText());//control with exceptions
 
         ///Dates
         LocalDate startDate = LocalDate.from(ApptStartPicker.getValue());
@@ -135,7 +134,7 @@ public class ModifyApptController implements Initializable {
         for(int i = 0; i<3; i++){
             TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
         }
-        ContactComboBox.setItems(ContactsQuery.getAllContacts());
+         ContactComboBox.setItems(ContactsQuery.getAllContacts());
     }
 
 
@@ -148,7 +147,7 @@ public class ModifyApptController implements Initializable {
         DescriptionTxt.setText(String.valueOf(appointment.getDescription()));
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
-        ContactComboBox.setValue(appointment.getContact().get(appointment.getContact_ID()-1));//gets index minus to set current contactcombo
+        ContactComboBox.setValue(AppointmentsQuery.getContactByID(appointment.getContact_ID()));
         TypeComboBox.setValue(String.valueOf(appointment.getType()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 
@@ -166,6 +165,11 @@ public class ModifyApptController implements Initializable {
         this.customer = customer;
         this.index = index;
         CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
+    }
+
+    /**upon selecting a contact, this function populates the contact id field with the correct value*/
+    public void ContactUpdate(){
+        ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
     }
 
 }

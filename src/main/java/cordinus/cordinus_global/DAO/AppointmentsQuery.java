@@ -1,8 +1,6 @@
 package cordinus.cordinus_global.DAO;
 
-import cordinus.cordinus_global.model.Alerts;
-import cordinus.cordinus_global.model.Appointment;
-import cordinus.cordinus_global.model.Customer;
+import cordinus.cordinus_global.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -286,9 +284,36 @@ public abstract class AppointmentsQuery {
         ObservableList<Appointment> list = getAllAppointments().stream()
                 .filter(appointment -> appointment.getCustomer_ID()==custid)
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
-
-        //System.out.println("list size = "+ list.size());
         return list;
+    }
+
+//    public static ObservableList<Contact> getContactName(String contactName){
+//        ObservableList<Contact> list = ContactsQuery.getAllContacts().stream()
+//                .filter(contact -> contact.getContact_Name().equals(contactName))
+//                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+//        return list;
+//    }
+
+
+    public static Contact getContactByID (int contactID){
+       Contact contact = null;
+        try {
+            String sql = "SELECT * FROM Contacts AS C INNER JOIN Appointments AS A ON C.Contact_ID = A.Contact_ID AND A.Contact_ID=?";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ps.setInt(1, contactID);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int contact_ID = rs.getInt("Contact_ID");
+                String contactname = rs.getString("Contact_Name");
+                String email = rs.getString("Email");
+                contact= new Contact(contact_ID,contactname,email);
+                return contact;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
 }

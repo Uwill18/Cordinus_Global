@@ -55,7 +55,7 @@
             <TextField fx:id="UserIDTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="StartTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <ComboBox fx:id="EndTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <ComboBox fx:id="ContactComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <ComboBox fx:id="ContactComboBox" onAction="#ContactUpdate" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <ComboBox fx:id="TypeComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>

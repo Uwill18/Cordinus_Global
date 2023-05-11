@@ -84,9 +84,10 @@ public class ApptController {
                 /**To maximize refactoring, the sql queries that return the required object attributes for the observablelist are
                  * executed in the relevant queries file, and the corresponding function that returns the appropriate observablelist
                  * is stored in the observablelist in view*/
-                //ObservableList<Appointment> appointmentdata = FXCollections.observableArrayList();
+
                                         if (AllRB.isSelected()){
                                                 appointmentdata = AppointmentsQuery.getAllAppointments();
+
                                         }
                                          if(MonthRB.isSelected()){
                                                 appointmentdata = AppointmentsQuery.getMonthAppointments();
@@ -94,12 +95,8 @@ public class ApptController {
                                         if(WeekRB.isSelected()) {
                                                appointmentdata = AppointmentsQuery.getWeekAppointments();
                                         }
-                                        if(DayRB.isSelected()) {
-                                                appointmentdata = AppointmentsQuery.getDayAppointments();
-                                        }
                 /**customer data is added to the CustomerTable in the view*/
                 AppointmentTable.setItems(appointmentdata);
-
         }
 
 

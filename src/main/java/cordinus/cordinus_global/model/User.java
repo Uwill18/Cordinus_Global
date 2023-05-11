@@ -48,10 +48,11 @@ public class User {
 //        return password;
 //    }
 //
-//    public User getUserData(User user){
-//        User currentUser = user;
-//        //user = UsersQuery.setCurrentUserData(user.getUser_Name(),user.getPassword());
-//        return currentUser;
-//    }
+    public User getUserData( ){
+        User user = null;
+
+        User currentUser = UsersQuery.getCurrentUserData(user.getUser_Name(),user.getPassword());
+        return currentUser;
+    }
 
 }
