@@ -119,8 +119,7 @@ public class AddApptController implements Initializable {
          * I learned to simplify, and to check when the appointmentOverlapCheck is not false to insert,
          * and otherwise alert if either of the boolean are false as below, as opposed to each time the functions
          * showed false.*/
-        System.out.println("businessHoursCheck : " +(!TimeUtil.businessHoursCheck(start,end)));//true
-        System.out.println("appointmentOverlapCheck : " +(TimeUtil.appointmentOverlapCheck(start,end)));//true
+
 
         //System.out.println("appointmentOverlapCheck : " +(!TimeUtil.appointmentOverlapCheck(start,end)));//false
         //apptOverlap must be false
@@ -128,18 +127,19 @@ public class AddApptController implements Initializable {
         //if true return overlap
         //else insert
 
-        if(TimeUtil.businessHoursCheck(start, end) && (!TimeUtil.appointmentOverlapCheck(start,end))){//false
+        if(TimeUtil.businessHoursCheck(start, end) && (!TimeUtil.appointmentOverlapCheck(start, end, custid, -1 ))){//false
            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
        }
+        else{
+            Alerts.selectionWarning();
+        }
 
         //false && false
-        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
-            Alerts.selectionWarning();
-       }
+//        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapCheck(start,end))){
+//            Alerts.selectionWarning();
+//       }
 
-
-
-        }
+    }
 
 
     @FXML

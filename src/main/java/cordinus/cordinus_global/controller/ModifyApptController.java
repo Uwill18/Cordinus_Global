@@ -64,7 +64,7 @@ public class ModifyApptController implements Initializable {
     private int index;
 
     @FXML
-    public void UpdateAppt(ActionEvent event) throws SQLException, IOException {
+    public void UpdateAppt(ActionEvent event) throws SQLException {
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
@@ -92,15 +92,21 @@ public class ModifyApptController implements Initializable {
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
-/**Applying the same logic as in AddApptController*/
-       if(TimeUtil.businessHoursCheck(start, end) && (TimeUtil.appointmentModOverlapCheck(this.appointment))){//Alerts.selectionWarning();
-            AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid);
-       }
-
-//        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapModCheck(start,end))){
-//            Alerts.selectionWarning();
-//        }
-
+/**Applying the same logic as in AddApptController
+ * appointment object
+ * getting id
+ * executes on !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())), or true*/
+        System.out.println("before Overlap....."+title+"..."+start+"..."+end+"..."+customerid+"..."+appointment.getAppointment_ID()+"..." + (TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())) );
+        try {
+            if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())) ){//Alerts.selectionWarning();
+                 AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid, appointment.getAppointment_ID());
+            }
+            else {
+                Alerts.SelectionError();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

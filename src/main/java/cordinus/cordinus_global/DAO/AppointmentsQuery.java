@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class AppointmentsQuery {
@@ -39,8 +40,8 @@ public abstract class AppointmentsQuery {
 
     }
 
-    public static int update(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp CreatedDate, String CreatedBy, Timestamp LastUpdate,String LastUpdatedBy, int userid, int contact,int customerid) throws SQLException {
-        String sql ="UPDATE APPOINTMENTS SET Title = ?,Description = ?,Location= ?, Type = ?, Start = ?, End = ?,Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, User_ID = ?, Contact_ID = ?  WHERE Customer_ID = ?";
+    public static int update(String title, String description, String location, String type, Timestamp startby, Timestamp endby,Timestamp CreatedDate, String CreatedBy, Timestamp LastUpdate,String LastUpdatedBy, int userid, int contact,int customerid, int appointmentID) throws SQLException {
+        String sql ="UPDATE APPOINTMENTS SET Title = ?,Description = ?,Location= ?, Type = ?, Start = ?, End = ?,Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, User_ID = ?, Contact_ID = ?, Customer_ID = ?  WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1,title);
         ps.setString(2,description);
@@ -55,7 +56,8 @@ public abstract class AppointmentsQuery {
         ps.setInt(11,userid);
         ps.setInt(12,contact);
         ps.setInt(13,customerid);
-
+        ps.setInt(14,appointmentID);
+        System.out.println(ps);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }
@@ -275,6 +277,18 @@ public abstract class AppointmentsQuery {
             throw new RuntimeException(e);
         }
         return 0;
+    }
+
+    /**This observablelist method is a lambda expression that filters customer ids
+     * through comparing the @custid parameter to appointment object's getCustomer_ID()
+     * method call. The results are stored in a collection of type observableArrayList.*/
+    public static ObservableList<Appointment> getCustomerAppointments(int custid){
+        ObservableList<Appointment> list = getAllAppointments().stream()
+                .filter(appointment -> appointment.getCustomer_ID()==custid)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+        //System.out.println("list size = "+ list.size());
+        return list;
     }
 
 }

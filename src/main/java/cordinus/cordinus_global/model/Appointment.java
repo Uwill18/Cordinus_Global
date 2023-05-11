@@ -21,7 +21,6 @@ public class Appointment {
     private String Type;
     private int Customer_ID;
     private String User_ID;
-    public static Appointment appointment;
 
 
     public Appointment(int appointment_ID, String title, String description, String location, String contact_ID, String type, LocalDateTime start, LocalDateTime end, String customerID, String userID  ) {
@@ -120,7 +119,5 @@ public class Appointment {
     public Customer getCustomer_Name(){
         return AppointmentsQuery.getCustomerByID(Customer_ID);
     }
-
-
 
 }

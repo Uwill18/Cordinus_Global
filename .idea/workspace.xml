@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Modify Appoitnment Overlap Working w/ Sr. Dev Kandalam">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Modify Appointment Overlap Working w/ Sr. Dev Kandalam">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Appointment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00100" summary="retrieved contacts in contactcombobox">
-      <created>1681455561800</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1681455561800</updated>
     </task>
     <task id="LOCAL-00101" summary="Updated comboboxes and ReportScreen.fxml">
       <created>1681465126420</created>
@@ -435,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683764478960</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="Modify Appointment Overlap Working w/ Sr. Dev Kandalam">
+      <created>1683767924617</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1683767924618</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -450,7 +455,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="OverlapCheck functional" />
     <MESSAGE value="Final UserLogin Testing Attempt" />
     <MESSAGE value="Updating reports" />
     <MESSAGE value="contact schedule functional" />
@@ -475,7 +479,8 @@
     <MESSAGE value="Final Commit" />
     <MESSAGE value="Appointment Overlap Working" />
     <MESSAGE value="Modify Appoitnment Overlap Working w/ Sr. Dev Kandalam" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modify Appoitnment Overlap Working w/ Sr. Dev Kandalam" />
+    <MESSAGE value="Modify Appointment Overlap Working w/ Sr. Dev Kandalam" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modify Appointment Overlap Working w/ Sr. Dev Kandalam" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
