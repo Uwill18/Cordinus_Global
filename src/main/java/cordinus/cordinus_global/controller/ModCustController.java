@@ -109,13 +109,5 @@ public class ModCustController {
                 Postal_Code.setText(customer.getPostal_Code());
                 Phone.setText(customer.getPhone());
                 Division_ID.setText((String.valueOf(customer.getDivision_ID())));
-
         }
-
-
-
-
-
-
-
 }

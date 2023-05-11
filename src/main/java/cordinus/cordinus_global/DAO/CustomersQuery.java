@@ -52,8 +52,6 @@ public abstract class CustomersQuery {
         ps.setInt(10,customerid);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
-
-
     }
 
     public static int delete(int customerId) throws SQLException {

@@ -75,12 +75,9 @@ public class ModifyApptController implements Initializable {
         Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
-        loader.load();
         String CreatedBy ="test";
         String LastUpdatedBy ="test";
-        int customerid = Integer.parseInt(CustomerIDTxt.getText());
+        int customerid = Integer.parseInt(CustomerIDTxt.getText());//not mutable
         int userid = Integer.parseInt(UserIDTxt.getText());
 
         ///Dates
@@ -96,13 +93,13 @@ public class ModifyApptController implements Initializable {
         Timestamp endby = Timestamp.valueOf(end);
 
 /**Applying the same logic as in AddApptController*/
-        if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapModCheck(start,end))){//Alerts.selectionWarning();
+       if(TimeUtil.businessHoursCheck(start, end) && (TimeUtil.appointmentModOverlapCheck(this.appointment))){//Alerts.selectionWarning();
             AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid);
-        }
+       }
 
-        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapModCheck(start,end))){
-            Alerts.selectionWarning();
-        }
+//        if(!TimeUtil.businessHoursCheck(start, end) || (TimeUtil.appointmentOverlapModCheck(start,end))){
+//            Alerts.selectionWarning();
+//        }
 
     }
 
