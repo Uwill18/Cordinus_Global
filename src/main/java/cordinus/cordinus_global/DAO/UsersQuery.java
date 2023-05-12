@@ -10,7 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class UsersQuery {
-
+    /**allows the user object to be used golbally in the project*/
+public static User user;
     public static ObservableList<User> getAllUsers(){
         ObservableList<User> userList = FXCollections.observableArrayList();
 
@@ -37,43 +38,26 @@ public abstract class UsersQuery {
         String sql = "SELECT * FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-        //User user = null;
+
 
         while (rs.next()) {
             if((rs.getString("User_Name").equals(username))&&(rs.getString("Password").equals(password))){
-               // user.setUser_Name(username);
-                //user.setPassword(password);
-                //rs.getInt("User_ID");
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static User getCurrentUserData(String username, String password){
-        User user = null;
-        try {
-            String sql = "SELECT User_ID FROM USERS WHERE User_Name = '"+username+"' AND Password ='"+password+"'";
-            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            //int userID = 0;
-            while (rs.next()) {
                 int userID = rs.getInt("User_ID");
                 //String userName = rs.getString("User_Name");
                 //String passWord = rs.getString("Password");
                 //int user_ID = user.setUser_ID(userID);
 //                int currentID = user.setUser_ID(userID);
 //                String currentUser = user.setUser_Name(username);
-//                String currentPass = user.setPassword(password);es
+//                String currentPass = user.setPassword(password);
                 user = new User(userID, username, password);
-                return user;
+                return true;
             }
-            //int user_ID = user.setUser_ID(userID);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-        return null;
+        return false;
+    }
+    /**returns the User*/
+    public static User getCurrentUserData(){
+        return user;
     }
 
     //userIDValidation
@@ -81,6 +65,5 @@ public abstract class UsersQuery {
     //return list of userIDs
     //check if input matches current or existing id
     //return error if input not in list of ids
-
 
 }

@@ -1,6 +1,7 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
+import cordinus.cordinus_global.DAO.CustomersQuery;
 import cordinus.cordinus_global.DAO.UsersQuery;
 import cordinus.cordinus_global.model.*;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
@@ -38,6 +39,12 @@ public class AddApptController implements Initializable {
     public ComboBox<LocalTime> EndTimeCombo;
     @FXML
     private ComboBox<Contact> ContactComboBox;
+
+    @FXML
+    private ComboBox<User> UserComboBox;
+
+    @FXML
+    private ComboBox<Customer> CustomerComboBox;
     @FXML
     private TextField ApptIDTxt;
     @FXML
@@ -59,38 +66,20 @@ public class AddApptController implements Initializable {
     private ComboBox<String> TypeComboBox;
     private Customer customer;
     private int index;
-
+    private User user;
 
 
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException,IOException {
 
-
-
-
         //LoginController loginController;
-        //int userid = Integer.parseInt(UserIDTxt.getText());
-       // int userid = UserIDTxt.setText(loginController.User_Passer(););
+        //int userid = UserIDTxt.setText(loginController.User_Passer(););
+        //UserIDTxt.setText(); // set to displayUserID
 
 
 
-
-
-
-       // UserIDTxt.setText(); // set to displayUserID
-
-
-        for(User user: UsersQuery.getAllUsers() ){
-//            user.getUser_ID();
-//            user.getUser_Name();
-//            user.getPassword();
-        }
-
-
-
-
-
-        int custid = Integer.parseInt(CustomerIDTxt.getText());
+        int userid = Integer.parseInt(UserIDTxt.getText()); //get from combobox
+        int custid = Integer.parseInt(CustomerIDTxt.getText()); // get from combobox
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
@@ -105,8 +94,8 @@ public class AddApptController implements Initializable {
         //FXMLLoader loader = new FXMLLoader();
         //loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
 
-        String CreatedBy= displayCurrentUserName();
-        //String LastUpdatedBy="test";
+        String CreatedBy= UsersQuery.getCurrentUserData().getUser_Name();
+        String LastUpdatedBy= UsersQuery.getCurrentUserData().getUser_Name();
 
         /**Here my ComboBoxes list local time objects
         //then upon user selection, gets the value to be inserted for the times as a timestamp,
@@ -191,6 +180,12 @@ public class AddApptController implements Initializable {
             TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
         }
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
+        UserComboBox.setItems(UsersQuery.getAllUsers());
+        CustomerComboBox.setItems(CustomersQuery.getAllCustomers());
+
+        User user = null;
+        //user = User_Passer();
+        //displayCurrentUserID();
     }
 
 
@@ -206,18 +201,33 @@ public class AddApptController implements Initializable {
 
 
 /**upon selecting a contact, this function populates the contact id field with the correct value*/
-    public void ContactUpdate(){
+    public void contactUpdate(){
         ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
     }
 
-    public int displayCurrentUserID(int userid){
-      return userid;
+
+
+    public void userUpdate(){
+        UserIDTxt.setText(String.valueOf(UserComboBox.getValue().getUser_ID()));
     }
 
-    public User displayCurrentUserData(String username, String password){
-        User currentUser = UsersQuery.getCurrentUserData(username, password);
-        return currentUser;
+    public void customerUpdate(){
+        CustomerIDTxt.setText(String.valueOf(CustomerComboBox.getValue().getCustomer_ID()));
     }
+
+
+
+
+
+
+
+    public User User_Passer(User user) throws IOException {
+        this.user = user;
+        int userid = user.getUser_ID();
+        UserIDTxt.setText(String.valueOf(userid));
+        return user;
+    }
+
 
 
 }

@@ -1,6 +1,8 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.ContactsQuery;
+import cordinus.cordinus_global.DAO.CustomersQuery;
+import cordinus.cordinus_global.DAO.UsersQuery;
 import cordinus.cordinus_global.model.*;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.utils.TimeUtil;
@@ -55,6 +57,14 @@ public class ModifyApptController implements Initializable {
     private TextField TypeTxt;
     @FXML
     private ComboBox<Contact> ContactComboBox;
+
+    @FXML
+    private ComboBox<User> UserComboBox;
+
+    @FXML
+    private ComboBox<Customer> CustomerComboBox;
+
+
     @FXML
     private ComboBox<String> TypeComboBox;
     private Appointment appointment;
@@ -135,6 +145,8 @@ public class ModifyApptController implements Initializable {
             TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
         }
          ContactComboBox.setItems(ContactsQuery.getAllContacts());
+        UserComboBox.setItems(UsersQuery.getAllUsers());
+        CustomerComboBox.setItems(CustomersQuery.getAllCustomers());
     }
 
 
@@ -147,7 +159,9 @@ public class ModifyApptController implements Initializable {
         DescriptionTxt.setText(String.valueOf(appointment.getDescription()));
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
-        ContactComboBox.setValue(AppointmentsQuery.getContactByID(appointment.getContact_ID()));
+        ContactComboBox.setValue(AppointmentsQuery.getContactByID(appointment.getContact_ID())); //revisit for populating combo by id
+        UserComboBox.setValue(UsersQuery.user);
+        CustomerComboBox.setValue(AppointmentsQuery.getCustomerByID(appointment.getCustomer_ID()));
         TypeComboBox.setValue(String.valueOf(appointment.getType()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 
@@ -170,6 +184,15 @@ public class ModifyApptController implements Initializable {
     /**upon selecting a contact, this function populates the contact id field with the correct value*/
     public void ContactUpdate(){
         ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
+    }
+
+    public void userUpdate(){
+        //ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
+        UserIDTxt.setText(String.valueOf(UserComboBox.getValue().getUser_ID()));
+    }
+
+    public void customerUpdate(){
+        CustomerIDTxt.setText(String.valueOf(CustomerComboBox.getValue().getCustomer_ID()));
     }
 
 }

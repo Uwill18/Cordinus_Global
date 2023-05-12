@@ -287,12 +287,7 @@ public abstract class AppointmentsQuery {
         return list;
     }
 
-//    public static ObservableList<Contact> getContactName(String contactName){
-//        ObservableList<Contact> list = ContactsQuery.getAllContacts().stream()
-//                .filter(contact -> contact.getContact_Name().equals(contactName))
-//                .collect(Collectors.toCollection(FXCollections::observableArrayList));
-//        return list;
-//    }
+
 
 
     public static Contact getContactByID (int contactID){

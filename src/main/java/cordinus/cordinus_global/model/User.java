@@ -48,11 +48,9 @@ public class User {
 //        return password;
 //    }
 //
-    public User getUserData( ){
-        User user = null;
-
-        User currentUser = UsersQuery.getCurrentUserData(user.getUser_Name(),user.getPassword());
-        return currentUser;
+    @Override
+    public String toString(){
+        return User_Name;
     }
 
 }
