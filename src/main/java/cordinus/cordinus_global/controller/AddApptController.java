@@ -39,10 +39,8 @@ public class AddApptController implements Initializable {
     public ComboBox<LocalTime> EndTimeCombo;
     @FXML
     private ComboBox<Contact> ContactComboBox;
-
     @FXML
     private ComboBox<User> UserComboBox;
-
     @FXML
     private ComboBox<Customer> CustomerComboBox;
     @FXML
@@ -56,12 +54,9 @@ public class AddApptController implements Initializable {
     @FXML
     private TextField TitleTxt;
     @FXML
-    private TextField TypeTxt;
-    @FXML
     private TextField CustomerIDTxt;
     @FXML
     private TextField UserIDTxt;
-
     @FXML
     private ComboBox<String> TypeComboBox;
     private Customer customer;
@@ -69,14 +64,42 @@ public class AddApptController implements Initializable {
     private User user;
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        /**Timing nested loop
+         //Mr. Wabara reviewed timeloops with me to output to the combobox.
+         //I learned that combining the times with the date picker to a timestamp
+         //would help format the time, and this skill was transferrable as well to implementing
+         the TypeComboBox as shown below, and the ContactComboBox.*/
+
+
+        for(int h = 0; h < 23; h++){
+            /**Intervals are hard coded for appt start-times*/
+            StartTimeCombo.getItems().add(LocalTime.of(h,0));
+            StartTimeCombo.getItems().add(LocalTime.of(h,15));
+            StartTimeCombo.getItems().add(LocalTime.of(h,30));
+            StartTimeCombo.getItems().add(LocalTime.of(h,45));
+            /**Intervals are hard coded for appt end-times*/
+            EndTimeCombo.getItems().add(LocalTime.of(h,0));
+            EndTimeCombo.getItems().add(LocalTime.of(h,15));
+            EndTimeCombo.getItems().add(LocalTime.of(h,30));
+            EndTimeCombo.getItems().add(LocalTime.of(h,45));
+        }
+        String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
+        for(int i = 0; i<3; i++){
+            TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
+        }
+        ContactComboBox.setItems(ContactsQuery.getAllContacts());
+        CustomerComboBox.setItems(CustomersQuery.getAllCustomers());
+        UserComboBox.setItems(UsersQuery.getAllUsers());
+        UserComboBox.setValue(UsersQuery.user);
+        userUpdate();
+    }
+
+
     @FXML
     void InsertAppt(ActionEvent event) throws SQLException,IOException {
-
-        //LoginController loginController;
-        //int userid = UserIDTxt.setText(loginController.User_Passer(););
-        //UserIDTxt.setText(); // set to displayUserID
-
-
 
         int userid = Integer.parseInt(UserIDTxt.getText()); //get from combobox
         int custid = Integer.parseInt(CustomerIDTxt.getText()); // get from combobox
@@ -153,40 +176,6 @@ public class AddApptController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        /**Timing nested loop
-        //Mr. Wabara reviewed timeloops with me to output to the combobox.
-        //I learned that combining the times with the date picker to a timestamp
-        //would help format the time, and this skill was transferrable as well to implementing
-         the TypeComboBox as shown below, and the ContactComboBox.*/
-
-
-        for(int h = 0; h < 23; h++){
-            /**Intervals are hard coded for appt start-times*/
-            StartTimeCombo.getItems().add(LocalTime.of(h,0));
-            StartTimeCombo.getItems().add(LocalTime.of(h,15));
-            StartTimeCombo.getItems().add(LocalTime.of(h,30));
-            StartTimeCombo.getItems().add(LocalTime.of(h,45));
-            /**Intervals are hard coded for appt end-times*/
-            EndTimeCombo.getItems().add(LocalTime.of(h,0));
-            EndTimeCombo.getItems().add(LocalTime.of(h,15));
-            EndTimeCombo.getItems().add(LocalTime.of(h,30));
-            EndTimeCombo.getItems().add(LocalTime.of(h,45));
-        }
-        String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
-        for(int i = 0; i<3; i++){
-            TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
-        }
-        ContactComboBox.setItems(ContactsQuery.getAllContacts());
-        UserComboBox.setItems(UsersQuery.getAllUsers());
-        CustomerComboBox.setItems(CustomersQuery.getAllCustomers());
-
-        User user = null;
-        //user = User_Passer();
-        //displayCurrentUserID();
-    }
 
 
     /**At this time, it simply passes the id over to appointment screen
@@ -205,8 +194,6 @@ public class AddApptController implements Initializable {
         ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
     }
 
-
-
     public void userUpdate(){
         UserIDTxt.setText(String.valueOf(UserComboBox.getValue().getUser_ID()));
     }
@@ -214,9 +201,6 @@ public class AddApptController implements Initializable {
     public void customerUpdate(){
         CustomerIDTxt.setText(String.valueOf(CustomerComboBox.getValue().getCustomer_ID()));
     }
-
-
-
 
 
 

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 
 //https://wgu.webex.com/webappng/sites/wgu/recording/bf6e7b5d5d06103abd8f005056815ee6/playback
 public abstract class CustomersQuery {
-    public static Customer customer;
+
     //paste updated insert method here, then call it in AddCustController, and pass all values from the fxml into the method
     public static int insert( String custName, String Address, String Postal, String Phone,Timestamp CreateDate, String CreatedBy,Timestamp LastUpdate, String LastUpdatedBy, int DivID) throws SQLException {
         String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -98,11 +98,6 @@ public abstract class CustomersQuery {
         }
         return customerList;
     }
-
-    public static Customer getCurrentCustomer(){
-        return customer;
-    }
-
 }
 
 

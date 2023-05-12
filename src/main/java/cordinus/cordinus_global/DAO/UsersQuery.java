@@ -1,5 +1,6 @@
 package cordinus.cordinus_global.DAO;
 
+import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Country;
 import cordinus.cordinus_global.model.User;
 import javafx.collections.FXCollections;
@@ -39,7 +40,6 @@ public static User user;
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
-
         while (rs.next()) {
             if((rs.getString("User_Name").equals(username))&&(rs.getString("Password").equals(password))){
                 int userID = rs.getInt("User_ID");
@@ -52,9 +52,17 @@ public static User user;
                 user = new User(userID, username, password);
                 return true;
             }
+            else{
+                Alerts.loginError();
+            }
         }
         return false;
     }
+
+
+
+
+
     /**returns the User*/
     public static User getCurrentUserData(){
         return user;

@@ -1114,3 +1114,22 @@ ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/11/2023
 ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/11/2023 21:26:13 } America/Chicago Time.
 ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/11/2023 21:28:03 } America/Chicago Time.
 ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/11/2023 21:34:25 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 00:16:07 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 02:20:01 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 11:36:40 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { admin } SIGN-IN TIME SHOWS AS: { 05/12/2023 11:38:03 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 11:41:07 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 11:42:21 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { admin } SIGN-IN TIME SHOWS AS: { 05/12/2023 11:42:49 } America/Chicago Time.
+ACCESS DENIED to user of USERNAME: { badmin } ATTEMPTED SIGN-IN TIME SHOWS AS: { 05/12/2023 11:51:14 } America/Chicago Time.
+ACCESS DENIED to user of USERNAME: { badmin } ATTEMPTED SIGN-IN TIME SHOWS AS: { 05/12/2023 11:51:18 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { admin } SIGN-IN TIME SHOWS AS: { 05/12/2023 11:51:30 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { admin } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:03:39 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { admin } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:16:49 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:29:18 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:41:23 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:42:50 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { admin } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:43:00 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:43:34 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:45:41 } America/Chicago Time.
+ACCESS GRANTED to user of USERNAME: { test } SIGN-IN TIME SHOWS AS: { 05/12/2023 12:46:22 } America/Chicago Time.

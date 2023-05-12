@@ -94,16 +94,10 @@ public class LoginController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+ " } " +ZoneId.systemDefault() + " Time.");
-                User tempUser = UsersQuery.getCurrentUserData();
                 System.out.println("File written!");
                 /**upon successful validation the alert is called*/
-                FifteenMinutesAlert();
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
-                loader.load();
-                AddApptController addApptController= loader.getController();
-                addApptController.User_Passer(tempUser);
 
+                FifteenMinutesAlert();
 
             }else{
                 outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate + " } " +ZoneId.systemDefault() + " Time.");
@@ -120,7 +114,9 @@ public class LoginController implements Initializable {
     public ObservableList FifteenMinutesAlert(){
 /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
+            for(User user: UsersQuery.getAllUsers()){
 
+            }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Upcoming Appointment");
             alert.setTitle("Appointment Notification");
@@ -134,38 +130,21 @@ public class LoginController implements Initializable {
     public String CheckFifteenMinutes(){
         for(Appointment a: AppointmentsQuery.getAllAppointments()){//get list of appts
             if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
-                LocalDateTime ldt = a.getStart();
-                //DateTimeFormatter date_format = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
-                String formatDate = ldt.format(date_format);
-                DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
-                String formatTime = ldt.format(time_format);
-                return  "You have an upcoming appointment with the following criteria:\n"+
-                        "\nAppointment ID#: " + a.getAppointment_ID() +
-                        "\nAppointment Date: " + formatDate +
-                        "\nAppointment Start: " + formatTime +
-                        "\nAppointment Description: " + a.getTitle();
+                    LocalDateTime ldt = a.getStart();
+                    DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
+                    String formatDate = ldt.format(date_format);
+                    DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
+                    String formatTime = ldt.format(time_format);
+                    return  "You have an upcoming appointment with the following criteria:\n"+
+                            "\nAppointment ID#: " + a.getAppointment_ID() +
+                            "\nAppointment Date: " + formatDate +
+                            "\nAppointment Start: " + formatTime +
+                            "\nAppointment Description: " + a.getTitle();
             }
         }
         return "There are no upcoming appointments at this time.";
     }
 
-//    public User User_Passer(User user) throws IOException {
-//        this.user = user;
-//        int userid = user.getUser_ID();
-//        String username = user.getUser_Name();
-//        String password = user.getPassword();
-//
-//
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
-//        loader.load();
-//        AddApptController addApptController= loader.getController();
-//        addApptController.displayCurrentUserID(userid);
-//        addApptController.displayCurrentUserData(username, password);
-//
-//        return user;
-//    }
 
 
     /**allows the User to exit the Loginform and application if needed*/

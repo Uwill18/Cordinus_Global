@@ -311,5 +311,26 @@ public abstract class AppointmentsQuery {
         return null;
     }
 
+    public static User  getUserByID(int userID){
+        User user = null;
+        try {
+            String sql = "SELECT * FROM Users AS U INNER JOIN Appointments AS A ON U.User_ID = A.User_ID AND A.User_ID=?";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ps.setInt(1, userID);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int user_id = rs.getInt("User_ID");
+                String userName = rs.getString("User_Name");
+                String passWord = rs.getString("Password");
+                user = new User(user_id, userName, passWord);
+                return user;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
 }
 

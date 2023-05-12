@@ -11,7 +11,6 @@ import java.util.Optional;
 /**Used standard variables according to the database and functional requisites Initialed constructors, getters, and setters according to my initial understanding of the data types.
  * In the future I would do more UML diagramming to align myself better with best practices */
 public class Customer {
-
     private final ObservableList<Appointment> associatedAppointments = FXCollections.observableArrayList();
     private int Customer_ID;
     private String Customer_Name;

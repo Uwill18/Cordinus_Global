@@ -54,23 +54,37 @@ public class ModifyApptController implements Initializable {
     @FXML
     private TextField TitleTxt;
     @FXML
-    private TextField TypeTxt;
-    @FXML
     private ComboBox<Contact> ContactComboBox;
-
     @FXML
     private ComboBox<User> UserComboBox;
-
     @FXML
     private ComboBox<Customer> CustomerComboBox;
-
-
     @FXML
     private ComboBox<String> TypeComboBox;
     private Appointment appointment;
     private int selectedIndex;
     private Customer customer;
     private int index;
+
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        for(int hr = 8; hr < 22; hr++){
+            StartTimeCombo.getItems().add(LocalTime.of(hr,0));
+            StartTimeCombo.getItems().add(LocalTime.of(hr,15));
+            StartTimeCombo.getItems().add(LocalTime.of(hr,30));
+            StartTimeCombo.getItems().add(LocalTime.of(hr,45));
+            EndTimeCombo.getItems().add(LocalTime.of(hr,0));
+            EndTimeCombo.getItems().add(LocalTime.of(hr,15));
+            EndTimeCombo.getItems().add(LocalTime.of(hr,30));
+            EndTimeCombo.getItems().add(LocalTime.of(hr,45));
+        }
+        String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
+        for(int i = 0; i<3; i++){
+            TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
+        }
+        ContactComboBox.setItems(ContactsQuery.getAllContacts());
+        UserComboBox.setItems(UsersQuery.getAllUsers());
+        CustomerComboBox.setItems(CustomersQuery.getAllCustomers());
+    }
 
     @FXML
     public void UpdateAppt(ActionEvent event) throws SQLException {
@@ -84,8 +98,8 @@ public class ModifyApptController implements Initializable {
         Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
         Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-        String CreatedBy ="test";
-        String LastUpdatedBy ="test";
+        String CreatedBy = UsersQuery.getCurrentUserData().getUser_Name();
+        String LastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();
         int customerid = Integer.parseInt(CustomerIDTxt.getText());//not mutable
         int userid = Integer.parseInt(UserIDTxt.getText());//control with exceptions
 
@@ -105,7 +119,6 @@ public class ModifyApptController implements Initializable {
  * appointment object
  * getting id
  * executes on !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())), or true*/
-        System.out.println("before Overlap....."+title+"..."+start+"..."+end+"..."+customerid+"..."+appointment.getAppointment_ID()+"..." + (TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())) );
         try {
             if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())) ){//Alerts.selectionWarning();
                  AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid, appointment.getAppointment_ID());
@@ -129,25 +142,7 @@ public class ModifyApptController implements Initializable {
     }
 
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        for(int hr = 8; hr < 22; hr++){
-            StartTimeCombo.getItems().add(LocalTime.of(hr,0));
-            StartTimeCombo.getItems().add(LocalTime.of(hr,15));
-            StartTimeCombo.getItems().add(LocalTime.of(hr,30));
-            StartTimeCombo.getItems().add(LocalTime.of(hr,45));
-            EndTimeCombo.getItems().add(LocalTime.of(hr,0));
-            EndTimeCombo.getItems().add(LocalTime.of(hr,15));
-            EndTimeCombo.getItems().add(LocalTime.of(hr,30));
-            EndTimeCombo.getItems().add(LocalTime.of(hr,45));
-        }
-        String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
-        for(int i = 0; i<3; i++){
-            TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
-        }
-         ContactComboBox.setItems(ContactsQuery.getAllContacts());
-        UserComboBox.setItems(UsersQuery.getAllUsers());
-        CustomerComboBox.setItems(CustomersQuery.getAllCustomers());
-    }
+
 
 
     public void Appt_Passer(int selectedIndex, Appointment appointment){
@@ -160,7 +155,7 @@ public class ModifyApptController implements Initializable {
         LocationTxt.setText(String.valueOf(appointment.getLocation()));
         ContactTxt.setText(String.valueOf(appointment.getContact_ID()));
         ContactComboBox.setValue(AppointmentsQuery.getContactByID(appointment.getContact_ID())); //revisit for populating combo by id
-        UserComboBox.setValue(UsersQuery.user);
+        UserComboBox.setValue(AppointmentsQuery.getUserByID(Integer.parseInt(appointment.getUser_ID())));
         CustomerComboBox.setValue(AppointmentsQuery.getCustomerByID(appointment.getCustomer_ID()));
         TypeComboBox.setValue(String.valueOf(appointment.getType()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
@@ -187,7 +182,6 @@ public class ModifyApptController implements Initializable {
     }
 
     public void userUpdate(){
-        //ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
         UserIDTxt.setText(String.valueOf(UserComboBox.getValue().getUser_ID()));
     }
 

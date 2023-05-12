@@ -9,14 +9,6 @@ public class Alerts {
     /**For best practices in reusable code I implemented an Alerts class for most alerts so I could reuse them as needed**/
     public static final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
-    public static void overlapWarning(){
-
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("OVERLAP WARNING");
-        alert.setContentText("Appointment Selection Overlaps Existing Appointments. Please Try Again.");
-        alert.showAndWait();
-
-    }
 
     public static void selectionWarning(){
 
