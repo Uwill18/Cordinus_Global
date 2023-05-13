@@ -33,19 +33,17 @@ public abstract class CustomersQuery {
 
     }
 
-    public static int update(String custname,String Address,String ZipCode,String PhoneNumber,Timestamp CreateDate,String CreatedBy,Timestamp LastUpdate,String LastUpdatedBy,int DivID, int customerid) throws SQLException {
-        String sql ="UPDATE CUSTOMERS SET Customer_Name = ?,Address = ?,Postal_Code= ?, Phone = ?, Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
+    public static int update(String custname,String Address,String ZipCode,String PhoneNumber,Timestamp LastUpdate,String LastUpdatedBy,int DivID, int customerid) throws SQLException {
+        String sql ="UPDATE CUSTOMERS SET Customer_Name = ?,Address = ?,Postal_Code= ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1,custname);
         ps.setString(2,Address);
         ps.setString(3,ZipCode);
         ps.setString(4,PhoneNumber);
-        ps.setTimestamp(5,CreateDate);//setTimestamp, valueof ldt stay same, should I not pass?
-        ps.setString(6,CreatedBy);//stay same, should I not pass?
-        ps.setTimestamp(7,LastUpdate);//grab current NOW()
-        ps.setString(8,LastUpdatedBy);//grab current
-        ps.setInt(9,DivID);
-        ps.setInt(10,customerid);
+        ps.setTimestamp(5,LastUpdate);//grab current NOW()
+        ps.setString(6,LastUpdatedBy);//grab current
+        ps.setInt(7,DivID);
+        ps.setInt(8,customerid);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }

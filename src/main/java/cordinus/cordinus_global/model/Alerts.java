@@ -48,7 +48,7 @@ public class Alerts {
     public static void deleteError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setHeaderText("DELETE ERROR");
+        alert.setHeaderText("DELETION ERROR");
         alert.setContentText("Existing customer appointments must be deleted prior to deleting this customer.");
         alert.showAndWait();
     }

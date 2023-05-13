@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="User data updates">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Removed Create attributes from modifyappt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Alerts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Alerts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" afterDir="false" />
     </list>
@@ -100,13 +96,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Language Resource Bundles complete">
-      <created>1681591423261</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1681591423262</updated>
     </task>
     <task id="LOCAL-00106" summary="Testing ReportScreen.fxml">
       <created>1681704661090</created>
@@ -444,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683913926381</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="Removed Create attributes from modifyappt">
+      <created>1683964864821</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1683964864821</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -459,7 +455,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Report BackButton and TypeCombo 1 testing" />
     <MESSAGE value="Report Totals working" />
     <MESSAGE value="Updating db and AddAppt per reqs" />
     <MESSAGE value="CustomerName applied to reports view" />
@@ -484,7 +479,8 @@
     <MESSAGE value="User data accesible everywhere and all comboboxes updated" />
     <MESSAGE value="User data accessible everywhere and all comboboxes updated" />
     <MESSAGE value="User data updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="User data updates" />
+    <MESSAGE value="Removed Create attributes from modifyappt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed Create attributes from modifyappt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -501,7 +497,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java</url>
-          <line>69</line>
+          <line>67</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>

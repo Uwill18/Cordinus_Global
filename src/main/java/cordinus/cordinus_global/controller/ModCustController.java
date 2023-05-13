@@ -2,6 +2,7 @@ package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.CountriesQuery;
 import cordinus.cordinus_global.DAO.DivisionsQuery;
+import cordinus.cordinus_global.DAO.UsersQuery;
 import cordinus.cordinus_global.model.Country;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
@@ -77,15 +78,12 @@ public class ModCustController {
 
                 Date date = new Date();//use LocalDateTime
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
+                Timestamp LastUpdate = Timestamp.valueOf(formatter.format(date));//grab current
 
-                Timestamp CreateDate = timestamp;//remove
-                Timestamp LastUpdate = timestamp;//grab current
-                String CreatedBy ="test";//remove
 
-                String LastUpdatedBy ="test";//grab current
+                String LastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();;//grab current
                 int DivID = Integer.parseInt(Division_ID.getText());
-                CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID, customerid);
+                CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, LastUpdate, LastUpdatedBy, DivID, customerid);
         }
 
 
