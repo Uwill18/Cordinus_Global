@@ -161,6 +161,7 @@ public  class ReportController implements Initializable {
         String currentDOW = dow.toString();
         todayLbl.setText(currentDOW);
 
+
         LocalDateTime ldt = LocalDateTime.now();
         DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
         String formatDate = ldt.format(date_format);
@@ -291,8 +292,6 @@ public  class ReportController implements Initializable {
         /**report data is added to the ReportTable in the view*/
         reportContactsTable.setItems(reportContactData);
     }
-
-
 
 
     public void OnRadioButton(ActionEvent event) throws SQLException {

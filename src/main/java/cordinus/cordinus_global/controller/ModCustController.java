@@ -79,9 +79,9 @@ public class ModCustController {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
 
-                Timestamp CreateDate = timestamp;//stay same
+                Timestamp CreateDate = timestamp;//remove
                 Timestamp LastUpdate = timestamp;//grab current
-                String CreatedBy ="test";//stay same
+                String CreatedBy ="test";//remove
 
                 String LastUpdatedBy ="test";//grab current
                 int DivID = Integer.parseInt(Division_ID.getText());

@@ -114,9 +114,6 @@ public class LoginController implements Initializable {
     public ObservableList FifteenMinutesAlert(){
 /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-            for(User user: UsersQuery.getAllUsers()){
-
-            }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Upcoming Appointment");
             alert.setTitle("Appointment Notification");

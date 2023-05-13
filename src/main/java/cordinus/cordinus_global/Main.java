@@ -121,7 +121,8 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
-
+        Locale locale = new Locale("fr");
+        Locale.setDefault(locale);
         launch();
         JDBC.closeConnection();
 

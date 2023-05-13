@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 
 
@@ -60,11 +61,13 @@ public class ApptController {
         @FXML
         private Label ApptIntervalLbl;
         public Appointment appointment;
+        public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
         public void initialize() throws SQLException, IOException {
                 appointmentdata = FXCollections.observableArrayList();
                 LoadAppointments();
                 setAppointmentCellTable();
+                User_ID.setText(rb.getString("User") +" "+rb.getString("ID"));
         }
 
         private void setAppointmentCellTable(){
@@ -87,7 +90,6 @@ public class ApptController {
 
                                         if (AllRB.isSelected()){
                                                 appointmentdata = AppointmentsQuery.getAllAppointments();
-
                                         }
                                          if(MonthRB.isSelected()){
                                                 appointmentdata = AppointmentsQuery.getMonthAppointments();

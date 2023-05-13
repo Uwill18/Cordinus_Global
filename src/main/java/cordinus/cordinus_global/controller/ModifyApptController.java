@@ -96,9 +96,7 @@ public class ModifyApptController implements Initializable {
         Date date = new Date();//use LocalDateTime
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
-        Timestamp CreateDate = timestamp;
         Timestamp LastUpdate = timestamp;
-        String CreatedBy = UsersQuery.getCurrentUserData().getUser_Name();
         String LastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();
         int customerid = Integer.parseInt(CustomerIDTxt.getText());//not mutable
         int userid = Integer.parseInt(UserIDTxt.getText());//control with exceptions
@@ -115,13 +113,14 @@ public class ModifyApptController implements Initializable {
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
+
 /**Applying the same logic as in AddApptController
  * appointment object
  * getting id
  * executes on !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())), or true*/
         try {
             if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())) ){//Alerts.selectionWarning();
-                 AppointmentsQuery.update(title, description, location, type, startby, endby,CreateDate, CreatedBy, LastUpdate,LastUpdatedBy, userid ,contactid, customerid, appointment.getAppointment_ID());
+                 AppointmentsQuery.update(title, description, location, type, startby, endby, LastUpdate,LastUpdatedBy, userid ,contactid, customerid, appointment.getAppointment_ID());
             }
             else {
                 Alerts.SelectionError();
