@@ -37,36 +37,23 @@ import java.util.logging.Level;
 
 
 public class CustomerController {
-
     private ObservableList<Customer> customerdata;
     @FXML
     private TableColumn<?, ?> Address;
-
     @FXML
     private TableView<Customer> CustomerTable;
-
     @FXML
     private TableColumn<?, ?> Customer_ID;
-
     @FXML
     private TableColumn<?, ?> Customer_Name;
-
-
     @FXML
     private TableColumn<?, ?> Phone;
-
     @FXML
     private TableColumn<?, ?> Postal_Code;
-
-
     @FXML
     private TableColumn<?, ?> Division_ID;
-
-
     @FXML
     private TableColumn<?, ?> Countries;
-
-
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
         loadCustomers();
@@ -74,7 +61,6 @@ public class CustomerController {
     }
 
     private void setCustomerCellTable(){
-
         Customer_ID.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
         Customer_Name.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
         Address.setCellValueFactory(new PropertyValueFactory<>("Address"));
@@ -111,7 +97,6 @@ public class CustomerController {
  * */
     @FXML
     void onDeleteCustomer(ActionEvent event) throws SQLException {
-
         if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
             try{
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -138,10 +123,10 @@ public class CustomerController {
                     }
                 }
             }catch(NullPointerException e){
-               Alerts.SelectionError();
+               Alerts.selectionError();
             }
         }else{
-            Alerts.SelectionError();
+            Alerts.selectionError();
         }
     }
 //
@@ -152,14 +137,14 @@ public class CustomerController {
             loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
             loader.load();
             ModCustController modCustController = loader.getController();//get controller tied to view
-            modCustController.Customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
+            modCustController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Modify Customer");
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
         }catch (NullPointerException e){
-            Alerts.SelectionError();
+            Alerts.selectionError();
         }
     }
 
@@ -188,10 +173,8 @@ public class CustomerController {
             stage.setScene(new Scene(scene));
             stage.show();
         }catch (NullPointerException e){
-            Alerts.SelectionError();;
+            Alerts.selectionError();;
         }
-
-
     }
 
     @FXML
@@ -208,7 +191,7 @@ public class CustomerController {
         stage.setScene(new Scene(scene));
         stage.show();
         }catch (NullPointerException e){
-            Alerts.SelectionError();
+            Alerts.selectionError();
         }
     }
 

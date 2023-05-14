@@ -71,38 +71,37 @@ public class AddCustController {
 
     public void initialize() throws SQLException {
         CountriesComboBox.setItems(CountriesQuery.getAllCountries());
-
-
     }
 
     @FXML
     public void createCustomer(ActionEvent event) throws SQLException,IOException {
        //int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
         String custname = Customer_Name.getText();
-        String Address = AddressTxt.getText();
-        String ZipCode = Postal_Code.getText();
-        String PhoneNumber = Phone.getText();
-        String CreatedBy = UsersQuery.getCurrentUserData().getUser_Name();
-        String LastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();
+        String address = AddressTxt.getText();
+        String zipCode = Postal_Code.getText();
+        String phoneNumber = Phone.getText();
+        String createdBy = UsersQuery.getCurrentUserData().getUser_Name();
+        String lastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
-        Timestamp CreateDate = timestamp;
-        Timestamp LastUpdate = timestamp;
+        Timestamp createDate = timestamp;
+        Timestamp lastUpdate = timestamp;
 
 
         /**Grabs divisionID from State selection, and populates in the field*/
-        int DivID = StatesComboBox.getValue().getDivision_ID();
-        Division_ID.setText(String.valueOf(DivID));
+        int divID = StatesComboBox.getValue().getDivision_ID();
+        Division_ID.setText(String.valueOf(divID));
 
-        CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);
+        CustomersQuery.insert(custname, address, zipCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divID);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Customer Updated!");
         alert.setTitle("UPDATE CONFIRMATION");
         alert.setContentText("The Customer with the following Criteria has been added : " +
                 "\nName : "+ custname +
-                "\nID# : "+ CustomersQuery.customer.getCustomer_ID());
+                "\nID# : "+ CustomersQuery.customer.getCustomer_ID() +
+                "\nadded By : "+UsersQuery.getCurrentUserData().getUser_Name());
         alert.showAndWait();
         customerScreenButton(event);
     }

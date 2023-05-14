@@ -142,12 +142,11 @@ public class ModifyApptController implements Initializable {
                         "\nID# : "+ appointment.getAppointment_ID()  +
                         "\nDate : "+ startformatDate +
                         "\n"+ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
-
                  alert.showAndWait();
                  apptScreenReturn(event);
             }
             else {
-                Alerts.SelectionError();
+                Alerts.selectionError();
             }
         } catch (SQLException e) {
             e.printStackTrace();

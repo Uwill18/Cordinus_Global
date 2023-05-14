@@ -37,7 +37,7 @@ public class Alerts {
     }
 
 
-    public static void SelectionError(){
+    public static void selectionError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("SELECTION ERROR");

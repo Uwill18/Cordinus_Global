@@ -236,6 +236,7 @@ public  class ReportController implements Initializable {
 /**Selects all appointments for all contacts*/
         if (AllRB.isSelected()){
             reportContactData = AppointmentsQuery.getAllAppointments();
+
         }
 
 

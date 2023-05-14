@@ -45,7 +45,6 @@ public abstract class CountriesQuery {
                 String countryname = rs.getString("Country");
                 country = new Country(countryID,countryname) ;
                 return country;
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

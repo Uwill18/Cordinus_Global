@@ -26,7 +26,7 @@ public class HomeScreenController implements Initializable {
     }
 
     @FXML
-    void LoginScreenButton(ActionEvent event) throws IOException {
+    void loginScreenButton(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());

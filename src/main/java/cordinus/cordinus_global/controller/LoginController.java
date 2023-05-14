@@ -63,7 +63,7 @@ public class LoginController implements Initializable {
 
     }
 
-    public void MainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
+    public void mainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
 
         String username = UsernameTxt.getText();
         String password = PasswordTxt.getText();
@@ -96,9 +96,7 @@ public class LoginController implements Initializable {
                 outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+ " } " +ZoneId.systemDefault() + " Time.");
                 System.out.println("File written!");
                 /**upon successful validation the alert is called*/
-
-                FifteenMinutesAlert();
-
+                fifteenMinutesAlert();
             }else{
                 outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate + " } " +ZoneId.systemDefault() + " Time.");
                 Alerts.loginError();
@@ -111,20 +109,20 @@ public class LoginController implements Initializable {
     }
 
 
-    public ObservableList FifteenMinutesAlert(){
+    public ObservableList fifteenMinutesAlert(){
 /**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
  * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Upcoming Appointment");
             alert.setTitle("Appointment Notification");
-            alert.setContentText(CheckFifteenMinutes());
+            alert.setContentText(checkFifteenMinutes());
             alert.showAndWait();
         return null;
     }
     /**This function checks all existing appointments for an appointment coming within fifteen minutes, and returns the result
      * for the above alert*/
 
-    public String CheckFifteenMinutes(){
+    public String checkFifteenMinutes(){
         for(Appointment a: AppointmentsQuery.getAllAppointments()){//get list of appts
             if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
                     LocalDateTime ldt = a.getStart();

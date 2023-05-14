@@ -125,7 +125,5 @@ public class Main extends Application {
         Locale.setDefault(locale);
         launch();
         JDBC.closeConnection();
-
-
     }
 }

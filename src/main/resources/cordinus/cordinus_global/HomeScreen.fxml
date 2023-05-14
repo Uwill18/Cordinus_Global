@@ -14,7 +14,7 @@
             <Image url="@../../../java/cordinus/cordinus_global/image/Globe.png" />
          </image>
       </ImageView>
-      <Button fx:id="proceedButton" blendMode="SRC_ATOP" layoutX="199.0" layoutY="281.0" mnemonicParsing="false" onAction="#LoginScreenButton" prefHeight="25.0" prefWidth="191.0" scaleX="1.5" scaleY="1.5" style="-fx-border-radius: 20px; -fx-background-radius: 15px; -fx-background-color: #B88A44; -fx-text-fill: white; -fx-translate-z: 2;" text="Proceed" />
+      <Button fx:id="proceedButton" blendMode="SRC_ATOP" layoutX="199.0" layoutY="281.0" mnemonicParsing="false" onAction="#loginScreenButton" prefHeight="25.0" prefWidth="191.0" scaleX="1.5" scaleY="1.5" style="-fx-border-radius: 20px; -fx-background-radius: 15px; -fx-background-color: #B88A44; -fx-text-fill: white; -fx-translate-z: 2;" text="Proceed" />
       <Label contentDisplay="CENTER" layoutX="206.0" layoutY="17.0" prefHeight="75.0" prefWidth="213.0" text="Cordinus Global">
          <font>
             <Font size="27.0" />

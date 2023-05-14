@@ -15,12 +15,10 @@ public abstract class UsersQuery {
 public static User user;
     public static ObservableList<User> getAllUsers(){
         ObservableList<User> userList = FXCollections.observableArrayList();
-
         try {
             String sql = "SELECT * FROM Users";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 int userID = rs.getInt("User_ID");
                 String userName = rs.getString("User_Name");

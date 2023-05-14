@@ -5,7 +5,6 @@ package cordinus.cordinus_global.model;
  * In the future I would do more UML diagramming to align myself better with best practices */
 
 public class Division {
-
     int Division_ID;
     String Division;
     int Country_ID;
@@ -18,23 +17,18 @@ public class Division {
     public int getDivision_ID() {
         return Division_ID;
     }
-
     public void setDivision_ID(int division_ID) {
         Division_ID = division_ID;
     }
-
     public String getDivision() {
         return Division;
     }
-
     public void setDivision(String division) {
         Division = division;
     }
-
     public int getCountry_ID() {
         return Country_ID;
     }
-
     public void setCountry_ID(int country_ID) {
         Country_ID = country_ID;
     }

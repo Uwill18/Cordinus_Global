@@ -31,7 +31,6 @@ public abstract class AppointmentsQuery {
         ps.setInt(12,userid);
         ps.setInt(13,contact);
 
-        //System.out.println(ps);
 
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;

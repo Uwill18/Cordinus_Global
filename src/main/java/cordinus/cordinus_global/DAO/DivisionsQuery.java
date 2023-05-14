@@ -18,13 +18,11 @@ public abstract class DivisionsQuery {
             String sql = "SELECT * FROM First_Level_Divisions";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 int divisionID = rs.getInt("Division_ID");
                 String divisionName = rs.getString("Division");
                 int countryID = rs.getInt("Country_ID");
                 divisionList.add(new Division(divisionID,divisionName,countryID));
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

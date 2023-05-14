@@ -68,7 +68,6 @@ public class AddApptController implements Initializable {
 
     public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -116,13 +115,13 @@ public class AddApptController implements Initializable {
         LocalDateTime date =LocalDateTime.now();//use LocalDateTime
         Timestamp timestamp = Timestamp.valueOf(date);
 
-        Timestamp CreateDate = timestamp;
-        Timestamp LastUpdate = timestamp;
+        Timestamp createDate = timestamp;
+        Timestamp lastUpdate = timestamp;
         //FXMLLoader loader = new FXMLLoader();
         //loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
 
-        String CreatedBy= UsersQuery.getCurrentUserData().getUser_Name();
-        String LastUpdatedBy= UsersQuery.getCurrentUserData().getUser_Name();
+        String createdBy= UsersQuery.getCurrentUserData().getUser_Name();
+        String lastUpdatedBy= UsersQuery.getCurrentUserData().getUser_Name();
 
         /**Here my ComboBoxes list local time objects
         //then upon user selection, gets the value to be inserted for the times as a timestamp,
@@ -159,7 +158,7 @@ public class AddApptController implements Initializable {
 
 
         if(TimeUtil.businessHoursCheck(start, end) && (!TimeUtil.appointmentOverlapCheck(start, end, custid, -1 ))){//false
-           AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+           AppointmentsQuery.insert(title, description, location, type, startby, endby, createDate,createdBy,lastUpdate, lastUpdatedBy,custid, userid,contact);
 
             DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
             String startformatDate = start.format(date_format);

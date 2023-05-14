@@ -65,7 +65,7 @@ public class ApptController {
 
         public void initialize() throws SQLException, IOException {
                 appointmentdata = FXCollections.observableArrayList();
-                LoadAppointments();
+                loadAppointments();
                 setAppointmentCellTable();
                 User_ID.setText(rb.getString("User") +" "+rb.getString("ID"));
         }
@@ -83,7 +83,7 @@ public class ApptController {
                 User_ID.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
         }
 
-        public void LoadAppointments() throws SQLException {
+        public void loadAppointments() throws SQLException {
                 /**To maximize refactoring, the sql queries that return the required object attributes for the observablelist are
                  * executed in the relevant queries file, and the corresponding function that returns the appropriate observablelist
                  * is stored in the observablelist in view*/
@@ -103,7 +103,7 @@ public class ApptController {
 
 
         @FXML
-        void OnAddAppt(ActionEvent event) throws IOException {
+        void onAddAppt(ActionEvent event) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
@@ -113,7 +113,7 @@ public class ApptController {
         }
 
         @FXML
-        void OnDeleteAppt(ActionEvent event) throws SQLException{
+        void onDeleteAppt(ActionEvent event) throws SQLException{
                 //toDO if selected alert, else if nothing selected.. selection error
                 if((AppointmentTable.getSelectionModel().getSelectedItem() != null)){
                         try{
@@ -138,10 +138,10 @@ public class ApptController {
                                                 }
                                         }
                         }catch(NullPointerException e){
-                                Alerts.SelectionError();
+                                Alerts.selectionError();
                         }
                 }else{
-                        Alerts.SelectionError();
+                        Alerts.selectionError();
                 }
         }
 
@@ -160,12 +160,12 @@ public class ApptController {
                         stage.setScene(new Scene(scene));
                         stage.show();
                 }catch (NullPointerException e){
-                        Alerts.SelectionError();
+                        Alerts.selectionError();
                 }
         }
 
         @FXML
-        void MainMenuReturn(ActionEvent event) throws IOException {
+        void mainMenuReturn(ActionEvent event) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());

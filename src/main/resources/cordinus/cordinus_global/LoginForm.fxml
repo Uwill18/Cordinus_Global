@@ -40,7 +40,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#MainMenuScreenButton" text="Confirm">
+                        <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#mainMenuScreenButton" text="Confirm">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font></Button>

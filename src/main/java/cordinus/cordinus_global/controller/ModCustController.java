@@ -82,7 +82,7 @@ public class ModCustController {
          from the ModifyCustomer Function*/
 
         @FXML
-        void ModifyCustomer(ActionEvent event) throws SQLException, IOException {
+        void modifyCustomer(ActionEvent event) throws SQLException, IOException {
                 int customerid = Integer.parseInt(Customer_ID.getText());
                 String custname = Customer_Name.getText();
                 String Address = AddressTxt.getText();
@@ -109,7 +109,7 @@ public class ModCustController {
         }
 
 
-        public void OnActionSelectCountry(){
+        public void onActionSelectCountry(){
                 /**This lambda expression filters the Observable list allDivisions of Type Division and matches
                  * all division objects that share the same CountryID as the selected country from the CountriesComboBox.
                  * This lambda expression is needed at this combox to filter the selection pool of divisions to their respective
@@ -119,7 +119,7 @@ public class ModCustController {
                 StatesComboBox.setItems(selectedDivision);
         }
 
-        public void Customer_Passer(int index, Customer customer){
+        public void customer_Passer(int index, Customer customer){
                 this.customer = customer;
                 this.index = index;
 

@@ -14,7 +14,6 @@ public class User {
         User_ID = user_ID;
         User_Name = user_Name;
         Password = password;
-
     }
 
     public int getUser_ID() {

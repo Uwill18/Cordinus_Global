@@ -50,11 +50,9 @@ public abstract class CustomersQuery {
     }
 
     public static int delete(int customerId) throws SQLException {
-
         String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1,customerId);
-
             int rowsAffected = ps.executeUpdate();
             return rowsAffected;
     }
@@ -62,7 +60,6 @@ public abstract class CustomersQuery {
 
 
     public static boolean deleteConfirmation(int custID) throws SQLException {
-
         ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
         for (Appointment appointment : allAppointments) {
             if ((appointment.getCustomer_ID() == custID)) {
@@ -72,7 +69,7 @@ public abstract class CustomersQuery {
         return true;
     }
 
-    //change over
+
     public static ObservableList<Customer> getAllCustomers(){
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
