@@ -102,7 +102,6 @@ public class AddApptController implements Initializable {
         userUpdate();
     }
 
-
     @FXML
     void insertAppt(ActionEvent event) throws SQLException,IOException {
 
@@ -171,7 +170,7 @@ public class AddApptController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Appointment Added!");
             alert.setTitle("ADD CONFIRMATION");
-            alert.setContentText("The following appointment has been added : " +
+            alert.setContentText("The appointment with the following criteria has been added : " +
                     "\nTitle : "+ title  +
                     "\nDate : "+ startformatDate +
                     "\n"+ ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
@@ -181,7 +180,6 @@ public class AddApptController implements Initializable {
         else{
             Alerts.selectionWarning();
         }
-
     }
 
 
@@ -201,36 +199,20 @@ public class AddApptController implements Initializable {
      * I had planned to pass additional data, but that maybe applied when I
      * revisit this project*/
 
-    public void Customer_Passer(int index, Customer customer){
+    public void customer_Passer(int index, Customer customer){
         this.customer = customer;
         this.index = index;
         CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
     }
 
-
 /**upon selecting a contact, this function populates the contact id field with the correct value*/
     public void contactUpdate(){
         ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
     }
-
     public void userUpdate(){
         UserIDTxt.setText(String.valueOf(UserComboBox.getValue().getUser_ID()));
     }
-
     public void customerUpdate(){
         CustomerIDTxt.setText(String.valueOf(CustomerComboBox.getValue().getCustomer_ID()));
     }
-
-
-
-
-    public User User_Passer(User user) throws IOException {
-        this.user = user;
-        int userid = user.getUser_ID();
-        UserIDTxt.setText(String.valueOf(userid));
-        return user;
-    }
-
-
-
 }

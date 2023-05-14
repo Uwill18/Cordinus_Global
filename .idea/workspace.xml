@@ -4,28 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Preparing Full App Translation">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Appt &amp; Customer submissions update with best practices">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddAppt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddAppt.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddCust.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddCust.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/CustomersScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/CustomersScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ModAppt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ModAppt.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ModCust.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ModCust.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,13 +92,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
-    </task>
-    <task id="LOCAL-00107" summary="Testing Appointment Scheduling">
-      <created>1681786330163</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1681786330163</updated>
     </task>
     <task id="LOCAL-00108" summary="Testing Appointment Scheduling">
       <created>1681871726820</created>
@@ -453,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683998536998</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="Appt &amp; Customer submissions update with best practices">
+      <created>1684049233500</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1684049233500</updated>
+    </task>
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -468,7 +451,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updating db and AddAppt per reqs" />
     <MESSAGE value="CustomerName applied to reports view" />
     <MESSAGE value="ModifyApptController updated for typecombo" />
     <MESSAGE value="brainstorming report three" />
@@ -493,7 +475,8 @@
     <MESSAGE value="User data updates" />
     <MESSAGE value="Removed Create attributes from modifyappt" />
     <MESSAGE value="Preparing Full App Translation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Preparing Full App Translation" />
+    <MESSAGE value="Appt &amp; Customer submissions update with best practices" />
+    <option name="LAST_COMMIT_MESSAGE" value="Appt &amp; Customer submissions update with best practices" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

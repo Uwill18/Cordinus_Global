@@ -100,7 +100,7 @@ public class AddCustController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Customer Updated!");
         alert.setTitle("UPDATE CONFIRMATION");
-        alert.setContentText("The Customer with the following Criteria has been updated : " +
+        alert.setContentText("The Customer with the following Criteria has been added : " +
                 "\nName : "+ custname +
                 "\nID# : "+ CustomersQuery.customer.getCustomer_ID());
         alert.showAndWait();

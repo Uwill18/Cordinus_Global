@@ -181,7 +181,7 @@ public class CustomerController {
             loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
             loader.load();
             AddApptController addApptController = loader.getController();
-            addApptController.Customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
+            addApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Add Appointments");
             Parent scene = loader.getRoot();
