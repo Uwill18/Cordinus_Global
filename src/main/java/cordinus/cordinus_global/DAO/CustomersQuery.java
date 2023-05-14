@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 public abstract class CustomersQuery {
 
     //paste updated insert method here, then call it in AddCustController, and pass all values from the fxml into the method
+    public static Customer customer;
     public static int insert( String custName, String Address, String Postal, String Phone,Timestamp CreateDate, String CreatedBy,Timestamp LastUpdate, String LastUpdatedBy, int DivID) throws SQLException {
         String sql ="INSERT INTO CUSTOMERS ( Customer_Name, Address, Postal_Code, Phone,Create_Date,Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);

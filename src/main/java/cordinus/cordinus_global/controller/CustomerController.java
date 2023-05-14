@@ -69,7 +69,7 @@ public class CustomerController {
 
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
-        LoadCustomers();
+        loadCustomers();
         setCustomerCellTable();
     }
 
@@ -84,7 +84,7 @@ public class CustomerController {
         Countries.setCellValueFactory(new PropertyValueFactory<>("Country"));
     }
 
-    public void LoadCustomers() throws SQLException {
+    public void loadCustomers() throws SQLException {
         customerdata = CustomersQuery.getAllCustomers();
         /**customer data is added to the CustomerTable in the view*/
        CustomerTable.setItems(customerdata);
@@ -92,7 +92,7 @@ public class CustomerController {
 
 
     @FXML
-    void OnAddCustomer(ActionEvent event) throws IOException {
+    void onAddCustomer(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AddCust.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
@@ -110,7 +110,7 @@ public class CustomerController {
  *
  * */
     @FXML
-    void OnDeleteCustomer(ActionEvent event) throws SQLException {
+    void onDeleteCustomer(ActionEvent event) throws SQLException {
 
         if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
             try{
@@ -146,7 +146,7 @@ public class CustomerController {
     }
 //
     @FXML
-    void OnUpdateCustomer(ActionEvent event) throws IOException {
+    void onUpdateCustomer(ActionEvent event) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
@@ -164,7 +164,7 @@ public class CustomerController {
     }
 
     @FXML
-    void MainMenuReturn(ActionEvent event) throws IOException{
+    void mainMenuReturn(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
@@ -175,7 +175,7 @@ public class CustomerController {
 
 
     @FXML
-    void AddAppointment(ActionEvent event) throws IOException {
+    void addAppointment(ActionEvent event) throws IOException {
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
@@ -195,13 +195,13 @@ public class CustomerController {
     }
 
     @FXML
-    void UpdateAppointment(ActionEvent event) throws IOException {
+    void updateAppointment(ActionEvent event) throws IOException {
         try{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
         loader.load();
         ModifyApptController modifyApptController = loader.getController();
-        modifyApptController.Customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
+        modifyApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("Update Appointments");
         Parent scene = loader.getRoot();

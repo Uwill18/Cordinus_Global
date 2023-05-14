@@ -55,7 +55,7 @@
             <TextField fx:id="UserIDTxt" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="StartTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <ComboBox fx:id="EndTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <ComboBox fx:id="ContactComboBox" onAction="#ContactUpdate" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <ComboBox fx:id="ContactComboBox" onAction="#contactUpdate" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <ComboBox fx:id="TypeComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <ComboBox fx:id="UserComboBox" onAction="#userUpdate" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ComboBox fx:id="CustomerComboBox" onAction="#customerUpdate" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -63,8 +63,8 @@
       </GridPane>
       <HBox alignment="CENTER" layoutX="283.0" layoutY="349.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#UpdateAppt" text="Modify" />
-            <Button mnemonicParsing="false" onAction="#ApptScreenReturn" text="Back" />
+            <Button mnemonicParsing="false" onAction="#updateAppt" text="Modify" />
+            <Button mnemonicParsing="false" onAction="#apptScreenReturn" text="Back" />
          </children>
       </HBox>
    </children>

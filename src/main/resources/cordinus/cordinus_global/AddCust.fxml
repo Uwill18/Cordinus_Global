@@ -45,14 +45,14 @@
                   <TextField fx:id="Division_ID" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="Country:" GridPane.rowIndex="5" />
                   <Label text="State/Province:" GridPane.rowIndex="6" />
-                  <ComboBox fx:id="CountriesComboBox" onAction="#OnActionSelectCountry" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="StatesComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="CountriesComboBox" onAction="#onActionSelectCountry" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="StatesComboBox" onAction="#statesSelect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#CreateCustomer" text="Add" />
-                  <Button mnemonicParsing="false" onAction="#CustomerScreenButton" text="Back" />
+                  <Button mnemonicParsing="false" onAction="#createCustomer" text="Add" />
+                  <Button mnemonicParsing="false" onAction="#customerScreenButton" text="Back" />
                </children>
             </HBox>
          </children>

@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -23,6 +24,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class ModCustController {
@@ -45,6 +48,7 @@ public class ModCustController {
         private ComboBox<Country> CountriesComboBox;
         @FXML
         private ComboBox<Division> StatesComboBox;
+
         private Customer customer;
         private int index;
 
@@ -62,6 +66,15 @@ public class ModCustController {
                 stage.setScene(scene);
                 stage.show();
         }
+        @FXML
+        public void customerScreenButton(ActionEvent event) throws IOException {
+                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(fxmlLoader.load());
+                stage.setTitle("Customer");
+                stage.setScene(scene);
+                stage.show();
+        }
 
         /**The CustomerPasser function  autopopulates selected data from customer controller
          and allows editing of select fields, to be passed back to the db.
@@ -69,7 +82,7 @@ public class ModCustController {
          from the ModifyCustomer Function*/
 
         @FXML
-        void ModifyCustomer(ActionEvent event) throws SQLException {
+        void ModifyCustomer(ActionEvent event) throws SQLException, IOException {
                 int customerid = Integer.parseInt(Customer_ID.getText());
                 String custname = Customer_Name.getText();
                 String Address = AddressTxt.getText();
@@ -80,10 +93,19 @@ public class ModCustController {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Timestamp LastUpdate = Timestamp.valueOf(formatter.format(date));//grab current
 
-
-                String LastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();;//grab current
+                String LastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();//grab current
                 int DivID = Integer.parseInt(Division_ID.getText());
                 CustomersQuery.update(custname, Address, ZipCode, PhoneNumber, LastUpdate, LastUpdatedBy, DivID, customerid);
+
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Customer Updated!");
+                alert.setTitle("UPDATE CONFIRMATION");
+                alert.setContentText("The Customer with the following Criteria has been updated : " +
+                        "\nName : "+ custname +
+                        "\nID# : "+ customerid);
+                alert.showAndWait();
+                CustomerScreenButton(event);
         }
 
 
@@ -107,5 +129,8 @@ public class ModCustController {
                 Postal_Code.setText(customer.getPostal_Code());
                 Phone.setText(customer.getPhone());
                 Division_ID.setText((String.valueOf(customer.getDivision_ID())));
+        }
+        public void statesSelect(){
+                Division_ID.setText(String.valueOf(StatesComboBox.getValue().getDivision_ID()));
         }
 }

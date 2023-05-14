@@ -152,7 +152,7 @@ public class ApptController {
                         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
                         loader.load();
                         ModifyApptController modifyApptController = loader.getController();//get controller tied to view
-                        modifyApptController.Appt_Passer(AppointmentTable.getSelectionModel().getSelectedIndex(),
+                        modifyApptController.appt_Passer(AppointmentTable.getSelectionModel().getSelectedIndex(),
                                 AppointmentTable.getSelectionModel().getSelectedItem());
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setTitle("Modify Appointments");

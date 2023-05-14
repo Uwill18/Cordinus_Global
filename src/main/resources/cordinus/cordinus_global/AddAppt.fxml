@@ -61,8 +61,8 @@
       </GridPane>
       <HBox alignment="CENTER" layoutX="283.0" layoutY="349.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#InsertAppt" text="Add" />
-            <Button mnemonicParsing="false" onAction="#ApptScreenReturn" text="Back" />
+            <Button mnemonicParsing="false" onAction="#insertAppt" text="Add" />
+            <Button mnemonicParsing="false" onAction="#apptScreenReturn" text="Back" />
          </children>
       </HBox>
    </children>

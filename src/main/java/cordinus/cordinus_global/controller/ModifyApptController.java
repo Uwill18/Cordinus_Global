@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -27,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -66,6 +69,9 @@ public class ModifyApptController implements Initializable {
     private Customer customer;
     private int index;
 
+
+    public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         for(int hr = 8; hr < 22; hr++){
             StartTimeCombo.getItems().add(LocalTime.of(hr,0));
@@ -87,7 +93,7 @@ public class ModifyApptController implements Initializable {
     }
 
     @FXML
-    public void UpdateAppt(ActionEvent event) throws SQLException {
+    public void updateAppt(ActionEvent event) throws SQLException, IOException {
         String title = TitleTxt.getText();
         String description = DescriptionTxt.getText();
         String location = LocationTxt.getText();
@@ -121,6 +127,24 @@ public class ModifyApptController implements Initializable {
         try {
             if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())) ){//Alerts.selectionWarning();
                  AppointmentsQuery.update(title, description, location, type, startby, endby, LastUpdate,LastUpdatedBy, userid ,contactid, customerid, appointment.getAppointment_ID());
+
+                DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
+                String startformatDate = start.format(date_format);
+                DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
+                String startformatTime = start.format(time_format);
+                String endformatTime = end.format(time_format);
+
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                 alert.setHeaderText("Appointment Updated!");
+                 //alert.setTitle(ZoneId.systemDefault() + "Timezone");
+                 alert.setTitle("UPDATE CONFIRMATION");
+                 alert.setContentText("The Appointment with the following Criteria has been updated :" +
+                        "\nID# : "+ appointment.getAppointment_ID()  +
+                        "\nDate : "+ startformatDate +
+                        "\n"+ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
+
+                 alert.showAndWait();
+                 apptScreenReturn(event);
             }
             else {
                 Alerts.SelectionError();
@@ -131,7 +155,7 @@ public class ModifyApptController implements Initializable {
     }
 
     @FXML
-    public void ApptScreenReturn(ActionEvent event) throws IOException {
+    public void apptScreenReturn(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
@@ -142,9 +166,7 @@ public class ModifyApptController implements Initializable {
 
 
 
-
-
-    public void Appt_Passer(int selectedIndex, Appointment appointment){
+    public void appt_Passer(int selectedIndex, Appointment appointment){
         this.appointment = appointment;
         this.selectedIndex = selectedIndex;
 
@@ -169,14 +191,14 @@ public class ModifyApptController implements Initializable {
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
     }
 
-    public void Customer_Passer(int index, Customer customer){
+    public void customer_Passer(int index, Customer customer){
         this.customer = customer;
         this.index = index;
         CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
     }
 
     /**upon selecting a contact, this function populates the contact id field with the correct value*/
-    public void ContactUpdate(){
+    public void contactUpdate(){
         ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
     }
 

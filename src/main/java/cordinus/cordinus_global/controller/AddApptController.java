@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -23,6 +24,8 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static java.time.LocalDateTime.parse;
@@ -63,6 +66,8 @@ public class AddApptController implements Initializable {
     private int index;
     private User user;
 
+    public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -99,7 +104,7 @@ public class AddApptController implements Initializable {
 
 
     @FXML
-    void InsertAppt(ActionEvent event) throws SQLException,IOException {
+    void insertAppt(ActionEvent event) throws SQLException,IOException {
 
         int userid = Integer.parseInt(UserIDTxt.getText()); //get from combobox
         int custid = Integer.parseInt(CustomerIDTxt.getText()); // get from combobox
@@ -156,6 +161,22 @@ public class AddApptController implements Initializable {
 
         if(TimeUtil.businessHoursCheck(start, end) && (!TimeUtil.appointmentOverlapCheck(start, end, custid, -1 ))){//false
            AppointmentsQuery.insert(title, description, location, type, startby, endby, CreateDate,CreatedBy,LastUpdate, LastUpdatedBy,custid, userid,contact);
+
+            DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
+            String startformatDate = start.format(date_format);
+            DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
+            String startformatTime = start.format(time_format);
+            String endformatTime = end.format(time_format);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Appointment Added!");
+            alert.setTitle("ADD CONFIRMATION");
+            alert.setContentText("The following appointment has been added : " +
+                    "\nTitle : "+ title  +
+                    "\nDate : "+ startformatDate +
+                    "\n"+ ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
+            alert.showAndWait();
+            apptScreenReturn(event);
        }
         else{
             Alerts.selectionWarning();
@@ -165,15 +186,13 @@ public class AddApptController implements Initializable {
 
 
     @FXML
-    void ApptScreenReturn(ActionEvent event) throws IOException {
-
+    void apptScreenReturn(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Appointments");
         stage.setScene(scene);
         stage.show();
-
     }
 
 

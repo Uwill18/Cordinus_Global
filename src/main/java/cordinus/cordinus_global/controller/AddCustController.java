@@ -3,6 +3,7 @@ package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.CountriesQuery;
 import cordinus.cordinus_global.DAO.DivisionsQuery;
+import cordinus.cordinus_global.DAO.UsersQuery;
 import cordinus.cordinus_global.model.Country;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -69,17 +71,19 @@ public class AddCustController {
 
     public void initialize() throws SQLException {
         CountriesComboBox.setItems(CountriesQuery.getAllCountries());
+
+
     }
 
     @FXML
-    public void CreateCustomer(ActionEvent event) throws SQLException,IOException {
+    public void createCustomer(ActionEvent event) throws SQLException,IOException {
        //int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
         String custname = Customer_Name.getText();
         String Address = AddressTxt.getText();
         String ZipCode = Postal_Code.getText();
         String PhoneNumber = Phone.getText();
-        String CreatedBy ="test";
-        String LastUpdatedBy ="test";
+        String CreatedBy = UsersQuery.getCurrentUserData().getUser_Name();
+        String LastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -93,11 +97,18 @@ public class AddCustController {
         Division_ID.setText(String.valueOf(DivID));
 
         CustomersQuery.insert(custname, Address, ZipCode, PhoneNumber, CreateDate, CreatedBy, LastUpdate, LastUpdatedBy, DivID);
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Customer Updated!");
+        alert.setTitle("UPDATE CONFIRMATION");
+        alert.setContentText("The Customer with the following Criteria has been updated : " +
+                "\nName : "+ custname +
+                "\nID# : "+ CustomersQuery.customer.getCustomer_ID());
+        alert.showAndWait();
+        customerScreenButton(event);
     }
 
 
-    public void OnActionSelectCountry(){
+    public void onActionSelectCountry(){
         /**This lambda expression filters the Observable list allDivisions of Type Division and matches
          * all division objects that share the same CountryID as the selected country from the CountriesComboBox.
          * This lambda expression is needed at this combox to filter the selection pool of divisions to their respective
@@ -108,13 +119,17 @@ public class AddCustController {
     }
 
     @FXML
-    public void CustomerScreenButton(ActionEvent event) throws IOException {
+    public void customerScreenButton(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Customer");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void statesSelect(){
+        Division_ID.setText(String.valueOf(StatesComboBox.getValue().getDivision_ID()));
     }
 
 }

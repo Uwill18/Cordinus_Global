@@ -31,7 +31,7 @@ public abstract class AppointmentsQuery {
         ps.setInt(12,userid);
         ps.setInt(13,contact);
 
-        System.out.println(ps);
+        //System.out.println(ps);
 
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
@@ -53,7 +53,7 @@ public abstract class AppointmentsQuery {
         ps.setInt(10,contact);
         ps.setInt(11,customerid);
         ps.setInt(12,appointmentID);
-        System.out.println(ps);
+        //System.out.println(ps);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }

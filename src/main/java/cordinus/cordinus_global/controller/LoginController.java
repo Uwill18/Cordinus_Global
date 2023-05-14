@@ -50,7 +50,7 @@ public class LoginController implements Initializable {
     public Label passwordLabel;
 
     public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
-    private User user;
+
 
     /**The initialize method gathers the keys from the resource bundle dictionary to translate upon system default settings*/
     public void initialize(URL url, ResourceBundle resourceBundle)  {
