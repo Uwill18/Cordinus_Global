@@ -1,5 +1,5 @@
 -----------------------------------------
-Cordinus Global v1.0
+Cordinus Global v2.0
 ------------------------------------------
 
 This desktop scheduling application retrieves information from a mysql database, and allows the user to manipulate the datasets in the application view through the use of JavaFX controls for appointments, customers, and reports.
