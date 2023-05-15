@@ -24,6 +24,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 //https://www.youtube.com/watch?v=KzfhgGGzWMQ
@@ -117,6 +118,9 @@ public  class ReportController implements Initializable {
     @FXML
     private Label currDateLbl;
 
+    @FXML
+    private Label currentLbl;
+
     public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
 
@@ -157,15 +161,13 @@ public  class ReportController implements Initializable {
         MonthComboBox.setItems(allMonths);
         MonthComboBox.setVisibleRowCount(4);
 
-        DayOfWeek dow = LocalDate.now().getDayOfWeek();
-        String currentDOW = dow.toString();
-        todayLbl.setText(currentDOW);
-
+        setCurrentDay();
 
         LocalDateTime ldt = LocalDateTime.now();
         DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
         String formatDate = ldt.format(date_format);
         currDateLbl.setText(formatDate);
+        currentLbl.setText(rb.getString("CurrentDay")+" : ");
 
         remainingFifteen();
         remainingThirty();
@@ -227,7 +229,7 @@ public  class ReportController implements Initializable {
 
         int contactID = 0;
         ObservableList<Appointment> getAllAppointmentData = AppointmentsQuery.getAllAppointments();
-        ObservableList<Appointment> appointmentInfo = FXCollections.observableArrayList();
+        //ObservableList<Appointment> appointmentInfo = FXCollections.observableArrayList();
         ObservableList<Contact> getAllContacts = ContactsQuery.getAllContacts();
 
         Appointment contactAppointmentInfo;
@@ -236,9 +238,7 @@ public  class ReportController implements Initializable {
 /**Selects all appointments for all contacts*/
         if (AllRB.isSelected()){
             reportContactData = AppointmentsQuery.getAllAppointments();
-
         }
-
 
         if(MonthRB.isSelected()){
             for (Contact contact: getAllContacts) {
@@ -247,12 +247,23 @@ public  class ReportController implements Initializable {
                 }
             }
 
-            for (Appointment appointment: AppointmentsQuery.getMonthAppointments()) {
-                if (appointment.getContact_ID() == contactID) {
-                    contactAppointmentInfo = appointment;
-                    appointmentInfo.add(contactAppointmentInfo);
-                }
-            }
+//            for (Appointment appointment: AppointmentsQuery.getMonthAppointments()) {
+//                if (appointment.getContact_ID() == contactID) {
+//                    contactAppointmentInfo = appointment;
+//                    appointmentInfo.add(contactAppointmentInfo);
+//                }
+//            }
+
+
+            //reduces number of comparisons of above code into one comparison
+
+            int finalContactID = contactID;
+            ObservableList<Appointment> appointmentInfo = AppointmentsQuery.getMonthAppointments().stream()
+                    .filter(appointment -> appointment.getContact_ID()== finalContactID)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+            //return list;
+
+
             reportContactData = appointmentInfo;
         }
         else if(WeekRB.isSelected()) {
@@ -263,13 +274,10 @@ public  class ReportController implements Initializable {
                 }
             }
 
-
-            for (Appointment appointment: AppointmentsQuery.getWeekAppointments()) {
-                if (appointment.getContact_ID() == contactID) {
-                    contactAppointmentInfo = appointment;
-                    appointmentInfo.add(contactAppointmentInfo);
-                }
-            }
+            int finalContactID = contactID;
+            ObservableList<Appointment> appointmentInfo = AppointmentsQuery.getMonthAppointments().stream()
+                    .filter(appointment -> appointment.getContact_ID()== finalContactID)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
             reportContactData = appointmentInfo;
         }
@@ -281,12 +289,11 @@ public  class ReportController implements Initializable {
                     contactID = contact.getContact_ID();
                 }
             }
-            for (Appointment appointment: getAllAppointmentData) {
-                if (appointment.getContact_ID() == contactID) {
-                    contactAppointmentInfo = appointment;
-                    appointmentInfo.add(contactAppointmentInfo);
-                }
-            }
+            int finalContactID = contactID;
+            ObservableList<Appointment> appointmentInfo = AppointmentsQuery.getMonthAppointments().stream()
+                    .filter(appointment -> appointment.getContact_ID()== finalContactID)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
             reportContactData = appointmentInfo;
         }
 
@@ -416,12 +423,50 @@ public  class ReportController implements Initializable {
         }
     }
 
+    public void setCurrentDay(){
+        DayOfWeek dow = LocalDate.now().getDayOfWeek();
+        String currentDOW = dow.toString();
 
+        if(currentDOW.equals("SUNDAY")){
+            todayLbl.setText(rb.getString("Sunday"));
+            //todayLbl.setText("Sunday");
+        }
+
+        if(currentDOW.equals("MONDAY")){
+            todayLbl.setText(rb.getString("Monday"));
+            //todayLbl.setText("Monday");
+        }
+
+        if(currentDOW.equals("TUESDAY")){
+            todayLbl.setText(rb.getString("Tuesday"));
+            //todayLbl.setText("Tuesday");
+        }
+
+        if(currentDOW.equals("WEDNESDAY")){
+            todayLbl.setText(rb.getString("Wednesday"));
+            //todayLbl.setText("Wednesday");
+        }
+
+        if(currentDOW.equals("THURSDAY")){
+            todayLbl.setText(rb.getString("Thursday"));
+            //todayLbl.setText("Thursday");
+        }
+
+        if(currentDOW.equals("FRIDAY")){
+            todayLbl.setText(rb.getString("Friday"));
+            //todayLbl.setText("Friday");
+        }
+
+        if(currentDOW.equals("SATURDAY")){
+            todayLbl.setText(rb.getString("Saturday"));
+            //todayLbl.setText("Saturday");
+        }
+    }
 
 
 
         @FXML
-    void MainMenuReturn(ActionEvent event) throws IOException {
+    public void mainMenuReturn(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());

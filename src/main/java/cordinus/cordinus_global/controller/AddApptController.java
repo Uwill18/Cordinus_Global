@@ -157,8 +157,9 @@ public class AddApptController implements Initializable {
          * showed false.*/
 
 
-        if(TimeUtil.businessHoursCheck(start, end) && (!TimeUtil.appointmentOverlapCheck(start, end, custid, -1 ))){//false
+        if(TimeUtil.businessHoursCheck(start, end) && (!TimeUtil.appointmentOverlapCheck(start, end, -1 ))){//false
            AppointmentsQuery.insert(title, description, location, type, startby, endby, createDate,createdBy,lastUpdate, lastUpdatedBy,custid, userid,contact);
+
 
             DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
             String startformatDate = start.format(date_format);
@@ -167,14 +168,21 @@ public class AddApptController implements Initializable {
             String endformatTime = end.format(time_format);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Appointment Added!");
-            alert.setTitle("ADD CONFIRMATION");
+            alert.setHeaderText("New Appointment Added!");
+            alert.setTitle("APPOINTMENT ADDED");
             alert.setContentText("The appointment with the following criteria has been added : " +
                     "\nTitle : "+ title  +
                     "\nDate : "+ startformatDate +
                     "\n"+ ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
             alert.showAndWait();
-            apptScreenReturn(event);
+
+            System.out.println("The appointment with the following criteria has been added : " +
+                    "\nTitle : "+ title  +
+                    "\nDate : "+ startformatDate +
+                    "\n"+ ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
+
+
+           // apptScreenReturn(event);
        }
         else{
             Alerts.selectionWarning();

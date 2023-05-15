@@ -100,10 +100,9 @@ public class ModCustController {
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Customer Updated!");
-                alert.setTitle("UPDATE CONFIRMATION");
-                alert.setContentText("The Customer with the following Criteria has been updated : " +
-                        "\nName : "+ custname +
-                        "\nID# : "+ customerid);
+                alert.setTitle("CUSTOMER UPDATE");
+                alert.setContentText(custname.toUpperCase()+ " has been updated successfully!" +
+                        "\nCustomer ID#: "+customerid);
                 alert.showAndWait();
                 CustomerScreenButton(event);
         }

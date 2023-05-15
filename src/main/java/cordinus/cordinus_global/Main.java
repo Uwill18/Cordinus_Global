@@ -83,7 +83,6 @@ import java.util.Locale;
 
 public class Main extends Application {
 
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("HomeScreen.fxml"));
@@ -121,8 +120,8 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
-        Locale locale = new Locale("fr");
-        Locale.setDefault(locale);
+        //Locale locale = new Locale("fr");
+        //Locale.setDefault(locale);
         launch();
         JDBC.closeConnection();
     }

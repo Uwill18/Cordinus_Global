@@ -122,7 +122,7 @@ public class ApptController {
                                         alert.setHeaderText("Deleting Appointment");
                                         alert.setContentText("Are you sure you wish to delete this appointment? "
                                                 + "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
-                                        +"\nAPPOINTMENT TYPE :" + AppointmentTable.getSelectionModel().getSelectedItem().getType());
+                                        +"\nAPPOINTMENT TITLE :" + AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
                                         Optional<ButtonType> result = alert.showAndWait();
                                         if(result.isPresent()  && result.get() != ButtonType.CANCEL){
                                                 if(result.isPresent()  && result.get() ==ButtonType.OK){
@@ -131,8 +131,7 @@ public class ApptController {
                                                         delete_alert.setHeaderText("Appointment Deleted");
                                                         delete_alert.setContentText("THE FOLLOWING APPOINTMENT HAS BEEN DELETED!" +
                                                                 "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
-                                                                +"\nAPPOINTMENT TYPE : "
-                                                                + AppointmentTable.getSelectionModel().getSelectedItem().getType());
+                                                                +"\nAPPOINTMENT TITLE:"+ AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
                                                         Optional<ButtonType> delete_result = delete_alert.showAndWait();
                                                         AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
                                                 }
@@ -146,7 +145,7 @@ public class ApptController {
         }
 
         @FXML
-        void OnUpdateAppt(ActionEvent event) throws IOException {
+        void onUpdateAppt(ActionEvent event) throws IOException {
                 try{
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
@@ -178,8 +177,8 @@ public class ApptController {
         /**This radiobutton is responsible for Loading the different views according to the selection of each appointment
          * it is also used to refactor the appointmentdata.clear() method, which enables the view to be cleared every
          * time a new query is executed, so the new query results can be loaded to the view upon the selected condition*/
-        public void OnRadioButton(ActionEvent event) throws SQLException {
+        public void onRadioButton(ActionEvent event) throws SQLException {
                 appointmentdata.clear();
-                LoadAppointments();
+                loadAppointments();
         }
 }

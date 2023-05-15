@@ -125,7 +125,7 @@ public class ModifyApptController implements Initializable {
  * getting id
  * executes on !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())), or true*/
         try {
-            if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())) ){//Alerts.selectionWarning();
+            if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start, end, appointment.getAppointment_ID())) ){//Alerts.selectionWarning();
                  AppointmentsQuery.update(title, description, location, type, startby, endby, LastUpdate,LastUpdatedBy, userid ,contactid, customerid, appointment.getAppointment_ID());
 
                 DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
@@ -143,10 +143,16 @@ public class ModifyApptController implements Initializable {
                         "\nDate : "+ startformatDate +
                         "\n"+ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
                  alert.showAndWait();
+
+                System.out.println("The appointment with the following criteria has been added : " +
+                        "\nTitle : "+ title  +
+                        "\nDate : "+ startformatDate +
+                        "\n"+ ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
+                //System.out.println(AppointmentsQuery.);
                  apptScreenReturn(event);
             }
             else {
-                Alerts.selectionError();
+                Alerts.selectionWarning();
             }
         } catch (SQLException e) {
             e.printStackTrace();

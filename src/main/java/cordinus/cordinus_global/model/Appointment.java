@@ -120,4 +120,8 @@ public class Appointment {
         return AppointmentsQuery.getCustomerByID(Customer_ID);
     }
 
+    public String toString(){
+        return String.valueOf(Customer_ID);
+    }
+
 }

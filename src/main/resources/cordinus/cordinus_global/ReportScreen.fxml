@@ -152,10 +152,10 @@
                               <Label fx:id="currDateLbl" alignment="CENTER" prefHeight="48.0" prefWidth="65.0" text="Current Date" textFill="WHITE" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="384.0" layoutY="60.0" prefHeight="45.0" prefWidth="195.0">
+                        <HBox alignment="CENTER" layoutX="379.0" layoutY="60.0" prefHeight="45.0" prefWidth="225.0">
                            <children>
-                              <Label prefHeight="46.0" prefWidth="76.0" text="Current Day : " textAlignment="CENTER" textFill="WHITE" />
-                              <Label fx:id="todayLbl" prefHeight="46.0" prefWidth="76.0" text="Today" textAlignment="CENTER" textFill="WHITE" />
+                              <Label fx:id="currentLbl" prefHeight="45.0" prefWidth="91.0" text="Current Day : " textAlignment="CENTER" textFill="WHITE" />
+                              <Label fx:id="todayLbl" prefHeight="45.0" prefWidth="137.0" text="Today" textAlignment="CENTER" textFill="WHITE" />
                            </children>
                         </HBox>
                      </children></AnchorPane>
@@ -163,6 +163,6 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="783.0" layoutY="507.0" mnemonicParsing="false" onAction="#MainMenuReturn" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #C4A484; -fx-border-color: #000; -fx-border-radius: 5px;" text="Back to Main Menu" />
+      <Button layoutX="783.0" layoutY="507.0" mnemonicParsing="false" onAction="#mainMenuReturn" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #C4A484; -fx-border-color: #000; -fx-border-radius: 5px;" text="Back to Main Menu" />
    </children>
 </AnchorPane>

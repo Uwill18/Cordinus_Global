@@ -96,6 +96,71 @@ public class TimeUtil {
      * // *
      */
 
+    public static boolean appointmentOverlapCheck(LocalDateTime start, LocalDateTime end) throws SQLException {
+        String sql = "SELECT Appointment_ID, Customer_ID, Start, End  FROM APPOINTMENTS ;";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        //boolean isOverlapping = false;
+        ObservableList<Appointment> dayAppointments = AppointmentsQuery.getDayAppointments();
+        for (Appointment appointment : dayAppointments) {
+
+            if (rs.next()) {
+                //int appointmentID = rs.getInt("Appointment_ID");
+                int customerID = rs.getInt("Customer_ID");
+                if ((appointment.getCustomer_ID() != customerID)) {
+                    continue;
+                }
+            }
+
+
+            if (start.equals(appointment.getStart()) || end.equals(appointment.getEnd())) {
+               // start.
+                //System.out.println("overlap");
+                /**exact overlap, s1 = s && e1 =e*/
+                //isOverlapping = true;
+                //return isOverlapping;
+                //break;
+                return true;
+            }
+
+            if (start.isAfter(appointment.getStart()) && start.isBefore(appointment.getEnd())) {
+                System.out.println("overlap 2");
+                /** selected start within existing appointment, s1 > s && s1 < e*/
+                // isOverlapping = true;
+                //return isOverlapping;
+                return true;
+                //break;
+            }
+
+            if (end.isAfter(appointment.getStart()) && end.isBefore(appointment.getEnd())) {
+                System.out.println("overlap 3");
+                /**new appointment ends during existing appointment*/
+                //isOverlapping = true;
+                return true;
+                //break;
+            }
+
+            if (appointment.getStart().isAfter(start) && appointment.getStart().isBefore(end)) {
+                System.out.println("overlap 4");
+                /**existing appointment starts within time of new appointment, s1 < s && e1 > s*/
+                //isOverlapping = true;
+                // return isOverlapping;
+                return true;
+                //break;
+            }
+
+            if (appointment.getEnd().isAfter(start) && appointment.getEnd().isBefore(end)) {
+                System.out.println("overlap 5");
+                /**existing appointment ends within time of new appointment*/
+                //isOverlapping = true;
+                //return isOverlapping;
+                return true;
+                //break;
+            }
+        }
+        return false;
+    }
+
     /**This method gets the selected Appointment object, and compares the properties of start and end gathered
      * from the below sql query for appointment overlaps. This approach is effective for this use case because
      * the Modify appointments requires a selection to manipulate the object whereas add appointments
@@ -107,18 +172,31 @@ public class TimeUtil {
     //toDO function overloading
 
 
-    public static boolean appointmentOverlapCheck(LocalDateTime start, LocalDateTime end, int customerID, int appointmentID) throws SQLException {
+    public static boolean appointmentOverlapCheck(LocalDateTime start, LocalDateTime end, int appointmentID) throws SQLException {
+//book for up to a year no overlaps
 
-        for(Appointment appointment: AppointmentsQuery.getCustomerAppointments(customerID)){
-            if (appointment.getAppointment_ID() == appointmentID){
-                continue;
-            }
-            //this is using negative logic similar to proof by contradiction. if any of the cases are true, then there is no overlap the code block does not execute.
-            if(!(start.isAfter(appointment.getEnd()) || start.equals(appointment.getEnd()) || end.isBefore(appointment.getStart()) || end.equals(appointment.getStart()))){
-                return true;
-            }
-
+        for(Appointment appointment: AppointmentsQuery.getYearAppointments()){
+      //  for(Appointment appointment: AppointmentsQuery.getCustomerAppointments(customerID)){ // if it doesn't matter if different customers book the same time
+                if (appointment.getAppointment_ID() == appointmentID){ //
+                    continue;
+                }
+                //this is using negative logic similar to proof by contradiction. if any of the cases are true, then there is no overlap the code block does not execute.
+                if(!(start.isAfter(appointment.getEnd()) || start.equals(appointment.getEnd()) || end.isBefore(appointment.getStart()) || end.equals(appointment.getStart())) || appointment.getStart().equals(start)  || appointment.getEnd().equals(end) ){
+                    //s1 < e, /** selected start within existing appointment, s1 > s && s1 < e*/
+                    //s1 != e prevent exact overlap /**exact overlap, s1 = s && e1 =e*/
+                    //e1 > s /**existing appointment starts within time of new appointment, s1 < s && e1 > s*/
+                    // e != s prevent exact overlap /**exact overlap, s1 = s && e1 =e*/
+                   // System.out.println(AppointmentsQuery.getCustomerAppointments(customerID).toString()+"\n");
+                   // System.out.println(AppointmentsQuery.getCustomerAppointments(customerID).toString()+"\n");
+                   // System.out.println(AppointmentsQuery.getAllAppointments());
+                        return true;
+                }
+                //return false;
         }
         return false;
     }
+
 }
+
+
+

@@ -31,7 +31,6 @@ public abstract class AppointmentsQuery {
         ps.setInt(12,userid);
         ps.setInt(13,contact);
 
-
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
 
@@ -146,6 +145,7 @@ public abstract class AppointmentsQuery {
                 String customerID = rs.getString("Customer_ID");
                 String userID = rs.getString("User_ID");
                 appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -284,6 +284,13 @@ public abstract class AppointmentsQuery {
         return list;
     }
 
+    public static ObservableList<Appointment> getCustomerAppointmentsByYear(int custid){
+        ObservableList<Appointment> list = getDayAppointments().stream()
+                .filter(appointment -> appointment.getCustomer_ID()==custid)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        return list;
+    }
+
 
 
 
@@ -327,6 +334,36 @@ public abstract class AppointmentsQuery {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+
+    public static ObservableList<Appointment> getYearAppointments(){
+        ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM APPOINTMENTS WHERE Start >= current_date() AND Start <= date_add(current_date(),interval 365 day)";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentID = rs.getInt("Appointment_ID");
+                String contactID = rs.getString("Contact_ID");
+                String description = rs.getString("Description");
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                String location = rs.getString("Location");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                String title = rs.getString("Title");
+                String type = rs.getString("Type");
+                String customerID = rs.getString("Customer_ID");
+                String userID = rs.getString("User_ID");
+                appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customerID, userID ));
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentList;
     }
 
 }

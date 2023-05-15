@@ -96,12 +96,9 @@ public class AddCustController {
 
         CustomersQuery.insert(custname, address, zipCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divID);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Customer Updated!");
-        alert.setTitle("UPDATE CONFIRMATION");
-        alert.setContentText("The Customer with the following Criteria has been added : " +
-                "\nName : "+ custname +
-                "\nID# : "+ CustomersQuery.customer.getCustomer_ID() +
-                "\nadded By : "+UsersQuery.getCurrentUserData().getUser_Name());
+        alert.setHeaderText("New Customer Added!");
+        alert.setTitle("CUSTOMER ADDED");
+        alert.setContentText( custname.toUpperCase() + " has been added to the list of customers!");
         alert.showAndWait();
         customerScreenButton(event);
     }
