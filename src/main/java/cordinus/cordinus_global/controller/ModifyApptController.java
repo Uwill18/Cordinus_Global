@@ -73,19 +73,19 @@ public class ModifyApptController implements Initializable {
     public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        for(int hr = 8; hr < 22; hr++){
-            StartTimeCombo.getItems().add(LocalTime.of(hr,0));
-            StartTimeCombo.getItems().add(LocalTime.of(hr,15));
-            StartTimeCombo.getItems().add(LocalTime.of(hr,30));
-            StartTimeCombo.getItems().add(LocalTime.of(hr,45));
-            EndTimeCombo.getItems().add(LocalTime.of(hr,0));
-            EndTimeCombo.getItems().add(LocalTime.of(hr,15));
-            EndTimeCombo.getItems().add(LocalTime.of(hr,30));
-            EndTimeCombo.getItems().add(LocalTime.of(hr,45));
+        for (int hr = 8; hr < 22; hr++) {
+            StartTimeCombo.getItems().add(LocalTime.of(hr, 0));
+            StartTimeCombo.getItems().add(LocalTime.of(hr, 15));
+            StartTimeCombo.getItems().add(LocalTime.of(hr, 30));
+            StartTimeCombo.getItems().add(LocalTime.of(hr, 45));
+            EndTimeCombo.getItems().add(LocalTime.of(hr, 0));
+            EndTimeCombo.getItems().add(LocalTime.of(hr, 15));
+            EndTimeCombo.getItems().add(LocalTime.of(hr, 30));
+            EndTimeCombo.getItems().add(LocalTime.of(hr, 45));
         }
         String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
-        for(int i = 0; i<3; i++){
-            TypeComboBox.getItems().add( (i+1) + " | "+ typeAppt[i]);
+        for (int i = 0; i < 3; i++) {
+            TypeComboBox.getItems().add((i + 1) + " | " + typeAppt[i]);
         }
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
         UserComboBox.setItems(UsersQuery.getAllUsers());
@@ -101,7 +101,7 @@ public class ModifyApptController implements Initializable {
         String type = TypeComboBox.getValue();
         Date date = new Date();//use LocalDateTime
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Timestamp timestamp = Timestamp.valueOf(formatter.format(date).toString());
+        Timestamp timestamp = Timestamp.valueOf(formatter.format(date));
         Timestamp LastUpdate = timestamp;
         String LastUpdatedBy = UsersQuery.getCurrentUserData().getUser_Name();
         int customerid = Integer.parseInt(CustomerIDTxt.getText());//not mutable
@@ -114,8 +114,8 @@ public class ModifyApptController implements Initializable {
         //Times
         LocalTime startTime = LocalTime.from(StartTimeCombo.getValue());
         LocalTime endTime = LocalTime.from(EndTimeCombo.getValue());
-        LocalDateTime start = LocalDateTime.of(startDate,startTime);
-        LocalDateTime end = LocalDateTime.of(endDate,endTime);
+        LocalDateTime start = LocalDateTime.of(startDate, startTime);
+        LocalDateTime end = LocalDateTime.of(endDate, endTime);
         Timestamp startby = Timestamp.valueOf(start);
         Timestamp endby = Timestamp.valueOf(end);
 
@@ -125,8 +125,8 @@ public class ModifyApptController implements Initializable {
  * getting id
  * executes on !(TimeUtil.appointmentOverlapCheck(start, end, customerid, appointment.getAppointment_ID())), or true*/
         try {
-            if(TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start, end, appointment.getAppointment_ID())) ){//Alerts.selectionWarning();
-                 AppointmentsQuery.update(title, description, location, type, startby, endby, LastUpdate,LastUpdatedBy, userid ,contactid, customerid, appointment.getAppointment_ID());
+            if (TimeUtil.businessHoursCheck(start, end) && !(TimeUtil.appointmentOverlapCheck(start, end, appointment.getAppointment_ID()))) {//Alerts.selectionWarning();
+                AppointmentsQuery.update(title, description, location, type, startby, endby, LastUpdate, LastUpdatedBy, userid, contactid, customerid, appointment.getAppointment_ID());
 
                 DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
                 String startformatDate = start.format(date_format);
@@ -134,24 +134,23 @@ public class ModifyApptController implements Initializable {
                 String startformatTime = start.format(time_format);
                 String endformatTime = end.format(time_format);
 
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 alert.setHeaderText("Appointment Updated!");
-                 //alert.setTitle(ZoneId.systemDefault() + "Timezone");
-                 alert.setTitle("UPDATE CONFIRMATION");
-                 alert.setContentText("The Appointment with the following Criteria has been updated :" +
-                        "\nID# : "+ appointment.getAppointment_ID()  +
-                        "\nDate : "+ startformatDate +
-                        "\n"+ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
-                 alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Appointment Updated!");
+                //alert.setTitle(ZoneId.systemDefault() + "Timezone");
+                alert.setTitle("UPDATE CONFIRMATION");
+                alert.setContentText("The Appointment with the following Criteria has been updated :" +
+                        "\nID# : " + appointment.getAppointment_ID() +
+                        "\nDate : " + startformatDate +
+                        "\n" + ZoneId.systemDefault() + " Time : " + startformatTime + " - " + endformatTime);
+                alert.showAndWait();
 
                 System.out.println("The appointment with the following criteria has been added : " +
-                        "\nTitle : "+ title  +
-                        "\nDate : "+ startformatDate +
-                        "\n"+ ZoneId.systemDefault()+" Time : "+ startformatTime + " - " + endformatTime);
+                        "\nTitle : " + title +
+                        "\nDate : " + startformatDate +
+                        "\n" + ZoneId.systemDefault() + " Time : " + startformatTime + " - " + endformatTime);
                 //System.out.println(AppointmentsQuery.);
-                 apptScreenReturn(event);
-            }
-            else {
+                apptScreenReturn(event);
+            } else {
                 Alerts.selectionWarning();
             }
         } catch (SQLException e) {
@@ -161,17 +160,11 @@ public class ModifyApptController implements Initializable {
 
     @FXML
     public void apptScreenReturn(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Appointments");
-        stage.setScene(scene);
-        stage.show();
+        MainController.appointmentScreenButtonView(event);
     }
 
 
-
-    public void appt_Passer(int selectedIndex, Appointment appointment){
+    public void appt_Passer(int selectedIndex, Appointment appointment) {
         this.appointment = appointment;
         this.selectedIndex = selectedIndex;
 
@@ -186,8 +179,7 @@ public class ModifyApptController implements Initializable {
         TypeComboBox.setValue(String.valueOf(appointment.getType()));
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
 
-        /**These sets of pickers take the Local Date, and LocalTime values,
-         * then they set them as timestamp values to be passed back to the view**/
+
         ApptStartPicker.setValue(appointment.getStart().toLocalDate());
         ApptEndPicker.setValue(appointment.getEnd().toLocalDate());
         StartTimeCombo.setValue(appointment.getStart().toLocalTime());
@@ -196,22 +188,24 @@ public class ModifyApptController implements Initializable {
         UserIDTxt.setText(String.valueOf(appointment.getUser_ID()));
     }
 
-    public void customer_Passer(int index, Customer customer){
+    public void customer_Passer(int index, Customer customer) {
         this.customer = customer;
         this.index = index;
         CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
     }
 
-    /**upon selecting a contact, this function populates the contact id field with the correct value*/
-    public void contactUpdate(){
+    /**
+     * upon selecting a contact, this function populates the contact id field with the correct value
+     */
+    public void contactUpdate() {
         ContactTxt.setText(String.valueOf(ContactComboBox.getValue().getContact_ID()));
     }
 
-    public void userUpdate(){
+    public void userUpdate() {
         UserIDTxt.setText(String.valueOf(UserComboBox.getValue().getUser_ID()));
     }
 
-    public void customerUpdate(){
+    public void customerUpdate() {
         CustomerIDTxt.setText(String.valueOf(CustomerComboBox.getValue().getCustomer_ID()));
     }
 

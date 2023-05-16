@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class UsersQuery {
-    /**allows the user object to be used golbally in the project*/
+    /**allows the user object to be used globally in the project*/
 public static User user;
     public static ObservableList<User> getAllUsers(){
         ObservableList<User> userList = FXCollections.observableArrayList();

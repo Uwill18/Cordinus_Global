@@ -5,70 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="REVERSIONING">
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.idea/resourceBundles.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/login_activity.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/DAO/ContactsQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/DAO/CountriesQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/DAO/DivisionsQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/DAO/JDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/DAO/UsersQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/HomeScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/image/CordinusGlobe.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/image/Globe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/image/Globe2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/model/Alerts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/model/Appointment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/model/Contact.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/model/Country.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/model/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/model/Division.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/utils/TimeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/AddAppt.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/AddCust.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/AppointmentScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/CustomersScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/HomeScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/LoginForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/MainMenu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/ModAppt.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/ModCust.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/demo.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/cordinus/cordinus_global/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/rb/Nat.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/rb/Nat_en.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/rb/Nat_fr.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/HomeScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/HomeScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/rb/Nat_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Cordinus_Global/src/main/resources/rb/Nat_fr.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CountriesQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CountriesQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/DivisionsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/DivisionsQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/JDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/UsersQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/UsersQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/HomeScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/HomeScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModCustController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ModifyApptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddAppt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AddAppt.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,10 +71,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mysql-connector-j-8.0.31/mysql-connector-j-8.0.31/mysql-connector-j-8.0.31.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -145,14 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1676022196157</updated>
       <workItem from="1684194183453" duration="125000" />
-      <workItem from="1684194731514" duration="2887000" />
-    </task>
-    <task id="LOCAL-00110" summary="Sucessfully changed Homescreen with RBs">
-      <created>1681950747228</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1681950747228</updated>
+      <workItem from="1684194731514" duration="23957000" />
     </task>
     <task id="LOCAL-00111" summary="updating appointmentOverlap">
       <created>1682031440392</created>
@@ -490,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684093902399</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="REVERSIONING">
+      <created>1684198029366</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1684198029366</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -539,18 +508,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/MainController.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddCustController.java</url>
-          <line>118</line>
+          <line>119</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java</url>
-          <line>65</line>
+          <line>67</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>

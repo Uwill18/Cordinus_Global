@@ -60,9 +60,14 @@ public class LoginController implements Initializable {
         CurrentTimeLbl.setText(ZoneId.systemDefault().toString());
         confirmButton.setText(rb.getString("Confirm"));
         exitButton.setText(rb.getString("Exit"));
-
     }
 
+
+
+    /**Used the input text above to compare with a function called from User'sQuery
+     * primary source was: https://www.youtube.com/watch?v=1jiuM-gNyBc
+     * and wrote to the login_activity.txt according to:
+     * https://wgu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=01cbcd0a-6a5b-4193-b914-ab490112a69b*/
     public void mainMenuScreenButton(ActionEvent event) throws SQLException, IOException {
 
         String username = UsernameTxt.getText();
@@ -84,8 +89,6 @@ public class LoginController implements Initializable {
 
 
         try{
-            /**Used the input text above to compare with a function called from User'sQuery
-             * primary source was: https://www.youtube.com/watch?v=1jiuM-gNyBc */
             if (UsersQuery.userConfirmation(username,password)) {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -110,36 +113,33 @@ public class LoginController implements Initializable {
 
 
     public ObservableList fifteenMinutesAlert(){
-/**This line filters the above sql string to select  data from specific columns, then sends them to an instance of Appointment
- * that appends to appointmentdata, and also used getTimestamp to pass to info back for appointment updates*/
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Upcoming Appointment");
-            alert.setTitle("Appointment Notification");
-            alert.setContentText(checkFifteenMinutes());
-            alert.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Upcoming Appointment");
+        alert.setTitle("Appointment Notification");
+        alert.setContentText(checkFifteenMinutes());
+        alert.showAndWait();
         return null;
     }
+
     /**This function checks all existing appointments for an appointment coming within fifteen minutes, and returns the result
      * for the above alert*/
-
     public String checkFifteenMinutes(){
         for(Appointment a: AppointmentsQuery.getAllAppointments()){//get list of appts
             if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
-                    LocalDateTime ldt = a.getStart();
-                    DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
-                    String formatDate = ldt.format(date_format);
-                    DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
-                    String formatTime = ldt.format(time_format);
-                    return  "You have an upcoming appointment with the following criteria:\n"+
-                            "\nAppointment ID#: " + a.getAppointment_ID() +
-                            "\nAppointment Date: " + formatDate +
-                            "\nAppointment Start: " + formatTime +
-                            "\nAppointment Description: " + a.getTitle();
+                LocalDateTime ldt = a.getStart();
+                DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
+                String formatDate = ldt.format(date_format);
+                DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
+                String formatTime = ldt.format(time_format);
+                return  "You have an upcoming appointment with the following criteria:\n"+
+                        "\nAppointment ID#: " + a.getAppointment_ID() +
+                        "\nAppointment Date: " + formatDate +
+                        "\nAppointment Start: " + formatTime +
+                        "\nAppointment Title: " + a.getTitle();
             }
         }
         return "There are no upcoming appointments at this time.";
     }
-
 
 
     /**allows the User to exit the Loginform and application if needed*/

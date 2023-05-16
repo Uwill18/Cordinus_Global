@@ -28,7 +28,6 @@ import java.util.Optional;
 import java.util.logging.Level;
 
 
-
 //implement similar to product in that appointments associate with customers
 //initiate getters and setter in CustomerModel
 //todo ADD Countries to view
@@ -54,13 +53,14 @@ public class CustomerController {
     private TableColumn<?, ?> Division_ID;
     @FXML
     private TableColumn<?, ?> Countries;
+
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
         loadCustomers();
         setCustomerCellTable();
     }
 
-    private void setCustomerCellTable(){
+    private void setCustomerCellTable() {
         Customer_ID.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
         Customer_Name.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
         Address.setCellValueFactory(new PropertyValueFactory<>("Address"));
@@ -70,10 +70,12 @@ public class CustomerController {
         Countries.setCellValueFactory(new PropertyValueFactory<>("Country"));
     }
 
+    /**
+     * customer data is added to the CustomerTable in the view
+     */
     public void loadCustomers() throws SQLException {
         customerdata = CustomersQuery.getAllCustomers();
-        /**customer data is added to the CustomerTable in the view*/
-       CustomerTable.setItems(customerdata);
+        CustomerTable.setItems(customerdata);
     }
 
 
@@ -86,50 +88,50 @@ public class CustomerController {
         stage.setScene(scene);
         stage.show();
     }
-/**
- * I want to spend some time talking about this line of code:
- *                     if((result.isPresent()  && result.get() ==ButtonType.OK) && !(CustomersQuery.deleteConfirmation(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()))){
- *                         Alerts.deleteError();
- *                     }
- * The default return for deleteConfirmation was true. if it was not true, then that entailed that there were appointments with matching ids, and that a delete should not happen.
- * else the delete operation from Customer's Query is executed
- *
- * */
+
+    /**
+     * I want to spend some time talking about this line of code:
+     * if((result.isPresent()  && result.get() ==ButtonType.OK) && !(CustomersQuery.deleteConfirmation(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()))){
+     * Alerts.deleteError();
+     * }
+     * The default return for deleteConfirmation was true. if it was not true, then that entailed that there were appointments with matching ids, and that a delete should not happen.
+     * else the delete operation from Customer's Query is executed
+     */
     @FXML
     void onDeleteCustomer(ActionEvent event) throws SQLException {
-        if((CustomerTable.getSelectionModel().getSelectedItem() != null)){
-            try{
+        if ((CustomerTable.getSelectionModel().getSelectedItem() != null)) {
+            try {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Delete Warning");
                 alert.setHeaderText("Deleting Customer");
                 alert.setContentText("Are you sure you wish to delete this customer? "
                         + "\nCUSTOMER ID# : " + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()
-                        +"\nCUSTOMER NAME :" + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_Name());
+                        + "\nCUSTOMER NAME :" + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_Name());
                 Optional<ButtonType> result = alert.showAndWait();
-                if(result.isPresent()  && result.get() != ButtonType.CANCEL){
-                    if((result.isPresent()  && result.get() ==ButtonType.OK) && !(CustomersQuery.deleteConfirmation(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()))){
+                if (result.isPresent() && result.get() != ButtonType.CANCEL) {
+                    if (result.get() == ButtonType.OK && !CustomersQuery.deleteConfirmation(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID())) {
                         Alerts.deleteError();
-                    }
-                    else{
+                    } else {
                         Alert delete_alert = new Alert(Alert.AlertType.CONFIRMATION);
                         delete_alert.setTitle("Delete Confirmation");
                         delete_alert.setHeaderText("Customer Deleted");
                         delete_alert.setContentText("THE FOLLOWING CUSTOMER HAS BEEN DELETED!" +
                                 "\nCUSTOMER ID# : " + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()
-                                +"\nCUSTOMER NAME : "
+                                + "\nCUSTOMER NAME : "
                                 + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_Name());
                         Optional<ButtonType> delete_result = delete_alert.showAndWait();
                         CustomersQuery.delete(CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID());
                     }
                 }
-            }catch(NullPointerException e){
-               Alerts.selectionError();
+            } catch (NullPointerException e) {
+                Alerts.selectionError();
             }
-        }else{
+        } else {
             Alerts.selectionError();
         }
     }
-//
+
+    //
     @FXML
     void onUpdateCustomer(ActionEvent event) throws IOException {
         try {
@@ -137,19 +139,23 @@ public class CustomerController {
             loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModCust.fxml"));
             loader.load();
             ModCustController modCustController = loader.getController();//get controller tied to view
-            modCustController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
+            modCustController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Modify Customer");
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             Alerts.selectionError();
         }
     }
 
     @FXML
-    void mainMenuReturn(ActionEvent event) throws IOException{
+    void mainMenuReturn(ActionEvent event) throws IOException {
+        mainMenuReturnView(event);
+    }
+
+    static void mainMenuReturnView(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
@@ -161,42 +167,39 @@ public class CustomerController {
 
     @FXML
     void addAppointment(ActionEvent event) throws IOException {
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
             loader.load();
             AddApptController addApptController = loader.getController();
-            addApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
+            addApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setTitle("Add Appointments");
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
-        }catch (NullPointerException e){
-            Alerts.selectionError();;
+        } catch (NullPointerException e) {
+            Alerts.selectionError();
+            ;
         }
     }
 
     @FXML
     void updateAppointment(ActionEvent event) throws IOException {
-        try{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
-        loader.load();
-        ModifyApptController modifyApptController = loader.getController();
-        modifyApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(),CustomerTable.getSelectionModel().getSelectedItem());
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Update Appointments");
-        Parent scene = loader.getRoot();
-        stage.setScene(new Scene(scene));
-        stage.show();
-        }catch (NullPointerException e){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
+            loader.load();
+            ModifyApptController modifyApptController = loader.getController();
+            modifyApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Update Appointments");
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } catch (NullPointerException e) {
             Alerts.selectionError();
         }
     }
-
-//Customer Controller must select Data from the TableView and pass
-// it ModifyCust
-
 
 }

@@ -74,10 +74,10 @@ public class AddCustController {
     }
 
     @FXML
-    public void createCustomer(ActionEvent event) throws SQLException,IOException {
-       //int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
+    public void createCustomer(ActionEvent event) throws SQLException, IOException {
+        //int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
 
-        try{
+        try {
 
             String custname = Customer_Name.getText();
             String address = AddressTxt.getText();
@@ -93,7 +93,7 @@ public class AddCustController {
             Timestamp lastUpdate = timestamp;
 
 
-            /**Grabs divisionID from State selection, and populates in the field*/
+            //Grabs divisionID from State selection, and populates in the field
             int divID = StatesComboBox.getValue().getDivision_ID();
             Division_ID.setText(String.valueOf(divID));
 
@@ -101,24 +101,25 @@ public class AddCustController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("New Customer Added!");
             alert.setTitle("CUSTOMER ADDED");
-            alert.setContentText( custname.toUpperCase() + " has been added to the list of customers!");
+            alert.setContentText(custname.toUpperCase() + " has been added to the list of customers!");
             alert.showAndWait();
             customerScreenButton(event);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             Alerts.ValueWarning();
         }
 
     }
 
-
-    public void onActionSelectCountry(){
-        /**This lambda expression filters the Observable list allDivisions of Type Division and matches
-         * all division objects that share the same CountryID as the selected country from the CountriesComboBox.
-         * This lambda expression is needed at this combox to filter the selection pool of divisions to their respective
-         * countries by matching the CountryID attribute that both entities share.*/
+    /**
+     * This lambda expression filters the Observable list allDivisions of Type Division and matches
+     * all division objects that share the same CountryID as the selected country from the CountriesComboBox.
+     * This lambda expression is needed at this combox to filter the selection pool of divisions to their respective
+     * countries by matching the CountryID attribute that both entities share.
+     */
+    public void onActionSelectCountry() {
         ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
-        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions,i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
+        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i -> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
         StatesComboBox.setItems(selectedDivision);
     }
 
@@ -132,7 +133,7 @@ public class AddCustController {
         stage.show();
     }
 
-    public void statesSelect(){
+    public void statesSelect() {
         Division_ID.setText(String.valueOf(StatesComboBox.getValue().getDivision_ID()));
     }
 

@@ -29,8 +29,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class ModCustController {
-    //https://www.youtube.com/watch?v=1AmIKxHbLJo
-    //https://www.youtube.com/watch?v=mY54KZkuZPQ
+        //https://www.youtube.com/watch?v=1AmIKxHbLJo
+        //https://www.youtube.com/watch?v=mY54KZkuZPQ
 
         @FXML
         private TextField AddressTxt;
@@ -54,20 +54,20 @@ public class ModCustController {
 
 
         public void initialize() throws SQLException {
-               CountriesComboBox.setItems(CountriesQuery.getAllCountries());
+                CountriesComboBox.setItems(CountriesQuery.getAllCountries());
+                StatesComboBox.setItems(DivisionsQuery.getAllDivisions());
         }
 
         @FXML
         public void CustomerScreenButton(ActionEvent event) throws IOException {
-                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Customer");
-                stage.setScene(scene);
-                stage.show();
+                customerScreenView(event);
         }
         @FXML
         public void customerScreenButton(ActionEvent event) throws IOException {
+                customerScreenView(event);
+        }
+
+        static void customerScreenView(ActionEvent event) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
@@ -78,11 +78,11 @@ public class ModCustController {
 
         /**The CustomerPasser function  autopopulates selected data from customer controller
          and allows editing of select fields, to be passed back to the db.
-        Afterwards both the database and the app hold an updated customers view based on the submissions
+         Afterwards both the database and the app hold an updated customers view based on the submissions
          from the ModifyCustomer Function*/
 
         @FXML
-        void modifyCustomer(ActionEvent event) throws SQLException, IOException {
+        public void modifyCustomer(ActionEvent event) throws SQLException, IOException {
                 int customerid = Integer.parseInt(Customer_ID.getText());
                 String custname = Customer_Name.getText();
                 String Address = AddressTxt.getText();
@@ -108,11 +108,11 @@ public class ModCustController {
         }
 
 
+        /**This lambda expression filters the Observable list allDivisions of Type Division and matches
+         * all division objects that share the same CountryID as the selected country from the CountriesComboBox.
+         * This lambda expression is needed at this combox to filter the selection pool of divisions to their respective
+         * countries by matching the CountryID attribute that both entities share.*/
         public void onActionSelectCountry(){
-                /**This lambda expression filters the Observable list allDivisions of Type Division and matches
-                 * all division objects that share the same CountryID as the selected country from the CountriesComboBox.
-                 * This lambda expression is needed at this combox to filter the selection pool of divisions to their respective
-                 * countries by matching the CountryID attribute that both entities share.*/
                 ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
                 FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
                 StatesComboBox.setItems(selectedDivision);
@@ -128,8 +128,15 @@ public class ModCustController {
                 Postal_Code.setText(customer.getPostal_Code());
                 Phone.setText(customer.getPhone());
                 Division_ID.setText((String.valueOf(customer.getDivision_ID())));
+                CountriesComboBox.setValue(CountriesQuery.getCountryByDivision(Integer.parseInt(customer.getDivision_ID())));
+                StatesComboBox.setValue(DivisionsQuery.getDivisionByID(Integer.parseInt(customer.getDivision_ID())));
         }
         public void statesSelect(){
-                Division_ID.setText(String.valueOf(StatesComboBox.getValue().getDivision_ID()));
+                try{
+                        Division_ID.setText(String.valueOf(StatesComboBox.getValue().getDivision_ID()));
+                }catch (NullPointerException e){
+                        e.printStackTrace();
+                }
+
         }
 }

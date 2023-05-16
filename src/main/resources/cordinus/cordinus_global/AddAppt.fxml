@@ -49,13 +49,13 @@
             <DatePicker fx:id="EndDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label text="Customer ID" GridPane.rowIndex="2" />
             <Label text="User ID" GridPane.rowIndex="1" />
-            <TextField fx:id="CustomerIDTxt" disable="true" editable="false" opacity="0.34" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="CustomerIDTxt" onAction="#updateCustomerName" disable="true" editable="false" opacity="0.34" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="UserIDTxt" disable="true" editable="false" opacity="0.34" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ComboBox fx:id="StartTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <ComboBox fx:id="EndTimeCombo" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <ComboBox fx:id="ContactComboBox" onAction="#contactUpdate" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <ComboBox fx:id="TypeComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <ComboBox fx:id="CustomerComboBox" onAction="#customerUpdate" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ComboBox fx:id="CustomerComboBox" onAction="#updateCustomerID" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <ComboBox fx:id="UserComboBox" onAction="#userUpdate" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>

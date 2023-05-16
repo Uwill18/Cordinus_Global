@@ -58,7 +58,9 @@ public abstract class CustomersQuery {
     }
 
 
-
+/**This function uses an enhanced for loop to cycle through each appointment object of all objects
+ * and compares the given customer id of the selected customer to the customer id attribute of each appointment
+ * produced by the getCustomerID() method call*/
     public static boolean deleteConfirmation(int custID) throws SQLException {
         ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
         for (Appointment appointment : allAppointments) {
@@ -69,7 +71,8 @@ public abstract class CustomersQuery {
         return true;
     }
 
-
+    /**This function filters the above sql string to select  data from specific columns, then send them to an instance of Customer
+     * that appends to customerdata*/
     public static ObservableList<Customer> getAllCustomers(){
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
@@ -77,8 +80,7 @@ public abstract class CustomersQuery {
             String sql = "SELECT * FROM CUSTOMERS";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            /**This line filters the above sql string to select  data from specific columns, then send them to an instance of Customer
-             * that appends to customerdata*/
+
 
             while (rs.next()) {
                 int customerID = rs.getInt("Customer_ID");

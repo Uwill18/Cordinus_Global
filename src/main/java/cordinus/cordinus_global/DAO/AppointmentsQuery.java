@@ -154,6 +154,7 @@ public abstract class AppointmentsQuery {
     }
 
 
+    /**Used to calculate all appointments in a day*/
 
     public static ObservableList<Appointment> getDayAppointments(){
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
@@ -208,6 +209,8 @@ public abstract class AppointmentsQuery {
         return null;
     }
 
+    /**returns the number of appointments that match the selected type and month passed from user input via
+     * selection in the application*/
     public static int getAppointmentByTypeMonth(String type, int month){
         try {
             String sql = "SELECT COUNT(*) AS Result FROM client_schedule.appointments WHERE TYPE=? AND month(START)=?";
@@ -225,14 +228,14 @@ public abstract class AppointmentsQuery {
         return 0;
     }
 
-
-    public static ObservableList<Appointment> getTotalAppointments(String totaltype, int month){
+    /**returns list of appointment objects that match the given input variables in the application*/
+    public static ObservableList<Appointment> getTotalAppointments(String totalType, int month){
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
         try {
             String sql = "SELECT * FROM APPOINTMENTS WHERE TYPE=? AND month(START)=?";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-            ps.setString(1, totaltype);
+            ps.setString(1, totalType);
             ps.setInt(2, month);
             ResultSet rs = ps.executeQuery();
 

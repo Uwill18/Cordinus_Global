@@ -82,7 +82,7 @@ public class ModCustController {
          from the ModifyCustomer Function*/
 
         @FXML
-        void modifyCustomer(ActionEvent event) throws SQLException, IOException {
+        public void modifyCustomer(ActionEvent event) throws SQLException, IOException {
                 int customerid = Integer.parseInt(Customer_ID.getText());
                 String custname = Customer_Name.getText();
                 String Address = AddressTxt.getText();

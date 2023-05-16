@@ -67,10 +67,10 @@ public class ApptController {
                 appointmentdata = FXCollections.observableArrayList();
                 loadAppointments();
                 setAppointmentCellTable();
-                User_ID.setText(rb.getString("User") +" "+rb.getString("ID"));
+                User_ID.setText(rb.getString("User") + " " + rb.getString("ID"));
         }
 
-        private void setAppointmentCellTable(){
+        private void setAppointmentCellTable() {
                 Appointment_ID.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));//1,1
                 Title.setCellValueFactory(new PropertyValueFactory<>("Title"));//2,2
                 Description.setCellValueFactory(new PropertyValueFactory<>("Description"));//3,3
@@ -83,27 +83,27 @@ public class ApptController {
                 User_ID.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
         }
 
+        /**
+         * To maximize refactoring, the sql queries that return the required object attributes for the observablelist are
+         * executed in the relevant queries file, and the corresponding function that returns the appropriate observablelist
+         * is stored in the observablelist in view.
+         **E.g. appointment data is added to the CustomerTable in the view with <b>AppointmentTable.setItems</b>*/
         public void loadAppointments() throws SQLException {
-                /**To maximize refactoring, the sql queries that return the required object attributes for the observablelist are
-                 * executed in the relevant queries file, and the corresponding function that returns the appropriate observablelist
-                 * is stored in the observablelist in view*/
-
-                                        if (AllRB.isSelected()){
-                                                appointmentdata = AppointmentsQuery.getAllAppointments();
-                                        }
-                                         if(MonthRB.isSelected()){
-                                                appointmentdata = AppointmentsQuery.getMonthAppointments();
-                                        }
-                                        if(WeekRB.isSelected()) {
-                                               appointmentdata = AppointmentsQuery.getWeekAppointments();
-                                        }
-                /**customer data is added to the CustomerTable in the view*/
+                if (AllRB.isSelected()) {
+                        appointmentdata = AppointmentsQuery.getAllAppointments();
+                }
+                if (MonthRB.isSelected()) {
+                        appointmentdata = AppointmentsQuery.getMonthAppointments();
+                }
+                if (WeekRB.isSelected()) {
+                        appointmentdata = AppointmentsQuery.getWeekAppointments();
+                }
                 AppointmentTable.setItems(appointmentdata);
         }
 
 
         @FXML
-        void onAddAppt(ActionEvent event) throws IOException {
+        public void onAddAppt(ActionEvent event) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
@@ -113,40 +113,40 @@ public class ApptController {
         }
 
         @FXML
-        void onDeleteAppt(ActionEvent event) throws SQLException{
+        public void onDeleteAppt(ActionEvent event) throws SQLException {
                 //toDO if selected alert, else if nothing selected.. selection error
-                if((AppointmentTable.getSelectionModel().getSelectedItem() != null)){
-                        try{
-                                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                                        alert.setTitle("Delete Warning");
-                                        alert.setHeaderText("Deleting Appointment");
-                                        alert.setContentText("Are you sure you wish to delete this appointment? "
-                                                + "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
-                                        +"\nAPPOINTMENT TITLE :" + AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
-                                        Optional<ButtonType> result = alert.showAndWait();
-                                        if(result.isPresent()  && result.get() != ButtonType.CANCEL){
-                                                if(result.isPresent()  && result.get() ==ButtonType.OK){
-                                                        Alert delete_alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                                        delete_alert.setTitle("Delete Confirmation");
-                                                        delete_alert.setHeaderText("Appointment Deleted");
-                                                        delete_alert.setContentText("THE FOLLOWING APPOINTMENT HAS BEEN DELETED!" +
-                                                                "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
-                                                                +"\nAPPOINTMENT TITLE:"+ AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
-                                                        Optional<ButtonType> delete_result = delete_alert.showAndWait();
-                                                        AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
-                                                }
+                if ((AppointmentTable.getSelectionModel().getSelectedItem() != null)) {
+                        try {
+                                Alert alert = new Alert(Alert.AlertType.WARNING);
+                                alert.setTitle("Delete Warning");
+                                alert.setHeaderText("Deleting Appointment");
+                                alert.setContentText("Are you sure you wish to delete this appointment? "
+                                        + "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
+                                        + "\nAPPOINTMENT TITLE : " + AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
+                                Optional<ButtonType> result = alert.showAndWait();
+                                if (result.isPresent() && result.get() != ButtonType.CANCEL) {
+                                        if (result.isPresent() && result.get() == ButtonType.OK) {
+                                                Alert delete_alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                                delete_alert.setTitle("Delete Confirmation");
+                                                delete_alert.setHeaderText("Appointment Deleted");
+                                                delete_alert.setContentText("THE FOLLOWING APPOINTMENT HAS BEEN DELETED!" +
+                                                        "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
+                                                        + "\nAPPOINTMENT TITLE : " + AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
+                                                Optional<ButtonType> delete_result = delete_alert.showAndWait();
+                                                AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
                                         }
-                        }catch(NullPointerException e){
+                                }
+                        } catch (NullPointerException e) {
                                 Alerts.selectionError();
                         }
-                }else{
+                } else {
                         Alerts.selectionError();
                 }
         }
 
         @FXML
-        void onUpdateAppt(ActionEvent event) throws IOException {
-                try{
+        public void onUpdateAppt(ActionEvent event) throws IOException {
+                try {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
                         loader.load();
@@ -158,25 +158,21 @@ public class ApptController {
                         Parent scene = loader.getRoot();
                         stage.setScene(new Scene(scene));
                         stage.show();
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                         Alerts.selectionError();
                 }
         }
 
         @FXML
-        void mainMenuReturn(ActionEvent event) throws IOException {
-                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Main Menu");
-                stage.setScene(scene);
-                stage.show();
+        public void mainMenuReturn(ActionEvent event) throws IOException {
+                CustomerController.mainMenuReturnView(event);
         }
 
-
-        /**This radiobutton is responsible for Loading the different views according to the selection of each appointment
+        /**
+         * This radiobutton is responsible for Loading the different views according to the selection of each appointment
          * it is also used to refactor the appointmentdata.clear() method, which enables the view to be cleared every
-         * time a new query is executed, so the new query results can be loaded to the view upon the selected condition*/
+         * time a new query is executed, so the new query results can be loaded to the view upon the selected condition
+         */
         public void onRadioButton(ActionEvent event) throws SQLException {
                 appointmentdata.clear();
                 loadAppointments();

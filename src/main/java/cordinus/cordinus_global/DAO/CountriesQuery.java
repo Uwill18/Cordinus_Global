@@ -13,7 +13,6 @@ public abstract class CountriesQuery {
     public static ObservableList<Country> getAllCountries(){
         ObservableList<Country> countryList = FXCollections.observableArrayList();
 
-
         try {
             String sql = "SELECT * FROM Countries";
             PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -29,9 +28,11 @@ public abstract class CountriesQuery {
             throw new RuntimeException(e);
         }
         return countryList;
-
     }
 
+    /**the join performed of the First_Level_Divisions entity and the Countries entity is linked by Division_ID.
+     * This attribute is passed as an argument in the below function to access methods of the Country object such as
+     * getCountry()*/
     public static Country getCountryByDivision(int divisionID){
         Country country = null;
         try {
