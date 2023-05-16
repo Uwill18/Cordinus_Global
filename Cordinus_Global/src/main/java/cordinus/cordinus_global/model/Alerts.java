@@ -14,12 +14,19 @@ public class Alerts {
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("OVERLAP WARNING");
-        alert.setContentText("Current selection either conflicts with established business hours or overlaps existing appointments. Please Try Again.");
+        alert.setContentText("Current selection either conflicts with the established business hours or overlaps existing appointments. Please Try Again.");
         alert.showAndWait();
 
     }
 
+    public static void valueWarning(){
 
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("VALUE WARNING");
+        alert.setContentText("The values entered render invalid. Please Try Again.");
+        alert.showAndWait();
+
+    }
 
     public static void loginError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -43,14 +50,6 @@ public class Alerts {
         alert.setTitle("Error");
         alert.setHeaderText("DELETION ERROR");
         alert.setContentText("Existing customer appointments must be deleted prior to deleting this customer.");
-        alert.showAndWait();
-    }
-
-    public static void valueWarning() {
-
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("VALUE WARNING");
-        alert.setContentText("The values entered render invalid. Please Try Again.");
         alert.showAndWait();
     }
 }

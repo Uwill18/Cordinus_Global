@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/main/resources/rb/Nat.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/rb/Nat.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" />
+      <base-name>Nat</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>

@@ -4,7 +4,6 @@ package cordinus.cordinus_global.controller;
 import cordinus.cordinus_global.DAO.CountriesQuery;
 import cordinus.cordinus_global.DAO.DivisionsQuery;
 import cordinus.cordinus_global.DAO.UsersQuery;
-import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Country;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
@@ -79,6 +78,7 @@ public class AddCustController {
        //int custID = Integer.parseInt(Customer_ID.getText());//trying to display cust id
 
         try{
+
             String custname = Customer_Name.getText();
             String address = AddressTxt.getText();
             String zipCode = Postal_Code.getText();
@@ -106,8 +106,9 @@ public class AddCustController {
             customerScreenButton(event);
 
         }catch(Exception e){
-            Alerts.valueWarning();
+            Alerts.ValueWarning();
         }
+
     }
 
 
