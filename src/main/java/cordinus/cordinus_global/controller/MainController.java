@@ -23,8 +23,24 @@ import java.util.ResourceBundle;
 //Password Validation
 //and Navigation
 public class MainController implements Initializable {
+    @FXML
+    private Button appointmentsButton;
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button customersButton;
+    @FXML
+    private Button reportsButton;
+
+    public static final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
     public void initialize(URL url, ResourceBundle resourceBundle){
+
+        appointmentsButton.setText(rb.getString("Appointments"));
+        customersButton.setText(rb.getString("Customers"));
+        reportsButton.setText(rb.getString("Reports"));
+        backButton.setText(rb.getString("Back"));
+
 
     }
 
@@ -37,7 +53,7 @@ public class MainController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Appointments");
+        stage.setTitle(rb.getString("Appointments"));
         stage.setScene(scene);
         stage.show();
     }
@@ -51,7 +67,7 @@ public class MainController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/LoginForm.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Login Form");
+        stage.setTitle(rb.getString("LoginForm"));
         stage.setScene(scene);
         stage.show();
     }
@@ -62,15 +78,25 @@ public class MainController implements Initializable {
     }
 
     static void customerScreenButtonView(ActionEvent event) throws IOException {
-        ModCustController.customerScreenView(event);
+        customerScreenView(event);
     }
+
+    static void customerScreenView(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle(rb.getString("Customers"));
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     @FXML
     public void reportScreenButton(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/ReportScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Report");
+        stage.setTitle(rb.getString("Reports"));
         stage.setScene(scene);
         stage.show();
     }

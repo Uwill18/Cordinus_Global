@@ -1,11 +1,9 @@
 package cordinus.cordinus_global.controller;
 
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
-import cordinus.cordinus_global.DAO.JDBC;
 import cordinus.cordinus_global.DAO.UsersQuery;
 import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Appointment;
-import cordinus.cordinus_global.model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -22,14 +20,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -49,7 +43,7 @@ public class LoginController implements Initializable {
     public Label usernameLabel;
     public Label passwordLabel;
 
-    public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
+    public static final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
 
     /**The initialize method gathers the keys from the resource bundle dictionary to translate upon system default settings*/
@@ -90,12 +84,7 @@ public class LoginController implements Initializable {
 
         try{
             if (UsersQuery.userConfirmation(username,password)) {
-                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Main Menu");
-                stage.setScene(scene);
-                stage.show();
+                mainMenuView(event);
                 outputFile.println( "ACCESS GRANTED to user of USERNAME: { " + username+ " } SIGN-IN TIME SHOWS AS: { "+ strDate+ " } " +ZoneId.systemDefault() + " Time.");
                 System.out.println("File written!");
                 /**upon successful validation the alert is called*/
@@ -111,11 +100,20 @@ public class LoginController implements Initializable {
         }
     }
 
+    static void mainMenuView(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle(rb.getString("Main"));
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     public ObservableList fifteenMinutesAlert(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Upcoming Appointment");
-        alert.setTitle("Appointment Notification");
+        alert.setHeaderText(rb.getString("Upcoming"));
+        alert.setTitle(rb.getString("AppointmentNotification"));
         alert.setContentText(checkFifteenMinutes());
         alert.showAndWait();
         return null;
@@ -131,14 +129,14 @@ public class LoginController implements Initializable {
                 String formatDate = ldt.format(date_format);
                 DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
                 String formatTime = ldt.format(time_format);
-                return  "You have an upcoming appointment with the following criteria:\n"+
-                        "\nAppointment ID#: " + a.getAppointment_ID() +
-                        "\nAppointment Date: " + formatDate +
-                        "\nAppointment Start: " + formatTime +
-                        "\nAppointment Title: " + a.getTitle();
+                return rb.getString("You")+"\n"+
+                        "\n"+rb.getString("Appointment")+" "+"ID#: " + a.getAppointment_ID() +
+                        "\n"+rb.getString("Appointment")+" "+"Date: " + formatDate +
+                        "\n"+rb.getString("Appointment")+" "+rb.getString("Start") +": " + formatTime +
+                        "\n"+rb.getString("Appointment")+" "+rb.getString("Title")+": " + a.getTitle();
             }
         }
-        return "There are no upcoming appointments at this time.";
+        return rb.getString("There");
     }
 
 

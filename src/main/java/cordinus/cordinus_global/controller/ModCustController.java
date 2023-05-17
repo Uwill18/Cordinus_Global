@@ -15,9 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 public class ModCustController {
         //https://www.youtube.com/watch?v=1AmIKxHbLJo
@@ -48,33 +47,58 @@ public class ModCustController {
         private ComboBox<Country> CountriesComboBox;
         @FXML
         private ComboBox<Division> StatesComboBox;
+        @FXML
+        private Button modBtn;
+        @FXML
+        private Label addressLbl;
+        @FXML
+        private Button backBtn;
+        @FXML
+        private Label countryLbl;
+        @FXML
+        private Label customerIDLbl;
+        @FXML
+        private Label customerNameLbl;
+        @FXML
+        private Label divisionIDLbl;
+        @FXML
+        private Label phoneLbl;
+        @FXML
+        private Label postalCodeLbl;
+        @FXML
+        private Label stateLbl;
 
         private Customer customer;
         private int index;
 
+        public static final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
         public void initialize() throws SQLException {
-                CountriesComboBox.setItems(CountriesQuery.getAllCountries());
-                StatesComboBox.setItems(DivisionsQuery.getAllDivisions());
+               CountriesComboBox.setItems(CountriesQuery.getAllCountries());
+               //StatesComboBox.setItems(DivisionsQuery.getAllDivisions());
+
+                customerIDLbl.setText(rb.getString("CustomerID"));
+                customerNameLbl.setText(rb.getString("CustomerName"));
+                addressLbl.setText(rb.getString("Address"));
+                postalCodeLbl.setText(rb.getString("Postal"));
+                phoneLbl.setText(rb.getString("Phone"));
+                countryLbl.setText(rb.getString("Country"));
+                stateLbl.setText(rb.getString("State"));
+                divisionIDLbl.setText("DivisionID");
+
+                modBtn.setText(rb.getString("Modify"));
+                backBtn.setText(rb.getString("Back"));
+                onActionSelectCountry();
+
         }
 
-        @FXML
-        public void CustomerScreenButton(ActionEvent event) throws IOException {
-                customerScreenView(event);
-        }
+
         @FXML
         public void customerScreenButton(ActionEvent event) throws IOException {
-                customerScreenView(event);
+                MainController.customerScreenView(event);
         }
 
-        static void customerScreenView(ActionEvent event) throws IOException {
-                FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/CustomersScreen.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Customer");
-                stage.setScene(scene);
-                stage.show();
-        }
+
 
         /**The CustomerPasser function  autopopulates selected data from customer controller
          and allows editing of select fields, to be passed back to the db.
@@ -99,12 +123,13 @@ public class ModCustController {
 
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Customer Updated!");
-                alert.setTitle("CUSTOMER UPDATE");
-                alert.setContentText(custname.toUpperCase()+ " has been updated successfully!" +
-                        "\nCustomer ID#: "+customerid);
+                alert.setHeaderText(rb.getString("custUpdated"));
+                alert.setTitle((rb.getString("updatedCust1")));
+                alert.setContentText(rb.getString("updatedCust2") +
+                      rb.getString("CustomerName")+" : " +custname.toUpperCase() + "\n"+
+                        rb.getString("CustomerID")+" : "+ customerid);
                 alert.showAndWait();
-                CustomerScreenButton(event);
+                customerScreenButton(event);
         }
 
 
@@ -113,9 +138,14 @@ public class ModCustController {
          * This lambda expression is needed at this combox to filter the selection pool of divisions to their respective
          * countries by matching the CountryID attribute that both entities share.*/
         public void onActionSelectCountry(){
-                ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
-                FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
-                StatesComboBox.setItems(selectedDivision);
+                try{
+                        ObservableList<Division> allDivisions = DivisionsQuery.getAllDivisions();
+                        FilteredList<Division> selectedDivision = new FilteredList<>(allDivisions, i-> i.getCountry_ID() == CountriesComboBox.getSelectionModel().getSelectedItem().getCountry_ID());
+                        StatesComboBox.setItems(selectedDivision);
+
+                }catch(NullPointerException e){
+                        System.out.println("reconfiguring States");
+                }
         }
 
         public void customer_Passer(int index, Customer customer){
@@ -135,7 +165,7 @@ public class ModCustController {
                 try{
                         Division_ID.setText(String.valueOf(StatesComboBox.getValue().getDivision_ID()));
                 }catch (NullPointerException e){
-                        e.printStackTrace();
+                        System.out.println("reconfiguring "+ e.getMessage());
                 }
 
         }

@@ -14,10 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,18 +42,6 @@ public class ModifyApptController implements Initializable {
     public ComboBox<LocalTime> StartTimeCombo;
     public ComboBox<LocalTime> EndTimeCombo;
     @FXML
-    private TextField ContactTxt;
-    @FXML
-    private TextField CustomerIDTxt;
-    @FXML
-    private TextField UserIDTxt;
-    @FXML
-    private TextField DescriptionTxt;
-    @FXML
-    private TextField LocationTxt;
-    @FXML
-    private TextField TitleTxt;
-    @FXML
     private ComboBox<Contact> ContactComboBox;
     @FXML
     private ComboBox<User> UserComboBox;
@@ -64,6 +49,44 @@ public class ModifyApptController implements Initializable {
     private ComboBox<Customer> CustomerComboBox;
     @FXML
     private ComboBox<String> TypeComboBox;
+    @FXML
+    private Label typeLbl;
+    @FXML
+    private Label startTimeLbl;
+    @FXML
+    private Label endTimeLbl;
+    @FXML
+    private Label appointmentIDLbl;
+    @FXML
+    private TextField ContactTxt;
+    @FXML
+    private Label contactLbl;
+    @FXML
+    private TextField CustomerIDTxt;
+    @FXML
+    private Label customerIDLbl;
+    @FXML
+    private TextField UserIDTxt;
+    @FXML
+    private Label userIDLbl;
+    @FXML
+    private TextField DescriptionTxt;
+    @FXML
+    private Label descriptionLbl;
+    @FXML
+    private TextField LocationTxt;
+    @FXML
+    private Label locationLbl;
+
+    @FXML
+    private TextField TitleTxt;
+    @FXML
+    private Label titleLbl;
+    @FXML
+    private Button modBtn;
+    @FXML
+    private Button backBtn;
+
     private Appointment appointment;
     private int selectedIndex;
     private Customer customer;
@@ -74,14 +97,7 @@ public class ModifyApptController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         for (int hr = 8; hr < 22; hr++) {
-            StartTimeCombo.getItems().add(LocalTime.of(hr, 0));
-            StartTimeCombo.getItems().add(LocalTime.of(hr, 15));
-            StartTimeCombo.getItems().add(LocalTime.of(hr, 30));
-            StartTimeCombo.getItems().add(LocalTime.of(hr, 45));
-            EndTimeCombo.getItems().add(LocalTime.of(hr, 0));
-            EndTimeCombo.getItems().add(LocalTime.of(hr, 15));
-            EndTimeCombo.getItems().add(LocalTime.of(hr, 30));
-            EndTimeCombo.getItems().add(LocalTime.of(hr, 45));
+            AddApptController.getStartTimeCombo(hr, StartTimeCombo, EndTimeCombo);
         }
         String[] typeAppt = {"Upgrade", "Repair", "Consultation"};
         for (int i = 0; i < 3; i++) {
@@ -90,6 +106,30 @@ public class ModifyApptController implements Initializable {
         ContactComboBox.setItems(ContactsQuery.getAllContacts());
         UserComboBox.setItems(UsersQuery.getAllUsers());
         CustomerComboBox.setItems(CustomersQuery.getAllCustomers());
+
+        /////////////////////////////////
+
+        appointmentIDLbl.setText(rb.getString("AppointmentID"));
+        userIDLbl.setText(rb.getString("UserID"));
+        customerIDLbl.setText(rb.getString("CustomerID"));
+        titleLbl.setText(rb.getString("Title"));
+        descriptionLbl.setText(rb.getString("Description"));
+        locationLbl.setText(rb.getString("Location"));
+        startTimeLbl.setText(rb.getString("Start"));
+        endTimeLbl.setText(rb.getString("End"));
+        contactLbl.setText(rb.getString("Contact")+" "+rb.getString("ID") +" & "+rb.getString("Name"));
+        typeLbl.setText(rb.getString("Type"));
+
+        modBtn.setText(rb.getString("Add"));
+        backBtn.setText(rb.getString("Back"));
+
+
+
+
+
+
+        /////////////////////////
+
     }
 
     @FXML

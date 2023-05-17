@@ -121,6 +121,43 @@ public  class ReportController implements Initializable {
     @FXML
     private Label currentLbl;
 
+    @FXML
+    private Label remTitle;
+
+    @FXML
+    private Label remFifteen;
+    @FXML
+    private Label remThirty;
+    @FXML
+    private Label remFortyFive;
+    @FXML
+    private Label remSixty;
+
+
+    @FXML
+    private Tab apptRemTitleTab;
+
+    @FXML
+    private Tab apptTotalTitleTab;
+
+    @FXML
+    private Label contactSelectLbl;
+
+    @FXML
+    private Tab fullTab;
+
+    @FXML
+    private Label monthLbl;
+
+    @FXML
+    private Label totalsLbl;
+
+    @FXML
+    private Label typeLbl;
+    @FXML
+    private Button backBtn;
+
+
     public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
 
@@ -130,8 +167,8 @@ public  class ReportController implements Initializable {
     ObservableList<Appointment> allAppointments = AppointmentsQuery.getAllAppointments();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        reportContactData = FXCollections.observableArrayList();
         reportTotalData = FXCollections.observableArrayList();
+        reportContactData = FXCollections.observableArrayList();
         try {
             LoadReportTotals();
             LoadReportContacts();
@@ -139,9 +176,36 @@ public  class ReportController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        setReportContactTable();
+        apptTotalTitleTab.setText(rb.getString("apptTotalTitle"));
+        monthLbl.setText(rb.getString("Months"));
+        typeLbl.setText(rb.getString("Type")+" : ");
+        totalsLbl.setText(rb.getString("Totals"));
+        totAppointmentID.setText(rb.getString("AppointmentID"));
+        totAppointment_Type.setText(rb.getString("AppointmentType"));
+        totDescription.setText(rb.getString("Description"));
+        totCustomer_ID.setText(rb.getString("CustomerID"));
+        totCustomer_Name.setText(rb.getString("CustomerName"));
+
         setCustomerAppointmentCellTable();
 
+        fullTab.setText(rb.getString("Full"));
+        contactSelectLbl.setText(rb.getString("contactSelect"));
+        AllRB.setText(rb.getString("All"));
+        WeekRB.setText(rb.getString("Week"));
+        MonthRB.setText(rb.getString("Month"));
+        AgendaRB.setText(rb.getString("Full"));
+        Appointment_ID.setText(rb.getString("ApptID"));
+        Title.setText(rb.getString("Title"));
+        Description.setText(rb.getString("Description"));
+        Type.setText(rb.getString("Type"));
+        Start.setText(rb.getString("Start"));
+        End.setText(rb.getString("End"));
+        Contact_ID.setText(rb.getString("Contact")+" "+rb.getString("ID"));
+        Customer_ID.setText(rb.getString("CustomerID"));
+
+
+
+        setReportContactTable();
         ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
         ContactComboBox.setItems(allContacts);
 
@@ -161,18 +225,29 @@ public  class ReportController implements Initializable {
         MonthComboBox.setItems(allMonths);
         MonthComboBox.setVisibleRowCount(4);
 
+
+        apptRemTitleTab.setText(rb.getString("apptRemTitle"));
         setCurrentDay();
 
         LocalDateTime ldt = LocalDateTime.now();
         DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
         String formatDate = ldt.format(date_format);
-        currDateLbl.setText(formatDate);
+        //currDateLbl.setText(formatDate);
+        remTitle.setText(rb.getString("remTitle")+ formatDate);
         currentLbl.setText(rb.getString("CurrentDay")+" : ");
+
+
+        remFifteen.setText(rb.getString("remFifteen"));
+        remThirty.setText(rb.getString("remThirty"));
+        remFortyFive.setText(rb.getString("remFortyFive"));
+        remSixty.setText(rb.getString("remSixty"));
 
         remainingFifteen();
         remainingThirty();
         remainingFortyFive();
         remainingHours();
+
+        backBtn.setText(rb.getString("backtoMain"));
     }
 
 
@@ -313,11 +388,11 @@ public  class ReportController implements Initializable {
         }
 
         if(businessDayMinutes<0){
-            hourTxt.setText("No remaining appointments available.");
+            hourTxt.setText(rb.getString("remStatus1"));
         }
 
         if(localStart.isBefore(EST_BH_START)){
-            hourTxt.setText("Available bookings will display at 8:00 a.m.");
+            hourTxt.setText(rb.getString("remStatus2"));
         }
     }
 
@@ -338,11 +413,11 @@ public  class ReportController implements Initializable {
         }
 
         if(businessDayMinutes<=0){
-            quarterToTxt.setText("No remaining appointments available.");
+            quarterToTxt.setText(rb.getString("remStatus1"));
         }
 
         if(localStart.isBefore(EST_BH_START)){
-            quarterToTxt.setText("Available bookings will display at 8:00 a.m.");
+            quarterToTxt.setText(rb.getString("remStatus2"));
         }
 
     }
@@ -363,11 +438,11 @@ public  class ReportController implements Initializable {
         }
 
         if(businessDayMinutes<=0){
-            halfPastTxt.setText("No remaining appointments available.");
+            halfPastTxt.setText(rb.getString("remStatus1"));
         }
 
         if(localStart.isBefore(EST_BH_START)){
-            halfPastTxt.setText("Available bookings will display at 8:00 a.m.");
+            halfPastTxt.setText(rb.getString("remStatus2"));
         }
     }
 
@@ -387,11 +462,11 @@ public  class ReportController implements Initializable {
         }
 
         if(businessDayMinutes<=0){
-            quarterPastTxt.setText("No remaining appointments available.");
+            quarterPastTxt.setText(rb.getString("remStatus1"));
         }
 
         if(localStart.isBefore(EST_BH_START)){
-            quarterPastTxt.setText("Available bookings will display at 8:00 a.m.");
+            quarterPastTxt.setText(rb.getString("remStatus2"));
         }
     }
 

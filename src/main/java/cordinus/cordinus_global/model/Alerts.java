@@ -32,25 +32,25 @@ public class Alerts {
 
     public static void selectionError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("SELECTION ERROR");
+        alert.setTitle(rb.getString("Error"));
+        alert.setHeaderText(rb.getString("SELECTION"));
         alert.setContentText("No selection was made for this operation.");
         alert.showAndWait();
     }
 
     public static void deleteError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("DELETION ERROR");
-        alert.setContentText("Existing customer appointments must be deleted prior to deleting this customer.");
+        alert.setTitle(rb.getString("Error"));
+        alert.setHeaderText(rb.getString("DELETION"));
+        alert.setContentText(rb.getString("Existing"));
         alert.showAndWait();
     }
 
     public static void valueWarning() {
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("VALUE WARNING");
-        alert.setContentText("The values entered render invalid. Please Try Again.");
+        alert.setTitle(rb.getString("VALUE"));
+        alert.setContentText(rb.getString("valwarn"));
         alert.showAndWait();
     }
 }

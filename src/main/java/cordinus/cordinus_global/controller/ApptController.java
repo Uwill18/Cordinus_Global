@@ -56,18 +56,51 @@ public class ApptController {
         private RadioButton MonthRB;
         @FXML
         private RadioButton WeekRB;
-        @FXML
-        private RadioButton DayRB;
-        @FXML
-        private Label ApptIntervalLbl;
+
         public Appointment appointment;
+
+        @FXML
+        private Button addApptButton;
+
+        @FXML
+        private Label appointmentsTitle;
+
+        @FXML
+        private Button backButton;
+
+        @FXML
+        private Button deleteApptButton;
+
+        @FXML
+        private Button updateApptButton;
+
+
         public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
         public void initialize() throws SQLException, IOException {
                 appointmentdata = FXCollections.observableArrayList();
                 loadAppointments();
                 setAppointmentCellTable();
+
+                appointmentsTitle.setText(rb.getString("APPOINTMENTS"));
+                AllRB.setText(rb.getString("All"));
+                MonthRB.setText(rb.getString("Month"));
+                WeekRB.setText(rb.getString("Week"));
+                Appointment_ID.setText(rb.getString("ApptID"));
+                Title.setText(rb.getString("Title"));
+                Description.setText(rb.getString("Description"));
+                Location.setText(rb.getString("Location"));
+                Type.setText(rb.getString("Type"));
+                Start.setText(rb.getString("Start"));
+                End.setText(rb.getString("End"));
+                Contact_ID.setText(rb.getString("Contact")+" "+rb.getString("ID"));
+                Customer_ID.setText(rb.getString("Customer")+" "+rb.getString("ID"));
                 User_ID.setText(rb.getString("User") + " " + rb.getString("ID"));
+
+                addApptButton.setText(rb.getString("ADD"));
+                updateApptButton.setText(rb.getString("UPDATE"));
+                deleteApptButton.setText(rb.getString("DELETE"));
+                backButton.setText(rb.getString("BACK"));
         }
 
         private void setAppointmentCellTable() {
@@ -88,7 +121,7 @@ public class ApptController {
          * executed in the relevant queries file, and the corresponding function that returns the appropriate observablelist
          * is stored in the observablelist in view.
          **E.g. appointment data is added to the CustomerTable in the view with <b>AppointmentTable.setItems</b>*/
-        public void loadAppointments() throws SQLException {
+        public void loadAppointments() {
                 if (AllRB.isSelected()) {
                         appointmentdata = AppointmentsQuery.getAllAppointments();
                 }
@@ -107,7 +140,7 @@ public class ApptController {
                 FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AddAppt.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Add Appointments");
+                stage.setTitle(rb.getString("Add")+" "+rb.getString("Appointments"));
                 stage.setScene(scene);
                 stage.show();
         }
@@ -118,20 +151,20 @@ public class ApptController {
                 if ((AppointmentTable.getSelectionModel().getSelectedItem() != null)) {
                         try {
                                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                                alert.setTitle("Delete Warning");
-                                alert.setHeaderText("Deleting Appointment");
-                                alert.setContentText("Are you sure you wish to delete this appointment? "
-                                        + "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
-                                        + "\nAPPOINTMENT TITLE : " + AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
+                                alert.setTitle(rb.getString("DelWarn"));
+                                alert.setHeaderText(rb.getString("DelAppt"));
+                                alert.setContentText(rb.getString("DeleteApptQ")
+                                        +  "\n"+rb.getString("APPOINTMENTID") +" "+ AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
+                                        + "\n"+rb.getString("APPOINTMENT_TITLE") +" "+ AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
                                 Optional<ButtonType> result = alert.showAndWait();
                                 if (result.isPresent() && result.get() != ButtonType.CANCEL) {
                                         if (result.isPresent() && result.get() == ButtonType.OK) {
                                                 Alert delete_alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                                delete_alert.setTitle("Delete Confirmation");
-                                                delete_alert.setHeaderText("Appointment Deleted");
-                                                delete_alert.setContentText("THE FOLLOWING APPOINTMENT HAS BEEN DELETED!" +
-                                                        "\nAPPOINTMENT ID# : " + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
-                                                        + "\nAPPOINTMENT TITLE : " + AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
+                                                delete_alert.setTitle(rb.getString("DelConfirm"));
+                                                delete_alert.setHeaderText(rb.getString("ApptDel"));
+                                                delete_alert.setContentText(rb.getString("ApptDelResults") +
+                                                        "\n"+rb.getString("APPOINTMENTID") + AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID()
+                                                        + "\n"+rb.getString("APPOINTMENT_TITLE") + AppointmentTable.getSelectionModel().getSelectedItem().getTitle());
                                                 Optional<ButtonType> delete_result = delete_alert.showAndWait();
                                                 AppointmentsQuery.delete(AppointmentTable.getSelectionModel().getSelectedItem().getAppointment_ID());
                                         }
@@ -154,7 +187,7 @@ public class ApptController {
                         modifyApptController.appt_Passer(AppointmentTable.getSelectionModel().getSelectedIndex(),
                                 AppointmentTable.getSelectionModel().getSelectedItem());
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setTitle("Modify Appointments");
+                        stage.setTitle(rb.getString("ApptModification"));
                         Parent scene = loader.getRoot();
                         stage.setScene(new Scene(scene));
                         stage.show();

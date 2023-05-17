@@ -1,10 +1,8 @@
 package cordinus.cordinus_global.controller;
 
-import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.DAO.CustomersQuery;
-import cordinus.cordinus_global.DAO.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,19 +11,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.logging.Level;
+import java.util.ResourceBundle;
 
 
 //implement similar to product in that appointments associate with customers
@@ -54,9 +47,50 @@ public class CustomerController {
     @FXML
     private TableColumn<?, ?> Countries;
 
+    @FXML
+    private Button addApptBtn;
+
+    @FXML
+    private Button addBtn;
+
+    @FXML
+    private Button backBtn;
+
+    @FXML
+    private Label customersLbl;
+
+    @FXML
+    private Button deleteBtn;
+
+    @FXML
+    private Button updateApptBtn;
+
+    @FXML
+    private Button updateBtn;
+
+    public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
+
     public void initialize() throws SQLException {
         customerdata = FXCollections.observableArrayList();
         loadCustomers();
+        customersLbl.setText(rb.getString("CUSTOMERS"));
+        Customer_ID.setText(rb.getString("CustomerID"));
+        Customer_Name.setText(rb.getString("CustomerName"));
+        Postal_Code.setText(rb.getString("Postal"));
+        Phone.setText(rb.getString("Phone"));
+        Division_ID.setText(rb.getString("DivisionID"));
+        Countries.setText(rb.getString("Countries"));
+        addBtn.setText(rb.getString("addCust"));
+        updateBtn.setText(rb.getString("modCust"));
+        addApptBtn.setText(rb.getString("addAppt"));
+        updateApptBtn.setText(rb.getString("modAppt"));
+        deleteBtn.setText(rb.getString("DELETE"));
+        backBtn.setText(rb.getString("BACK"));
+
+
+
+
+
         setCustomerCellTable();
     }
 
@@ -84,7 +118,7 @@ public class CustomerController {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/AddCust.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Add Customer");
+        stage.setTitle(rb.getString("addCust"));
         stage.setScene(scene);
         stage.show();
     }
@@ -141,7 +175,7 @@ public class CustomerController {
             ModCustController modCustController = loader.getController();//get controller tied to view
             modCustController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Modify Customer");
+            stage.setTitle(rb.getString("modCust"));
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
@@ -156,12 +190,7 @@ public class CustomerController {
     }
 
     static void mainMenuReturnView(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/cordinus/cordinus_global/MainMenu.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Main Menu");
-        stage.setScene(scene);
-        stage.show();
+        LoginController.mainMenuView(event);
     }
 
 
@@ -174,7 +203,7 @@ public class CustomerController {
             AddApptController addApptController = loader.getController();
             addApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Add Appointments");
+            stage.setTitle(rb.getString("addAppt"));
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
@@ -193,7 +222,7 @@ public class CustomerController {
             ModifyApptController modifyApptController = loader.getController();
             modifyApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("Update Appointments");
+            stage.setTitle(rb.getString("modAppt"));
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();

@@ -17,10 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,12 +35,7 @@ import java.util.*;
 public class AddCustController {
     @FXML
     private TextField AddressTxt;
-    @FXML
-    private Label AddressLbl;
-    @FXML
-    private Label CustomerID_Lbl;
-    @FXML
-    private Label CustomerNameLbl;
+
     @FXML
     private TextField Customer_ID;
     @FXML
@@ -55,15 +47,43 @@ public class AddCustController {
     @FXML
     private TextField Phone;
     @FXML
-    private Label PhoneLbl;
-    @FXML
-    private Label PostalCodeLbl;
-    @FXML
     private TextField Postal_Code;
     @FXML
     private ComboBox<Country> CountriesComboBox;
     @FXML
     private ComboBox<Division> StatesComboBox;
+
+    @FXML
+    private Button addBtn;
+
+    @FXML
+    private Label addressLbl;
+
+    @FXML
+    private Button backBtn;
+
+    @FXML
+    private Label countryLbl;
+
+    @FXML
+    private Label customerIDLbl;
+
+    @FXML
+    private Label customerNameLbl;
+
+    @FXML
+    private Label divisionIDLbl;
+
+    @FXML
+    private Label phoneLbl;
+
+    @FXML
+    private Label postalCodeLbl;
+
+    @FXML
+    private Label stateLbl;
+
+    public static final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
 
     //https://www.youtube.com/watch?v=tw_NXq08NUE
     //https://www.youtube.com/watch?v=vpwvWdnILuo&list=PLmCsXDGbJHdia3cLNvK4e2Gp4S9TUkK3G&index=15
@@ -72,6 +92,18 @@ public class AddCustController {
 
     public void initialize() throws SQLException {
         CountriesComboBox.setItems(CountriesQuery.getAllCountries());
+        customerIDLbl.setText(rb.getString("CustomerID"));
+        customerNameLbl.setText(rb.getString("CustomerName"));
+        addressLbl.setText(rb.getString("Address"));
+        postalCodeLbl.setText(rb.getString("Postal"));
+        phoneLbl.setText(rb.getString("Phone"));
+        countryLbl.setText(rb.getString("Country"));
+        stateLbl.setText(rb.getString("State"));
+        divisionIDLbl.setText(rb.getString("DivisionID"));
+
+        addBtn.setText(rb.getString("Add"));
+        backBtn.setText(rb.getString("Back"));
+
     }
 
     @FXML
@@ -98,9 +130,9 @@ public class AddCustController {
 
             CustomersQuery.insert(custname, address, zipCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divID);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("New Customer Added!");
-            alert.setTitle("CUSTOMER ADDED");
-            alert.setContentText(custname.toUpperCase() + " has been added to the list of customers!");
+            alert.setHeaderText(rb.getString("custAdded"));
+            alert.setTitle(rb.getString("addedCust1"));
+            alert.setContentText(custname.toUpperCase() + rb.getString("addedCust2"));
             alert.showAndWait();
             customerScreenButton(event);
 
@@ -123,8 +155,15 @@ public class AddCustController {
     }
 
     @FXML
-    public void customerScreenButton(ActionEvent event) throws IOException {
-        loadCustomerView(event);
+    public void customerScreenButton(ActionEvent event) throws IOException{
+        try{
+            loadCustomerView(event);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        //stage.setTitle(rb.getString("Customers"));
     }
 
     static void loadCustomerView(ActionEvent event) throws IOException {
