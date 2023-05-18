@@ -124,16 +124,17 @@ public class LoginController implements Initializable {
     public String checkFifteenMinutes(){
         for(Appointment a: AppointmentsQuery.getAllAppointments()){//get list of appts
             if(a.getStart().isAfter(LocalDateTime.now()) && a.getStart().isBefore(LocalDateTime.now().plusMinutes(15))){
-                LocalDateTime ldt = a.getStart();
-                DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
-                String formatDate = ldt.format(date_format);
+                LocalDateTime startformatTime = a.getStart();
+                LocalDateTime endformatTime = a.getEnd();
+                //DateTimeFormatter date_format = DateTimeFormatter.ofPattern(rb.getString("MM/dd/yyyy"));
+                //String formatDate = ldt.format(date_format);
                 DateTimeFormatter time_format = DateTimeFormatter.ofPattern("HH:mm");
-                String formatTime = ldt.format(time_format);
+                String apptStart = startformatTime.format(time_format);
+                String apptEnd = endformatTime.format(time_format);
                 return rb.getString("You")+"\n"+
-                        "\n"+rb.getString("Appointment")+" "+"ID#: " + a.getAppointment_ID() +
-                        "\n"+rb.getString("Appointment")+" "+"Date: " + formatDate +
-                        "\n"+rb.getString("Appointment")+" "+rb.getString("Start") +": " + formatTime +
-                        "\n"+rb.getString("Appointment")+" "+rb.getString("Title")+": " + a.getTitle();
+                        "\n"+rb.getString("APPOINTMENTID") +" "+ a.getAppointment_ID() +
+                        "\n"+rb.getString("APPOINTMENT_TITLE") +" "+a.getTitle()+
+                        "\n" + ZoneId.systemDefault() +" Time : " + apptStart + " - " + apptEnd;
             }
         }
         return rb.getString("There");

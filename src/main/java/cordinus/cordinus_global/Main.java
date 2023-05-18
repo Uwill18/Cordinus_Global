@@ -40,10 +40,7 @@ import java.util.Locale;
  * I would try be clear on system requirements, so as not to overthink them.
  * I would also look for opportunities to use the database and the DAO to my
  * advantage as it is most effective at calculating data quickly, and retrieving specified data to the view.
- * Further, in reports I might also enable a button to save and print out current report data.
- * Lastly, if I had more time I would have the whole app translate to French when prompted since one of the use cases
- * is to translate for said case. And for kicks, I might also have a Spanish version as that is my second language,
- * and I would try to implement mutation of data configured specifically to the user.
+ * Lastly, in reports I might also enable a button to save and print out current report data.
  * All that said, I am very proud of this project, and the lessons this journey has given me.
  * Without further ado, please enjoy this User Experience!
  *<br/>
@@ -65,13 +62,15 @@ import java.util.Locale;
  //https://www.youtube.com/watch?v=3Ht-JMQh2JI<br/>
  //https://www.geeksforgeeks.org/how-to-remove-duplicates-from-arraylist-in-java<br/>
  //https://stackoverflow.com/questions/44031561/get-month-name-from-month-number-for-a-series-of-numbers*<br/>
+ //https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html#:~:text=Class%20names%20should%20be%20nouns,such%20as%20URL%20or%20HTML).<br/>
+ //https://www.w3schools.com/java/java_polymorphism.asp<br/>
  <br/>
  <br/>
  <br/>
  * COURTESY OF<br/>
  * Author: Uri W. Easter<br/>
- * Student Application Version: 1.0<br/>
- * Date: 05/07/2023<br/>
+ * Student Application Version: 3.0<br/>
+ * Date: 05/18/2023<br/>
  * IntelliJ IDEA Community Edition 2022.3.1,<br/>
  *<br/>
  * JavaFX-SDK-11.0.17,<br/>

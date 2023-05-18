@@ -13,8 +13,8 @@ public class Alerts {
     public static void selectionWarning(){
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("OVERLAP WARNING");
-        alert.setContentText("Current selection either conflicts with established business hours or overlaps existing appointments. Please Try Again.");
+        alert.setTitle(rb.getString("OVERLAP"));
+        alert.setContentText(rb.getString("Current"));
         alert.showAndWait();
 
     }
@@ -34,7 +34,7 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(rb.getString("Error"));
         alert.setHeaderText(rb.getString("SELECTION"));
-        alert.setContentText("No selection was made for this operation.");
+        alert.setContentText(rb.getString("No"));
         alert.showAndWait();
     }
 

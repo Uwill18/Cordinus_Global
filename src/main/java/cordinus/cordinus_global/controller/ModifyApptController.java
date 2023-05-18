@@ -120,7 +120,7 @@ public class ModifyApptController implements Initializable {
         contactLbl.setText(rb.getString("Contact")+" "+rb.getString("ID") +" & "+rb.getString("Name"));
         typeLbl.setText(rb.getString("Type"));
 
-        modBtn.setText(rb.getString("Add"));
+        modBtn.setText(rb.getString("Modify"));
         backBtn.setText(rb.getString("Back"));
 
 
@@ -175,12 +175,11 @@ public class ModifyApptController implements Initializable {
                 String endformatTime = end.format(time_format);
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Appointment Updated!");
-                //alert.setTitle(ZoneId.systemDefault() + "Timezone");
-                alert.setTitle("UPDATE CONFIRMATION");
-                alert.setContentText("The Appointment with the following Criteria has been updated :" +
-                        "\nID# : " + appointment.getAppointment_ID() +
-                        "\nDate : " + startformatDate +
+                alert.setHeaderText(rb.getString("curApptMod"));
+                alert.setTitle(rb.getString("apptUpdate1"));
+                alert.setContentText(rb.getString("apptUpdated2")+
+                        "\n"+rb.getString("APPOINTMENTID")+": " + appointment.getAppointment_ID() +
+                        "\n"+rb.getString("Date")+" : " + startformatDate +
                         "\n" + ZoneId.systemDefault() + " Time : " + startformatTime + " - " + endformatTime);
                 alert.showAndWait();
 
@@ -188,7 +187,6 @@ public class ModifyApptController implements Initializable {
                         "\nTitle : " + title +
                         "\nDate : " + startformatDate +
                         "\n" + ZoneId.systemDefault() + " Time : " + startformatTime + " - " + endformatTime);
-                //System.out.println(AppointmentsQuery.);
                 apptScreenReturn(event);
             } else {
                 Alerts.selectionWarning();

@@ -136,9 +136,6 @@ public class AddApptController implements Initializable {
 
     }
 
-    static public void apptLangMode(){
-
-    }
 
 
     /**Timing nested loop
@@ -226,19 +223,19 @@ public class AddApptController implements Initializable {
             String endformatTime = end.format(time_format);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("New Appointment Added!");
-            alert.setTitle("APPOINTMENT ADDED");
-            alert.setContentText("The appointment with the following criteria has been added : " +
-                    "\nTitle : " + title +
-                    "\nDate : " + startformatDate +
-                    "\n" + ZoneId.systemDefault() + " Time : " + startformatTime + " - " + endformatTime);
+            alert.setHeaderText(rb.getString("newApptAdd"));
+            alert.setTitle(rb.getString("apptAdded1"));
+            alert.setContentText(rb.getString("apptAdded2")+
+                    "\n"+rb.getString("Title")+" : " + title +
+                    "\n"+rb.getString("Date")+" : " + startformatDate +
+                    "\n" + ZoneId.systemDefault() +"Time : " + startformatTime + " - " + endformatTime);
             alert.showAndWait();
 
             System.out.println("The appointment with the following criteria has been added : " +
                     "\nTitle : " + title +
                     "\nDate : " + startformatDate +
                     "\n" + ZoneId.systemDefault() + " Time : " + startformatTime + " - " + endformatTime);
-            apptScreenReturn(event);
+            //apptScreenReturn(event);
         } else {
             Alerts.selectionWarning();
         }
