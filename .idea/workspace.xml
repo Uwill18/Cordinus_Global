@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="testing functionality">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Updating Customer Appointment Modify">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/AppointmentsQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ApptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AppointmentScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/AppointmentScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_fr.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cordinus/cordinus_global/ReportScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +47,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/target" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/Resource_Bundle_demo" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -96,14 +91,7 @@
       <updated>1676022196157</updated>
       <workItem from="1684194183453" duration="125000" />
       <workItem from="1684194731514" duration="25525000" />
-      <workItem from="1684242777608" duration="42406000" />
-    </task>
-    <task id="LOCAL-00115" summary="Overlap testing four and file rename">
-      <created>1682115070636</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1682115070636</updated>
+      <workItem from="1684242777608" duration="55844000" />
     </task>
     <task id="LOCAL-00116" summary="Overlap/BHC test five">
       <created>1682203772170</created>
@@ -441,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684372997251</updated>
     </task>
-    <option name="localTasksCounter" value="164" />
+    <task id="LOCAL-00164" summary="Updating Customer Appointment Modify">
+      <created>1684376330534</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1684376330535</updated>
+    </task>
+    <option name="localTasksCounter" value="165" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updating customer delete" />
     <MESSAGE value="TimeUtil update" />
     <MESSAGE value="Report 2 update" />
     <MESSAGE value="ModifyApptController mod" />
@@ -484,7 +478,8 @@
     <MESSAGE value="CORDINUS GLOBAL 2.0 RUNNING!!" />
     <MESSAGE value="Cordinus Global v3.0" />
     <MESSAGE value="testing functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing functionality" />
+    <MESSAGE value="Updating Customer Appointment Modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating Customer Appointment Modify" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -498,6 +493,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/DAO/CustomersQuery.java</url>
           <line>67</line>
           <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java</url>
+          <line>263</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

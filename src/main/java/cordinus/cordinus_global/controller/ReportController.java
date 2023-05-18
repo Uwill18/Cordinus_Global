@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -93,6 +94,8 @@ public  class ReportController implements Initializable {
 
     @FXML
     private ComboBox<Month> MonthComboBox;
+    @FXML
+    private ComboBox<String> monthComboBox;
 
     @FXML
     private ComboBox<String> TypeComboBox;
@@ -203,8 +206,6 @@ public  class ReportController implements Initializable {
         Contact_ID.setText(rb.getString("Contact")+" "+rb.getString("ID"));
         Customer_ID.setText(rb.getString("CustomerID"));
 
-
-
         setReportContactTable();
         ObservableList<Contact> allContacts = ContactsQuery.getAllContacts();
         ContactComboBox.setItems(allContacts);
@@ -216,15 +217,15 @@ public  class ReportController implements Initializable {
             TypeComboBox.setItems(appointmentTypeList);
         }
 /**https://stackoverflow.com/questions/44031561/get-month-name-from-month-number-for-a-series-of-numbers*/
-        ObservableList<Month> allMonths = FXCollections.observableArrayList();
+        ObservableList<String> frenchMonths = FXCollections.observableArrayList();
         for (int monthNumber = 1; monthNumber <= 12; monthNumber++) {
-            Locale.getDefault();
-            Month month = Month.of(monthNumber);  // Get a month for number, 1-12 for January-December.
-            allMonths.add(Month.valueOf(String.valueOf(month)));
+            Month month = Month.of(monthNumber);// Get a month for number, 1-12 for January-December.
+            String eachMonth = month.getDisplayName(TextStyle.FULL,Locale.getDefault()).toUpperCase(Locale.ROOT);
+            frenchMonths.add(eachMonth);
         }
-        MonthComboBox.setItems(allMonths);
-        MonthComboBox.setVisibleRowCount(4);
 
+         monthComboBox.setItems(frenchMonths);
+         monthComboBox.setVisibleRowCount(4);
 
         apptRemTitleTab.setText(rb.getString("apptRemTitle"));
         setCurrentDay();
@@ -276,7 +277,7 @@ public  class ReportController implements Initializable {
  * to it. The reportsTotalTable is then set according to reportTotalData*/
     public void onActionFilter(ActionEvent event) throws SQLException {
         String type = TypeComboBox.getValue();
-        int month = MonthComboBox.getValue().getValue();
+        int month = monthComboBox.getSelectionModel().getSelectedIndex()+1;
         int result = AppointmentsQuery.getAppointmentByTypeMonth(type, month);
         apptTotals.setText(String.valueOf(result));
         reportTotalData.clear();
