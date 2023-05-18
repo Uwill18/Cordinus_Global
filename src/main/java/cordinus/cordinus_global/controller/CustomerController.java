@@ -136,9 +136,9 @@ public class CustomerController {
         if ((CustomerTable.getSelectionModel().getSelectedItem() != null)) {
             try {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Delete Warning");
-                alert.setHeaderText("Deleting Customer");
-                alert.setContentText("Are you sure you wish to delete this customer? "
+                alert.setTitle(rb.getString("DelWarn"));
+                alert.setHeaderText(rb.getString("DelCust"));
+                alert.setContentText(rb.getString("DeleteCustQ")
                         + "\nCUSTOMER ID# : " + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()
                         + "\nCUSTOMER NAME :" + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_Name());
                 Optional<ButtonType> result = alert.showAndWait();
@@ -147,9 +147,9 @@ public class CustomerController {
                         Alerts.deleteError();
                     } else {
                         Alert delete_alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        delete_alert.setTitle("Delete Confirmation");
+                        delete_alert.setTitle(rb.getString("DelConfirm"));
                         delete_alert.setHeaderText("Customer Deleted");
-                        delete_alert.setContentText("THE FOLLOWING CUSTOMER HAS BEEN DELETED!" +
+                        delete_alert.setContentText(rb.getString("CustDelResults") +
                                 "\nCUSTOMER ID# : " + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_ID()
                                 + "\nCUSTOMER NAME : "
                                 + CustomerTable.getSelectionModel().getSelectedItem().getCustomer_Name());
@@ -209,7 +209,6 @@ public class CustomerController {
             stage.show();
         } catch (NullPointerException e) {
             Alerts.selectionError();
-            ;
         }
     }
 

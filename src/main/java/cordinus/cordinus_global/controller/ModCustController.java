@@ -88,7 +88,7 @@ public class ModCustController {
 
                 modBtn.setText(rb.getString("Modify"));
                 backBtn.setText(rb.getString("Back"));
-                onActionSelectCountry();
+                //onActionSelectCountry();//see what happens
 
         }
 
