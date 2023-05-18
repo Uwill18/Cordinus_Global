@@ -259,6 +259,35 @@ public abstract class AppointmentsQuery {
         return appointmentList;
     }
 
+    public static ObservableList<Appointment> getCurrentCustomerAppointments(int customerID){
+        ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM APPOINTMENTS WHERE Customer_ID=?";
+            PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+            ps.setInt(1, customerID);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentID = rs.getInt("Appointment_ID");
+                String contactID = rs.getString("Contact_ID");
+                String description = rs.getString("Description");
+                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                String location = rs.getString("Location");
+                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                String title = rs.getString("Title");
+                String type = rs.getString("Type");
+                String customer_ID = rs.getString("Customer_ID");
+                String userID = rs.getString("User_ID");
+                appointmentList.add(new Appointment(appointmentID, title, description, location, contactID, type, start, end, customer_ID, userID ));
+                //getCustomerByID(Integer.parseInt(customerID));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return appointmentList;
+    }
+
     /**https://learnsql.com/cookbook/how-to-calculate-the-difference-between-two-timestamps-in-mysql/#:~:text=To%20calculate%20the%20difference%20between%20the%20timestamps%20in%20MySQL%2C%20use,have%20done%20here%2C%20choose%20SECOND%20.*/
     /**https://learnsql.com/cookbook/how-to-sum-values-of-a-column-in-sql/#:~:text=The%20aggregate%20function%20SUM%20is,all%20records%20in%20the%20table.*/
     public static int getTimeSum(){

@@ -4,6 +4,7 @@ import cordinus.cordinus_global.model.Alerts;
 import cordinus.cordinus_global.model.Appointment;
 import cordinus.cordinus_global.DAO.AppointmentsQuery;
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.model.Customer;
 import cordinus.cordinus_global.utils.TimeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -70,9 +71,14 @@ public class ApptController {
 
         @FXML
         private Button deleteApptButton;
+        @FXML
+        private Label appointmentDisplayLbl;
 
         @FXML
         private Button updateApptButton;
+        private int selectedIndex;
+        private Customer customer;
+        private int index;
 
 
         public final ResourceBundle rb = ResourceBundle.getBundle("rb/Nat");
@@ -96,6 +102,7 @@ public class ApptController {
                 Contact_ID.setText(rb.getString("Contact")+" "+rb.getString("ID"));
                 Customer_ID.setText(rb.getString("Customer")+" "+rb.getString("ID"));
                 User_ID.setText(rb.getString("User") + " " + rb.getString("ID"));
+                appointmentDisplayLbl.setText("");
 
                 addApptButton.setText(rb.getString("ADD"));
                 updateApptButton.setText(rb.getString("UPDATE"));
@@ -194,6 +201,15 @@ public class ApptController {
                 } catch (NullPointerException e) {
                         Alerts.selectionError();
                 }
+        }
+
+        public void customer_Passer(int index, Customer customer) {
+                this.customer = customer;
+                this.index = index;
+                AppointmentTable.setItems(AppointmentsQuery.getCurrentCustomerAppointments(customer.getCustomer_ID()));
+                appointmentDisplayLbl.setText(rb.getString("Updatefor")+" "+customer.getCustomer_Name());
+                //customerAppointmentLbl.setText("");
+                //CustomerIDTxt.setText((String.valueOf(customer.getCustomer_ID())));
         }
 
         @FXML

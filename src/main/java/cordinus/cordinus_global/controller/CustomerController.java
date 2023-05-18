@@ -211,17 +211,36 @@ public class CustomerController {
             Alerts.selectionError();
         }
     }
+//
+//    @FXML
+//    void updateAppointment(ActionEvent event) throws IOException {
+//        try {
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
+//            loader.load();
+//            ModifyApptController modifyApptController = loader.getController();
+//            modifyApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            stage.setTitle(rb.getString("modAppt"));
+//            Parent scene = loader.getRoot();
+//            stage.setScene(new Scene(scene));
+//            stage.show();
+//        } catch (NullPointerException e) {
+//            Alerts.selectionError();
+//        }
+//    }
+
 
     @FXML
     void updateAppointment(ActionEvent event) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/ModAppt.fxml"));
+            loader.setLocation(MainController.class.getResource("/cordinus/cordinus_global/AppointmentScreen.fxml"));
             loader.load();
-            ModifyApptController modifyApptController = loader.getController();
-            modifyApptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
+            ApptController apptController = loader.getController();
+            apptController.customer_Passer(CustomerTable.getSelectionModel().getSelectedIndex(), CustomerTable.getSelectionModel().getSelectedItem());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle(rb.getString("modAppt"));
+            stage.setTitle(rb.getString("Appointments"));
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
