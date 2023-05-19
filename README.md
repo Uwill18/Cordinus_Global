@@ -34,13 +34,13 @@ to be the user's preferred language.
 
 
 -----------------------------------------
-Courtesy of:
+In Affiliation with H2Apps, Courtesy of:
 
-Author: Uri W. Easter
+Author: Celestin Moreau
 
-Student Application Version: 2.0 
+Student Application Version: 3.0 
 
-Date: 05/18/2023 
+Date: 05/19/2023 
 
 
 
