@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="Final Commit for v3.0 !">
+    <list default="true" id="a3665995-75b3-48cb-b5ae-37f24f642500" name="Changes" comment="AddApptController update prompts user to set appointments for the next day when outside of business hours">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login_activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/login_activity.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/AddApptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Alerts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cordinus/cordinus_global/model/Alerts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rb/Nat_en.properties" afterDir="false" />
@@ -96,14 +96,7 @@
       <workItem from="1684194183453" duration="125000" />
       <workItem from="1684194731514" duration="25525000" />
       <workItem from="1684242777608" duration="66927000" />
-      <workItem from="1684980273552" duration="4941000" />
-    </task>
-    <task id="LOCAL-00118" summary="Login Alert designed to specs">
-      <created>1682279938850</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1682279938850</updated>
+      <workItem from="1684980273552" duration="8392000" />
     </task>
     <task id="LOCAL-00119" summary="Experimenting with Business Hours Check">
       <created>1682482245493</created>
@@ -441,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684432665281</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="AddApptController update prompts user to set appointments for the next day when outside of business hours">
+      <created>1685216103349</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1685216103350</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +459,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ModifyApptController mod" />
     <MESSAGE value="Final Reviews 1" />
     <MESSAGE value="Final Reviews 2" />
     <MESSAGE value="Final Review 3" />
@@ -484,7 +483,8 @@
     <MESSAGE value="Updating Customer Appointment Modify" />
     <MESSAGE value="Month Selection gets Local Lang" />
     <MESSAGE value="Final Commit for v3.0 !" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Commit for v3.0 !" />
+    <MESSAGE value="AddApptController update prompts user to set appointments for the next day when outside of business hours" />
+    <option name="LAST_COMMIT_MESSAGE" value="AddApptController update prompts user to set appointments for the next day when outside of business hours" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

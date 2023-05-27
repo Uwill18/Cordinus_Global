@@ -89,6 +89,7 @@ public class LoginController implements Initializable {
                 System.out.println("File written!");
                 /**upon successful validation the alert is called*/
                 fifteenMinutesAlert();
+                Alerts.nextApptUpdate();
             }else{
                 outputFile.println( "ACCESS DENIED to user of USERNAME: { " + username + " } ATTEMPTED SIGN-IN TIME SHOWS AS: { "+ strDate + " } " +ZoneId.systemDefault() + " Time.");
                 Alerts.loginError();

@@ -17,8 +17,6 @@ public class Alerts {
         alert.showAndWait();
     }
 
-
-
     public static void loginError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(rb.getString("Error"));
@@ -26,7 +24,6 @@ public class Alerts {
         alert.setContentText(rb.getString("Invalid"));
         alert.showAndWait();
     }
-
 
     public static void selectionError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -58,7 +55,10 @@ public class Alerts {
     public static void nextApptUpdate() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(rb.getString("AppointmentNotification"));
-        alert.setContentText(rb.getString("remStatus2"));
+        //alert.setTitle(rb.getString("addAppt"));
+        //alert.setHeaderText(rb.getString("Upcoming"));
+        alert.setHeaderText(rb.getString("apptRemTitle"));
+        alert.setContentText(rb.getString("There")+"\n"+rb.getString("remStatus2"));
         alert.showAndWait();
     }
 }

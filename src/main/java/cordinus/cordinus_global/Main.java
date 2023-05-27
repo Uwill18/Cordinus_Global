@@ -1,5 +1,6 @@
 package cordinus.cordinus_global;
 import cordinus.cordinus_global.DAO.JDBC;
+import cordinus.cordinus_global.model.Alerts;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -114,7 +115,6 @@ public class Main extends Application {
         //Creating a scene object
         Scene scene = new Scene(root);
 
-
         stage.setTitle("Cordinus Global");
         stage.setScene(scene);
         stage.show();
@@ -122,8 +122,8 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException, IOException {
         JDBC.openConnection();
-        Locale locale = new Locale("fr");
-        Locale.setDefault(locale);
+        //Locale locale = new Locale("fr");
+        //Locale.setDefault(locale);
         launch();
         JDBC.closeConnection();
     }
