@@ -356,8 +356,6 @@ public  class ReportController implements Initializable {
     }
 
 
-
-
     /**TAB3 -- remaining appts/day*/
 
 
@@ -368,7 +366,7 @@ public  class ReportController implements Initializable {
          * it was important to me that this function factor in that past appointments cannot be booked, and catering
          * to a length of time starting at the beginning of the day does not take that into consideration.
          * So.. in this function I find the difference between the LocalTime of now and the end of BusinessDay,
-         * subtract the length of existing appointments while the length of the businessday is greater than all appointments
+         * subtract the length of existing appointments while the length of the business day is greater than all appointments
          * and divide by the time constant. Otherwise, if there are no appointments,
          * it will simply divide the remaining time by the time constant, and output No remaining appointments available after business end
          * if it is before business start it will output Available bookings will display at 8:00 a.m.

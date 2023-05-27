@@ -11,12 +11,10 @@ public class Alerts {
 
 
     public static void selectionWarning(){
-
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(rb.getString("OVERLAP"));
         alert.setContentText(rb.getString("Current"));
         alert.showAndWait();
-
     }
 
 
@@ -47,10 +45,20 @@ public class Alerts {
     }
 
     public static void valueWarning() {
-
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(rb.getString("VALUE"));
         alert.setContentText(rb.getString("valwarn"));
+        alert.showAndWait();
+    }
+
+    //Upcoming = Upcoming Appointment
+    //AppointmentNotification = Appointment Notification
+    //remStatus2
+
+    public static void nextApptUpdate() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(rb.getString("AppointmentNotification"));
+        alert.setContentText(rb.getString("remStatus2"));
         alert.showAndWait();
     }
 }
