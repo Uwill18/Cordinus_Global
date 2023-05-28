@@ -471,45 +471,10 @@ public  class ReportController implements Initializable {
 
     public void setCurrentDay(){
         DayOfWeek dow = LocalDate.now().getDayOfWeek();
-        String currentDOW = dow.toString();
+        todayLbl.setText(dow.getDisplayName(TextStyle.NARROW,Locale.getDefault())+""+
+                dow.getDisplayName(TextStyle.FULL_STANDALONE,Locale.getDefault()).substring(1));
 
-        if(currentDOW.equals("SUNDAY")){
-            todayLbl.setText(rb.getString("Sunday"));
-            //todayLbl.setText("Sunday");
-        }
-
-        if(currentDOW.equals("MONDAY")){
-            todayLbl.setText(rb.getString("Monday"));
-            //todayLbl.setText("Monday");
-        }
-
-        if(currentDOW.equals("TUESDAY")){
-            todayLbl.setText(rb.getString("Tuesday"));
-            //todayLbl.setText("Tuesday");
-        }
-
-        if(currentDOW.equals("WEDNESDAY")){
-            todayLbl.setText(rb.getString("Wednesday"));
-            //todayLbl.setText("Wednesday");
-        }
-
-        if(currentDOW.equals("THURSDAY")){
-            todayLbl.setText(rb.getString("Thursday"));
-            //todayLbl.setText("Thursday");
-        }
-
-        if(currentDOW.equals("FRIDAY")){
-            todayLbl.setText(rb.getString("Friday"));
-            //todayLbl.setText("Friday");
-        }
-
-        if(currentDOW.equals("SATURDAY")){
-            todayLbl.setText(rb.getString("Saturday"));
-            //todayLbl.setText("Saturday");
-        }
     }
-
-
 
         @FXML
     public void mainMenuReturn(ActionEvent event) throws IOException {
