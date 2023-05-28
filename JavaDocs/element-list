@@ -1,0 +1,6 @@
+module:cordinus.cordinus_global
+cordinus.cordinus_global
+cordinus.cordinus_global.controller
+cordinus.cordinus_global.DAO
+cordinus.cordinus_global.model
+cordinus.cordinus_global.utils

@@ -299,7 +299,7 @@ public class AddApptController implements Initializable {
 
         long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
         long interval = timeDifference;
-        try{
+        try{//while not <8
             if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
                 //timediff
                 //return ("Next Appointment is at "+ LocalTime.of(currenthour,15));

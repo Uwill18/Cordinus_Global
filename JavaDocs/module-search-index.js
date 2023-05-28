@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"cordinus.cordinus_global"}]
