@@ -124,7 +124,10 @@ public class Main extends Application {
         JDBC.openConnection();
         //Locale locale = new Locale("fr");
         //Locale locale = new Locale("es");
-       //Locale.setDefault(locale);
+        //Locale locale = new Locale("it");
+        //Locale locale = new Locale("de");
+        //Locale locale = new Locale("ja");
+        //Locale.setDefault(locale);
         launch();
         JDBC.closeConnection();
     }

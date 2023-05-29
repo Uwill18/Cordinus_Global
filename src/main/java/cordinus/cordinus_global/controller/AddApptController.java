@@ -300,28 +300,37 @@ public class AddApptController implements Initializable {
         long timeDifference = ChronoUnit.MINUTES.between(currentTime,nextAppt);
         long interval = timeDifference;
         try{//while not <8
-            if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
-                //timediff
-                //return ("Next Appointment is at "+ LocalTime.of(currenthour,15));
-                StartTimeCombo.setValue(LocalTime.of(currenthour,15));
-                EndTimeCombo.setValue(LocalTime.of(currenthour,30));
-            }
-            else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
-                //timediff
-                //return ("Next Appointment is at "+ LocalTime.of(currenthour,30));
-                StartTimeCombo.setValue(LocalTime.of(currenthour,30));
-                EndTimeCombo.setValue(LocalTime.of(currenthour,45));
+            if(LocalTime.now().isAfter(LocalTime.of(7,45))){
+                if(LocalTime.now().isBefore(LocalTime.of(currenthour,15)) && (interval>0 && interval <=15)){
+                    //timediff
+                    //return ("Next Appointment is at "+ LocalTime.of(currenthour,15));
+                    StartTimeCombo.setValue(LocalTime.of(currenthour,15));
+                    EndTimeCombo.setValue(LocalTime.of(currenthour,30));
+                }
+                else if(LocalTime.now().isBefore(LocalTime.of(currenthour,30)) && (interval>0 && interval <=15)){
+                    //timediff
+                    //return ("Next Appointment is at "+ LocalTime.of(currenthour,30));
+                    StartTimeCombo.setValue(LocalTime.of(currenthour,30));
+                    EndTimeCombo.setValue(LocalTime.of(currenthour,45));
 
-            }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
-                //timediff
-                StartTimeCombo.setValue(LocalTime.of(currenthour,45));
-                EndTimeCombo.setValue(LocalTime.of(currenthour+1,0));
+                }else if(LocalTime.now().isBefore(LocalTime.of(currenthour,45)) && (interval>0 && interval <=15)){
+                    //timediff
+                    StartTimeCombo.setValue(LocalTime.of(currenthour,45));
+                    EndTimeCombo.setValue(LocalTime.of(currenthour+1,0));
+                }
+                else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
+                    StartTimeCombo.setValue(LocalTime.of(currenthour+1,0));
+                    EndTimeCombo.setValue(LocalTime.of(currenthour+1,15));
+                }
+                return null;
+            }else {
+
+                //if outside business hours, the code should prompt the user to select an appointment for the current day, starting from start of
+                //business day
+                StartTimeCombo.setValue(LocalTime.of(8,0));
+                EndTimeCombo.setValue(LocalTime.of(8,15));
+                Alerts.nextApptUpdate();
             }
-            else if(LocalTime.now().isBefore(LocalTime.of(currenthour+1,0)) && (interval>0 && interval <=15)){
-                StartTimeCombo.setValue(LocalTime.of(currenthour+1,0));
-                EndTimeCombo.setValue(LocalTime.of(currenthour+1,15));
-            }
-            return null;
 
         }catch(Exception e){
             //System.out.println("Select for the next day");
