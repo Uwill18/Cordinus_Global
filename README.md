@@ -36,7 +36,7 @@ to be the user's preferred language.
 -----------------------------------------
 In Affiliation with H2Apps, Courtesy of:
 
-Author: Celestin Moreau
+Author: Uri W. Easter
 
 Student Application Version: 3.0 
 
